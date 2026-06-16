@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amor e Fé — Leia o Primeiro Capítulo Grátis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#6B1E2E;--wine2:#4A1220;--rose:#A03A4A;--gold:#B89650;--gold2:#D4AF6A;--cream:#F5F0E8;--cream2:#EDE6D8;--ink:#2B2520;--muted:#8A7A6E}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lora',Georgia,serif;background:var(--ink);color:var(--cream);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.35}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{background:linear-gradient(160deg,var(--wine2) 0%,var(--wine) 50%,#8B2436 100%);display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,6vw,5rem) clamp(2rem,5vw,4rem);position:relative;z-index:2}
+.hero-left::after{content:'';position:absolute;bottom:-60px;right:-60px;width:200px;height:200px;border:1px solid rgba(184,150,80,.25);border-radius:50%;pointer-events:none}
+.hero-right{background:var(--cream2);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(2rem,6vw,5rem) clamp(2rem,5vw,4rem);position:relative;z-index:2}
+.hero::after{content:'';position:absolute;top:0;left:50%;bottom:0;width:3px;background:linear-gradient(180deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);z-index:3;transform:translateX(-50%)}
+.label{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .7s ease .2s forwards}
+.label::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0}
+.headline{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.15;color:#fff;margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s ease .4s forwards}
+.headline em{font-style:italic;color:var(--gold2)}
+.subheadline{font-family:'Lora',serif;font-size:clamp(.95rem,1.5vw,1.1rem);line-height:1.75;color:rgba(245,240,232,.82);margin-bottom:2.2rem;max-width:480px;opacity:0;animation:fadeUp .7s ease .6s forwards}
+.social-proof{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s ease .8s forwards}
+.avatars{display:flex}
+.avatar{width:34px;height:34px;border-radius:50%;border:2px solid var(--wine);margin-left:-10px;background:var(--rose);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-family:'Playfair Display',serif;color:#fff;font-weight:600}
+.avatar:first-child{margin-left:0;background:#7A2535}
+.avatar:nth-child(2){background:#9B3040}
+.avatar:nth-child(3){background:var(--rose)}
+.avatar:nth-child(4){background:#B04558}
+.social-proof-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:rgba(245,240,232,.7);line-height:1.4}
+.social-proof-text strong{color:var(--gold2);font-weight:500}
+.ornament{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;opacity:0;animation:fadeUp .7s ease .9s forwards}
+.ornament-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(184,150,80,.4),transparent)}
+.ornament-diamond{color:var(--gold);font-size:.9rem}
+.offer-block{background:rgba(0,0,0,.25);border:1px solid rgba(184,150,80,.2);border-radius:2px;padding:1.2rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;margin-bottom:2rem;backdrop-filter:blur(4px);opacity:0;animation:fadeUp .7s ease 1s forwards}
+.offer-icon{font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:2px}
+.offer-text-label{font-family:'Cormorant Garamond',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+.offer-text-title{font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:.25rem}
+.offer-text-desc{font-size:.83rem;color:rgba(245,240,232,.65);line-height:1.5}
+.form-wrapper{width:100%;max-width:420px;opacity:0;animation:fadeUp .8s ease .3s forwards}
+.form-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:var(--wine);line-height:1.2;margin-bottom:.5rem;text-align:center}
+.form-title em{font-style:italic;color:var(--rose)}
+.form-subtitle{font-family:'Lora',serif;font-size:.9rem;color:var(--muted);text-align:center;margin-bottom:2rem;line-height:1.6}
+.book-mockup{width:140px;height:196px;margin:0 auto 2rem;position:relative;filter:drop-shadow(0 16px 40px rgba(107,30,46,.35))}
+.book-cover{width:100%;height:100%;border-radius:2px 6px 6px 2px;background:linear-gradient(160deg,var(--wine2) 0%,var(--wine) 50%,#8B2436 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;border-left:6px solid var(--wine2)}
+.book-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 50%)}
+.book-cover-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;text-align:center;line-height:1.15;padding:0 .75rem;z-index:1}
+.book-cover-divider{width:40px;height:2px;background:var(--gold);margin:.5rem 0;z-index:1}
+.book-cover-sub{font-family:'Cormorant Garamond',serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(212,175,106,.9);z-index:1;text-align:center;padding:0 .5rem}
+.badge-free{position:absolute;top:-10px;right:-14px;background:var(--gold);color:var(--wine2);font-family:'Playfair Display',serif;font-size:.62rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.3rem .55rem;border-radius:2px;transform:rotate(8deg);box-shadow:0 3px 12px rgba(184,150,80,.4);z-index:10}
+.field{margin-bottom:1rem;position:relative}
+.field label{display:block;font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.field input{width:100%;padding:.85rem 1rem;font-family:'Lora',serif;font-size:.95rem;color:var(--ink);background:#fff;border:1.5px solid #D5C9BC;border-radius:2px;outline:none;transition:border-color .25s,box-shadow .25s}
+.field input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(160,58,74,.12)}
+.field input::placeholder{color:#BDB0A4;font-style:italic}
+.btn-cta{width:100%;padding:1rem 1.5rem;background:linear-gradient(135deg,var(--wine) 0%,var(--rose) 100%);color:#fff;font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;letter-spacing:.05em;border:none;border-radius:2px;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 24px rgba(107,30,46,.35);margin-top:.5rem}
+.btn-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 60%);pointer-events:none}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(107,30,46,.45)}
+.btn-cta:active{transform:translateY(0)}
+.btn-cta-icon{margin-right:.5rem}
+.privacy{text-align:center;font-size:.75rem;color:#A09288;margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
+.quote-strip{background:var(--wine2);border-top:1px solid rgba(184,150,80,.2);border-bottom:1px solid rgba(184,150,80,.2);padding:3.5rem clamp(1.5rem,6vw,5rem);text-align:center}
+.quote-strip blockquote{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;font-weight:400;color:var(--cream);max-width:720px;margin:0 auto 1rem;line-height:1.7}
+.quote-strip cite{font-family:'Cormorant Garamond',serif;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-style:normal}
+.benefits{background:var(--cream);padding:clamp(3rem,8vw,6rem) clamp(1.5rem,6vw,5rem)}
+.benefits-inner{max-width:960px;margin:0 auto}
+.benefits-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:400;color:var(--wine);text-align:center;margin-bottom:.5rem}
+.benefits-title em{font-style:italic}
+.benefits-sub{font-size:.95rem;color:var(--muted);text-align:center;margin-bottom:3rem;font-family:'Lora',serif}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+.benefit-card{padding:1.75rem;background:#fff;border-left:3px solid var(--gold);box-shadow:0 2px 20px rgba(43,37,32,.07);border-radius:0 2px 2px 0}
+.benefit-icon{font-size:1.8rem;margin-bottom:.75rem;line-height:1}
+.benefit-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--wine);margin-bottom:.5rem}
+.benefit-desc{font-size:.88rem;color:var(--muted);line-height:1.65;font-family:'Lora',serif}
+.excerpt{background:var(--ink);padding:clamp(3rem,8vw,6rem) clamp(1.5rem,6vw,5rem);position:relative;overflow:hidden}
+.excerpt::before{content:'"';position:absolute;top:-.2em;left:clamp(1rem,4vw,4rem);font-family:'Playfair Display',serif;font-size:clamp(10rem,18vw,20rem);color:rgba(107,30,46,.15);line-height:1;pointer-events:none;font-style:italic}
+.excerpt-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
+.excerpt-label{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.excerpt-label::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0}
+.excerpt-text{font-family:'Lora',serif;font-size:clamp(1rem,1.8vw,1.15rem);color:rgba(245,240,232,.88);line-height:1.9;margin-bottom:1.5rem}
+.excerpt-text em{font-style:italic;color:var(--gold2)}
+.excerpt-cliffhanger{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.2rem);font-style:italic;color:var(--gold2);text-align:center;padding:1.5rem;border:1px solid rgba(184,150,80,.25);margin-top:2rem}
+.cta-final{background:linear-gradient(160deg,var(--wine2) 0%,var(--wine) 60%,#8B2436 100%);padding:clamp(3rem,8vw,6rem) clamp(1.5rem,6vw,5rem);text-align:center;position:relative;overflow:hidden}
+.cta-final::before{content:'◆';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(20rem,40vw,50rem);color:rgba(255,255,255,.02);pointer-events:none;line-height:1}
+.cta-final-label{font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.cta-final-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.8rem);font-weight:400;color:#fff;line-height:1.2;margin-bottom:1rem;max-width:640px;margin-left:auto;margin-right:auto}
+.cta-final-title em{font-style:italic;color:var(--gold2)}
+.cta-final-sub{font-size:1rem;color:rgba(245,240,232,.75);max-width:520px;margin:0 auto 2.5rem;line-height:1.7;font-family:'Lora',serif}
+.cta-final-form{display:flex;gap:.75rem;max-width:480px;margin:0 auto;flex-wrap:wrap}
+.cta-final-form input{flex:1;min-width:220px;padding:.9rem 1.1rem;font-family:'Lora',serif;font-size:.95rem;color:var(--ink);background:#fff;border:none;border-radius:2px;outline:none}
+.cta-final-form input::placeholder{color:#BDB0A4;font-style:italic}
+.cta-final-form .btn-cta{margin-top:0;min-width:200px;flex:none;white-space:nowrap}
+.cta-final-privacy{font-size:.75rem;color:rgba(245,240,232,.45);margin-top:1.25rem}
+footer{background:var(--ink);border-top:1px solid rgba(184,150,80,.15);padding:2rem clamp(1.5rem,6vw,5rem);text-align:center}
+footer p{font-family:'Cormorant Garamond',serif;font-size:.82rem;color:rgba(245,240,232,.35);letter-spacing:.05em}
+footer a{color:rgba(184,150,80,.6);text-decoration:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.success-msg{display:none;text-align:center;padding:2rem;animation:fadeUp .5s ease forwards}
+.success-msg .success-icon{font-size:2.5rem;margin-bottom:1rem}
+.success-msg h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--wine);margin-bottom:.5rem}
+.success-msg p{font-size:.9rem;color:var(--muted);line-height:1.6}
+@media(max-width:768px){.hero{grid-template-columns:1fr}.hero::after{display:none}.hero-left{padding:3rem 1.5rem 2rem;min-height:auto}.hero-right{padding:2.5rem 1.5rem 3.5rem}.cta-final-form{flex-direction:column}.cta-final-form .btn-cta{width:100%}}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-left">
+    <div class="label">Romance cristão · Capítulo 1 grátis</div>
+    <h1 class="headline">Tem casamento que não acaba em briga.<br><em>Acaba em silêncio.</em></h1>
+    <p class="subheadline">Ana achava que sabia tudo sobre o marido. Até a noite em que descobriu que ele guardava um segredo — não por fraqueza, mas pelo maior amor que ela jamais imaginaria.</p>
+    <div class="social-proof">
+      <div class="avatars"><div class="avatar">M</div><div class="avatar">J</div><div class="avatar">R</div><div class="avatar">C</div></div>
+      <p class="social-proof-text"><strong>+1.200 leitoras</strong> já começaram a história.<br>Muitas não conseguiram parar no capítulo 1.</p>
+    </div>
+    <div class="ornament"><div class="ornament-line"></div><span class="ornament-diamond">◆</span><div class="ornament-line"></div></div>
+    <div class="offer-block">
+      <div class="offer-icon">📖</div>
+      <div>
+        <div class="offer-text-label">Você vai receber</div>
+        <div class="offer-text-title">Capítulo 1 completo — grátis</div>
+        <div class="offer-text-desc">"O café que ninguém bebeu" — o início de uma história que vai te fazer questionar o que você realmente enxerga no casamento ao seu redor.</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="form-wrapper">
+      <div class="book-mockup">
+        <div class="badge-free">Grátis</div>
+        <div class="book-cover">
+          <div class="book-cover-title">AMOR<br>E FÉ</div>
+          <div class="book-cover-divider"></div>
+          <div class="book-cover-sub">Um romance cristão</div>
+        </div>
+      </div>
+      <h2 class="form-title">Leia o primeiro<br><em>capítulo agora</em></h2>
+      <p class="form-subtitle">Sem cartão de crédito. Sem compromisso.<br>Só uma história que pode mudar o jeito de você amar.</p>
+      <form id="capture-form" onsubmit="handleSubmit(event)">
+        <div class="field"><label for="nome">Seu primeiro nome</label><input type="text" id="nome" name="nome" placeholder="Como posso te chamar?" required autocomplete="given-name"></div>
+        <div class="field"><label for="email">Seu melhor e-mail</label><input type="email" id="email" name="email" placeholder="Onde envio o capítulo?" required autocomplete="email"></div>
+        <button type="submit" class="btn-cta"><span class="btn-cta-icon">✉</span>Quero receber o Capítulo 1</button>
+      </form>
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">💌</div>
+        <h3>Capítulo 1 a caminho!</h3>
+        <p>Verifique sua caixa de entrada — e a pasta de spam, só por garantia. A história de Ana começa agora.</p>
+      </div>
+      <p class="privacy">🔒 Seus dados estão seguros. Sem spam, jamais.</p>
+    </div>
+  </div>
+</section>
+<div class="quote-strip">
+  <blockquote>"Às vezes o casamento não quebra de uma vez.<br>Ele vai esfriando — como o café que ninguém bebeu."</blockquote>
+  <cite>Capítulo 1 · Amor e Fé</cite>
+</div>
+<section class="benefits">
+  <div class="benefits-inner">
+    <h2 class="benefits-title">Por que <em>este livro</em> é diferente</h2>
+    <p class="benefits-sub">Não é autoajuda. É uma história real, com personagens que você vai reconhecer.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card"><div class="benefit-icon">🎭</div><div class="benefit-title">Suspense em cada capítulo</div><p class="benefit-desc">Cada capítulo termina num cliffhanger que não te deixa largar. Você vai querer saber o que aconteceu — agora.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🙏</div><div class="benefit-title">Fé sem pregação</div><p class="benefit-desc">A espiritualidade está no cotidiano dos personagens, não em sermões. Como na vida real.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">💔</div><div class="benefit-title">Uma dor que você conhece</div><p class="benefit-desc">A distância silenciosa dentro de um casamento que parece bem por fora. Se você já sentiu isso, essa história é sua.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🔄</div><div class="benefit-title">O amor que carrega, não o que sente</div><p class="benefit-desc">Uma redefinição poderosa do que significa amar de verdade — que vai ficar na sua cabeça muito depois do fim.</p></div>
+    </div>
+  </div>
+</section>
+<section class="excerpt">
+  <div class="excerpt-inner">
+    <div class="excerpt-label">Prévia exclusiva · Capítulo 1</div>
+    <p class="excerpt-text">Havia uma xícara de café na pia que ninguém tinha bebido.</p>
+    <p class="excerpt-text">Ana percebeu isso às seis e quarenta da manhã, antes mesmo de perceber que Pedro não tinha dormido em casa de novo. A xícara estava ali desde a noite anterior — ela a deixara pronta, do jeito que ele gostava, três de açúcar e o leite só pra tirar o amargo, e foi dormir esperando o som da chave na porta. O som não veio.</p>
+    <p class="excerpt-text">Ela jogou na pia e ficou olhando o líquido escuro escorrer pelo ralo, e pensou — sem querer pensar, do jeito que os pensamentos ruins chegam — que era <em>exatamente assim que o casamento dela estava indo embora.</em> Não de uma vez. Não com um estrondo. Mas escorrendo, devagar, por um ralo que ela não sabia onde ficava.</p>
+    <div class="excerpt-cliffhanger">As mãos dela começaram a procurar nos bolsos antes que a cabeça desse a ordem.<br><br>A letra não era de Pedro. Era uma letra de mulher, inclinada, apressada:<br><br><strong>"Amanhã, mesmo horário. Não conte a ela. — S."</strong></div>
+  </div>
+</section>
+<section class="cta-final">
+  <p class="cta-final-label">◆ &nbsp; Continua no capítulo completo &nbsp; ◆</p>
+  <h2 class="cta-final-title">Você quer saber<br>quem é <em>"S."</em></h2>
+  <p class="cta-final-sub">O capítulo 1 completo está esperando por você. Grátis, no seu e-mail, agora.</p>
+  <form class="cta-final-form" onsubmit="handleSubmitFinal(event)">
+    <input type="email" id="email-final" placeholder="Seu melhor e-mail" required autocomplete="email">
+    <button type="submit" class="btn-cta"><span class="btn-cta-icon">✉</span>Enviar o Capítulo 1</button>
+  </form>
+  <p class="cta-final-privacy">🔒 100% gratuito · Sem spam · Cancele quando quiser</p>
+</section>
+<footer><p>© 2025 Amor e Fé · Todos os direitos reservados · <a href="#">Política de Privacidade</a></p></footer>
+<script>
+async function subscribe(nome, email) {
+  const res = await fetch('/.netlify/functions/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nome, email })
+  });
+  return res.ok;
+}
+async function handleSubmit(e) {
+  e.preventDefault();
+  const nome = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!nome || !email) return;
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  const ok = await subscribe(nome, email);
+  if (ok) {
+    document.getElementById('capture-form').style.display = 'none';
+    const msg = document.getElementById('success-msg');
+    msg.style.display = 'block';
+    msg.style.animation = 'none';
+    msg.offsetHeight;
+    msg.style.animation = 'fadeUp 0.5s ease forwards';
+  } else {
+    btn.disabled = false;
+    btn.textContent = 'Quero receber o Capítulo 1';
+    alert('Algo deu errado. Tente novamente em instantes.');
+  }
+}
+async function handleSubmitFinal(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-final').value.trim();
+  if (!email) return;
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  const ok = await subscribe('', email);
+  const form = e.target;
+  if (ok) {
+    form.innerHTML = `<div style="text-align:center;padding:1.5rem;color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;">Capítulo 1 enviado para <strong>${email}</strong></div>`;
+  } else {
+    btn.disabled = false;
+    btn.textContent = 'Enviar o Capítulo 1';
+    alert('Algo deu errado. Tente novamente em instantes.');
+  }
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '0';
+      entry.target.style.transform = 'translateY(24px)';
+      entry.target.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
+      requestAnimationFrame(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.benefit-card, .excerpt-text, .excerpt-cliffhanger').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
