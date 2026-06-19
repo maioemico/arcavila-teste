@@ -1,1 +1,69 @@
-ZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIG9uUmVxdWVzdFBvc3QoY29udGV4dCkgewogIGNvbnN0IGhlYWRlcnMgPSB7CiAgICAnQWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2luJzogJyonLAogICAgJ0FjY2Vzcy1Db250cm9sLUFsbG93LUhlYWRlcnMnOiAnQ29udGVudC1UeXBlJywKICAgICdDb250ZW50LVR5cGUnOiAnYXBwbGljYXRpb24vanNvbicsCiAgfTsKCiAgbGV0IGJvZHk7CiAgdHJ5IHsKICAgIGJvZHkgPSBhd2FpdCBjb250ZXh0LnJlcXVlc3QuanNvbigpOwogIH0gY2F0Y2ggKGUpIHsKICAgIHJldHVybiBuZXcgUmVzcG9uc2UoSlNPTi5zdHJpbmdpZnkoeyBlcnJvcjogJ0pTT04gaW52w6FsaWRvLicgfSksIHsgc3RhdHVzOiA0MDAsIGhlYWRlcnMgfSk7CiAgfQoKICBjb25zdCB7IG5vbWUsIGVtYWlsIH0gPSBib2R5OwoKICBpZiAoIWVtYWlsIHx8ICFlbWFpbC5pbmNsdWRlcygnQCcpKSB7CiAgICByZXR1cm4gbmV3IFJlc3BvbnNlKEpTT04uc3RyaW5naWZ5KHsgZXJyb3I6ICdFLW1haWwgaW52w6FsaWRvLicgfSksIHsgc3RhdHVzOiA0MDAsIGhlYWRlcnMgfSk7CiAgfQoKICBjb25zdCBhcGlLZXkgPSBjb250ZXh0LmVudi5NQUlMQ0hJTVBfQVBJX0tFWTsKICBjb25zdCBsaXN0SWQgPSAnOWY5Yjk3ZTcwZSc7CiAgY29uc3Qgc2VydmVyID0gJ3VzNSc7CgogIGlmICghYXBpS2V5KSB7CiAgICByZXR1cm4gbmV3IFJlc3BvbnNlKEpTT04uc3RyaW5naWZ5KHsgZXJyb3I6ICdBUEkga2V5IG7Do28gY29uZmlndXJhZGEuJyB9KSwgeyBzdGF0dXM6IDUwMCwgaGVhZGVycyB9KTsKICB9CgogIGNvbnN0IHBheWxvYWQgPSBKU09OLnN0cmluZ2lmeSh7CiAgICBlbWFpbF9hZGRyZXNzOiBlbWFpbC50b0xvd2VyQ2FzZSgpLnRyaW0oKSwKICAgIHN0YXR1czogJ3N1YnNjcmliZWQnLAogICAgbWVyZ2VfZmllbGRzOiB7CiAgICAgIEZOQU1FOiBub21lID8gbm9tZS50cmltKCkgOiAnJywKICAgIH0sCiAgICB0YWdzOiBbJ2NhcHR1cmEtYW1vci1lLWZlJ10sCiAgfSk7CgogIGNvbnN0IGNyZWRlbnRpYWxzID0gYnRvYShgYW55c3RyaW5nOiR7YXBpS2V5fWApOwoKICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGBodHRwczovLyR7c2VydmVyfS5hcGkubWFpbGNoaW1wLmNvbS8zLjAvbGlzdHMvJHtsaXN0SWR9L21lbWJlcnNgLCB7CiAgICBtZXRob2Q6ICdQT1NUJywKICAgIGhlYWRlcnM6IHsKICAgICAgJ0NvbnRlbnQtVHlwZSc6ICdhcHBsaWNhdGlvbi9qc29uJywKICAgICAgJ0F1dGhvcml6YXRpb24nOiBgQmFzaWMgJHtjcmVkZW50aWFsc31gLAogICAgfSwKICAgIGJvZHk6IHBheWxvYWQsCiAgfSk7CgogIGNvbnN0IGRhdGEgPSBhd2FpdCByZXNwb25zZS5qc29uKCk7CgogIGlmIChyZXNwb25zZS5zdGF0dXMgPT09IDIwMCkgewogICAgcmV0dXJuIG5ldyBSZXNwb25zZShKU09OLnN0cmluZ2lmeSh7IHN1Y2Nlc3M6IHRydWUsIG1lc3NhZ2U6ICdJbnNjcmnDp8OjbyByZWFsaXphZGEgY29tIHN1Y2Vzc28uJyB9KSwgeyBzdGF0dXM6IDIwMCwgaGVhZGVycyB9KTsKICB9IGVsc2UgaWYgKHJlc3BvbnNlLnN0YXR1cyA9PT0gNDAwICYmIGRhdGEudGl0bGUgPT09ICdNZW1iZXIgRXhpc3RzJykgewogICAgcmV0dXJuIG5ldyBSZXNwb25zZShKU09OLnN0cmluZ2lmeSh7IHN1Y2Nlc3M6IHRydWUsIG1lc3NhZ2U6ICdFLW1haWwgasOhIGNhZGFzdHJhZG8uJyB9KSwgeyBzdGF0dXM6IDIwMCwgaGVhZGVycyB9KTsKICB9IGVsc2UgewogICAgcmV0dXJuIG5ldyBSZXNwb25zZShKU09OLnN0cmluZ2lmeSh7IGVycm9yOiAnRXJybyBhbyBjYWRhc3RyYXIuIFRlbnRlIG5vdmFtZW50ZS4nIH0pLCB7IHN0YXR1czogNTAwLCBoZWFkZXJzIH0pOwogIH0KfQoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIG9uUmVxdWVzdE9wdGlvbnMoKSB7CiAgcmV0dXJuIG5ldyBSZXNwb25zZShudWxsLCB7CiAgICBzdGF0dXM6IDIwNCwKICAgIGhlYWRlcnM6IHsKICAgICAgJ0FjY2Vzcy1Db250cm9sLUFsbG93LU9yaWdpbic6ICcqJywKICAgICAgJ0FjY2Vzcy1Db250cm9sLUFsbG93LUhlYWRlcnMnOiAnQ29udGVudC1UeXBlJywKICAgICAgJ0FjY2Vzcy1Db250cm9sLUFsbG93LU1ldGhvZHMnOiAnUE9TVCwgT1BUSU9OUycsCiAgICB9LAogIH0pOwp9Cg==
+export async function onRequestPost(context) {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
+  };
+
+  let body;
+  try {
+    body = await context.request.json();
+  } catch (e) {
+    return new Response(JSON.stringify({ error: 'JSON inválido.' }), { status: 400, headers });
+  }
+
+  const { nome, email } = body;
+
+  if (!email || !email.includes('@')) {
+    return new Response(JSON.stringify({ error: 'E-mail inválido.' }), { status: 400, headers });
+  }
+
+  const apiKey = context.env.MAILCHIMP_API_KEY;
+  const listId = '9f9b97e70e';
+  const server = 'us5';
+
+  if (!apiKey) {
+    return new Response(JSON.stringify({ error: 'API key não configurada.' }), { status: 500, headers });
+  }
+
+  const payload = JSON.stringify({
+    email_address: email.toLowerCase().trim(),
+    status: 'subscribed',
+    merge_fields: {
+      FNAME: nome ? nome.trim() : '',
+    },
+    tags: ['captura-amor-e-fe'],
+  });
+
+  const credentials = btoa(`anystring:${apiKey}`);
+
+  const response = await fetch(`https://${server}.api.mailchimp.com/3.0/lists/${listId}/members`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Basic ${credentials}`,
+    },
+    body: payload,
+  });
+
+  const data = await response.json();
+
+  if (response.status === 200) {
+    return new Response(JSON.stringify({ success: true, message: 'Inscrição realizada com sucesso.' }), { status: 200, headers });
+  } else if (response.status === 400 && data.title === 'Member Exists') {
+    return new Response(JSON.stringify({ success: true, message: 'E-mail já cadastrado.' }), { status: 200, headers });
+  } else {
+    return new Response(JSON.stringify({ error: 'Erro ao cadastrar. Tente novamente.' }), { status: 500, headers });
+  }
+}
+
+export async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    },
+  });
+}
