@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Amor e Fé — Romance Cristão</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --parchment: #EDE5D0;
+    --dark: #1C1A17;
+    --sepia: #5C4A2A;
+    --gold: #B8953E;
+    --gold-light: #D4AF6A;
+    --rose: #8B3A52;
+    --ink: #2C2416;
+    --page-w: min(420px, 96vw);
+    --page-h: min(620px, 85vh);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--dark);
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    touch-action: none;
+  }
+
+  .bg {
+    position: fixed; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse at 30% 20%, #2e2416 0%, #1a1208 50%, #0d0a06 100%);
+  }
+  .bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(184,149,62,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(139,58,82,0.08) 0%, transparent 50%);
+  }
+
+  .stage {
+    position: fixed; inset: 0; z-index: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px;
+  }
+
+  .book-wrap {
+    position: relative;
+    width: var(--page-w);
+    height: var(--page-h);
+    perspective: 1800px;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6)) drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+  }
+
+  .page {
+    position: absolute; inset: 0;
+    border-radius: 2px 10px 10px 2px;
+    background: var(--cream);
+    overflow: hidden;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    backface-visibility: hidden;
+  }
+  .page.flipping-out { transform: rotateY(-180deg); z-index: 10; }
+  .page.behind       { transform: rotateY(-180deg); z-index: 5; }
+  .page.front        { transform: rotateY(0deg);    z-index: 8; }
+
+  .page::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 18px; z-index: 2;
+    background: linear-gradient(to right, rgba(0,0,0,0.18), transparent);
+    pointer-events: none;
+  }
+  .page::after {
+    content: '';
+    position: absolute; right: 0; bottom: 0; width: 40px; height: 40px; z-index: 2;
+    background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.07) 100%);
+    pointer-events: none;
+  }
+
+  .page-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  .cover-page {
+    background: linear-gradient(160deg, #1a0f08 0%, #2c1810 40%, #1a0a12 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 40px 32px;
+    position: relative; overflow: hidden;
+  }
+  .cover-page::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(184,149,62,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 80%, rgba(139,58,82,0.12) 0%, transparent 50%);
+  }
+  .cover-border { position: absolute; inset: 14px; border: 1px solid rgba(184,149,62,0.3); border-radius: 2px; pointer-events: none; }
+  .cover-border::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(184,149,62,0.15); border-radius: 1px; }
+  .cover-ornament { font-size: 22px; color: var(--gold); opacity: 0.8; letter-spacing: 8px; margin-bottom: 28px; position: relative; z-index: 1; }
+  .cover-title    { font-family: 'Cinzel', serif; font-size: clamp(38px,10vw,52px); font-weight: 600; color: var(--gold-light); letter-spacing: 6px; line-height: 1; text-shadow: 0 2px 30px rgba(184,149,62,0.4); position: relative; z-index: 1; }
+  .cover-e        { font-family: 'Cinzel', serif; font-size: clamp(14px,3.5vw,18px); font-weight: 400; color: rgba(212,175,106,0.6); letter-spacing: 10px; margin: 8px 0; position: relative; z-index: 1; }
+  .cover-rule     { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 20px auto; position: relative; z-index: 1; }
+  .cover-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(12px,3.2vw,15px); color: rgba(212,175,106,0.7); letter-spacing: 1px; line-height: 1.5; position: relative; z-index: 1; max-width: 240px; }
+  .cover-versiculo { margin-top: 28px; font-family: 'IM Fell English', serif; font-style: italic; font-size: clamp(10px,2.6vw,12px); color: rgba(212,175,106,0.5); line-height: 1.7; text-align: center; position: relative; z-index: 1; max-width: 220px; }
+  .cover-genre    { margin-top: 12px; font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 4px; color: rgba(212,175,106,0.35); position: relative; z-index: 1; }
+  .cover-cta      { margin-top: 24px; font-family: 'Cormorant Garamond', serif; font-size: clamp(11px,2.8vw,13px); color: rgba(212,175,106,0.5); letter-spacing: 1px; font-style: italic; position: relative; z-index: 1; animation: pulse-hint 2.5s ease-in-out infinite; }
+  @keyframes pulse-hint { 0%,100%{opacity:0.5} 50%{opacity:0.9} }
+
+  .chapter-page { background: var(--cream); display: flex; flex-direction: column; height: 100%; }
+  .chapter-header { padding: 28px 28px 16px; text-align: center; border-bottom: 1px solid rgba(92,74,42,0.12); flex-shrink: 0; }
+  .chapter-num   { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 4px; color: var(--gold); opacity: 0.8; margin-bottom: 6px; }
+  .chapter-title { font-family: 'IM Fell English', serif; font-style: italic; font-size: clamp(15px,4vw,19px); color: var(--ink); line-height: 1.3; margin-bottom: 4px; }
+  .chapter-pov   { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10px; color: var(--gold); letter-spacing: 2px; opacity: 0.7; }
+
+  .chapter-body { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 18px 24px 24px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(184,149,62,0.3) transparent; }
+  .chapter-body::-webkit-scrollbar { width: 3px; }
+  .chapter-body::-webkit-scrollbar-track { background: transparent; }
+  .chapter-body::-webkit-scrollbar-thumb { background: rgba(184,149,62,0.3); border-radius: 2px; }
+  .chapter-body p { font-family: 'Cormorant Garamond', serif; font-size: clamp(13px,3.4vw,15.5px); line-height: 1.75; color: var(--ink); margin-bottom: 14px; text-align: justify; text-indent: 1.2em; }
+  .chapter-body p:first-child { text-indent: 0; }
+  .chapter-body p em { font-family: 'IM Fell English', serif; font-style: italic; color: var(--sepia); }
+  .chapter-body .highlight { text-indent: 0; text-align: center; font-family: 'IM Fell English', serif; font-style: italic; font-size: clamp(12px,3.2vw,14px); color: var(--rose); padding: 10px 16px; margin: 4px 0 14px; border-top: 1px solid rgba(139,58,82,0.2); border-bottom: 1px solid rgba(139,58,82,0.2); }
+  .ornament { text-align: center; font-size: 14px; color: var(--gold); opacity: 0.6; margin: 4px 0 14px; letter-spacing: 6px; }
+
+  .nota-page { background: var(--parchment); padding: 40px 30px; display: flex; flex-direction: column; }
+  .nota-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--sepia); text-align: center; margin-bottom: 10px; }
+  .nota-body p { font-family: 'IM Fell English', serif; font-size: clamp(14px,3.5vw,16px); line-height: 1.8; color: var(--ink); margin-bottom: 16px; text-align: justify; }
+  .nota-body p em { font-style: italic; color: var(--rose); }
+
+  .gate-page { background: linear-gradient(160deg, #1a0f08 0%, #1a0a12 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 32px; position: relative; }
+  .gate-page::before { content: ''; position: absolute; inset: 14px; border: 1px solid rgba(184,149,62,0.25); }
+  .gate-ornament { font-size: 20px; color: var(--gold); opacity: 0.6; letter-spacing: 8px; margin-bottom: 20px; position: relative; z-index: 1; }
+  .gate-hook { font-family: 'IM Fell English', serif; font-style: italic; font-size: clamp(15px,4vw,18px); color: rgba(212,175,106,0.85); line-height: 1.6; margin-bottom: 6px; position: relative; z-index: 1; max-width: 300px; }
+  .gate-sub  { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(11px,2.8vw,13px); color: rgba(212,175,106,0.45); line-height: 1.7; margin-bottom: 28px; position: relative; z-index: 1; max-width: 280px; }
+  .gate-rule { width: 40px; height: 1px; background: rgba(184,149,62,0.35); margin: 0 auto 24px; position: relative; z-index: 1; }
+  .gate-box  { border: 1px solid rgba(184,149,62,0.4); padding: 20px 24px; background: rgba(184,149,62,0.05); position: relative; z-index: 1; }
+  .gate-label { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px; color: var(--gold); opacity: 0.65; margin-bottom: 12px; }
+  .gate-btn   { display: inline-block; background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%); color: white; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; padding: 12px 28px; border: none; cursor: pointer; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
+  .gate-btn:active { opacity: 0.85; transform: scale(0.97); }
+  .gate-disclaimer { margin-top: 14px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10px; color: rgba(212,175,106,0.3); position: relative; z-index: 1; }
+
+  .nav-bar { display: flex; align-items: center; gap: 16px; position: relative; z-index: 10; }
+  .nav-btn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(184,149,62,0.25); border-radius: 50%; cursor: pointer; transition: all 0.2s; user-select: none; }
+  .nav-btn:hover  { background: rgba(184,149,62,0.12); border-color: rgba(184,149,62,0.5); }
+  .nav-btn:active { transform: scale(0.92); background: rgba(184,149,62,0.2); }
+  .nav-btn:disabled { opacity: 0.2; pointer-events: none; }
+  .nav-btn svg { width: 18px; height: 18px; fill: none; stroke: var(--gold-light); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .page-indicator { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: rgba(212,175,106,0.45); min-width: 80px; text-align: center; }
+  .progress-bar  { width: var(--page-w); height: 2px; background: rgba(255,255,255,0.05); border-radius: 1px; overflow: hidden; position: relative; z-index: 10; }
+  .progress-fill { height: 100%; background: linear-gradient(to right, var(--gold), var(--rose)); transition: width 0.4s ease; }
+  .swipe-hint { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10px; color: rgba(212,175,106,0.35); white-space: nowrap; pointer-events: none; animation: fade-hint 5s ease-in-out forwards; }
+  @keyframes fade-hint { 0%{opacity:0} 20%{opacity:1} 70%{opacity:1} 100%{opacity:0} }
+  @keyframes page-appear { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  .page-appear { animation: page-appear 0.35s ease forwards; }
+  @media (max-width: 480px) { :root { --page-w: 94vw; --page-h: 78vh; } .chapter-body p { font-size: 14px; } .nav-btn { width: 40px; height: 40px; } }
+  @media (max-height: 700px) { :root { --page-h: 82vh; } }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="stage">
+  <div class="book-wrap" id="bookWrap">
+    <div class="page front"  id="pageA"></div>
+    <div class="page behind" id="pageB"></div>
+    <div class="swipe-hint" id="swipeHint">deslize para virar ›</div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="nav-bar">
+    <button class="nav-btn" id="prevBtn" onclick="prevPage()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <div class="page-indicator" id="pageIndicator"></div>
+    <button class="nav-btn" id="nextBtn" onclick="nextPage()"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+  </div>
+</div>
+<script>
+const PAGES = [
+  () => `<div class="page-inner cover-page"><div class="cover-border"></div><div class="cover-ornament">✦</div><div class="cover-title">AMOR</div><div class="cover-e">e</div><div class="cover-title">FÉ</div><div class="cover-rule"></div><div class="cover-subtitle">Um romance sobre o que se carrega em silêncio</div><div class="cover-versiculo">"O amor tudo sofre, tudo crê,<br>tudo espera, tudo suporta."<br><span style="font-size:9px;letter-spacing:1px;opacity:0.7">1 Coríntios 13:7</span></div><div class="cover-genre">UM ROMANCE CRISTÃO</div><div class="cover-cta">toque a seta para começar →</div></div>`,
+  () => `<div class="page-inner nota-page"><div style="text-align:center;margin-bottom:20px"><div class="nota-title">NOTA DA AUTORA</div><div style="width:30px;height:1px;background:var(--gold);margin:8px auto;opacity:0.4"></div></div><div class="nota-body"><p>Esta é uma história sobre as coisas que não dizemos.</p><p>Sobre os casamentos que não terminam em grito, mas em silêncio. Sobre as pessoas que amamos e achamos que conhecemos. E sobre a distância terrível entre o que vemos e o que é verdade.</p><p>Ana achou que conhecia o marido. <em>Você também vai achar.</em> Até a página em que tudo vira.</p><p>Leia com o coração aberto. E, se em algum momento você reconhecer a sua própria casa nestas linhas, saiba que <em>este livro foi escrito para você.</em></p></div></div>`,
+  () => cap('CAPÍTULO 1', 'O café que ninguém bebeu', 'Ana', '1/3', `<p>Havia uma xícara de café na pia que ninguém tinha bebido.</p><p>Ana percebeu isso às seis e quarenta da manhã, antes mesmo de perceber que Pedro não tinha dormido em casa de novo. A xícara estava ali desde a noite anterior — ela a deixara pronta, do jeito que ele gostava, três de açúcar e o leite só pra tirar o amargo, e foi dormir esperando o som da chave na porta. O som não veio.</p><p>O café tinha criado uma película por cima. Uma pele fina, opaca, como as coisas que ficam paradas tempo demais.</p><p>Ela jogou na pia e ficou olhando o líquido escuro escorrer pelo ralo, e pensou — sem querer pensar, do jeito que os pensamentos ruins chegam — que era exatamente assim que o casamento dela estava indo embora. Não de uma vez. Não com um estrondo. Mas escorrendo, devagar.</p><p class="highlight">Tem casamento que não acaba em briga. Acaba em silêncio.</p>`),
+  () => cap('CAPÍTULO 1', 'O café que ninguém bebeu', 'Ana', '2/3', `<p>— Mãe? Laís estava na porta da cozinha, de pijama, o cabelo cacheado amassado de um lado. Nove anos e aquele jeito de olhar que parecia ter sempre mais idade do que tinha.</p><p>— Oi, meu amor. Acordou cedo.</p><p>— Tô com aquele cansaço de novo. — Havia algo na maneira como ela se sentou, um peso, um cuidado, que Ana registrou e descartou no mesmo segundo, porque mães aprendem a descartar os pequenos medos só para conseguir fazer o café da manhã.</p><p>— Já — mentiu Ana. Porque a verdade — <em>ele não voltou</em> — era grande demais para a mesa do café da manhã.</p><p>Tinha uma mensagem de Pedro. Uma só, das 23h47: <em>"Não me espera acordada. Trabalho puxado. Te amo."</em></p><p>Te amo. Ele ainda escrevia isso. E aquilo doía mais do que se ele tivesse parado. Um "te amo" vindo de um homem que não dormia mais em casa não era um abraço. Era um recibo.</p>`),
+  () => cap('CAPÍTULO 1', 'O café que ninguém bebeu', 'Ana', '3/3', `<p>Ela ia guardar o celular quando reparou na camisa dele no cesto de roupa. E mesmo se odiando enquanto fazia, Ana pegou a camisa e cheirou.</p><p>Diesel. Cigarro — e Pedro não fumava. E por baixo de tudo, fraco, mas ali, inconfundível: um perfume que não era dela.</p><p>As mãos dela começaram a procurar nos bolsos antes que a cabeça desse a ordem. No bolso da frente, amassado, um pedaço de papel. Ana desdobrou com os dedos que já tremiam.</p><p>A letra não era de Pedro. Era uma letra de mulher, inclinada, apressada:</p><p class="highlight">"Amanhã, mesmo horário. Não conte a ela. — S."</p><p>Da cozinha, Laís chamou: — Mãe, o achocolatado acabou. Mas Ana não conseguiu responder. O chão da casa que ela conhecia havia trinta e dois anos tinha simplesmente deixado de existir.</p>`),
+  () => cap('CAPÍTULO 2', 'O que a noite esconde', 'Pedro', '1/2', `<p>Doze horas antes, Pedro estava parado na frente de um galpão na zona portuária, com o coração batendo de um jeito que ele já tinha aprendido a fingir que não sentia.</p><p>O homem se chamava Dejair. Tinha os olhos de quem não dorme há anos e a calma de quem já viu coisas que tiram o sono dos outros. A transportadora — <em>Logística Beira-Mar</em> — era de verdade. O que ia dentro dos caminhões era outra história.</p><p>— Você é homem de palavra, Pedro? — Dejair perguntou.</p><p>— Sou homem de necessidade — Pedro respondeu. — Que é pior. Porque homem de necessidade não desiste.</p><p>O trabalho era simples: Pedro dirigia. À noite, certas rotas, certas cargas, sem perguntar, recebendo em dinheiro vivo. Cada noite valia o que ele ganhava em duas semanas. Cada noite o aproximava do número. <em>O número.</em></p>`),
+  () => cap('CAPÍTULO 2', 'O que a noite esconde', 'Pedro', '2/2', `<p>Ele pensava em Ana o tempo todo. Era isso que ninguém entenderia. Cada quilômetro naquelas estradas escuras, Pedro ia rezando — sim, rezando, ele que tinha brigado com Deus tantas vezes — <em>Senhor, deixa eu ser suficiente uma vez na vida.</em></p><p>Porque Pedro carregava uma certeza antiga, plantada na infância por um pai que nunca achou o filho bom o bastante: a certeza de que ele era, no fundo, um homem que faltava.</p><p>Porque Laís estava morrendo. E Pedro sabia. E Ana, ainda não.</p><p>O telefone vibrou. Era a voz da Dra. Solange, daquele jeito contido que os médicos usam quando estão segurando alguma coisa grande.</p><p>— Pedro. Os exames da Laís voltaram. Precisamos conversar. Hoje. É urgente.</p><p class="highlight">— Quanto tempo a gente ainda tem?</p>`),
+  () => `<div class="page-inner gate-page"><div class="gate-ornament">◆ ◆ ◆</div><div class="gate-hook">Pedro sabe de algo que Ana ainda não descobriu.</div><div class="gate-rule"></div><div class="gate-sub">O segredo que ele carrega sozinho vai mudar tudo que você achou que entendia sobre esse casamento.</div><div class="gate-box"><div class="gate-label">CONTINUE LENDO — LIVRO COMPLETO</div><a class="gate-btn" href="#comprar">QUERO LER O FINAL</a></div><div class="gate-disclaimer">13 capítulos + epílogo da Laís</div></div>`,
+];
+
+function cap(num, title, pov, sub, body) {
+  return `<div class="page-inner chapter-page"><div class="chapter-header"><div class="chapter-num">${num} <span style="opacity:.4;font-size:7px;letter-spacing:2px">· ${sub}</span></div><div class="chapter-title">${title}</div><div class="chapter-pov">${pov}</div></div><div class="chapter-body"><div class="ornament">◆</div>${body}</div></div>`;
+}
+
+let cur = 0, animating = false;
+const TOTAL = PAGES.length;
+const elA = document.getElementById('pageA');
+const elB = document.getElementById('pageB');
+
+function show(el, idx) { el.innerHTML = PAGES[idx](); }
+function updateUI() {
+  document.getElementById('prevBtn').disabled = cur === 0;
+  document.getElementById('nextBtn').disabled = cur === TOTAL - 1;
+  document.getElementById('pageIndicator').textContent = `${cur + 1} / ${TOTAL}`;
+  document.getElementById('progressFill').style.width = (cur / (TOTAL - 1) * 100) + '%';
+}
+
+function flipTo(next, dir) {
+  if (animating || next === cur || next < 0 || next >= TOTAL) return;
+  animating = true;
+  show(elB, next);
+  elB.className = 'page front';
+  elB.style.transformOrigin = dir > 0 ? 'right center' : 'left center';
+  elB.style.transform = 'rotateY(0deg)';
+  elA.style.transformOrigin = dir > 0 ? 'left center' : 'right center';
+  elA.className = 'page flipping-out';
+  setTimeout(() => {
+    elA.innerHTML = elB.innerHTML;
+    elA.className = 'page front page-appear';
+    elA.style.transform = '';
+    elB.className = 'page behind';
+    elB.innerHTML = '';
+    cur = next;
+    updateUI();
+    animating = false;
+  }, 680);
+}
+
+function nextPage() { flipTo(cur + 1,  1); }
+function prevPage() { flipTo(cur - 1, -1); }
+
+let tx = 0, ty = 0;
+const wrap = document.getElementById('bookWrap');
+wrap.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+wrap.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  const dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { dx < 0 ? nextPage() : prevPage(); }
+}, { passive: true });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextPage();
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prevPage();
+});
+
+show(elA, 0);
+updateUI();
+setTimeout(() => { const h = document.getElementById('swipeHint'); if(h) h.style.display='none'; }, 5500);
+</script>
+</body>
+</html>
