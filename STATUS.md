@@ -22,8 +22,8 @@
 | Formulário `amorefe.arcavila.online` | Ativo | POST para `/subscribe` via Cloudflare Pages Function |
 | Endpoint `/subscribe` | Ativo | `amorefe/functions/subscribe.js` — adiciona lead no Mailchimp com tag `captura-amor-e-fe` |
 | Mailchimp — lista e tag | Configurado | Audience ID `9f9b97e70e` · Server `us5` |
-| Customer Journey | Configurado (sem e-mail) | Disparado pela tag `captura-amor-e-fe`. E-mail de boas-vindas pendente |
-| **E-mail de boas-vindas** | **PENDENTE** | Criar dentro do Customer Journey com link `presente.arcavila.online` + texto do clube de leitoras |
+| Customer Journey | Ativo | Disparado pela tag `captura-amor-e-fe` |
+| E-mail de boas-vindas | Configurado | Assunto: "O flipbook chegou, e tem algo mais para você". Link `presente.arcavila.online`. Journey ativo |
 | **Teste ponta a ponta** | **PENDENTE** | Formulário → Mailchimp → e-mail → pixel `Lead` |
 
 ---
