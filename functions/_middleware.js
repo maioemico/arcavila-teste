@@ -1,3 +1,49 @@
+// Patch do formulário leadForm — substitui o handler placeholder pelo fetch real
+const LEAD_FORM_PATCH = `
+<script>
+(function(){
+  var form = document.getElementById('leadForm');
+  var msg  = document.getElementById('leadMsg');
+  if(!form) return;
+
+  // Remove o listener original clonando o elemento
+  var newForm = form.cloneNode(true);
+  form.parentNode.replaceChild(newForm, form);
+
+  newForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('leadEmail').value.trim();
+    var ok = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+    if(!ok){
+      msg.style.color='var(--vinho-vivo,#8B3A52)';
+      msg.textContent='Confira o e-mail e tente de novo.';
+      return;
+    }
+    var btn = newForm.querySelector('button[type="submit"]');
+    if(btn){ btn.disabled=true; btn.textContent='Enviando...'; }
+
+    fetch('/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nome:'', email:email})
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(){
+      msg.style.color='var(--ouro-claro,#D4AF6A)';
+      msg.textContent='Pronto! O primeiro capítulo está a caminho do seu e-mail.';
+      newForm.reset();
+      if(btn){ btn.disabled=false; btn.textContent='Quero ler'; }
+    })
+    .catch(function(){
+      msg.style.color='var(--vinho-vivo,#8B3A52)';
+      msg.textContent='Algo deu errado. Tente novamente.';
+      if(btn){ btn.disabled=false; btn.textContent='Quero ler'; }
+    });
+  });
+})();
+<\/script>
+`;
+
 const SUBSCRIBE_MODAL = `
 <style>
   #arc-modal-overlay {
@@ -119,7 +165,6 @@ const SUBSCRIBE_MODAL = `
     sessionStorage.setItem(STORAGE_KEY,'1');
   }
 
-  // Abre após 8s ou quando rola 40% da página
   var opened = false;
   function maybeOpen(){
     if(opened) return;
@@ -150,7 +195,7 @@ const SUBSCRIBE_MODAL = `
       body:JSON.stringify({nome:nome, email:email})
     })
     .then(function(r){ return r.json(); })
-    .then(function(data){
+    .then(function(){
       msg.textContent = 'Você está na lista. Até breve.';
       submitBtn.textContent = 'ENVIADO';
       setTimeout(closeModal, 2200);
@@ -162,7 +207,7 @@ const SUBSCRIBE_MODAL = `
     });
   });
 })();
-</script>
+<\/script>
 `;
 
 export async function onRequest(context) {
@@ -174,7 +219,7 @@ export async function onRequest(context) {
   }
 
   const html = await response.text();
-  const modified = html.replace('</body>', SUBSCRIBE_MODAL + '</body>');
+  const modified = html.replace('</body>', LEAD_FORM_PATCH + SUBSCRIBE_MODAL + '</body>');
 
   const newHeaders = new Headers(response.headers);
   newHeaders.delete('content-length');
