@@ -21,10 +21,11 @@
 |------|--------|-----------|
 | Formulário `amorefe.arcavila.online` | Ativo | POST para `/subscribe` via Cloudflare Pages Function |
 | Endpoint `/subscribe` | Ativo | `amorefe/functions/subscribe.js` — adiciona lead no Mailchimp com tag `captura-amor-e-fe` |
+| Modal de captura `arcavila.online` | Publicado | `functions/_middleware.js` injeta modal antes do `</body>`. Aparece após 8s ou 40% de scroll. Mesmo endpoint `/subscribe` |
 | Mailchimp — lista e tag | Configurado | Audience ID `9f9b97e70e` · Server `us5` |
 | Customer Journey | Ativo | Disparado pela tag `captura-amor-e-fe` |
 | E-mail de boas-vindas | Configurado | Assunto: "O flipbook chegou, e tem algo mais para você". Link `presente.arcavila.online`. Journey ativo |
-| **Teste ponta a ponta** | **PENDENTE** | Formulário → Mailchimp → e-mail → pixel `Lead` |
+| **Teste ponta a ponta** | **PENDENTE** | Testar modal em `arcavila.online` + formulário em `amorefe.arcavila.online` com e-mail novo → confirmar lead + e-mail recebido |
 
 ---
 
