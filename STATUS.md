@@ -40,7 +40,7 @@
 
 ## Clube de Histórias
 
-Iniciativa prometida no e-mail de boas-vindas: histórias curtas de romance cristão enviadas por e-mail, como uma carta de uma amiga. Arquivos completos do plano e das cartas ficam na pasta local `Arcavila` (calendário e textos). Esta seção é o registro de decisões e do estoque.
+Iniciativa prometida no e-mail de boas-vindas: histórias curtas de romance cristão enviadas por e-mail, como uma carta de uma amiga. Arquivos completos do plano e das cartas ficam na pasta `clube-de-historias/` deste repositório e também na pasta local `Arcavila`. Esta seção é o registro de decisões e do estoque.
 
 ### Decisões editoriais (fixas)
 
@@ -62,9 +62,10 @@ Iniciativa prometida no e-mail de boas-vindas: histórias curtas de romance cris
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Plano de cadência e calendário trimestral | Definido | Arquivo `clube-historias-cadencia-e-calendario.md` na pasta Arcavila |
-| Carta 1 — A mesa de domingo | Escrita | Âncora. Arquivo `clube-historias-carta-01-a-mesa-de-domingo.md`. Link suave para `presente.arcavila.online` |
-| Cartas 2 a 5 | **PENDENTE** | Formar estoque antes de lançar |
+| Plano de cadência e calendário trimestral | Definido | `clube-de-historias/cadencia-e-calendario.md` |
+| Carta 1 — A mesa de domingo | Escrita | Âncora. `clube-de-historias/carta-01-a-mesa-de-domingo.md`. Personagem Teresa. Link suave para `presente.arcavila.online` |
+| Carta 2 — As flores de sábado | Escrita | Âncora. `clube-de-historias/carta-02-as-flores-de-sabado.md`. Personagens Cecília e Heitor. Link suave para `presente.arcavila.online` |
+| Cartas 3 a 5 | **PENDENTE** | Formar estoque antes de lançar |
 | Sequência no Mailchimp (cartas após boas-vindas) | **PENDENTE** | Adicionar ao Customer Journey da tag `captura-amor-e-fe` |
 | Lançamento sugerido | Planejado | 2026-07-05 (primeiro domingo com estoque pronto) |
 
