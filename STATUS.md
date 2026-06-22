@@ -38,6 +38,21 @@
 
 ---
 
+## Pipeline Pós-Compra (Hotmart → Make → Mailchimp)
+
+Objetivo: remover o comprador da sequência de nutrição assim que a compra for aprovada na Hotmart.
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Cenário Make.com | **PENDENTE** | Criar via browser: Custom Webhook (trigger) → Add/Update Subscriber → Add Tag `comprou-amor-e-fe`. Prompts gerados em 2026-06-22 |
+| Webhook Hotmart | **PENDENTE** | Configurar após ter a URL do Make.com. Evento: `PURCHASE_APPROVED` |
+| Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" → adicionar saída pela tag `comprou-amor-e-fe` |
+| Teste ponta a ponta | **PENDENTE** | Simular compra de teste na Hotmart e confirmar que tag é adicionada e lead sai do Journey |
+
+Fluxo esperado: Compra confirmada → Hotmart dispara webhook → Make.com adiciona tag `comprou-amor-e-fe` → Journey remove contato da sequência.
+
+---
+
 ## Clube de Histórias
 
 Iniciativa prometida no e-mail de boas-vindas: histórias curtas de romance cristão enviadas por e-mail, como uma carta de uma amiga. Arquivos completos do plano e das cartas ficam na pasta `clube-de-historias/` deste repositório e também na pasta local `Arcavila`. Esta seção é o registro de decisões e do estoque.
