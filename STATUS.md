@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-06-22
+> Atualizado em: 2026-06-23
 
 ---
 
@@ -11,6 +11,7 @@
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
+| anaepedro.arcavila.online | Publicado | Landing de vendas Ana e Pedro. `landing-sprites-ana-pedro.html` via Netlify. Atualizado em 2026-06-23 |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
 
 ---
