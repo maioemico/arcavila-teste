@@ -1,0 +1,2 @@
+Esta pasta existe para que o Cloudflare Pages possa usar 'anaepedro' como root directory.
+O build command copia landing-sprites-ana-pedro.html para index.html.
