@@ -11,7 +11,7 @@
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
-| anaepedro.arcavila.online | Publicado | Landing de vendas Ana e Pedro. `landing-sprites-ana-pedro.html` via Netlify. Atualizado em 2026-06-23 |
+| anaepedro.arcavila.online | **Inicializando** | Landing de vendas Ana e Pedro. Migrado Netlify → Cloudflare Pages (projeto `arcavila-anaepedro`). Domínio adicionado em 2026-06-23, aguardando SSL ativar. Build: `mkdir -p _out && cp landing-sprites-ana-pedro.html _out/index.html`, output dir: `_out` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
 
 ---
