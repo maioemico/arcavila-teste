@@ -1,6 +1,17 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-06-23
+> Atualizado em: 2026-06-24
+
+---
+
+## Workflow de Deploy
+
+| Tipo de arquivo | Quem faz o push | Como |
+|-----------------|-----------------|------|
+| Arquivos pequenos (STATUS.md, JS, CSS) | Claude | GitHub MCP direto |
+| `index.html` (~600KB, base64 embutido) | Caio roda 3 comandos no terminal | `git add index.html && git commit -m "msg" && git push origin main` |
+
+SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
 ---
 
@@ -11,8 +22,20 @@
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
-| anaepedro.arcavila.online | **Inicializando** | Landing de vendas Ana e Pedro. Migrado Netlify → Cloudflare Pages (projeto `arcavila-anaepedro`). Domínio adicionado em 2026-06-23, aguardando SSL ativar. Build: `mkdir -p _out && cp landing-sprites-ana-pedro.html _out/index.html`, output dir: `_out` |
+| anaepedro.arcavila.online | **Inicializando** | Landing de vendas Ana e Pedro. Migrado Netlify → Cloudflare Pages (projeto `arcavila-anaepedro`). Domínio adicionado em 2026-06-24. Build: `mkdir -p _out && cp landing-sprites-ana-pedro.html _out/index.html`, output dir: `_out` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
+
+---
+
+## Atualizações de Layout (em andamento)
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Hero `arcavila.online` — logo sobrepondo header | Concluído | CSS padding-top no `.hero-content` |
+| Hero `arcavila.online` — botões duplicados removidos | Concluído | `<div class="hero-actions">` removido |
+| Hero `arcavila.online` — scroll hint "role" removido | Concluído | HTML e CSS do `.scroll-hint` removidos |
+| Catálogo `arcavila.online` — layout prateleira horizontal | Concluído | `.shelf` vertical, `.book` flex-row, badge de preço R$ 27,90 |
+| Catálogo `arcavila.online` — fix mobile (capa + preço) | **Aguardando push** | Altura da capa fixada, preço em fluxo inline |
 
 ---
 
@@ -46,21 +69,15 @@
 
 ## Pipeline Pós-Compra (Hotmart → Make → Mailchimp)
 
-Objetivo: remover o comprador da sequência de nutrição assim que a compra for aprovada na Hotmart.
-
 | Item | Status | Observação |
 |------|--------|-----------|
 | Cenário Make.com | **PENDENTE** | Custom Webhook (trigger) → Add/Update Subscriber → Add Tag `comprou-amor-e-fe` |
 | Webhook Hotmart | **PENDENTE** | Configurar após ter a URL do Make.com. Evento: `PURCHASE_APPROVED` |
 | Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" → adicionar saída pela tag `comprou-amor-e-fe` |
 
-Fluxo esperado: Compra confirmada → Hotmart dispara webhook → Make.com adiciona tag `comprou-amor-e-fe` → Journey remove contato da sequência.
-
 ---
 
 ## Clube de Histórias
-
-Iniciativa prometida no e-mail de boas-vindas: histórias curtas de romance cristão enviadas por e-mail, como uma carta de uma amiga.
 
 ### Decisões editoriais (fixas)
 
