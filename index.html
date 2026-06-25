@@ -180,10 +180,10 @@ section{position:relative;z-index:2}
 /* ============================================================ CATÁLOGO */
 #catalogo{background:var(--noite-2)}
 .shelf{position:relative;background-image:url(estande.jpeg);background-size:100% 100%;aspect-ratio:1586/2053;border-radius:6px;overflow:hidden;max-width:760px;margin:0 auto;display:grid;grid-template-rows:1fr 7.8% 1fr 7.8% 1fr 7.8% 1fr;padding:5% 9.5% 3.6% 13.5%}
-.book{background:transparent;border:none;overflow:hidden;transition:opacity .3s;display:flex;flex-direction:row;align-items:center;gap:20px;min-height:0}
+.book{background:transparent;border:none;overflow:hidden;transition:opacity .3s;display:flex;flex-direction:row;align-items:center;padding:4% 0;gap:20px;min-height:0}
 .book:nth-child(1){grid-row:1}.book:nth-child(2){grid-row:3}.book:nth-child(3){grid-row:5}
 .book:hover{background:transparent}
-.book-cover{overflow:hidden;width:min(120px,17%);height:90%;max-height:200px;flex-shrink:0;background:var(--vinho-selo);border-radius:2px;box-shadow:-3px 4px 16px rgba(0,0,0,.75),2px 0 8px rgba(0,0,0,.4);align-self:center}
+.book-cover{overflow:hidden;width:min(110px,17%);aspect-ratio:2/3;flex-shrink:0;background:var(--vinho-selo);border-radius:2px;box-shadow:-3px 4px 16px rgba(0,0,0,.75),2px 0 8px rgba(0,0,0,.4);align-self:center}
 .book-cover img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
 .book:hover .book-cover img{transform:scale(1.04)}
 .book-status{display:none}
@@ -193,10 +193,10 @@ section{position:relative;z-index:2}
 .book-genre{display:none}
 .book-body h3{font-family:var(--display);font-size:clamp(1rem,2.2vw,1.4rem);font-weight:600;color:var(--pergaminho);line-height:1.15;text-shadow:0 1px 8px rgba(0,0,0,.9)}
 .book-author{font-style:italic;color:var(--pergaminho-2);font-size:clamp(.72rem,1.1vw,.82rem);margin:.1rem 0 .3rem;text-shadow:0 1px 6px rgba(0,0,0,.9)}
-.book-desc{color:var(--pergaminho-2);font-size:clamp(.72rem,1.1vw,.82rem);line-height:1.55;text-shadow:0 1px 6px rgba(0,0,0,.9);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.book-link{margin-top:.5rem;font-family:var(--util);font-size:clamp(.68rem,.9vw,.76rem);letter-spacing:.05em;color:var(--ouro-claro);display:inline-flex;align-items:center;gap:.4rem;transition:gap .3s,color .3s;width:fit-content;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.book-desc{color:var(--pergaminho-2);font-size:clamp(.72rem,1.1vw,.82rem);line-height:1.55;text-shadow:0 1px 6px rgba(0,0,0,.9);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.book-link{font-family:var(--util);font-size:clamp(.68rem,.9vw,.76rem);letter-spacing:.05em;color:var(--ouro-claro);display:inline-flex;align-items:center;gap:.4rem;transition:gap .3s,color .3s;width:fit-content;text-shadow:0 1px 6px rgba(0,0,0,.9)}
 .book:hover .book-link{gap:.8rem;color:var(--ouro)}
-.book-price{display:inline-block;align-self:flex-start;margin-top:.7rem;font-family:var(--util);font-size:.78rem;letter-spacing:.08em;background:rgba(10,5,8,.92);color:var(--ouro-claro);border:1px solid var(--linha-forte);border-radius:3px;padding:.28rem .72rem;white-space:nowrap}
+.book-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px}.book-price{font-family:var(--util);font-size:.78rem;letter-spacing:.08em;background:rgba(10,5,8,.92);color:var(--ouro-claro);border:1px solid var(--linha-forte);border-radius:3px;padding:.28rem .72rem;white-space:nowrap}
 .book.placeholder{background:transparent}
 .book.placeholder .ph-inner{padding:1rem 1.4rem;display:flex;flex-direction:column;justify-content:center}
 .book.placeholder .ph-mark{font-family:var(--display);font-size:2rem;color:var(--ouro-sombra);opacity:.45;margin-bottom:.5rem}
@@ -376,8 +376,7 @@ fbq('track', 'ViewContent', {
           <h3>Amor e Fé</h3>
           <p class="book-author">por Ana Veras</p>
           <p class="book-desc">Ana acredita que Pedro a trai. Cada silêncio, cada saída na madrugada parece uma prova. Mas o que ela lê como traição esconde o maior gesto de amor da história.</p>
-          <a class="book-link" href="https://anaepedro.arcavila.online" target="_blank">Ler a sinopse <span>→</span></a>
-          <span class="book-price">R$ 37,00</span>
+          <div class="book-actions"><a class="book-link" href="https://anaepedro.arcavila.online" target="_blank">Ler a sinopse <span>→</span></a><span class="book-price">R$ 37,00</span></div>
         </div>
       </article>
 
