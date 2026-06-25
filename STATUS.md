@@ -13,6 +13,12 @@
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
+Alias configurado em `~/.zshrc` (2026-06-24):
+```bash
+alias arcavila="cd ~/Claude/Projects/Arcavila && claude"
+```
+Basta digitar `arcavila` no terminal para abrir o Claude Code já no diretório do projeto.
+
 ---
 
 ## Domínios e Páginas
@@ -39,6 +45,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
 | Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` |
 | Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.png` como background do `.shelf`; `.book-body` com overlay semi-transparente para leitura |
+| Catálogo `arcavila.online` — fix mobile v2 (2026-06-25) | Concluído | `.book` full-width, `padding-bottom` nas cards, capa `max-height: 108px` |
 
 ---
 
