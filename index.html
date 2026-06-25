@@ -179,8 +179,8 @@ section{position:relative;z-index:2}
 
 /* ============================================================ CATÁLOGO */
 #catalogo{background:var(--noite-2)}
-.shelf{position:relative;background-image:url(estande.jpeg);background-size:100% 100%;aspect-ratio:1586/2053;border-radius:6px;overflow:hidden;max-width:760px;margin:0 auto;display:grid;grid-template-rows:1fr 2.1% 1fr 2.1% 1fr 2.1% 1fr;padding:3.5% 9.5% 3% 13.5%}
-.book{background:transparent;border:none;overflow:hidden;transition:opacity .3s;display:flex;flex-direction:row;align-items:center;gap:20px;}
+.shelf{position:relative;background-image:url(estande.jpeg);background-size:100% 100%;aspect-ratio:1586/2053;border-radius:6px;overflow:hidden;max-width:760px;margin:0 auto;display:grid;grid-template-rows:1fr 7.8% 1fr 7.8% 1fr 7.8% 1fr;padding:5% 9.5% 3.6% 13.5%}
+.book{background:transparent;border:none;overflow:hidden;transition:opacity .3s;display:flex;flex-direction:row;align-items:center;gap:20px;min-height:0}
 .book:nth-child(1){grid-row:1}.book:nth-child(2){grid-row:3}.book:nth-child(3){grid-row:5}
 .book:hover{background:transparent}
 .book-cover{overflow:hidden;width:min(120px,17%);height:90%;max-height:200px;flex-shrink:0;background:var(--vinho-selo);border-radius:2px;box-shadow:-3px 4px 16px rgba(0,0,0,.75),2px 0 8px rgba(0,0,0,.4);align-self:center}
@@ -203,7 +203,7 @@ section{position:relative;z-index:2}
 .book.placeholder h3{font-family:var(--display);font-size:1.3rem;color:var(--pergaminho-2);margin:.5rem 0 .3rem}
 .book.placeholder p{font-size:.86rem;color:var(--bruma)}
 
-@media(max-width:600px){.shelf{aspect-ratio:unset;height:700px;width:100%;max-width:100%;border-radius:0;grid-template-rows:1fr 2.1% 1fr 2.1% 1fr 2.1% 1fr;padding:5% 9% 3.6% 15%}.book{gap:14px;padding-bottom:14px}.book-cover{width:min(90px,20%);height:80%;max-height:108px}.book-title{font-size:1rem}.book-author,.book-desc{font-size:.72rem}.book-desc{-webkit-line-clamp:3}.book-link,.book-price,.book-status{font-size:.67rem}}
+@media(max-width:600px){.shelf{aspect-ratio:unset;height:700px;width:100%;max-width:100%;border-radius:0;grid-template-rows:1fr 7.8% 1fr 7.8% 1fr 7.8% 1fr;padding:5% 9% 3.6% 15%}.book{gap:14px;padding-bottom:14px}.book-cover{width:min(90px,20%);height:80%;max-height:108px}.book-title{font-size:1rem}.book-author,.book-desc{font-size:.72rem}.book-desc{-webkit-line-clamp:3}.book-link,.book-price,.book-status{font-size:.67rem}}
 
 /* ============================================================ OBRA DESTAQUE */
 #obra{background:linear-gradient(180deg,var(--noite-2),var(--noite))}
