@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-06-24
+> Atualizado em: 2026-06-25
 
 ---
 
@@ -8,18 +8,18 @@
 
 **Ferramentas em uso:**
 - **Cowork** (claude.ai desktop) → conversa, planejamento, previews, decisões
-- **Claude Code** (`~/Claude/Projects/Arcavila` no terminal) → execução: edição de arquivos, git add/commit/push, incluindo arquivos grandes como `index.html`
+- **Terminal local** (`~/Claude/Projects/Arcavila`) → git add/commit/push de arquivos grandes como `index.html`
 
 **Como funciona na prática:**
 1. Planejamos e decidimos aqui no Cowork
-2. Quando há alteração para subir, Caio cola a instrução no Claude Code (ex: *"faz commit e push do index.html com mensagem X"*)
-3. Claude Code executa tudo no terminal, incluindo git — sem necessidade de comandos manuais
+2. Cowork edita os arquivos localmente e passa o comando de commit/push para o usuário rodar no terminal
+3. Para STATUS.md: Cowork atualiza via GitHub MCP direto
 
-**Arquivos pequenos (STATUS.md):** Claude (Cowork) ainda atualiza via GitHub MCP direto, sem passar pelo terminal.
+**ATENÇÃO — lição aprendida:** nunca usar `mcp__github__push_files` com `content: ""` para arquivos grandes. Isso apaga o conteúdo. Para index.html, sempre usar o terminal local.
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
-**Atenção:** após qualquer push do Cowork via MCP, rodar `git pull --rebase origin main` antes do próximo push pelo Claude Code.
+**Atenção:** após qualquer push do Cowork via MCP, rodar `git pull --rebase origin main` antes do próximo push pelo terminal.
 
 ---
 
@@ -43,12 +43,15 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Hero `arcavila.online` — botões duplicados removidos | Concluído | `<div class="hero-actions">` removido |
 | Hero `arcavila.online` — scroll hint "role" removido | Concluído | HTML e CSS do `.scroll-hint` removidos |
 | Catálogo `arcavila.online` — layout prateleira horizontal | Concluído | `.shelf` vertical, `.book` flex-row, badge de preço R$ 37,00 |
-| Catálogo `arcavila.online` — fix mobile (capa + preço) | Concluído | Altura da capa fixada via media query, preço em fluxo inline |
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
 | Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` |
-| Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.png` como background do `.shelf`; grid CSS alinha livros nas prateleiras |
+| Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.jpeg` como background do `.shelf`; grid CSS alinha livros nas prateleiras |
+| Catálogo `arcavila.online` — efeitos Three.js | Concluído | Partículas âmbar flutuantes, spotlight com cursor, tilt 3D no hover dos livros |
+| Catálogo `arcavila.online` — botão "Ler a sinopse" | Concluído | Styled como botão real (background dark, padding, sem borda amarela) |
+| Catálogo `arcavila.online` — preço R$ 37,00 desktop | Concluído | Sem box, negrito, font-size 1.2rem, margin-left:auto |
 | Hero `arcavila.online` — frase sublinhada e caixa de stats removidas | Concluído | Removido "O leitor caminha..." e bloco `.obra-meta` (13 cap., epílogo, temporada) |
 | Seção Círculo Arcavila (`#circulo`) | **OCULTO** | `display:none` via CSS. HTML preservado intacto para reativar quando o produto estiver pronto. Reativar: mudar `#circulo{display:none}` para `#circulo{background:var(--noite)}` |
+| Catálogo `arcavila.online` — mobile revisado | Concluído | `.book-desc` oculto, capa maior (`min(110px,26%)`), preço negrito sem borda, `margin-left:auto margin-right:2%` |
 
 ---
 
