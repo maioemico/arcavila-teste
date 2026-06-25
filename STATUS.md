@@ -9,7 +9,7 @@
 | Tipo de arquivo | Quem faz o push | Como |
 |-----------------|-----------------|------|
 | Arquivos pequenos (STATUS.md, JS, CSS) | Claude | GitHub MCP direto |
-| `index.html` (~600KB, base64 embutido) | Caio roda 3 comandos no terminal | `git add index.html && git commit -m "msg" && git push origin main` |
+| `index.html` (~600KB, base64 embutido) + assets | Caio roda 3 comandos no terminal | `git add index.html estande.png && git commit -m "msg" && git push origin main` |
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
@@ -34,8 +34,11 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Hero `arcavila.online` — logo sobrepondo header | Concluído | CSS padding-top no `.hero-content` |
 | Hero `arcavila.online` — botões duplicados removidos | Concluído | `<div class="hero-actions">` removido |
 | Hero `arcavila.online` — scroll hint "role" removido | Concluído | HTML e CSS do `.scroll-hint` removidos |
-| Catálogo `arcavila.online` — layout prateleira horizontal | Concluído | `.shelf` vertical, `.book` flex-row, badge de preço R$ 27,90 |
-| Catálogo `arcavila.online` — fix mobile (capa + preço) | **Aguardando push** | Altura da capa fixada, preço em fluxo inline |
+| Catálogo `arcavila.online` — layout prateleira horizontal | Concluído | `.shelf` vertical, `.book` flex-row, badge de preço R$ 37,00 |
+| Catálogo `arcavila.online` — fix mobile (capa + preço) | Concluído | Altura da capa fixada via media query, preço em fluxo inline |
+| Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
+| Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` |
+| Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.png` como background do `.shelf`; `.book-body` com overlay semi-transparente para leitura |
 
 ---
 
