@@ -179,29 +179,22 @@ section{position:relative;z-index:2}
 
 /* ============================================================ CATÁLOGO */
 #catalogo{background:var(--noite-2)}
-.shelf{display:flex;flex-direction:column;background-image:url(estande.png);background-size:cover;background-position:center top;border:1px solid var(--linha);border-radius:6px;overflow:hidden;max-width:760px;margin:0 auto}
-.book{
-  position:relative;background:transparent;border:none;border-bottom:1px solid var(--linha);
-  overflow:hidden;transition:background .3s;
-  display:flex;flex-direction:row;align-items:center;min-height:170px;
-}
-.book:last-child{border-bottom:none}
+.shelf{position:relative;background-image:url(estande.png);background-size:100% 100%;aspect-ratio:1728/1634;border-radius:6px;overflow:hidden;max-width:900px;margin:0 auto;display:grid;grid-template-rows:1fr 3.6% 1fr 3.6% 1fr;padding:1.8% 9.5% 2.5% 13.5%}
+.book{background:transparent;border:none;overflow:hidden;transition:opacity .3s;display:flex;flex-direction:row;align-items:center;gap:20px;}
+.book:nth-child(1){grid-row:1}.book:nth-child(2){grid-row:3}.book:nth-child(3){grid-row:5}
 .book:hover{background:transparent}
-.book-cover{position:relative;overflow:hidden;width:130px;min-width:130px;flex-shrink:0;background:var(--vinho-selo)}
+.book-cover{overflow:hidden;width:min(120px,17%);height:90%;max-height:200px;flex-shrink:0;background:var(--vinho-selo);border-radius:2px;box-shadow:-3px 4px 16px rgba(0,0,0,.75),2px 0 8px rgba(0,0,0,.4);align-self:center}
 .book-cover img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
 .book:hover .book-cover img{transform:scale(1.04)}
 .book-status{display:none}
 .book-status.soon{display:none}
 .book-status.soon{color:var(--bruma)}
-.book-body{padding:1.2rem 1.4rem;flex:1;display:flex;flex-direction:column;background:rgba(12,4,8,.72);backdrop-filter:blur(2px)}
+.book-body{flex:1;display:flex;flex-direction:column;gap:3px;min-width:0}
 .book-genre{display:none}
-.book-body h3{font-family:var(--display);font-size:1.55rem;font-weight:600;color:var(--pergaminho);line-height:1.1}
-.book-author{font-style:italic;color:var(--pergaminho-2);font-size:.88rem;margin:.2rem 0 .7rem}
-.book-desc{color:var(--pergaminho-2);font-size:.9rem;flex:1;line-height:1.5}
-.book-link{
-  margin-top:.9rem;font-family:var(--util);font-size:.78rem;letter-spacing:.05em;
-  color:var(--ouro-claro);display:inline-flex;align-items:center;gap:.45rem;transition:gap .3s,color .3s;width:fit-content;
-}
+.book-body h3{font-family:var(--display);font-size:clamp(1rem,2.2vw,1.4rem);font-weight:600;color:var(--pergaminho);line-height:1.15;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.book-author{font-style:italic;color:var(--pergaminho-2);font-size:clamp(.72rem,1.1vw,.82rem);margin:.1rem 0 .3rem;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.book-desc{color:var(--pergaminho-2);font-size:clamp(.72rem,1.1vw,.82rem);line-height:1.55;text-shadow:0 1px 6px rgba(0,0,0,.9);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.book-link{margin-top:.5rem;font-family:var(--util);font-size:clamp(.68rem,.9vw,.76rem);letter-spacing:.05em;color:var(--ouro-claro);display:inline-flex;align-items:center;gap:.4rem;transition:gap .3s,color .3s;width:fit-content;text-shadow:0 1px 6px rgba(0,0,0,.9)}
 .book:hover .book-link{gap:.8rem;color:var(--ouro)}
 .book-price{display:inline-block;align-self:flex-start;margin-top:.7rem;font-family:var(--util);font-size:.78rem;letter-spacing:.08em;background:rgba(10,5,8,.92);color:var(--ouro-claro);border:1px solid var(--linha-forte);border-radius:3px;padding:.28rem .72rem;white-space:nowrap}
 .book.placeholder{background:transparent}
@@ -210,10 +203,7 @@ section{position:relative;z-index:2}
 .book.placeholder h3{font-family:var(--display);font-size:1.3rem;color:var(--pergaminho-2);margin:.5rem 0 .3rem}
 .book.placeholder p{font-size:.86rem;color:var(--bruma)}
 
-@media(max-width:600px){
-  .book{align-items:center}
-  .book-cover{max-height:170px}
-}
+@media(max-width:600px){.shelf{aspect-ratio:unset;grid-template-rows:auto 4% auto 4% auto;padding:3% 7% 3% 11%}.book{gap:12px}.book-cover{width:min(90px,24%);height:auto;max-height:150px}}
 
 /* ============================================================ OBRA DESTAQUE */
 #obra{background:linear-gradient(180deg,var(--noite-2),var(--noite))}
