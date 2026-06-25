@@ -47,6 +47,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
 | Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` |
 | Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.png` como background do `.shelf`; grid CSS alinha livros nas prateleiras |
+| Hero `arcavila.online` — frase sublinhada e caixa de stats removidas | Concluído | Removido "O leitor caminha..." e bloco `.obra-meta` (13 cap., epílogo, temporada) |
+| Seção Círculo Arcavila (`#circulo`) | **OCULTO** | `display:none` via CSS. HTML preservado intacto para reativar quando o produto estiver pronto. Reativar: mudar `#circulo{display:none}` para `#circulo{background:var(--noite)}` |
 
 ---
 
