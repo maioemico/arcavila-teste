@@ -6,12 +6,20 @@
 
 ## Workflow de Deploy
 
-| Tipo de arquivo | Quem faz o push | Como |
-|-----------------|-----------------|------|
-| Arquivos pequenos (STATUS.md, JS, CSS) | Claude | GitHub MCP direto |
-| `index.html` (~600KB, base64 embutido) + assets | Caio roda 3 comandos no terminal | `git add index.html estande.png && git commit -m "msg" && git push origin main` |
+**Ferramentas em uso:**
+- **Cowork** (claude.ai desktop) → conversa, planejamento, previews, decisões
+- **Claude Code** (`~/Claude/Projects/Arcavila` no terminal) → execução: edição de arquivos, git add/commit/push, incluindo arquivos grandes como `index.html`
+
+**Como funciona na prática:**
+1. Planejamos e decidimos aqui no Cowork
+2. Quando há alteração para subir, Caio cola a instrução no Claude Code (ex: *"faz commit e push do index.html com mensagem X"*)
+3. Claude Code executa tudo no terminal, incluindo git — sem necessidade de comandos manuais
+
+**Arquivos pequenos (STATUS.md):** Claude (Cowork) ainda atualiza via GitHub MCP direto, sem passar pelo terminal.
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
+
+**Atenção:** após qualquer push do Cowork via MCP, rodar `git pull --rebase origin main` antes do próximo push pelo Claude Code.
 
 ---
 
@@ -38,7 +46,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Catálogo `arcavila.online` — fix mobile (capa + preço) | Concluído | Altura da capa fixada via media query, preço em fluxo inline |
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
 | Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` |
-| Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.png` como background do `.shelf`; `.book-body` com overlay semi-transparente para leitura |
+| Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.png` como background do `.shelf`; grid CSS alinha livros nas prateleiras |
 
 ---
 
