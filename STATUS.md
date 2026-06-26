@@ -32,6 +32,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
 | anaepedro.arcavila.online | **Inicializando** | Landing de vendas Ana e Pedro. Migrado Netlify → Cloudflare Pages (projeto `arcavila-anaepedro`). Domínio adicionado em 2026-06-24. Build: `mkdir -p _out && cp landing-sprites-ana-pedro.html _out/index.html`, output dir: `_out` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
+| arcavila.com.br | **Aguardando pagamento** | Registrado no Registro.br em 2026-06-25. Pedido nº 31671987. Aguardando e-mail com instruções de pagamento para ativar. |
 
 ---
 
