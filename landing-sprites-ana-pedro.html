@@ -375,7 +375,7 @@ function createSprite(b64, x) {
 
   // sprite plane — tall portrait aspect
   const aspect = 1.0; // square source images
-  const h = isMobile ? 4.5 : 3.8, w = h * aspect;
+  const h = isMobile ? 4.5 : 4.5, w = h * aspect;
   // Custom shader: removes dark/black background by treating dark pixels as transparent
   const mat = new THREE.ShaderMaterial({
     uniforms: { map: { value: tex }, threshold: { value: 0.18 }, opacity: { value: 1.0 } },
@@ -407,7 +407,7 @@ function createSprite(b64, x) {
   const group = new THREE.Group();
   group.add(mesh);
   // position: slightly above ground centre, sitting at eye level
-  group.position.set(x, isMobile ? -2.2 : -0.5, -0.5);
+  group.position.set(x, isMobile ? -2.2 : 4.0, -0.5);
   return group;
 }
 
