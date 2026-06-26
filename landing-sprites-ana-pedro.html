@@ -481,8 +481,8 @@ function lerp(a, b, f) { return a + (b - a) * f; }
   camera.rotation.y = lerp(camera.rotation.y, cp.ry, .06);
 
   /* gentle float animation for sprites */
-  anaGroup.position.y   = -2.2 + Math.sin(T * .7) * .05;
-  pedroGroup.position.y = -2.2 + Math.sin(T * .7 + .9) * .05;
+  anaGroup.position.y   = (isMobile ? -2.2 : 1.5) + Math.sin(T * .7) * .05;
+  pedroGroup.position.y = (isMobile ? -2.2 : 1.5) + Math.sin(T * .7 + .9) * .05;
   /* subtle billboard tilt toward camera on mouse */
   anaGroup.rotation.y   = mox * .06;
   pedroGroup.rotation.y = mox * .06;
