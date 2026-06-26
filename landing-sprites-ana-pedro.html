@@ -491,8 +491,10 @@ function lerp(a, b, f) { return a + (b - a) * f; }
   pedroGroup.position.z = lerp(pedroGroup.position.z,  cur === 2 ? 0.5 : -0.5, .05);
 
   const spread = cur >= 3;
-  anaGroup.position.x   = lerp(anaGroup.position.x,   spread ? -3.8 : -2.4, .04);
-  pedroGroup.position.x = lerp(pedroGroup.position.x,  spread ?  3.8 :  2.4, .04);
+  const anaTargetX   = spread ? -3.8 : (cur === 1 ? -7.5 : -2.4);
+  const pedroTargetX = spread ?  3.8 : (cur === 2 ?  7.5 :  2.4);
+  anaGroup.position.x   = lerp(anaGroup.position.x,   anaTargetX,   .04);
+  pedroGroup.position.x = lerp(pedroGroup.position.x,  pedroTargetX, .04);
 
   /* visibilidade dos sprites por slide:
      0=hero: ambos off | 1=Ana: só Ana | 2=Pedro: só Pedro
