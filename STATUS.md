@@ -42,6 +42,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Hero `arcavila.online` — logo sobrepondo header | Concluído | CSS padding-top no `.hero-content` |
 | Hero `arcavila.online` — botões duplicados removidos | Concluído | `<div class="hero-actions">` removido |
 | Hero `arcavila.online` — scroll hint "role" removido | Concluído | HTML e CSS do `.scroll-hint` removidos |
+| Hero `arcavila.online` — frase sublinhada e caixa de stats removidas | Concluído | Removido "O leitor caminha..." e bloco `.obra-meta` (13 cap., epílogo, temporada) |
+| Hero `arcavila.online` — botão "Receber por e-mail" removido | Concluído | Removido do hero (desktop e mobile). Link no footer preservado |
 | Catálogo `arcavila.online` — layout prateleira horizontal | Concluído | `.shelf` vertical, `.book` flex-row, badge de preço R$ 37,00 |
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
 | Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` |
@@ -49,9 +51,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Catálogo `arcavila.online` — efeitos Three.js | Concluído | Partículas âmbar flutuantes, spotlight com cursor, tilt 3D no hover dos livros |
 | Catálogo `arcavila.online` — botão "Ler a sinopse" | Concluído | Styled como botão real (background dark, padding, sem borda amarela) |
 | Catálogo `arcavila.online` — preço R$ 37,00 desktop | Concluído | Sem box, negrito, font-size 1.2rem, margin-left:auto |
-| Hero `arcavila.online` — frase sublinhada e caixa de stats removidas | Concluído | Removido "O leitor caminha..." e bloco `.obra-meta` (13 cap., epílogo, temporada) |
 | Seção Círculo Arcavila (`#circulo`) | **OCULTO** | `display:none` via CSS. HTML preservado intacto para reativar quando o produto estiver pronto. Reativar: mudar `#circulo{display:none}` para `#circulo{background:var(--noite)}` |
-| Catálogo `arcavila.online` — mobile revisado | Concluído | `.book-desc` oculto, capa maior (`min(110px,26%)`), preço negrito sem borda, `margin-left:auto margin-right:2%` |
+| Catálogo `arcavila.online` — mobile revisado | Concluído | `.book-desc` oculto, botão sinopse oculto, card Amor e Fé clicável, capa maior, preço 1.2rem negrito sem borda |
 
 ---
 
