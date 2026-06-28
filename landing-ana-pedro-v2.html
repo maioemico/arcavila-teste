@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amor e Fé — A história de Ana e Pedro</title>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2738569696297378');
+    fbq('track', 'ViewContent');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2738569696297378&ev=ViewContent&noscript=1"/></noscript>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:         #0c0906;
+      --bg-2:       #100d09;
+      --gold:       #c8891a;
+      --gold-light: #e0ae5e;
+      --gold-dim:   #7a5010;
+      --rose:       #7a4444;
+      --cream:      #ede0cc;
+      --cream-dim:  #a89880;
+      --text:       #cec0aa;
+      --text-dim:   #7a6e60;
+      --border:     rgba(200, 137, 26, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── Grain overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ────────────────────────────────────────
+       HERO
+    ──────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    /* Warm candlelight gradient background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 85%, rgba(200, 137, 26, 0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 90% 50% at 20% 70%, rgba(139, 68, 13, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(122, 68, 68, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 50% 50%, rgba(200, 137, 26, 0.05) 0%, transparent 40%),
+        var(--bg);
+      animation: breathe 8s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.88; }
+    }
+
+    /* Floating light particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(224, 174, 94, 0.6) 0%, transparent 70%);
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-10vh) translateX(var(--drift)) scale(1); opacity: 0; }
+    }
+
+    /* Thin decorative line above eyebrow */
+    .hero-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold-dim));
+      margin: 0 auto 32px;
+      opacity: 0;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      opacity: 0;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--cream);
+      max-width: 780px;
+      margin: 0 auto 28px;
+      opacity: 0;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      color: var(--cream-dim);
+      max-width: 480px;
+      margin: 0 auto 56px;
+      opacity: 0;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      color: var(--text-dim);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: pulse-line 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-line {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    /* ────────────────────────────────────────
+       DIVIDER
+    ──────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider-ornament {
+      font-size: 14px;
+      color: var(--gold-dim);
+    }
+
+    /* ────────────────────────────────────────
+       SECTION BASE
+    ──────────────────────────────────────── */
+    section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ────────────────────────────────────────
+       VERSE SECTION
+    ──────────────────────────────────────── */
+    .verse-section {
+      text-align: center;
+      background: linear-gradient(to bottom, var(--bg) 0%, #0f0c09 50%, var(--bg) 100%);
+    }
+
+    .verse-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .verse-ref {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ────────────────────────────────────────
+       STORY HOOK CARDS
+    ──────────────────────────────────────── */
+    .cards-section {
+      background: var(--bg-2);
+    }
+
+    .cards-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+    }
+
+    .card-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(200, 137, 26, 0.08);
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .card-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--cream);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ────────────────────────────────────────
+       TENSION SECTION
+    ──────────────────────────────────────── */
+    .tension-section {
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .tension-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200, 137, 26, 0.08) 0%, transparent 60%),
+        var(--bg);
+    }
+
+    .tension-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .tension-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--cream);
+      max-width: 720px;
+      margin: 0 auto 20px;
+      line-height: 1.3;
+      position: relative;
+    }
+
+    .tension-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .tension-sub {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ────────────────────────────────────────
+       EXCERPT SECTION
+    ──────────────────────────────────────── */
+    .excerpt-section {
+      background: var(--bg-2);
+    }
+
+    .excerpt-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 40px;
+    }
+
+    .excerpt-body {
+      border-left: 1px solid var(--gold-dim);
+      padding-left: 32px;
+    }
+
+    .excerpt-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      line-height: 1.8;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    .excerpt-text + .excerpt-text {
+      color: var(--text);
+    }
+
+    .excerpt-caption {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 32px;
+    }
+
+    /* ────────────────────────────────────────
+       FEATURE LIST
+    ──────────────────────────────────────── */
+    .features-section {
+      text-align: center;
+    }
+
+    .features-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--cream);
+      margin-bottom: 56px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+    }
+
+    .feature-item {
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      text-align: left;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .feature-item:not(:first-child) {
+      border-left: none;
+    }
+
+    @media (max-width: 700px) {
+      .feature-item { border-left: 1px solid var(--border) !important; }
+      .feature-item + .feature-item { border-top: none; }
+    }
+
+    .feature-icon {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ────────────────────────────────────────
+       TESTIMONIAL
+    ──────────────────────────────────────── */
+    .testimonial-section {
+      background: var(--bg-2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-section::before {
+      content: '\201C';
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 14rem;
+      color: rgba(200, 137, 26, 0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-style: italic;
+      color: var(--cream);
+      max-width: 760px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+      position: relative;
+    }
+
+    .testimonial-author {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .testimonial-location {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    /* ────────────────────────────────────────
+       SECOND TESTIMONIAL STRIP
+    ──────────────────────────────────────── */
+    .quotes-strip {
+      padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .quote-mini {
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .quote-mini-text {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .quote-mini-author {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ────────────────────────────────────────
+       CTA SECTION
+    ──────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px;
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 60%, rgba(200, 137, 26, 0.12) 0%, transparent 65%),
+        var(--bg);
+    }
+
+    .cta-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--cream);
+      max-width: 640px;
+      margin: 0 auto 20px;
+      line-height: 1.3;
+      position: relative;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 440px;
+      margin: 0 auto 52px;
+      position: relative;
+    }
+
+    .cta-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      position: relative;
+      letter-spacing: 1px;
+    }
+
+    .cta-price span {
+      font-size: 2.2rem;
+      color: var(--cream);
+      font-weight: 600;
+      margin: 0 6px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 18px 52px;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      transition: background 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border: 1px solid var(--gold-light);
+      opacity: 0;
+      transition: opacity 0.3s ease, inset 0.3s ease;
+    }
+
+    .cta-button:hover::before {
+      opacity: 1;
+      inset: 4px;
+    }
+
+    .cta-reassurance {
+      margin-top: 24px;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      position: relative;
+    }
+
+    .cta-reassurance span {
+      margin: 0 8px;
+      opacity: 0.5;
+    }
+
+    /* ────────────────────────────────────────
+       FOOTER
+    ──────────────────────────────────────── */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    /* ────────────────────────────────────────
+       UTILITY
+    ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 72px 20px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .feature-item { border-left: 1px solid var(--border) !important; }
+      .feature-item + .feature-item { border-top: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <div style="position:relative; z-index:2; width:100%;">
+      <div class="hero-line" id="hero-line"></div>
+      <p class="hero-eyebrow" id="hero-eyebrow">Arcavila — Romance Cristão</p>
+      <h1 class="hero-title" id="hero-title">
+        Ela amava um homem que havia<br>
+        <em>esquecido como amar de volta.</em>
+      </h1>
+      <p class="hero-subtitle" id="hero-subtitle">
+        Uma história de fé, silêncio e recomeço.
+      </p>
+
+      <div class="divider" id="hero-divider" style="opacity:0">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">✦</div>
+        <div class="divider-line"></div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scroll-indicator">
+      <div class="scroll-indicator-line"></div>
+      <span>Role para ler</span>
+    </div>
+  </section>
+
+
+  <!-- ── VERSE ── -->
+  <section class="verse-section">
+    <div class="section-inner">
+      <div class="divider reveal" style="margin-bottom:56px">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">✦</div>
+        <div class="divider-line"></div>
+      </div>
+      <p class="verse-text reveal">
+        "O amor é paciente, é bondoso. O amor não se ensoberbece.
+        Tudo sofre, tudo crê, tudo espera, tudo suporta."
+      </p>
+      <p class="verse-ref reveal" style="margin-top:24px">1 Coríntios 13:4–7</p>
+      <div class="divider reveal" style="margin-top:56px">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">✦</div>
+        <div class="divider-line"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── STORY HOOK CARDS ── -->
+  <section class="cards-section">
+    <div class="section-inner">
+      <p class="cards-eyebrow reveal">O que você vai encontrar</p>
+      <div class="cards-grid">
+        <div class="card">
+          <span class="card-number">I</span>
+          <p class="card-text">
+            Ana mantinha o casamento de pé pela fé. Pedro o mantinha de pé pela culpa. E os dois chamavam isso de amor.
+          </p>
+        </div>
+        <div class="card">
+          <span class="card-number">II</span>
+          <p class="card-text">
+            Um segredo que ele carregou por onze anos estava prestes a mudar tudo — inclusive o que ela achava que sabia sobre perdão.
+          </p>
+        </div>
+        <div class="card">
+          <span class="card-number">III</span>
+          <p class="card-text">
+            Às vezes Deus responde uma oração quebrando exatamente o que você mais temia perder.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── TENSION ── -->
+  <section class="tension-section">
+    <div class="tension-bg"></div>
+    <div class="section-inner" style="position:relative; text-align:center">
+      <p class="tension-label reveal">53 páginas. 13 capítulos. Um epílogo.</p>
+      <h2 class="tension-title reveal">
+        Leitoras dizem que precisaram parar no capítulo 9.<br>
+        <em>Porque era exatamente o que estavam vivendo.</em>
+      </h2>
+      <p class="tension-sub reveal" style="margin-top:28px">
+        Este não é um romance de amor fácil. É sobre o amor que fica quando o fácil vai embora.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ── EXCERPT ── -->
+  <section class="excerpt-section">
+    <div class="section-inner">
+      <p class="excerpt-eyebrow reveal">Um trecho do capítulo 1</p>
+      <div class="excerpt-body">
+        <p class="excerpt-text reveal">
+          Ana segurou a xícara de café que havia esfriado na bancada. Não encontrou força para esquentá-la de novo. Era segunda-feira e Pedro já havia saído sem dizer bom dia pela terceira vez naquela semana.
+        </p>
+        <p class="excerpt-text reveal" style="color: var(--text)">
+          Ela abriu a Bíblia no mesmo versículo de sempre — não porque ajudasse, mas porque era a única coisa que ainda parecia sua. O apartamento era deles. O silêncio era deles. Mas aquelas palavras, de algum modo, ainda eram só dela.
+        </p>
+        <p class="excerpt-text reveal" style="color: var(--text-dim); font-style: italic; font-family: 'Playfair Display', serif;">
+          "Deus", ela sussurrou sem fechar os olhos, "eu não sei mais o que pedir. Então só fico aqui."
+        </p>
+        <p class="excerpt-caption reveal">— Amor e Fé, Capítulo 1 · Ana Veras</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FEATURES ── -->
+  <section class="features-section">
+    <div class="section-inner">
+      <h2 class="features-title reveal">O que está dentro do e-book</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="feature-icon">✦</span>
+          <p class="feature-title">13 capítulos + epílogo</p>
+          <p class="feature-desc">Uma narrativa completa, do silêncio inicial ao recomeço — sem atalhos emocionais.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✦</span>
+          <p class="feature-title">Romance com base cristã</p>
+          <p class="feature-desc">Fé como personagem, não como cenário. A oração aparece quando não há mais palavras.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✦</span>
+          <p class="feature-title">Acesso imediato</p>
+          <p class="feature-desc">Leitura no celular, tablet ou computador. Sem espera, sem frete, sem complicação.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── TESTIMONIAL ── -->
+  <section class="testimonial-section">
+    <div class="section-inner">
+      <p class="testimonial-text reveal">
+        "Não esperava chorar. Não esperava reconhecer meu próprio casamento naquelas páginas. Mas foi exatamente isso que aconteceu. Terminei às duas da manhã e fiquei sentada no escuro por uns dez minutos só para entender o que havia sentido."
+      </p>
+      <p class="testimonial-author reveal">Leitora beta</p>
+      <p class="testimonial-location reveal">São Paulo, SP</p>
+    </div>
+  </section>
+
+  <!-- Mini quotes strip -->
+  <div class="quotes-strip">
+    <div class="quote-mini">
+      <p class="quote-mini-text">"Você segura a xícara fria da Ana e você conhece essa xícara. Você já ficou ali."</p>
+      <p class="quote-mini-author">Leitora beta · Belo Horizonte</p>
+    </div>
+    <div class="quote-mini">
+      <p class="quote-mini-text">"Li tudo de uma vez. Não sei se foi o casamento deles ou o meu que eu estava lendo."</p>
+      <p class="quote-mini-author">Leitora beta · Fortaleza</p>
+    </div>
+    <div class="quote-mini">
+      <p class="quote-mini-text">"O capítulo 9 me pegou de surpresa. Precisei fechar o celular e respirar."</p>
+      <p class="quote-mini-author">Leitora beta · Curitiba</p>
+    </div>
+  </div>
+
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="section-inner">
+      <p class="cta-eyebrow reveal">Comece hoje</p>
+      <h2 class="cta-title reveal">Amor e Fé está esperando por você.</h2>
+      <p class="cta-subtitle reveal">
+        53 páginas que cabem numa tarde de domingo e ficam com você muito depois.
+      </p>
+
+      <div class="divider reveal" style="margin-bottom:40px">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">✦</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <p class="cta-price reveal">
+        Por apenas <span>R$ 27</span>
+      </p>
+
+      <div class="reveal" style="margin-top:8px">
+        <a
+          href="https://pay.hotmart.com/S106531572M"
+          class="cta-button"
+          id="cta-main"
+          onclick="if(typeof fbq!=='undefined') fbq('track','InitiateCheckout')"
+        >
+          Quero ler Amor e Fé
+        </a>
+      </div>
+
+      <p class="cta-reassurance reveal">
+        Acesso imediato
+        <span>·</span>
+        Leitura no celular ou computador
+        <span>·</span>
+        Compra segura via Hotmart
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p class="footer-logo">Arcavila</p>
+    <p class="footer-copy">Romance cristão brasileiro · arcavila.online</p>
+  </footer>
+
+
+  <!-- ── SCRIPTS ── -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Hero entrance ──
+    const tl = gsap.timeline({ delay: 0.3 });
+    tl.to('#hero-line',      { opacity: 1, duration: 0.8, ease: 'power2.out' })
+      .to('#hero-eyebrow',   { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+      .to('#hero-title',     { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' }, '-=0.2')
+      .to('#hero-subtitle',  { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4')
+      .to('#hero-divider',   { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+      .to('#scroll-indicator', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.1');
+
+    // ── Scroll reveals ──
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    // ── Cards stagger ──
+    gsap.utils.toArray('.card').forEach((card, i) => {
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        delay: i * 0.15,
+        ease: 'power2.out'
+      });
+    });
+
+    // ── Feature items stagger ──
+    gsap.utils.toArray('.feature-item').forEach((item, i) => {
+      gsap.to(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: i * 0.12,
+        ease: 'power2.out'
+      });
+    });
+
+    // ── Quote mini stagger ──
+    gsap.utils.toArray('.quote-mini').forEach((q, i) => {
+      gsap.to(q, {
+        scrollTrigger: {
+          trigger: q,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: i * 0.12,
+        ease: 'power2.out'
+      });
+    });
+
+    // ── Floating particles ──
+    const container = document.getElementById('particles');
+    const count = 18;
+
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+
+      const size   = Math.random() * 4 + 2;
+      const left   = Math.random() * 100;
+      const delay  = Math.random() * 12;
+      const dur    = Math.random() * 14 + 10;
+      const drift  = (Math.random() - 0.5) * 120 + 'px';
+
+      p.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${left}%;
+        bottom: -10px;
+        --drift: ${drift};
+        animation-duration: ${dur}s;
+        animation-delay: ${delay}s;
+        opacity: 0;
+      `;
+      container.appendChild(p);
+    }
+
+    // ── Hero parallax on scroll ──
+    gsap.to('.hero-bg', {
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      },
+      scale: 1.08,
+      opacity: 0.4,
+      ease: 'none'
+    });
+  </script>
+</body>
+</html>
