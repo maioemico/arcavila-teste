@@ -19,7 +19,7 @@
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
-**Atenção:** após qualquer push do Cowork via MCP, rodar `git pull --rebase origin main` antes do próximo push pelo terminal.
+**Atenção:** após qualquer push do Cowork via MCP, rodar `git pull origin main --no-rebase` antes do próximo push pelo terminal.
 
 ---
 
@@ -82,7 +82,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |------|--------|-----------|
 | Conta Hotmart | Ativo | Nova conta criada com `suporte@arcavila.online` em 2026-06-28 |
 | Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta |
-| Botão de compra no flipbook | **PENDENTE ATUALIZAÇÃO** | URL antiga: `https://pay.hotmart.com/J106177179S`. Nova URL: `https://pay.hotmart.com/S106531572M` — atualizar no flipbook e nas páginas |
+| URL de pagamento | Concluído | Atualizada para `https://pay.hotmart.com/S106531572M` em todas as páginas em 2026-06-28 |
 | Meta Pixel | Configurado | ID `2738569696297378` · Eventos: `PageView`, `ViewContent`, `Lead` |
 
 ---
@@ -131,7 +131,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |------|--------|-----------|
 | Zoho — plano | Ativo | Upgrade realizado em 2026-06-28. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Zoho — domínios configurados | Ativo | `arcavila.online` e `arcavila.com.br` adicionados no Zoho |
-| `suporte@arcavila.online` | **Criado** | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart |
+| `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart |
 | `historias@arcavila.com.br` | **PENDENTE** | Aguardando propagação DNS do `arcavila.com.br` no Registro.br para criar no Zoho |
 | Autenticação de domínio no Mailchimp | **PENDENTE** | Após resolver Zoho: adicionar registros DKIM e SPF no Cloudflare |
 
@@ -143,8 +143,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |---------|-------|
 | Meta Pixel ID | `2738569696297378` |
 | Hotmart — login | `suporte@arcavila.online` |
-| Hotmart — URL de pagamento (nova) | `https://pay.hotmart.com/S106531572M` |
-| Hotmart — URL antiga (descontinuada) | `https://pay.hotmart.com/J106177179S` |
+| Hotmart — URL de pagamento | `https://pay.hotmart.com/S106531572M` |
 | Mailchimp Audience ID | `9f9b97e70e` |
 | Mailchimp Server | `us5` |
 | Zoho — conta gerenciadora | `caiochiba4@gmail.com` |
