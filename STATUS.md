@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-06-28
+> Atualizado em: 2026-06-29
 
 ---
 
@@ -28,11 +28,13 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | URL | Status | Observação |
 |-----|--------|-----------|
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
+| www.arcavila.com.br | **Aguardando propagação** | Domínio customizado adicionado ao projeto `arcavila-captura` em 2026-06-29. CNAME `www.arcavila.com.br → arcavila-captura.pages.dev` configurado no Registro.br. Status no Cloudflare: Inactive → ficará Active após propagação (até 24h) |
+| arcavila.com.br (raiz) | **PENDENTE** | Domínio raiz sem redirecionamento. Solução pendente: adicionar redirect `arcavila.com.br → www.arcavila.com.br` no Registro.br |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
 | anaepedro.arcavila.online | **Inicializando** | Landing de vendas Ana e Pedro. Migrado Netlify → Cloudflare Pages (projeto `arcavila-anaepedro`). Domínio adicionado em 2026-06-24. Build: `mkdir -p _out && cp landing-sprites-ana-pedro.html _out/index.html`, output dir: `_out` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
-| arcavila.com.br | **Aguardando pagamento** | Registrado no Registro.br em 2026-06-25. Pedido nº 31671987. Aguardando e-mail com instruções de pagamento para ativar. |
+| arcavila.com.br | Publicado | Registrado no Registro.br em 2026-06-25. Pago e ativo desde 2026-06-29. Expira 25/06/2027 |
 
 ---
 
