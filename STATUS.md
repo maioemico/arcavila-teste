@@ -28,13 +28,13 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | URL | Status | Observação |
 |-----|--------|-----------|
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
-| www.arcavila.com.br | **Aguardando propagação** | Domínio customizado adicionado ao projeto `arcavila-captura` em 2026-06-29. CNAME `www.arcavila.com.br → arcavila-captura.pages.dev` configurado no Registro.br. Status no Cloudflare: Inactive → ficará Active após propagação (até 24h) |
-| arcavila.com.br (raiz) | **PENDENTE** | Domínio raiz sem redirecionamento. Solução pendente: adicionar redirect `arcavila.com.br → www.arcavila.com.br` no Registro.br |
+| www.arcavila.com.br | **Aguardando propagação** | CNAME `www → arcavila-captura.pages.dev` importado para Cloudflare DNS. Ficará ativo após propagação dos nameservers (1–24h) |
+| arcavila.com.br (raiz) | **PENDENTE** | DNS já no Cloudflare. Próximo passo: adicionar Redirect Rule no Cloudflare `arcavila.com.br → https://www.arcavila.com.br` após zona ficar Active |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
 | anaepedro.arcavila.online | **Inicializando** | Landing de vendas Ana e Pedro. Migrado Netlify → Cloudflare Pages (projeto `arcavila-anaepedro`). Domínio adicionado em 2026-06-24. Build: `mkdir -p _out && cp landing-sprites-ana-pedro.html _out/index.html`, output dir: `_out` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
-| arcavila.com.br | Publicado | Registrado no Registro.br em 2026-06-25. Pago e ativo desde 2026-06-29. Expira 25/06/2027 |
+| arcavila.com.br | **Aguardando propagação** | DNS migrado do Registro.br para Cloudflare em 2026-06-29. Nameservers: `aida.ns.cloudflare.com` e `sergi.ns.cloudflare.com`. Registro.br informa delegação em ~2h. TXT Zoho e CNAME www importados automaticamente pelo Cloudflare |
 
 ---
 
@@ -134,8 +134,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Zoho — plano | Ativo | Upgrade realizado em 2026-06-28. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Zoho — domínios configurados | Ativo | `arcavila.online` e `arcavila.com.br` adicionados no Zoho |
 | `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart |
-| `historias@arcavila.com.br` | **PENDENTE** | Aguardando propagação DNS do `arcavila.com.br` no Registro.br para criar no Zoho |
-| Autenticação de domínio no Mailchimp | **PENDENTE** | Após resolver Zoho: adicionar registros DKIM e SPF no Cloudflare |
+| `historias@arcavila.com.br` | **PENDENTE** | DNS do arcavila.com.br agora no Cloudflare. Criar conta no Zoho após zona ficar Active |
+| Autenticação de domínio no Mailchimp | **PENDENTE** | Após resolver Zoho: adicionar registros DKIM e SPF no Cloudflare DNS |
 
 ---
 
