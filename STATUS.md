@@ -28,13 +28,14 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | URL | Status | Observação |
 |-----|--------|-----------|
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
-| www.arcavila.com.br | **Aguardando propagação** | CNAME `www → arcavila-captura.pages.dev` importado para Cloudflare DNS. Ficará ativo após propagação dos nameservers (1–24h) |
-| arcavila.com.br (raiz) | **PENDENTE** | DNS já no Cloudflare. Próximo passo: adicionar Redirect Rule no Cloudflare `arcavila.com.br → https://www.arcavila.com.br` após zona ficar Active |
+| arcavila.com.br | **Aguardando propagação** | DNS migrado para Cloudflare em 2026-06-29. Nameservers: `aida.ns.cloudflare.com` e `sergi.ns.cloudflare.com`. Todos os subdomínios abaixo ficam ativos automaticamente após propagação |
+| www.arcavila.com.br | **Aguardando propagação** | CNAME `www → arcavila-captura.pages.dev`. Ativa junto com a zona |
+| arcavila.com.br (raiz) | **PENDENTE** | Após zona ativar: criar Redirect Rule no Cloudflare `arcavila.com.br → https://www.arcavila.com.br` |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
+| amorefe.arcavila.com.br | **Aguardando propagação** | Landing de vendas do livro Amor e Fé. CNAME `amorefe → arcavila-anaepedro.pages.dev`. Custom domain adicionado ao projeto `arcavila-anaepedro` em 2026-06-29. Ativa automaticamente após propagação da zona |
+| anaepedro.arcavila.online | Publicado | Landing de vendas (URL legada). Continua ativa. Cloudflare Pages → projeto `arcavila-anaepedro` |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
-| anaepedro.arcavila.online | **Inicializando** | Landing de vendas Ana e Pedro. Migrado Netlify → Cloudflare Pages (projeto `arcavila-anaepedro`). Domínio adicionado em 2026-06-24. Build: `mkdir -p _out && cp landing-sprites-ana-pedro.html _out/index.html`, output dir: `_out` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
-| arcavila.com.br | **Aguardando propagação** | DNS migrado do Registro.br para Cloudflare em 2026-06-29. Nameservers: `aida.ns.cloudflare.com` e `sergi.ns.cloudflare.com`. Registro.br informa delegação em ~2h. TXT Zoho e CNAME www importados automaticamente pelo Cloudflare |
 
 ---
 
@@ -49,7 +50,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Hero `arcavila.online` — botão "Receber por e-mail" removido | Concluído | Removido do hero (desktop e mobile). Link no footer preservado |
 | Catálogo `arcavila.online` — layout prateleira horizontal | Concluído | `.shelf` vertical, `.book` flex-row, badge de preço R$ 37,00 |
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
-| Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` |
+| Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Aponta para `anaepedro.arcavila.online` — atualizar para `amorefe.arcavila.com.br` após propagação |
 | Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.jpeg` como background do `.shelf`; grid CSS alinha livros nas prateleiras |
 | Catálogo `arcavila.online` — efeitos Three.js | Concluído | Partículas âmbar flutuantes, spotlight com cursor, tilt 3D no hover dos livros |
 | Catálogo `arcavila.online` — botão "Ler a sinopse" | Concluído | Styled como botão real (background dark, padding, sem borda amarela) |
@@ -134,7 +135,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Zoho — plano | Ativo | Upgrade realizado em 2026-06-28. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Zoho — domínios configurados | Ativo | `arcavila.online` e `arcavila.com.br` adicionados no Zoho |
 | `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart |
-| `historias@arcavila.com.br` | **PENDENTE** | DNS do arcavila.com.br agora no Cloudflare. Criar conta no Zoho após zona ficar Active |
+| `historias@arcavila.com.br` | **PENDENTE** | Criar no Zoho após zona arcavila.com.br ficar Active no Cloudflare |
 | Autenticação de domínio no Mailchimp | **PENDENTE** | Após resolver Zoho: adicionar registros DKIM e SPF no Cloudflare DNS |
 
 ---
