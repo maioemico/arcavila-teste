@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-06-29
+> Atualizado em: 2026-06-30
 
 ---
 
@@ -28,11 +28,10 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | URL | Status | Observação |
 |-----|--------|-----------|
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
-| arcavila.com.br | **Aguardando propagação** | DNS migrado para Cloudflare em 2026-06-29. Nameservers: `aida.ns.cloudflare.com` e `sergi.ns.cloudflare.com`. Todos os subdomínios abaixo ficam ativos automaticamente após propagação |
-| www.arcavila.com.br | **Aguardando propagação** | CNAME `www → arcavila-captura.pages.dev`. Ativa junto com a zona |
-| arcavila.com.br (raiz) | **PENDENTE** | Após zona ativar: criar Redirect Rule no Cloudflare `arcavila.com.br → https://www.arcavila.com.br` |
+| www.arcavila.com.br | **Aguardando propagação** | CNAME `www → arcavila-captura.pages.dev`. Ativa automaticamente após propagação dos nameservers |
+| arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string). Registro A `192.0.2.1` proxied criado para interceptação |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
-| amorefe.arcavila.com.br | **Aguardando propagação** | Landing de vendas do livro Amor e Fé. CNAME `amorefe → arcavila-anaepedro.pages.dev`. Custom domain adicionado ao projeto `arcavila-anaepedro` em 2026-06-29. Links no index.html atualizados em 2026-06-29 |
+| amorefe.arcavila.com.br | **Aguardando propagação** | Landing de vendas do livro Amor e Fé. CNAME `amorefe → arcavila-anaepedro.pages.dev`. Ativa automaticamente após propagação |
 | anaepedro.arcavila.online | Publicado | Landing de vendas (URL legada). Continua ativa. Cloudflare Pages → projeto `arcavila-anaepedro` |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
