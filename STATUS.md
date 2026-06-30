@@ -29,7 +29,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |-----|--------|-----------|
 | arcavila.online | Publicado | Site editorial. Cloudflare Pages → projeto `arcavila-captura` |
 | www.arcavila.com.br | **Aguardando propagação** | CNAME `www → arcavila-captura.pages.dev`. Ativa automaticamente após propagação dos nameservers |
-| arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string). Registro A `192.0.2.1` proxied criado para interceptação |
+| arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | amorefe.arcavila.com.br | **Aguardando propagação** | Landing de vendas do livro Amor e Fé. CNAME `amorefe → arcavila-anaepedro.pages.dev`. Ativa automaticamente após propagação |
 | anaepedro.arcavila.online | Publicado | Landing de vendas (URL legada). Continua ativa. Cloudflare Pages → projeto `arcavila-anaepedro` |
@@ -73,6 +73,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | E-mail 2 — Dia 4 | Ativo | "Por que Pedro não contou" → link Hotmart |
 | E-mail 3 — Dia 6 | Ativo | "A ligação que Pedro recebeu no final do Capítulo 2" → link Hotmart |
 | E-mail 4 — Dia 9 | Ativo | "Você chegou até aqui por algum motivo" → link Hotmart |
+| **From address dos e-mails do Journey** | **PENDENTE** | Alterar remetente de todos os e-mails para `contato@arcavila.online`. Depende: (1) criar conta no Zoho, (2) autenticar domínio no Mailchimp |
 | **Saída do Journey para compradores** | **PENDENTE** | Webhook Hotmart → Make.com → tag `comprou-amor-e-fe` → exit condition no Journey |
 | **Teste ponta a ponta completo** | **PENDENTE** | E-mail novo → lead no Mailchimp → receber sequência completa |
 
@@ -134,8 +135,9 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Zoho — plano | Ativo | Upgrade realizado em 2026-06-28. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Zoho — domínios configurados | Ativo | `arcavila.online` e `arcavila.com.br` adicionados no Zoho |
 | `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart |
-| `historias@arcavila.com.br` | **PENDENTE** | Criar no Zoho após zona arcavila.com.br ficar Active no Cloudflare |
-| Autenticação de domínio no Mailchimp | **PENDENTE** | Após resolver Zoho: adicionar registros DKIM e SPF no Cloudflare DNS |
+| `contato@arcavila.online` | **PENDENTE** | Criar no Zoho. Será o remetente dos e-mails do Customer Journey no Mailchimp |
+| `historias@arcavila.com.br` | **PAUSADO** | Será criado quando o projeto Círculo Arcavila for iniciado. Não é prioridade agora |
+| Autenticação de domínio no Mailchimp | **PENDENTE** | Adicionar registros DKIM e SPF do Mailchimp no Cloudflare DNS (zona arcavila.online). Necessário para enviar pelos e-mails da conta Zoho |
 
 ---
 
