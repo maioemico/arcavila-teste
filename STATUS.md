@@ -73,8 +73,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | E-mail 2 — Dia 4 | Ativo | "Por que Pedro não contou" → link Hotmart |
 | E-mail 3 — Dia 6 | Ativo | "A ligação que Pedro recebeu no final do Capítulo 2" → link Hotmart |
 | E-mail 4 — Dia 9 | Ativo | "Você chegou até aqui por algum motivo" → link Hotmart |
-| **From address dos e-mails do Journey** | **Concluído** | Remetente atualizado para `suporte@arcavila.online` em todos os 5 e-mails em 2026-07-01. Domínio `arcavila.online` autenticado no Mailchimp (CNAMEs k2/k3 já estavam no Cloudflare) |
-| **Saída do Journey para compradores** | **PENDENTE** | Webhook Hotmart → Make.com → tag `comprou-amor-e-fe` → exit condition no Journey |
+| From address dos e-mails do Journey | Concluído | Remetente atualizado para `suporte@arcavila.online` em todos os 5 e-mails em 2026-07-01 |
+| **Exit condition para compradores** | **PENDENTE** | Adicionar saída do Journey pela tag `comprou-amor-e-fe` no Mailchimp |
 | **Teste ponta a ponta completo** | **PENDENTE** | E-mail novo → lead no Mailchimp → receber sequência completa |
 
 ---
@@ -84,8 +84,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Item | Status | Observação |
 |------|--------|-----------|
 | Conta Hotmart | Ativo | Nova conta criada com `suporte@arcavila.online` em 2026-06-28 |
-| Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta |
-| URL de pagamento | Concluído | Atualizada para `https://pay.hotmart.com/S106531572M` em todas as páginas em 2026-06-28 |
+| Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta. ID do produto: `8026094` |
+| URL de pagamento | Concluído | Atualizada para `https://pay.hotmart.com/S106531572M` em todas as páginas |
 | Meta Pixel | Configurado | ID `2738569696297378` · Eventos: `PageView`, `ViewContent`, `Lead` |
 
 ---
@@ -94,9 +94,10 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Make.com | **PENDENTE** | Custom Webhook (trigger) → Add/Update Subscriber → Add Tag `comprou-amor-e-fe` |
-| Webhook Hotmart | **PENDENTE** | Configurar após ter a URL do Make.com. Evento: `PURCHASE_APPROVED` |
-| Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" → adicionar saída pela tag `comprou-amor-e-fe` |
+| Cenário Make.com | **Concluído** | ID `5549131` · "Arcavila — Hotmart Compra Aprovada" · Ativo. Webhook → HTTP POST Mailchimp API → tag `comprou-amor-e-fe` |
+| Webhook Make.com | **Concluído** | ID `2526674` · URL: `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
+| Webhook Hotmart | **Concluído** | Cadastrado em Ferramentas → Webhook. Nome: "Make.com - Compra Aprovada". Produto: Amor e Fé (ID 8026094). Versão 2.0.0. Evento: Compra aprovada. Status: Ativo |
+| Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" no Mailchimp → adicionar saída pela tag `comprou-amor-e-fe` |
 
 ---
 
@@ -122,9 +123,9 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Carta 1 — A mesa de domingo | Escrita | Personagem Teresa. Link suave para `presente.arcavila.online` |
 | Carta 2 — As flores de sábado | Escrita | Personagens Cecília e Heitor. Link suave para `presente.arcavila.online` |
 | Carta 3 — A carta da Ana | Escrita | Variação (carta de personagem). Ana, de Amor e Fé, escreve para a leitora |
-| Cartas 4 a 5 | **PENDENTE** | Formar estoque antes de lançar |
-| Sequência no Mailchimp | **PENDENTE** | Adicionar cartas ao Customer Journey |
-| Lançamento sugerido | Planejado | 2026-07-05 |
+| Cartas 4 a 5 | **PAUSADO** | Aguardando lançamento da plataforma e primeiros clientes antes de lançar o Clube |
+| Sequência no Mailchimp | **PAUSADO** | Idem |
+| Lançamento | **PAUSADO** | Clube de Histórias será lançado após oficialização da plataforma e primeiros clientes |
 
 ---
 
@@ -136,12 +137,21 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Zoho — domínios configurados | Ativo | `arcavila.online` e `arcavila.com.br` adicionados no Zoho |
 | `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Login da conta Hotmart. Remetente do Customer Journey |
 | `contato@arcavila.online` | Criado | Conta criada no Zoho |
-| `historias@arcavila.com.br` | **PAUSADO** | Não criado — plano Zoho tem apenas 1 licença. Criar somente se/quando ampliar o plano. Não é prioridade atual |
-| DNS arcavila.com.br — MX | Concluído | mx.zoho.com (10), mx2.zoho.com (20), mx3.zoho.com (50) — adicionados e propagados no Cloudflare em 2026-06-30 |
-| DNS arcavila.com.br — SPF | Concluído | `v=spf1 include:zohomail.com ~all` — adicionado e propagado no Cloudflare em 2026-06-30 |
-| DNS arcavila.com.br — DKIM | Concluído | Registro TXT `zmail._domainkey` adicionado, propagado e verificado no Zoho em 2026-07-01 |
-| Autenticação arcavila.online no Mailchimp | **Concluído** | CNAMEs k2/k3 já estavam no Cloudflare. Domínio verificado e autenticado em 2026-07-01 |
+| `historias@arcavila.com.br` | **PAUSADO** | Não criado — plano Zoho tem apenas 1 licença. Criar somente se/quando ampliar o plano |
+| DNS arcavila.com.br — MX | Concluído | mx.zoho.com (10), mx2.zoho.com (20), mx3.zoho.com (50) — propagados no Cloudflare |
+| DNS arcavila.com.br — SPF | Concluído | `v=spf1 include:zohomail.com ~all` — propagado no Cloudflare |
+| DNS arcavila.com.br — DKIM | Concluído | Verificado no Zoho em 2026-07-01 |
+| Autenticação arcavila.online no Mailchimp | Concluído | CNAMEs k2/k3 já estavam no Cloudflare. Verificado em 2026-07-01 |
 | Autenticação arcavila.com.br no Mailchimp | **PAUSADO** | Não necessário enquanto remetente for `suporte@arcavila.online` |
+
+---
+
+## Make.com
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Cenário Drive → GitHub → Netlify (ID 5389909) | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes |
+| Cenário Arcavila — Hotmart Compra Aprovada (ID 5549131) | **Ativo** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe` |
 
 ---
 
@@ -151,10 +161,10 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |---------|--------|-------------------|
 | Zoho Mail | Anual | Mail Lite, 1 licença. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Registro.br — `arcavila.com.br` | Anuidade de domínio | Domínio .com.br registrado no Registro.br |
-| Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade. |
+| Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade |
 | Mailchimp | Free até 500 contatos | Monitorar crescimento da lista para antecipar upgrade |
 | Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
-| Make.com | Free tier (ops limitadas) | Usado para automação Hotmart → Mailchimp (pendente) |
+| Make.com | Free tier (1 cenário ativo) | Cenário ativo: Hotmart → Mailchimp pós-compra |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
 | Meta Ads | Por investimento (não ativo) | Tráfego pago ainda não iniciado |
 
@@ -167,7 +177,9 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Meta Pixel ID | `2738569696297378` |
 | Hotmart — login | `suporte@arcavila.online` |
 | Hotmart — URL de pagamento | `https://pay.hotmart.com/S106531572M` |
+| Hotmart — Produto ID | `8026094` |
 | Mailchimp Audience ID | `9f9b97e70e` |
 | Mailchimp Server | `us5` |
+| Make.com webhook (Hotmart) | `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
 | Zoho — conta gerenciadora | `caiochiba4@gmail.com` |
 | Repositório GitHub | `maioemico/arcavila-teste` |
