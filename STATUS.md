@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-06-30
+> Atualizado em: 2026-07-01
 
 ---
 
@@ -73,7 +73,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | E-mail 2 — Dia 4 | Ativo | "Por que Pedro não contou" → link Hotmart |
 | E-mail 3 — Dia 6 | Ativo | "A ligação que Pedro recebeu no final do Capítulo 2" → link Hotmart |
 | E-mail 4 — Dia 9 | Ativo | "Você chegou até aqui por algum motivo" → link Hotmart |
-| **From address dos e-mails do Journey** | **PENDENTE** | Alterar remetente de todos os e-mails para `historias@arcavila.com.br`. Depende: (1) verify DKIM no Zoho, (2) criar conta no Zoho, (3) autenticar arcavila.com.br no Mailchimp |
+| **From address dos e-mails do Journey** | **Concluído** | Remetente atualizado para `suporte@arcavila.online` em todos os 5 e-mails em 2026-07-01. Domínio `arcavila.online` autenticado no Mailchimp (CNAMEs k2/k3 já estavam no Cloudflare) |
 | **Saída do Journey para compradores** | **PENDENTE** | Webhook Hotmart → Make.com → tag `comprou-amor-e-fe` → exit condition no Journey |
 | **Teste ponta a ponta completo** | **PENDENTE** | E-mail novo → lead no Mailchimp → receber sequência completa |
 
@@ -132,23 +132,24 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Zoho — plano | Ativo | Upgrade realizado em 2026-06-28. Conta gerenciadora: `caiochiba4@gmail.com` |
+| Zoho — plano | Ativo | Mail Lite anual, 1 licença, expira 28/06/2027. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Zoho — domínios configurados | Ativo | `arcavila.online` e `arcavila.com.br` adicionados no Zoho |
-| `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart |
+| `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Login da conta Hotmart. Remetente do Customer Journey |
 | `contato@arcavila.online` | Criado | Conta criada no Zoho |
-| `historias@arcavila.com.br` | **PENDENTE** | Criar no Zoho após verificar DKIM. Será o remetente dos e-mails do Customer Journey |
+| `historias@arcavila.com.br` | **PAUSADO** | Não criado — plano Zoho tem apenas 1 licença. Criar somente se/quando ampliar o plano. Não é prioridade atual |
 | DNS arcavila.com.br — MX | Concluído | mx.zoho.com (10), mx2.zoho.com (20), mx3.zoho.com (50) — adicionados e propagados no Cloudflare em 2026-06-30 |
 | DNS arcavila.com.br — SPF | Concluído | `v=spf1 include:zohomail.com ~all` — adicionado e propagado no Cloudflare em 2026-06-30 |
-| DNS arcavila.com.br — DKIM | **PENDENTE verify** | Registro TXT `zmail._domainkey` adicionado e propagado no Cloudflare. Falta clicar em Verify em `mailadmin.zoho.com` → Domains → arcavila.com.br → Email Authentication (fazer manualmente com conta `caiochiba4@gmail.com`) |
-| Autenticação arcavila.com.br no Mailchimp | **PENDENTE** | Após DKIM verificado no Zoho: autenticar domínio no Mailchimp para liberar envio por `historias@arcavila.com.br` |
+| DNS arcavila.com.br — DKIM | Concluído | Registro TXT `zmail._domainkey` adicionado, propagado e verificado no Zoho em 2026-07-01 |
+| Autenticação arcavila.online no Mailchimp | **Concluído** | CNAMEs k2/k3 já estavam no Cloudflare. Domínio verificado e autenticado em 2026-07-01 |
+| Autenticação arcavila.com.br no Mailchimp | **PAUSADO** | Não necessário enquanto remetente for `suporte@arcavila.online` |
 
 ---
 
 ## Serviços Pagos
 
 | Serviço | Modelo | Conta / Observação |
-|---------|--------|--------------------|
-| Zoho Mail | Assinatura mensal/anual | Conta gerenciadora: `caiochiba4@gmail.com` |
+|---------|--------|-------------------|
+| Zoho Mail | Anual | Mail Lite, 1 licença. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Registro.br — `arcavila.com.br` | Anuidade de domínio | Domínio .com.br registrado no Registro.br |
 | Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade. |
 | Mailchimp | Free até 500 contatos | Monitorar crescimento da lista para antecipar upgrade |
