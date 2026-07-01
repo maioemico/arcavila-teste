@@ -134,9 +134,9 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |------|--------|-----------|
 | Zoho — plano | Ativo | Upgrade realizado em 2026-06-28. Conta gerenciadora: `caiochiba4@gmail.com` |
 | Zoho — domínios configurados | Ativo | `arcavila.online` e `arcavila.com.br` adicionados no Zoho |
-| `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart |
+| `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Também é o login da conta Hotmart. **E-mail de recuperação: `caiochiba4@gmail.com`** |
 | `contato@arcavila.online` | **PENDENTE** | Criar no Zoho. Será o remetente dos e-mails do Customer Journey no Mailchimp |
-| `historias@arcavila.com.br` | **PAUSADO** | Será criado quando o projeto Círculo Arcavila for iniciado. Não é prioridade agora |
+| `historias@arcavila.com.br` | **PAUSADO** | Será criado quando o projeto Círculo Arcavila for iniciado. Não é prioridade agora. **E-mail de recuperação (quando criado): `caiochiba@hotmail.com`** |
 | Autenticação de domínio no Mailchimp | **PENDENTE** | Adicionar registros DKIM e SPF do Mailchimp no Cloudflare DNS (zona arcavila.online). Necessário para enviar pelos e-mails da conta Zoho |
 
 ---
@@ -151,4 +151,6 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Mailchimp Audience ID | `9f9b97e70e` |
 | Mailchimp Server | `us5` |
 | Zoho — conta gerenciadora | `caiochiba4@gmail.com` |
+| `suporte@arcavila.online` — e-mail vinculado | `caiochiba4@gmail.com` |
+| `historias@arcavila.com.br` — e-mail vinculado | `caiochiba@hotmail.com` |
 | Repositório GitHub | `maioemico/arcavila-teste` |
