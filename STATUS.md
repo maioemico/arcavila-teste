@@ -144,6 +144,21 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ---
 
+## Serviços Pagos
+
+| Serviço | Modelo | Conta / Observação |
+|---------|--------|--------------------|
+| Zoho Mail | Assinatura mensal/anual | Conta gerenciadora: `caiochiba4@gmail.com` |
+| Registro.br — `arcavila.com.br` | Anuidade de domínio | Domínio .com.br registrado no Registro.br |
+| Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade. |
+| Mailchimp | Free até 500 contatos | Monitorar crescimento da lista para antecipar upgrade |
+| Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
+| Make.com | Free tier (ops limitadas) | Usado para automação Hotmart → Mailchimp (pendente) |
+| GitHub | Free (repo público) | `maioemico/arcavila-teste` |
+| Meta Ads | Por investimento (não ativo) | Tráfego pago ainda não iniciado |
+
+---
+
 ## Credenciais e IDs (referência rápida)
 
 | Serviço | Valor |
