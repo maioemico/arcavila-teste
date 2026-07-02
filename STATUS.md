@@ -124,9 +124,9 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Documento de referência do Livro 2 | **Concluído em 2026-07-02** | `referencia-pousando-no-amor-livro2.md` na raiz do repositório. Contém o contexto completo da obra coreana, inventário dos elementos já consumidos pelo Livro 1 (seção 8, para evitar repetição) e cardápio de transposições livres (seção 9: inversão de polos, novas geografias, novos gatilhos e símbolos) |
-| Perguntas editoriais | **PENDENTE** | Definir com o usuário: barreira, cenário, final, casal secundário, tom espiritual, estrutura de capítulos e formato |
-| Estrutura de capítulos | **PENDENTE** | Apresentar para aprovação antes da escrita |
+| Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz do repositório. Contexto completo da obra coreana + inventário do que o Livro 1 consumiu + cardápio de transposições livres |
+| Definições editoriais aprovadas | **Concluído em 2026-07-02** | Polos invertidos: ele cai no mundo dela. Protagonista: cirurgião famoso de São Paulo. Protagonista feminina: professora e parteira pantaneira. Cenário: Pantanal na cheia. Gatilho: pouso forçado de avião de pequeno porte. Final: agridoce fiel à matriz (a barreira permanece; o amor encontra forma ritual, por estações). Casal secundário: sem relação com o Livro 1; casal de viúvos em segunda chance. Tom: fé vivida. 13 capítulos + epílogo com cliffhanger, PDF A5 padrão do catálogo, autora Ana Veras |
+| Estrutura de capítulos | **EM ANDAMENTO** | Proposta com título de trabalho, elenco, símbolos e mapa de 13 capítulos com ganchos apresentada ao usuário para aprovação |
 | Manuscrito | **PENDENTE** | Escrita após aprovação da estrutura |
 | PDF diagramado | **PENDENTE** | Mesmo padrão A5 do catálogo, com logo sem fundo |
 
