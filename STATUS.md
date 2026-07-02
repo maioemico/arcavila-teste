@@ -31,7 +31,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | www.arcavila.com.br | **Aguardando propagação** | CNAME `www → arcavila-captura.pages.dev`. Ativa automaticamente após propagação dos nameservers |
 | arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
-| amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé ("Quando o Amor Precisa de Fé"). No ar, verificado no navegador em 2026-07-02. CNAME `amorefe → arcavila-anaepedro.pages.dev` |
+| amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé. No ar, verificado no navegador em 2026-07-02. Título da página padronizado para "Amor e Fé" em 2026-07-02 (arquivo `landing-sprites-ana-pedro.html`). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
 | anaepedro.arcavila.online | Publicado | Landing de vendas (URL legada). Continua ativa. Cloudflare Pages → projeto `arcavila-anaepedro` |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
@@ -56,6 +56,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Catálogo `arcavila.online` — preço R$ 37,00 desktop | Concluído | Sem box, negrito, font-size 1.2rem, margin-left:auto |
 | Seção Círculo Arcavila (`#circulo`) | **OCULTO** | `display:none` via CSS. HTML preservado intacto para reativar quando o produto estiver pronto. Reativar: mudar `#circulo{display:none}` para `#circulo{background:var(--noite)}` |
 | Catálogo `arcavila.online` — mobile revisado | Concluído | `.book-desc` oculto, botão sinopse oculto, card Amor e Fé clicável, capa maior, preço 1.2rem negrito sem borda |
+| Landing de vendas — título "Amor e Fé" | **Editado no fonte, deploy pendente** | Substituídas as 3 ocorrências de "Quando o Amor Precisa de Fé" (title, nav-logo, título da oferta) por "Amor e Fé" em `landing-sprites-ana-pedro.html`. Falta commit/push pelo terminal para publicar |
 
 ---
 
@@ -97,10 +98,10 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Item | Status | Observação |
 |------|--------|-----------|
 | Formato do criativo | Definido em 2026-07-02 | Imagem estática vertical (4:5 feed e 9:16 stories/reels). Vídeo só depois, no ângulo vencedor |
-| Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02 (título de venda na página: "Quando o Amor Precisa de Fé") |
+| Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02. Título da página padronizado para "Amor e Fé" |
 | Copies dos 3 ângulos | Concluído em 2026-07-02 | Ângulo 1 dilema, Ângulo 2 prova + preço, Ângulo 3 trecho/cena. Headline, texto principal e CTA escritos |
 | Artes iniciais no Canva | Concluído em 2026-07-02 | 3 conceitos gerados via Canva MCP (instagram_post 4:5), 4 candidatos cada. Aguardando escolha do usuário |
-| Alinhar copy com título da página | **PENDENTE** | Página de venda usa "Quando o Amor Precisa de Fé"; avaliar ecoar essa promessa nas copies dos anúncios |
+| Alinhar copy com título da página | Resolvido em 2026-07-02 | Página de venda teve o título trocado para "Amor e Fé", casando com as copies dos anúncios (deploy da landing pendente) |
 | Seleção da arte final e conversão | **PENDENTE** | Usuário escolhe 1 candidato por ângulo → converter em design editável no Canva |
 | Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar a arte escolhida |
 | Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: 3 criativos, mesma verba, matar fracos em 3-4 dias, escalar vencedor |
