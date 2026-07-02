@@ -90,6 +90,22 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ---
 
+## Tráfego Pago — Criativos (Amor e Fé)
+
+> Início do tráfego pago no Meta (Facebook e Instagram Ads). Objetivo definido em 2026-07-02: **venda direta**, com clique levando para `amorefe.arcavila.com.br`.
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Formato do criativo | Definido em 2026-07-02 | Imagem estática vertical (4:5 feed e 9:16 stories/reels). Vídeo só depois, no ângulo vencedor |
+| Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br` (confirmar propagação antes de subir; página ativa alternativa: `anaepedro.arcavila.online`) |
+| Copies dos 3 ângulos | Concluído em 2026-07-02 | Ângulo 1 dilema, Ângulo 2 prova + preço, Ângulo 3 trecho/cena. Headline, texto principal e CTA escritos |
+| Artes iniciais no Canva | Concluído em 2026-07-02 | 3 conceitos gerados via Canva MCP (instagram_post 4:5), 4 candidatos cada. Aguardando escolha do usuário |
+| Seleção da arte final e conversão | **PENDENTE** | Usuário escolhe 1 candidato por ângulo → converter em design editável no Canva |
+| Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar a arte escolhida |
+| Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: 3 criativos, mesma verba, matar fracos em 3-4 dias, escalar vencedor |
+
+---
+
 ## Pipeline Pós-Compra (Hotmart → Make → Mailchimp)
 
 | Item | Status | Observação |
@@ -201,7 +217,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
 | Make.com | Free tier (1 cenário ativo) | Cenário ativo: Hotmart → Mailchimp pós-compra |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
-| Meta Ads | Por investimento (não ativo) | Tráfego pago ainda não iniciado |
+| Meta Ads | Por investimento | Em preparação. Primeiros criativos gerados em 2026-07-02 (ver seção Tráfego Pago) |
 
 ---
 
