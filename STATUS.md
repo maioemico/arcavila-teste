@@ -109,26 +109,30 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |------|--------|-----------|
 | Pesquisa da história de referência | Concluído | Documento `referencia-pousando-no-amor.md` na raiz do repositório, com grade de tradução e diretrizes de originalidade |
 | Definições editoriais aprovadas | Concluído em 2026-07-02 | Barreira: vocação vs. império familiar. Cenário: São Paulo + vila fictícia Pedra do Sino (Serra do Espinhaço, MG). Final: feliz com custo. Casal secundário: renúncia sem morte. Tom: fé vivida. 13 capítulos + epílogo, cliffhanger em cada capítulo |
-| Título definitivo | **Concluído em 2026-07-02** | "A Mentira que Deus Usou" — escolhido entre 10 opções propostas com foco em curiosidade e tensão fé/mentira |
-| Manuscrito completo | **Concluído em 2026-07-02** | 13 capítulos + epílogo, cerca de 20,3 mil palavras, cliffhanger no fim de cada capítulo. Protagonistas: Helena Vasconcelos e pastor Rafael Antunes. Arquivos em `a-mentira-que-deus-usou/manuscrito/` (pasta local do projeto) |
-| PDF diagramado | **Concluído em 2026-07-02** | `Ebook__A_Mentira_que_Deus_Usou.pdf` — 95 páginas, A5, padrão visual do Amor e Fé. Logo da Arcavila **sem fundo** na capa e no sumário (`logoarcavila-semfundo.png`, gerado localmente por remoção do fundo creme; o arquivo do Drive não era acessível ao Cowork). Versículo da capa: Cânticos 8:7. Na pasta local do projeto; subir ao repo via terminal quando desejado |
+| Título definitivo | Concluído em 2026-07-02 | "A Mentira que Deus Usou" — escolhido entre 10 opções propostas com foco em curiosidade e tensão fé/mentira |
+| Manuscrito completo | Concluído em 2026-07-02 | 13 capítulos + epílogo, cerca de 20,3 mil palavras, cliffhanger no fim de cada capítulo. Protagonistas: Helena Vasconcelos e pastor Rafael Antunes. Arquivos em `a-mentira-que-deus-usou/manuscrito/` (pasta local do projeto) |
+| PDF diagramado | Concluído em 2026-07-02 | `Ebook__A_Mentira_que_Deus_Usou.pdf` — 95 páginas, A5, padrão visual do Amor e Fé. Logo da Arcavila sem fundo na capa e no sumário (`logoarcavila-semfundo.png`). Versículo da capa: Cânticos 8:7. Na pasta local do projeto |
 | Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
 | Capa ilustrada | **PENDENTE** | Capa atual é tipográfica com logo; produzir arte de capa |
 | Landing / funil do novo livro | **PENDENTE** | Definir estratégia de captura e venda (espelhar funil do Amor e Fé) |
 
 ---
 
-## Livro 2 (matriz CLOY) — em desenvolvimento
+## Livro 2 (matriz CLOY) — A Estação das Águas
 
-> Segundo romance cristão original derivado da mesma matriz de "Pousando no Amor", pelo mesmo processo do Livro 1 (referência → perguntas editoriais → estrutura aprovada → escrita → PDF).
+> Segundo romance cristão original derivado da mesma matriz de "Pousando no Amor" (ver `referencia-pousando-no-amor-livro2.md`), sem repetir nenhuma transposição do Livro 1. Autora: Ana Veras. Título de trabalho: "A Estação das Águas" (rodada de títulos alternativos pode ser feita como no Livro 1).
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz do repositório. Contexto completo da obra coreana + inventário do que o Livro 1 consumiu + cardápio de transposições livres |
-| Definições editoriais aprovadas | **Concluído em 2026-07-02** | Polos invertidos: ele cai no mundo dela. Protagonista: cirurgião famoso de São Paulo. Protagonista feminina: professora e parteira pantaneira. Cenário: Pantanal na cheia. Gatilho: pouso forçado de avião de pequeno porte. Final: agridoce fiel à matriz (a barreira permanece; o amor encontra forma ritual, por estações). Casal secundário: sem relação com o Livro 1; casal de viúvos em segunda chance. Tom: fé vivida. 13 capítulos + epílogo com cliffhanger, PDF A5 padrão do catálogo, autora Ana Veras |
-| Estrutura de capítulos | **EM ANDAMENTO** | Proposta com título de trabalho, elenco, símbolos e mapa de 13 capítulos com ganchos apresentada ao usuário para aprovação |
-| Manuscrito | **PENDENTE** | Escrita após aprovação da estrutura |
-| PDF diagramado | **PENDENTE** | Mesmo padrão A5 do catálogo, com logo sem fundo |
+| Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz do repositório |
+| Definições editoriais aprovadas | Concluído em 2026-07-02 | Polos invertidos: ele cai no mundo dela. Cirurgião famoso (Théo Meireles) + professora e parteira pantaneira (Luzia Cáceres). Cenário: Pantanal na cheia, comunidade fictícia Porto do Sossego. Gatilho: pouso forçado de monomotor. Final: agridoce fiel à matriz (amor por estações: ele volta com a cheia todo ano, via serviço de saúde itinerante Expedição Água Nova). Casal secundário: viúvos em segunda chance (Aparício e Benedita). Antagonista: Nelson Bragança, Grupo Excelsior. Símbolos: camalote, caderno de partos, a voz no rádio (destino cruzado). Tom: fé vivida |
+| Estrutura de capítulos | Aprovada em 2026-07-02 | 13 capítulos + epílogo, cliffhanger em cada um |
+| Manuscrito completo | **Concluído em 2026-07-02** | Cerca de 17,3 mil palavras. Arquivos em `a-estacao-das-aguas/manuscrito/` (pasta local do projeto) |
+| PDF diagramado | **Concluído em 2026-07-02** | `Ebook__A_Estacao_das_Aguas.pdf` — 81 páginas, A5, padrão visual do catálogo, logo sem fundo na capa e no sumário. Versículo da capa: Isaías 43:2. Na pasta local do projeto |
+| Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
+| Título definitivo | **PENDENTE** | Rodada de 10 opções de título, se o usuário desejar (como no Livro 1) |
+| Capa ilustrada | **PENDENTE** | Capa atual é tipográfica com logo |
+| Landing / funil | **PENDENTE** | Definir estratégia de captura e venda |
 
 ---
 
