@@ -105,11 +105,11 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Pesquisa da história de referência | Concluído | Sinopse completa, personagens, beats episódio a episódio e final explicado levantados em fontes nacionais e internacionais (Wikipedia, KDramaWorlds, AsianWiki) |
-| Documento de referência | Salvo | `referencia-pousando-no-amor.md` na raiz do repositório local/GitHub |
-| Nota de direitos autorais | Registrada | Uso permitido apenas como inspiração de tropo/estrutura (amor impossível, disfarce, sacrifício, final agridoce) — sem copiar personagens, falas ou cenas específicas |
-| Adaptação para romance cristão | **PENDENTE** | Definir enredo, personagens e cenário 100% originais inspirados nos tropos levantados |
-| Título, sinopse e estrutura do novo livro | **PENDENTE** | Próxima etapa de decisão |
+| Pesquisa da história de referência | Concluído | Sinopse, personagens (incluindo elenco de apoio e família), backstories, estrutura em 3 atos, beats episódio a episódio, temas e símbolos, levantados em fontes nacionais e internacionais |
+| Documento de referência | **Concluído — versão expandida** | `referencia-pousando-no-amor.md` na raiz do repositório. Inclui grade de tradução de elementos para um enredo 100% original e bloco de instrução pronto para colar no Fable |
+| Nota de direitos autorais | Registrada | Seção 9 do documento: proíbe reaproveitar nomes, cenas, falas ou cenário da obra original; a nova história deve ser inteiramente original |
+| Geração da história pelo Fable | **PENDENTE** | Usuário vai usar o documento como base para pedir ao Fable a história completa |
+| Título, sinopse e estrutura do novo livro | **PENDENTE** | Depende da história gerada pelo Fable |
 
 ---
 
