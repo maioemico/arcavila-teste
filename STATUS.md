@@ -101,16 +101,20 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ---
 
-## Novo Livro — Referência "Pousando no Amor" (Crash Landing on You)
+## Novo Livro — Onde Florescem as Sempre Vivas
+
+> Romance cristão original inspirado na arquitetura emocional de "Pousando no Amor" (ver `referencia-pousando-no-amor.md`). Autora: Ana Veras (mesmo selo do Amor e Fé).
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Pesquisa da história de referência | Concluído | Sinopse, personagens (incluindo elenco de apoio e família), backstories, estrutura em 3 atos, beats episódio a episódio, temas e símbolos, levantados em fontes nacionais e internacionais |
-| Documento de referência | Concluído | `referencia-pousando-no-amor.md` na raiz do repositório. Inclui grade de tradução de elementos para um enredo 100% original e bloco de instrução pronto para colar no Fable |
-| Nota de direitos autorais | Registrada | Seção 9 do documento: proíbe reaproveitar nomes, cenas, falas ou cenário da obra original; a nova história deve ser inteiramente original |
-| **Definições editoriais aprovadas** | **Concluído em 2026-07-02** | Barreira: vocação vs. império familiar. Cenário: Brasil, capital + interior. Final: feliz com custo (cada protagonista abre mão de algo importante). Casal secundário: renúncia sem morte. Tom espiritual: fé vivida (nas escolhas e caráter, poucos versículos diretos). Estrutura: 13 capítulos + epílogo, cliffhanger em cada capítulo. Extensão: 80 a 120 páginas. Entrega: PDF diagramado no padrão Amor e Fé |
-| Título, sinopse e estrutura do novo livro | **EM ANDAMENTO** | Proposta de título, personagens e mapa de capítulos com ganchos apresentada ao usuário para aprovação antes da escrita |
-| Geração da história pelo Fable | **PENDENTE** | Escrita capítulo a capítulo após aprovação da estrutura |
+| Pesquisa da história de referência | Concluído | Documento `referencia-pousando-no-amor.md` na raiz do repositório, com grade de tradução e diretrizes de originalidade |
+| Definições editoriais aprovadas | Concluído em 2026-07-02 | Barreira: vocação vs. império familiar. Cenário: São Paulo + vila fictícia Pedra do Sino (Serra do Espinhaço, MG). Final: feliz com custo. Casal secundário: renúncia sem morte. Tom: fé vivida. 13 capítulos + epílogo, cliffhanger em cada capítulo |
+| Título, sinopse e estrutura | **Concluído em 2026-07-02** | "Onde Florescem as Sempre Vivas". Estrutura de 13 capítulos + epílogo aprovada pelo usuário antes da escrita |
+| Manuscrito completo | **Concluído em 2026-07-02** | 13 capítulos + epílogo, cerca de 20,3 mil palavras, cliffhanger no fim de cada capítulo. Protagonistas: Helena Vasconcelos e pastor Rafael Antunes. Arquivos em `onde-florescem-as-sempre-vivas/manuscrito/` (pasta local do projeto) |
+| PDF diagramado | **Concluído em 2026-07-02** | `Ebook__Onde_Florescem_as_Sempre_Vivas.pdf` — 95 páginas, A5, padrão visual do Amor e Fé (Times, ornamentos, nota da autora, versículo na capa: Cânticos 8:7). Na pasta local do projeto; subir ao repo via terminal quando desejado |
+| Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
+| Capa ilustrada | **PENDENTE** | Capa atual é tipográfica; produzir arte de capa |
+| Landing / funil do novo livro | **PENDENTE** | Definir estratégia de captura e venda (espelhar funil do Amor e Fé) |
 
 ---
 
