@@ -101,7 +101,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ---
 
-## Novo Livro — A Mentira que Deus Usou
+## Livro 1 (matriz CLOY) — A Mentira que Deus Usou
 
 > Romance cristão original inspirado na arquitetura emocional de "Pousando no Amor" (ver `referencia-pousando-no-amor.md`). Autora: Ana Veras (mesmo selo do Amor e Fé). Título anterior de trabalho: "Onde Florescem as Sempre Vivas", alterado em 2026-07-02.
 
@@ -115,6 +115,20 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
 | Capa ilustrada | **PENDENTE** | Capa atual é tipográfica com logo; produzir arte de capa |
 | Landing / funil do novo livro | **PENDENTE** | Definir estratégia de captura e venda (espelhar funil do Amor e Fé) |
+
+---
+
+## Livro 2 (matriz CLOY) — em desenvolvimento
+
+> Segundo romance cristão original derivado da mesma matriz de "Pousando no Amor", pelo mesmo processo do Livro 1 (referência → perguntas editoriais → estrutura aprovada → escrita → PDF).
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Documento de referência do Livro 2 | **Concluído em 2026-07-02** | `referencia-pousando-no-amor-livro2.md` na raiz do repositório. Contém o contexto completo da obra coreana, inventário dos elementos já consumidos pelo Livro 1 (seção 8, para evitar repetição) e cardápio de transposições livres (seção 9: inversão de polos, novas geografias, novos gatilhos e símbolos) |
+| Perguntas editoriais | **PENDENTE** | Definir com o usuário: barreira, cenário, final, casal secundário, tom espiritual, estrutura de capítulos e formato |
+| Estrutura de capítulos | **PENDENTE** | Apresentar para aprovação antes da escrita |
+| Manuscrito | **PENDENTE** | Escrita após aprovação da estrutura |
+| PDF diagramado | **PENDENTE** | Mesmo padrão A5 do catálogo, com logo sem fundo |
 
 ---
 
