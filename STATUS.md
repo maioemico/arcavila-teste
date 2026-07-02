@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-01
+> Atualizado em: 2026-07-02
 
 ---
 
@@ -98,6 +98,18 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Webhook Make.com | **Concluído** | ID `2526674` · URL: `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
 | Webhook Hotmart | **Concluído** | Cadastrado em Ferramentas → Webhook. Nome: "Make.com - Compra Aprovada". Produto: Amor e Fé (ID 8026094). Versão 2.0.0. Evento: Compra aprovada. Status: Ativo |
 | Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" no Mailchimp → adicionar saída pela tag `comprou-amor-e-fe` |
+
+---
+
+## Novo Livro — Referência "Pousando no Amor" (Crash Landing on You)
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Pesquisa da história de referência | Concluído | Sinopse completa, personagens, beats episódio a episódio e final explicado levantados em fontes nacionais e internacionais (Wikipedia, KDramaWorlds, AsianWiki) |
+| Documento de referência | Salvo | `referencia-pousando-no-amor.md` na raiz do repositório local/GitHub |
+| Nota de direitos autorais | Registrada | Uso permitido apenas como inspiração de tropo/estrutura (amor impossível, disfarce, sacrifício, final agridoce) — sem copiar personagens, falas ou cenas específicas |
+| Adaptação para romance cristão | **PENDENTE** | Definir enredo, personagens e cenário 100% originais inspirados nos tropos levantados |
+| Título, sinopse e estrutura do novo livro | **PENDENTE** | Próxima etapa de decisão |
 
 ---
 
