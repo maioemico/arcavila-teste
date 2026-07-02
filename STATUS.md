@@ -17,6 +17,8 @@
 
 **ATENÇÃO — lição aprendida:** nunca usar `mcp__github__push_files` com `content: ""` para arquivos grandes. Isso apaga o conteúdo. Para index.html, sempre usar o terminal local.
 
+**Lição aprendida 2026-07-02 (pull travado por arquivo não rastreado):** se `git pull` abortar com "untracked working tree files would be overwritten by merge", mover o arquivo em questão para fora (`mv arquivo /tmp/`), rodar `git pull origin main --no-rebase --no-edit` e depois `git push origin main`.
+
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
 **Atenção:** após qualquer push do Cowork via MCP, rodar `git pull origin main --no-rebase` antes do próximo push pelo terminal.
@@ -56,7 +58,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Catálogo `arcavila.online` — preço R$ 37,00 desktop | Concluído | Sem box, negrito, font-size 1.2rem, margin-left:auto |
 | Seção Círculo Arcavila (`#circulo`) | **OCULTO** | `display:none` via CSS. HTML preservado intacto para reativar quando o produto estiver pronto. Reativar: mudar `#circulo{display:none}` para `#circulo{background:var(--noite)}` |
 | Catálogo `arcavila.online` — mobile revisado | Concluído | `.book-desc` oculto, botão sinopse oculto, card Amor e Fé clicável, capa maior, preço 1.2rem negrito sem borda |
-| Landing de vendas — título "Amor e Fé" | **Editado no fonte, deploy pendente** | Substituídas as 3 ocorrências de "Quando o Amor Precisa de Fé" (title, nav-logo, título da oferta) por "Amor e Fé" em `landing-sprites-ana-pedro.html`. Falta commit/push pelo terminal para publicar |
+| Landing de vendas — título "Amor e Fé" | **Publicado em 2026-07-02** | Substituídas as 3 ocorrências de "Quando o Amor Precisa de Fé" (title, nav-logo, título da oferta) por "Amor e Fé" em `landing-sprites-ana-pedro.html`. Commit `c793dc7` no ar, verificado no navegador |
 
 ---
 
@@ -101,7 +103,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02. Título da página padronizado para "Amor e Fé" |
 | Copies dos 3 ângulos | Concluído em 2026-07-02 | Ângulo 1 dilema, Ângulo 2 prova + preço, Ângulo 3 trecho/cena. Headline, texto principal e CTA escritos |
 | Artes iniciais no Canva | Concluído em 2026-07-02 | 3 conceitos gerados via Canva MCP (instagram_post 4:5), 4 candidatos cada. Aguardando escolha do usuário |
-| Alinhar copy com título da página | Resolvido em 2026-07-02 | Página de venda teve o título trocado para "Amor e Fé", casando com as copies dos anúncios (deploy da landing pendente) |
+| Alinhar copy com título da página | Resolvido em 2026-07-02 | Página de venda teve o título trocado para "Amor e Fé" (publicado), casando com as copies dos anúncios |
 | Seleção da arte final e conversão | **PENDENTE** | Usuário escolhe 1 candidato por ângulo → converter em design editável no Canva |
 | Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar a arte escolhida |
 | Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: 3 criativos, mesma verba, matar fracos em 3-4 dias, escalar vencedor |
