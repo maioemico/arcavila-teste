@@ -106,10 +106,11 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Item | Status | Observação |
 |------|--------|-----------|
 | Pesquisa da história de referência | Concluído | Sinopse, personagens (incluindo elenco de apoio e família), backstories, estrutura em 3 atos, beats episódio a episódio, temas e símbolos, levantados em fontes nacionais e internacionais |
-| Documento de referência | **Concluído — versão expandida** | `referencia-pousando-no-amor.md` na raiz do repositório. Inclui grade de tradução de elementos para um enredo 100% original e bloco de instrução pronto para colar no Fable |
+| Documento de referência | Concluído | `referencia-pousando-no-amor.md` na raiz do repositório. Inclui grade de tradução de elementos para um enredo 100% original e bloco de instrução pronto para colar no Fable |
 | Nota de direitos autorais | Registrada | Seção 9 do documento: proíbe reaproveitar nomes, cenas, falas ou cenário da obra original; a nova história deve ser inteiramente original |
-| Geração da história pelo Fable | **PENDENTE** | Usuário vai usar o documento como base para pedir ao Fable a história completa |
-| Título, sinopse e estrutura do novo livro | **PENDENTE** | Depende da história gerada pelo Fable |
+| **Definições editoriais aprovadas** | **Concluído em 2026-07-02** | Barreira: vocação vs. império familiar. Cenário: Brasil, capital + interior. Final: feliz com custo (cada protagonista abre mão de algo importante). Casal secundário: renúncia sem morte. Tom espiritual: fé vivida (nas escolhas e caráter, poucos versículos diretos). Estrutura: 13 capítulos + epílogo, cliffhanger em cada capítulo. Extensão: 80 a 120 páginas. Entrega: PDF diagramado no padrão Amor e Fé |
+| Título, sinopse e estrutura do novo livro | **EM ANDAMENTO** | Proposta de título, personagens e mapa de capítulos com ganchos apresentada ao usuário para aprovação antes da escrita |
+| Geração da história pelo Fable | **PENDENTE** | Escrita capítulo a capítulo após aprovação da estrutura |
 
 ---
 
