@@ -25,6 +25,8 @@
 
 **Lição aprendida 2026-07-02 (pull travado por arquivo não rastreado):** se `git pull` abortar com "untracked working tree files would be overwritten by merge", mover o arquivo em questão para fora (`mv arquivo /tmp/`), rodar `git pull origin main --no-rebase --no-edit` e depois `git push origin main`.
 
+**Lição aprendida 2026-07-03 (index.lock travando git):** se o git acusar `Unable to create '.git/index.lock': File exists` (pode sobrar de um processo interrompido), rodar `rm -f .git/index.lock` na raiz do repo e repetir o comando.
+
 **Assets do Canva via GitHub:** o Canva só importa imagem a partir de URL pública. Fluxo usado: gerar o PNG na pasta `assets/`, push pelo terminal, e usar a URL `raw.githubusercontent.com/maioemico/arcavila-teste/main/assets/<arquivo>` no upload do Canva. Assets publicados: `logoarcavila-semfundo.png`, `assets/btn-continue-leitura.png`, `assets/btn-quero-ler.png`, `assets/capa-amor-e-fe.png`, `assets/capa-angulo.png` (descartado), `assets/faixa-cena1.png`, `assets/faixa-cena2.png`, `assets/bg-criativo2.png`, `assets/dark-bg.png`. Limitações do editor do Canva via MCP: só insere imagem/vídeo (não cria texto nem forma nova); elemento inserido sempre vai para o topo (z-order); página responsiva não aceita insert/position. Duplicar design = `copy-design`; redimensionar = `resize-design` (**trial esgotado em 2026-07-03**, 0 usos restantes).
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
@@ -38,7 +40,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | URL | Status | Observação |
 |-----|--------|-----------|
 | arcavila.online | **Redirect 301 ATIVO → arcavila.com.br** | Migração concluída no nível de redirect (2026-07-03). Redirect Rule 301 no Cloudflare (hosts `arcavila.online` e `www.arcavila.online`) → `https://www.arcavila.com.br/*` preservando path e query. Verificado no navegador: home e paths redirecionam limpo para o site editorial. A página quebrada (base64 no `/Land_Captura-amor-e-fe`) era servida no `.online`; resolvida pelo redirect. Domínio a ser aposentado após reindexação do Google |
-| www.arcavila.com.br | **Publicado / no ar (domínio oficial)** | Verificado no navegador em 2026-07-03: serve o site editorial completo. CNAME `www → arcavila-captura.pages.dev` |
+| www.arcavila.com.br | **Publicado / no ar (domínio oficial)** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical própria. CNAME `www → arcavila-captura.pages.dev` |
 | arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé. No ar, verificado no navegador em 2026-07-02. Título da página padronizado para "Amor e Fé" em 2026-07-02 (arquivo `landing-sprites-ana-pedro.html`). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
@@ -54,7 +56,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 **Diagnóstico (2026-07-03):**
 - O Google rankeia o `arcavila.online` porque é o domínio mais antigo, já rastreado e indexado. O `.com.br` é novo e ainda não tem histórico de indexação.
-- Os dois domínios servem o mesmo conteúdo (mesmo projeto Cloudflare Pages `arcavila-captura`) e o `index.html` **não tinha tag canonical** — sem sinal de qual é o preferido, o Google escolheu o estabelecido (`.online`).
+- Os dois domínios servem o mesmo conteúdo (mesmo projeto Cloudflare Pages `arcavila-captura`) e o `index.html` **não tinha tag canonical** — sem sinal de qual é o preferido, o Google escolheu o estabelecido (`.online`). Corrigido no passo 2.
 - A "página quebrada" do `.online`: a home redirecionava (301 cacheado no navegador) para `/Land_Captura-amor-e-fe`, que devolve o HTML em base64 cru como texto — bug de deploy do setup legado. Resolvida pelo redirect de domínio.
 - `www.arcavila.com.br` já está no ar e servindo o site editorial completo (verificado no navegador).
 
@@ -63,10 +65,12 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Passo | Status | Observação |
 |-------|--------|-----------|
 | 1. Redirect 301 `arcavila.online/*` → `https://www.arcavila.com.br/*` | **CONCLUÍDO (2026-07-03)** | Redirect Rule criada e implantada no Cloudflare (zone arcavila.online), filtro `(http.host eq "arcavila.online") or (http.host eq "www.arcavila.online")`, target dinâmico `concat("https://www.arcavila.com.br", http.request.uri.path)`, 301, preserve query string. Verificado no navegador: apex e paths redirecionam limpo. Não afeta subdomínios amorefe./presente./anaepedro |
-| 2. Tag canonical `https://www.arcavila.com.br/` no `index.html` | **EDITADO — aguardando push/deploy** | `<link rel="canonical" href="https://www.arcavila.com.br/">` já inserido no `index.html` local (após a meta description). Falta: `git pull` + commit/push pelo terminal (arquivo grande) → deploy automático do Cloudflare Pages |
+| 2. Tag canonical `https://www.arcavila.com.br/` no `index.html` | **CONCLUÍDO (2026-07-03)** | `<link rel="canonical" href="https://www.arcavila.com.br/">` inserido no `index.html` (commit `7bac4db`). Deploy do Cloudflare Pages no ar e verificado no navegador: a tag é servida em www.arcavila.com.br |
 | 3. Google Search Console — verificar propriedade `arcavila.com.br` | **PENDENTE** | Adicionar/verificar domínio, enviar sitemap, "Solicitar indexação" da home |
 | 4. Search Console — ferramenta "Alteração de endereço" | **PENDENTE** | Na propriedade `.online`, apontar a migração para `.com.br` (requer o 301 do passo 1 ativo — já está). Ferramenta oficial do Google para migração de domínio |
 | 5. Aguardar reindexação | **EM ANDAMENTO** | Google leva de dias a algumas semanas para trocar o domínio exibido |
+
+**Pendência opcional de limpeza:** arquivo órfão `/Land_Captura-amor-e-fe` no projeto principal (`arcavila-captura`) serve base64 quebrado. Não atrapalha a migração (a landing de captura real está em `amorefe.arcavila.com.br`), mas pode ser removido do projeto depois.
 
 ---
 
