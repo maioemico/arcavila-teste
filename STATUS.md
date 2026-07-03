@@ -25,7 +25,7 @@
 
 **Lição aprendida 2026-07-02 (pull travado por arquivo não rastreado):** se `git pull` abortar com "untracked working tree files would be overwritten by merge", mover o arquivo em questão para fora (`mv arquivo /tmp/`), rodar `git pull origin main --no-rebase --no-edit` e depois `git push origin main`.
 
-**Assets do Canva via GitHub:** o Canva só importa imagem a partir de URL pública. Fluxo usado: gerar o PNG na pasta `assets/`, push pelo terminal, e usar a URL `raw.githubusercontent.com/maioemico/arcavila-teste/main/assets/<arquivo>` no upload do Canva. Assets já publicados: `logoarcavila-semfundo.png`, `assets/btn-continue-leitura.png`, `assets/btn-quero-ler.png`, `assets/capa-amor-e-fe.png`, `assets/capa-angulo.png`, `assets/faixa-cena1.png`, `assets/faixa-cena2.png`. Limitações do editor do Canva via MCP: só insere imagem/vídeo (não cria texto nem forma nova); elemento inserido sempre vai para o topo (z-order); página responsiva não aceita insert/position.
+**Assets do Canva via GitHub:** o Canva só importa imagem a partir de URL pública. Fluxo usado: gerar o PNG na pasta `assets/`, push pelo terminal, e usar a URL `raw.githubusercontent.com/maioemico/arcavila-teste/main/assets/<arquivo>` no upload do Canva. Assets já publicados: `logoarcavila-semfundo.png`, `assets/btn-continue-leitura.png`, `assets/btn-quero-ler.png`, `assets/capa-amor-e-fe.png`, `assets/capa-angulo.png` (descartado no criativo 2), `assets/faixa-cena1.png`, `assets/faixa-cena2.png`. Limitações do editor do Canva via MCP: só insere imagem/vídeo (não cria texto nem forma nova); elemento inserido sempre vai para o topo (z-order); página responsiva não aceita insert/position.
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
@@ -111,10 +111,10 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02. Título da página padronizado para "Amor e Fé" |
 | Copies dos 3 ângulos | Concluído em 2026-07-02 | Ângulo 1 dilema, Ângulo 2 prova + preço, Ângulo 3 trecho/cena. Headline, texto principal e CTA escritos |
 | Artes iniciais no Canva | Concluído em 2026-07-02 | 3 conceitos gerados via Canva MCP (instagram_post 4:5), 4 candidatos cada; depois mais 4 variações por ângulo |
-| Criativo 1 (dilema, capa) — arte final | **Concluído em 2026-07-02** | Design `DAHOSJrDDXQ` (canva.com/d/gPdMc09r6k1JlKl). Capa real do Amor e Fé no mockup (elemento separado, troca limpa), headline "Amor e Fé", botão "Ler agora por R$ 37", logo no rodapé. Salvo |
-| Criativo 3 (trecho/cena) — arte final | **Concluído em 2026-07-02** | Design `DAHOSMRVNN4` (canva.com/d/7XM71C765lZ01w8). Três cenas com a história real (Ana/Pedro), cada frase sobre faixa translúcida para leitura + botão em caixa "CONTINUE A LEITURA · R$ 37". Salvo |
-| Criativo 2 (capa/dilema, variação) — arte final | **Concluído em 2026-07-02** | Design `DAHOSWCDTOo` (canva.com/d/Dh2EbkBoheYRyq3). Logo + botão "QUERO LER · R$ 37". Frase de preço removida pelo usuário. Capa real deformada na perspectiva do livro (`assets/capa-angulo.png`) sobreposta ao livro embaralhado da IA; subtítulo "Romance Cristão/Arcavila" reposicionado para não ficar atrás da capa. Salvo |
-| Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar as artes escolhidas |
+| Criativo 1 (dilema, capa) — arte final | **Aprovado em 2026-07-02** | Design `DAHOSJrDDXQ` (canva.com/d/gPdMc09r6k1JlKl). Capa real do Amor e Fé no mockup (elemento separado, troca limpa), headline "Amor e Fé", botão "Ler agora por R$ 37", logo no rodapé |
+| Criativo 3 (trecho/cena) — arte final | **Aprovado em 2026-07-02** | Design `DAHOSMRVNN4` (canva.com/d/7XM71C765lZ01w8). Três cenas com a história real (Ana/Pedro), cada frase sobre faixa translúcida para leitura + botão em caixa "CONTINUE A LEITURA · R$ 37" |
+| Criativo 2 (capa/dilema, variação) — arte final | **Aprovado em 2026-07-02** | Design `DAHOSWCDTOo` (canva.com/d/Dh2EbkBoheYRyq3). Logo + botão "QUERO LER · R$ 37". Frase de preço removida pelo usuário. A tentativa de sobrepor a capa real em ângulo foi **descartada** (ficou ruim); mantida a versão anterior com o livro gerado pela IA |
+| Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar os 3 criativos aprovados |
 | Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: 3 criativos, mesma verba, matar fracos em 3-4 dias, escalar vencedor |
 
 ---
@@ -230,7 +230,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
 | Make.com | Free tier (1 cenário ativo) | Cenário ativo: Hotmart → Mailchimp pós-compra |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
-| Meta Ads | Por investimento | Em preparação. Criativos 1, 2 e 3 finalizados em 2026-07-02 (ver seção Tráfego Pago) |
+| Meta Ads | Por investimento | Em preparação. Criativos 1, 2 e 3 aprovados em 2026-07-02 (ver seção Tráfego Pago) |
 
 ---
 
