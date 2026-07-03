@@ -37,8 +37,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | URL | Status | Observação |
 |-----|--------|-----------|
-| arcavila.online | **A APOSENTAR (redirect 301)** | Decisão 2026-07-03: migrar tudo para arcavila.com.br. Home está QUEBRADA — redireciona para `/Land_Captura-amor-e-fe` que serve base64 cru como texto. Ainda é o domínio que rankeia no Google. Ação pendente: redirect 301 `arcavila.online/*` → `https://www.arcavila.com.br/*` |
-| www.arcavila.com.br | **Publicado / no ar** | Verificado no navegador em 2026-07-03: serve o site editorial completo. CNAME `www → arcavila-captura.pages.dev` |
+| arcavila.online | **Redirect 301 ATIVO → arcavila.com.br** | Migração concluída no nível de redirect (2026-07-03). Redirect Rule 301 no Cloudflare (hosts `arcavila.online` e `www.arcavila.online`) → `https://www.arcavila.com.br/*` preservando path e query. Verificado no navegador: home e paths redirecionam limpo para o site editorial. A página quebrada (base64 no `/Land_Captura-amor-e-fe`) era servida no `.online`; resolvida pelo redirect. Domínio a ser aposentado após reindexação do Google |
+| www.arcavila.com.br | **Publicado / no ar (domínio oficial)** | Verificado no navegador em 2026-07-03: serve o site editorial completo. CNAME `www → arcavila-captura.pages.dev` |
 | arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé. No ar, verificado no navegador em 2026-07-02. Título da página padronizado para "Amor e Fé" em 2026-07-02 (arquivo `landing-sprites-ana-pedro.html`). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
@@ -54,19 +54,19 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 **Diagnóstico (2026-07-03):**
 - O Google rankeia o `arcavila.online` porque é o domínio mais antigo, já rastreado e indexado. O `.com.br` é novo e ainda não tem histórico de indexação.
-- Os dois domínios servem o mesmo conteúdo (mesmo projeto Cloudflare Pages `arcavila-captura`) e o `index.html` **não tem tag canonical** — sem sinal de qual é o preferido, o Google escolheu o estabelecido (`.online`).
-- A "página quebrada" do `.online`: a home redireciona para `/Land_Captura-amor-e-fe`, que devolve o HTML em base64 cru como texto — bug de deploy do setup legado.
+- Os dois domínios servem o mesmo conteúdo (mesmo projeto Cloudflare Pages `arcavila-captura`) e o `index.html` **não tinha tag canonical** — sem sinal de qual é o preferido, o Google escolheu o estabelecido (`.online`).
+- A "página quebrada" do `.online`: a home redirecionava (301 cacheado no navegador) para `/Land_Captura-amor-e-fe`, que devolve o HTML em base64 cru como texto — bug de deploy do setup legado. Resolvida pelo redirect de domínio.
 - `www.arcavila.com.br` já está no ar e servindo o site editorial completo (verificado no navegador).
 
-**Plano de migração (pendente):**
+**Plano de migração:**
 
 | Passo | Status | Observação |
 |-------|--------|-----------|
-| 1. Redirect 301 `arcavila.online/*` → `https://www.arcavila.com.br/*` | **PENDENTE** | Fazer no Cloudflare (Redirect Rule no zone do arcavila.online), com escopo por hostname para não afetar o `.com.br` que usa o mesmo projeto Pages. Conserta a página quebrada e transfere ranking |
-| 2. Tag canonical `https://www.arcavila.com.br/` no `index.html` | **PENDENTE** | Higiene de SEO; consolida o sinal no `.com.br` |
+| 1. Redirect 301 `arcavila.online/*` → `https://www.arcavila.com.br/*` | **CONCLUÍDO (2026-07-03)** | Redirect Rule criada e implantada no Cloudflare (zone arcavila.online), filtro `(http.host eq "arcavila.online") or (http.host eq "www.arcavila.online")`, target dinâmico `concat("https://www.arcavila.com.br", http.request.uri.path)`, 301, preserve query string. Verificado no navegador: apex e paths redirecionam limpo. Não afeta subdomínios amorefe./presente./anaepedro |
+| 2. Tag canonical `https://www.arcavila.com.br/` no `index.html` | **EDITADO — aguardando push/deploy** | `<link rel="canonical" href="https://www.arcavila.com.br/">` já inserido no `index.html` local (após a meta description). Falta: `git pull` + commit/push pelo terminal (arquivo grande) → deploy automático do Cloudflare Pages |
 | 3. Google Search Console — verificar propriedade `arcavila.com.br` | **PENDENTE** | Adicionar/verificar domínio, enviar sitemap, "Solicitar indexação" da home |
-| 4. Search Console — ferramenta "Alteração de endereço" | **PENDENTE** | Na propriedade `.online`, apontar a migração para `.com.br` (requer o 301 do passo 1 ativo). Ferramenta oficial do Google para migração de domínio |
-| 5. Aguardar reindexação | — | Google leva de dias a algumas semanas para trocar o domínio exibido |
+| 4. Search Console — ferramenta "Alteração de endereço" | **PENDENTE** | Na propriedade `.online`, apontar a migração para `.com.br` (requer o 301 do passo 1 ativo — já está). Ferramenta oficial do Google para migração de domínio |
+| 5. Aguardar reindexação | **EM ANDAMENTO** | Google leva de dias a algumas semanas para trocar o domínio exibido |
 
 ---
 
