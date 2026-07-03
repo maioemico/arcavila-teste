@@ -4,6 +4,12 @@
 
 ---
 
+## Preferências de Interação
+
+- Quando o Cowork enviar uma mensagem com mais de uma pergunta ou pedido de decisão, apresentá-las **numeradas** (1, 2, 3...) para facilitar a resposta do usuário. Definido em 2026-07-02.
+
+---
+
 ## Workflow de Deploy
 
 **Ferramentas em uso:**
@@ -102,10 +108,11 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Formato do criativo | Definido em 2026-07-02 | Imagem estática vertical (4:5 feed e 9:16 stories/reels). Vídeo só depois, no ângulo vencedor |
 | Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02. Título da página padronizado para "Amor e Fé" |
 | Copies dos 3 ângulos | Concluído em 2026-07-02 | Ângulo 1 dilema, Ângulo 2 prova + preço, Ângulo 3 trecho/cena. Headline, texto principal e CTA escritos |
-| Artes iniciais no Canva | Concluído em 2026-07-02 | 3 conceitos gerados via Canva MCP (instagram_post 4:5), 4 candidatos cada. Aguardando escolha do usuário |
-| Alinhar copy com título da página | Resolvido em 2026-07-02 | Página de venda teve o título trocado para "Amor e Fé" (publicado), casando com as copies dos anúncios |
-| Seleção da arte final e conversão | **PENDENTE** | Usuário escolhe 1 candidato por ângulo → converter em design editável no Canva |
-| Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar a arte escolhida |
+| Artes iniciais no Canva | Concluído em 2026-07-02 | 3 conceitos gerados via Canva MCP (instagram_post 4:5), 4 candidatos cada; depois mais 4 variações por ângulo |
+| Ângulo 1 (dilema) — arte final | Concluído em 2026-07-02 | Design `DAHOSJrDDXQ` (canva.com/d/gPdMc09r6k1JlKl). Título "Amor e Fé", logo da Arcavila inserido no rodapé. Salvo |
+| Ângulo 3 (trecho) — arte final | Em edição 2026-07-02 | Design `DAHOSMRVNN4` (canva.com/d/7XM71C765lZ01w8). Textos reescritos para a história real (Ana/Pedro) + CTA "CONTINUE A LEITURA · R$ 37". Aguardando decisão sobre botão em caixa |
+| Ângulo 2 (prova + preço) — arte final | **PENDENTE** | Aguardando o usuário indicar qual candidato usar; depois inserir logo + botão de CTA |
+| Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar as artes escolhidas |
 | Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: 3 criativos, mesma verba, matar fracos em 3-4 dias, escalar vencedor |
 
 ---
