@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-02
+> Atualizado em: 2026-07-03
 
 ---
 
@@ -25,7 +25,7 @@
 
 **Lição aprendida 2026-07-02 (pull travado por arquivo não rastreado):** se `git pull` abortar com "untracked working tree files would be overwritten by merge", mover o arquivo em questão para fora (`mv arquivo /tmp/`), rodar `git pull origin main --no-rebase --no-edit` e depois `git push origin main`.
 
-**Assets do Canva via GitHub:** o Canva só importa imagem a partir de URL pública. Fluxo usado: gerar o PNG na pasta `assets/`, push pelo terminal, e usar a URL `raw.githubusercontent.com/maioemico/arcavila-teste/main/assets/<arquivo>` no upload do Canva. Assets publicados: `logoarcavila-semfundo.png`, `assets/btn-continue-leitura.png`, `assets/btn-quero-ler.png`, `assets/capa-amor-e-fe.png`, `assets/capa-angulo.png` (descartado), `assets/faixa-cena1.png`, `assets/faixa-cena2.png`, `assets/bg-criativo2.png`. Limitações do editor do Canva via MCP: só insere imagem/vídeo (não cria texto nem forma nova); elemento inserido sempre vai para o topo (z-order); página responsiva não aceita insert/position. Para duplicar um design usar `copy-design`.
+**Assets do Canva via GitHub:** o Canva só importa imagem a partir de URL pública. Fluxo usado: gerar o PNG na pasta `assets/`, push pelo terminal, e usar a URL `raw.githubusercontent.com/maioemico/arcavila-teste/main/assets/<arquivo>` no upload do Canva. Assets publicados: `logoarcavila-semfundo.png`, `assets/btn-continue-leitura.png`, `assets/btn-quero-ler.png`, `assets/capa-amor-e-fe.png`, `assets/capa-angulo.png` (descartado), `assets/faixa-cena1.png`, `assets/faixa-cena2.png`, `assets/bg-criativo2.png`, `assets/dark-bg.png`. Limitações do editor do Canva via MCP: só insere imagem/vídeo (não cria texto nem forma nova); elemento inserido sempre vai para o topo (z-order); página responsiva não aceita insert/position. Duplicar design = `copy-design`; redimensionar = `resize-design` (**trial esgotado em 2026-07-03**, 0 usos restantes).
 
 SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
 
@@ -109,13 +109,13 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |------|--------|-----------|
 | Formato do criativo | Definido em 2026-07-02 | Imagem estática vertical (4:5 feed e 9:16 stories/reels). Vídeo só depois, no ângulo vencedor |
 | Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02. Título da página padronizado para "Amor e Fé" |
-| Copies dos 3 ângulos | Concluído em 2026-07-02 | Ângulo 1 dilema, Ângulo 2 prova + preço, Ângulo 3 trecho/cena. Headline, texto principal e CTA escritos |
-| Artes iniciais no Canva | Concluído em 2026-07-02 | 3 conceitos gerados via Canva MCP (instagram_post 4:5), 4 candidatos cada; depois mais 4 variações por ângulo |
-| Criativo 1 (dilema, capa) — arte final | **Aprovado em 2026-07-02** | Design `DAHOSJrDDXQ` (canva.com/d/gPdMc09r6k1JlKl). Fundo dourado escuro. Capa real do Amor e Fé no mockup (elemento separado), headline "Amor e Fé", subtítulo "Ela amava a Deus. E amava um homem que não podia ter.", botão "Ler agora por R$ 37", logo |
-| Criativo 3 (trecho/cena) — arte final | **Aprovado em 2026-07-02** | Design `DAHOSMRVNN4` (canva.com/d/7XM71C765lZ01w8). Três cenas com a história real (Ana/Pedro), cada frase sobre faixa translúcida + botão em caixa "CONTINUE A LEITURA · R$ 37" |
-| Criativo 2 (prova social, capa) — arte final | **Refeito em 2026-07-02** | Design `DAHOWqcqsg8` (canva.com/d/RLTc21uetPtckvK). Duplicado do criativo 1 (capa real, elemento separado) com **fundo vinho/bordô** (`assets/bg-criativo2.png`) para diferenciar visualmente, subtítulo de prova social "Leitoras terminam este romance em uma só noite." + botão "Quero ler por R$ 37". Versão anterior `DAHOSWCDTOo` (livro da IA embaralhado) **aposentada**; tentativa de capa em ângulo foi descartada antes |
-| Versão 9:16 para stories/reels | **PENDENTE** | Redimensionar os 3 criativos aprovados |
-| Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: 3 criativos, mesma verba, matar fracos em 3-4 dias, escalar vencedor |
+| Copies dos ângulos | Concluído em 2026-07-02 | Dilema, prova social, trecho/cena. Headline, texto principal e CTA escritos |
+| Criativo 1 (dilema, capa) — 4:5 | **Aprovado** | Design `DAHOSJrDDXQ` (canva.com/d/gPdMc09r6k1JlKl). Fundo dourado escuro. Capa real no mockup, headline "Amor e Fé", subtítulo "Ela amava a Deus. E amava um homem que não podia ter.", botão "Ler agora por R$ 37", logo |
+| Criativo 3 (trecho/cena) — 4:5 | **Aprovado** | Design `DAHOSMRVNN4` (canva.com/d/7XM71C765lZ01w8). Três cenas com faixas de leitura + botão "CONTINUE A LEITURA · R$ 37" |
+| Criativo 2 (prova social, capa) | **DESCARTADO** | Descartado a pedido do usuário em 2026-07-03. Chegou a ser refeito em vinho (`DAHOWqcqsg8`) mas ficou parecido demais com o 1. Campanha seguirá só com criativos 1 e 3 |
+| Versões 9:16 (stories/reels) | **Concluído em 2026-07-03** | Criativo 1 → `DAHOWgHxapI` (resize do Canva, ficou limpo). Criativo 3 → `DAHOWlGbhS8` (resize + fundo escuro `dark-bg.png` cobrindo as faixas brancas = letterbox cinematográfico). Trial de resize esgotado |
+| Exportar PNGs finais | **PENDENTE (usuário)** | Baixar do Canva em PNG 1080×1350 (4:5) e 1080×1920 (9:16), sem compressão, sem fundo transparente |
+| Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel |
 
 ---
 
@@ -230,7 +230,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
 | Make.com | Free tier (1 cenário ativo) | Cenário ativo: Hotmart → Mailchimp pós-compra |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
-| Meta Ads | Por investimento | Em preparação. Criativos 1, 2 e 3 aprovados em 2026-07-02 (ver seção Tráfego Pago) |
+| Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Novos resizes exigem upgrade |
+| Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03 |
 
 ---
 
@@ -247,7 +248,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Make.com webhook (Hotmart) | `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
 | Zoho — conta gerenciadora | `caiochiba4@gmail.com` |
 | Repositório GitHub | `maioemico/arcavila-teste` |
-| Canva — Criativo 1 (dilema/capa, dourado) | `DAHOSJrDDXQ` · canva.com/d/gPdMc09r6k1JlKl |
-| Canva — Criativo 2 (prova social/capa, vinho) | `DAHOWqcqsg8` · canva.com/d/RLTc21uetPtckvK |
-| Canva — Criativo 3 (trecho/cena) | `DAHOSMRVNN4` · canva.com/d/7XM71C765lZ01w8 |
-| Canva — Criativo 2 versão antiga (aposentada) | `DAHOSWCDTOo` |
+| Canva — Criativo 1 · 4:5 (dourado) | `DAHOSJrDDXQ` · canva.com/d/gPdMc09r6k1JlKl |
+| Canva — Criativo 1 · 9:16 | `DAHOWgHxapI` · canva.com/d/yp85B36hl4OsH6Z |
+| Canva — Criativo 3 · 4:5 (cenas) | `DAHOSMRVNN4` · canva.com/d/7XM71C765lZ01w8 |
+| Canva — Criativo 3 · 9:16 | `DAHOWlGbhS8` · canva.com/d/BvOk-1JQju4MebA |
+| Canva — Criativo 2 (DESCARTADO) | `DAHOWqcqsg8` (vinho) / `DAHOSWCDTOo` (antigo) |
