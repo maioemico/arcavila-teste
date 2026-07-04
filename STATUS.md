@@ -39,8 +39,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | URL | Status | Observação |
 |-----|--------|-----------|
-| arcavila.online | **Redirect 301 ATIVO → arcavila.com.br** | Migração concluída no nível de redirect (2026-07-03). Redirect Rule 301 no Cloudflare (hosts `arcavila.online` e `www.arcavila.online`) → `https://www.arcavila.com.br/*` preservando path e query. Verificado no navegador: home e paths redirecionam limpo para o site editorial. A página quebrada (base64 no `/Land_Captura-amor-e-fe`) era servida no `.online`; resolvida pelo redirect. Domínio a ser aposentado após reindexação do Google |
-| www.arcavila.com.br | **Publicado / no ar (domínio oficial)** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical própria. CNAME `www → arcavila-captura.pages.dev` |
+| arcavila.online | **Redirect 301 ATIVO → arcavila.com.br + Mudança de Endereço no Google** | Migração concluída (2026-07-03). Redirect Rule 301 no Cloudflare (hosts `arcavila.online` e `www.arcavila.online`) → `https://www.arcavila.com.br/*` preservando path e query. Mudança de Endereço registrada no Search Console (aviso "Este site está sendo movido para arcavila.com.br", início 4/07/2026). A página quebrada (base64 no `/Land_Captura-amor-e-fe`) foi resolvida pelo redirect. Manter o zone ativo no Cloudflare até o Google concluir a reindexação; só então aposentar |
+| www.arcavila.com.br | **Domínio oficial / no ar** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical própria. Propriedade verificada no Google Search Console. CNAME `www → arcavila-captura.pages.dev` |
 | arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé. No ar, verificado no navegador em 2026-07-02. Título da página padronizado para "Amor e Fé" em 2026-07-02 (arquivo `landing-sprites-ana-pedro.html`). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
@@ -52,13 +52,12 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ## SEO e Migração de Domínio (arcavila.online → arcavila.com.br)
 
-> Decisão 2026-07-03: **arcavila.com.br passa a ser o único domínio oficial.** O arcavila.online será aposentado via redirect 301 (não deletado — o 301 transfere a autoridade de ranking acumulada e conserta a página quebrada para quem chega pelo Google).
+> Decisão 2026-07-03: **arcavila.com.br passa a ser o único domínio oficial.** O arcavila.online foi aposentado via redirect 301 + Mudança de Endereço no Google (não deletado — o 301 transfere a autoridade de ranking acumulada e conserta a página quebrada para quem chega pelo Google). **Migração técnica concluída em 2026-07-03; aguardando reindexação do Google.**
 
 **Diagnóstico (2026-07-03):**
-- O Google rankeia o `arcavila.online` porque é o domínio mais antigo, já rastreado e indexado. O `.com.br` é novo e ainda não tem histórico de indexação.
+- O Google rankeava o `arcavila.online` porque é o domínio mais antigo, já rastreado e indexado. O `.com.br` era novo e sem histórico de indexação.
 - Os dois domínios servem o mesmo conteúdo (mesmo projeto Cloudflare Pages `arcavila-captura`) e o `index.html` **não tinha tag canonical** — sem sinal de qual é o preferido, o Google escolheu o estabelecido (`.online`). Corrigido no passo 2.
 - A "página quebrada" do `.online`: a home redirecionava (301 cacheado no navegador) para `/Land_Captura-amor-e-fe`, que devolve o HTML em base64 cru como texto — bug de deploy do setup legado. Resolvida pelo redirect de domínio.
-- `www.arcavila.com.br` já está no ar e servindo o site editorial completo (verificado no navegador).
 
 **Plano de migração:**
 
@@ -66,9 +65,13 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 |-------|--------|-----------|
 | 1. Redirect 301 `arcavila.online/*` → `https://www.arcavila.com.br/*` | **CONCLUÍDO (2026-07-03)** | Redirect Rule criada e implantada no Cloudflare (zone arcavila.online), filtro `(http.host eq "arcavila.online") or (http.host eq "www.arcavila.online")`, target dinâmico `concat("https://www.arcavila.com.br", http.request.uri.path)`, 301, preserve query string. Verificado no navegador: apex e paths redirecionam limpo. Não afeta subdomínios amorefe./presente./anaepedro |
 | 2. Tag canonical `https://www.arcavila.com.br/` no `index.html` | **CONCLUÍDO (2026-07-03)** | `<link rel="canonical" href="https://www.arcavila.com.br/">` inserido no `index.html` (commit `7bac4db`). Deploy do Cloudflare Pages no ar e verificado no navegador: a tag é servida em www.arcavila.com.br |
-| 3. Google Search Console — verificar propriedade `arcavila.com.br` | **PENDENTE** | Adicionar/verificar domínio, enviar sitemap, "Solicitar indexação" da home |
-| 4. Search Console — ferramenta "Alteração de endereço" | **PENDENTE** | Na propriedade `.online`, apontar a migração para `.com.br` (requer o 301 do passo 1 ativo — já está). Ferramenta oficial do Google para migração de domínio |
-| 5. Aguardar reindexação | **EM ANDAMENTO** | Google leva de dias a algumas semanas para trocar o domínio exibido |
+| 3. Google Search Console — verificar propriedade `arcavila.com.br` | **CONCLUÍDO (2026-07-03)** | Propriedade de domínio adicionada e verificada via TXT no Cloudflare (selo "Propriedade verificada"). Indexação da home https://www.arcavila.com.br/ solicitada via Inspeção de URL ("Indexação solicitada"). Não havia sitemap.xml real no site, envio de sitemap pulado |
+| 4. Search Console — "Mudança de Endereço" | **CONCLUÍDO (2026-07-03)** | Também foi preciso criar e verificar a propriedade `arcavila.online` no Search Console (2º TXT no DNS). Ferramenta "Mudança de Endereço" usada em arcavila.online → arcavila.com.br. Google validou automaticamente o 301 e a verificação das duas propriedades. Aviso ativo: "Este site está sendo movido para arcavila.com.br", início 4/07/2026 |
+| 5. Aguardar reindexação | **EM ANDAMENTO** | Google leva de dias a algumas semanas para trocar o domínio exibido nos resultados. Só aposentar de fato o arcavila.online (remover DNS/redirect) depois que a busca já mostrar o `.com.br` |
+
+**Registros TXT de verificação no DNS Cloudflare (manter enquanto as propriedades estiverem verificadas):**
+- Zone `arcavila.com.br`: TXT `google-site-verification=4ybcJumeYAzGJF5XeYel8sOXQCcV4FZS2pLdVo5w81w`
+- Zone `arcavila.online`: TXT `google-site-verification=7a7e-Iw5ijK13shaKT8UECAqezBrARmRqxdqCCYLV6g`
 
 **Pendência opcional de limpeza:** arquivo órfão `/Land_Captura-amor-e-fe` no projeto principal (`arcavila-captura`) serve base64 quebrado. Não atrapalha a migração (a landing de captura real está em `amorefe.arcavila.com.br`), mas pode ser removido do projeto depois.
 
@@ -283,6 +286,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Make.com webhook (Hotmart) | `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
 | Zoho — conta gerenciadora | `caiochiba4@gmail.com` |
 | Repositório GitHub | `maioemico/arcavila-teste` |
+| Search Console TXT — arcavila.com.br | `google-site-verification=4ybcJumeYAzGJF5XeYel8sOXQCcV4FZS2pLdVo5w81w` |
+| Search Console TXT — arcavila.online | `google-site-verification=7a7e-Iw5ijK13shaKT8UECAqezBrARmRqxdqCCYLV6g` |
 | Canva — Criativo 1 · 4:5 (dourado) | `DAHOSJrDDXQ` · canva.com/d/gPdMc09r6k1JlKl |
 | Canva — Criativo 1 · 9:16 | `DAHOWgHxapI` · canva.com/d/yp85B36hl4OsH6Z |
 | Canva — Criativo 3 · 4:5 (cenas) | `DAHOSMRVNN4` · canva.com/d/7XM71C765lZ01w8 |
