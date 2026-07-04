@@ -1,6 +1,20 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-03
+> Atualizado em: 2026-07-04
+
+---
+
+## Como este documento está organizado (LEIA PRIMEIRO)
+
+Este STATUS.md concentra o estado **vivo** do projeto: o que está no ar, o que está pendente e as decisões em aberto. É a fonte oficial de continuidade e deve ser lido no início de cada conversa.
+
+Em 2026-07-04 fizemos um **split leve**: o conteúdo estável e de consulta pontual saiu daqui e foi para a pasta `referencia/`. Isso mantém o STATUS.md enxuto sem perder nada. Abra o arquivo de referência **apenas quando precisar do detalhe**:
+
+- **`referencia/credenciais-e-ids.md`** — todos os IDs, URLs, tokens, DNS/TXT e IDs do Canva. Abrir quando precisar de um valor específico (Meta Pixel, Hotmart, Mailchimp, webhook Make, verificação DNS, designs do Canva).
+- **`referencia/deploy-e-git.md`** — workflow de deploy, SSH e todas as lições aprendidas de git e Canva. Abrir **antes** de fazer push/deploy ou **quando o git der erro** (index.lock, pull travado, push_files vazio).
+- **`referencia/decisoes-editoriais.md`** — decisões editoriais fixas (bíblia) dos Livros 1 e 2 e do Clube de Histórias. Abrir ao escrever/editar história, definir capa ou montar funil de um livro.
+
+Regra de manutenção: quando uma credencial, uma lição de deploy ou uma decisão editorial fixa mudar, atualizar o arquivo de referência correspondente. Quando o **estado** de uma entrega ou pendência mudar, atualizar este STATUS.md.
 
 ---
 
@@ -12,26 +26,9 @@
 
 ## Workflow de Deploy
 
-**Ferramentas em uso:**
-- **Cowork** (claude.ai desktop) → conversa, planejamento, previews, decisões
-- **Terminal local** (`~/Claude/Projects/Arcavila`) → git add/commit/push de arquivos grandes como `index.html`
+Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão por `git push` no terminal local (`~/Claude/Projects/Arcavila`); STATUS.md e arquivos pequenos são atualizados pelo GitHub MCP direto. Após qualquer push do Cowork via MCP, rodar `git pull origin main --no-rebase` antes do próximo push pelo terminal.
 
-**Como funciona na prática:**
-1. Planejamos e decidimos aqui no Cowork
-2. Cowork edita os arquivos localmente e passa o comando de commit/push para o usuário rodar no terminal
-3. Para STATUS.md: Cowork atualiza via GitHub MCP direto
-
-**ATENÇÃO — lição aprendida:** nunca usar `mcp__github__push_files` com `content: ""` para arquivos grandes. Isso apaga o conteúdo. Para index.html, sempre usar o terminal local.
-
-**Lição aprendida 2026-07-02 (pull travado por arquivo não rastreado):** se `git pull` abortar com "untracked working tree files would be overwritten by merge", mover o arquivo em questão para fora (`mv arquivo /tmp/`), rodar `git pull origin main --no-rebase --no-edit` e depois `git push origin main`.
-
-**Lição aprendida 2026-07-03 (index.lock travando git):** se o git acusar `Unable to create '.git/index.lock': File exists` (pode sobrar de um processo interrompido), rodar `rm -f .git/index.lock` na raiz do repo e repetir o comando.
-
-**Assets do Canva via GitHub:** o Canva só importa imagem a partir de URL pública. Fluxo usado: gerar o PNG na pasta `assets/`, push pelo terminal, e usar a URL `raw.githubusercontent.com/maioemico/arcavila-teste/main/assets/<arquivo>` no upload do Canva. Assets publicados: `logoarcavila-semfundo.png`, `assets/btn-continue-leitura.png`, `assets/btn-quero-ler.png`, `assets/capa-amor-e-fe.png`, `assets/capa-angulo.png` (descartado), `assets/faixa-cena1.png`, `assets/faixa-cena2.png`, `assets/bg-criativo2.png`, `assets/dark-bg.png`. Limitações do editor do Canva via MCP: só insere imagem/vídeo (não cria texto nem forma nova); elemento inserido sempre vai para o topo (z-order); página responsiva não aceita insert/position. Duplicar design = `copy-design`; redimensionar = `resize-design` (**trial esgotado em 2026-07-03**, 0 usos restantes).
-
-SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta `maioemico`, título "Mac Air Caio"). Repositório local em `~/Claude/Projects/Arcavila` já inicializado com remote `git@github.com:maioemico/arcavila-teste.git`.
-
-**Atenção:** após qualquer push do Cowork via MCP, rodar `git pull origin main --no-rebase` antes do próximo push pelo terminal.
+**Detalhes completos, SSH e lições aprendidas (index.lock, pull travado, push_files vazio, fluxo de assets do Canva): ver `referencia/deploy-e-git.md`.**
 
 ---
 
@@ -69,9 +66,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | 4. Search Console — "Mudança de Endereço" | **CONCLUÍDO (2026-07-03)** | Também foi preciso criar e verificar a propriedade `arcavila.online` no Search Console (2º TXT no DNS). Ferramenta "Mudança de Endereço" usada em arcavila.online → arcavila.com.br. Google validou automaticamente o 301 e a verificação das duas propriedades. Aviso ativo: "Este site está sendo movido para arcavila.com.br", início 4/07/2026 |
 | 5. Aguardar reindexação | **EM ANDAMENTO** | Google leva de dias a algumas semanas para trocar o domínio exibido nos resultados. Só aposentar de fato o arcavila.online (remover DNS/redirect) depois que a busca já mostrar o `.com.br` |
 
-**Registros TXT de verificação no DNS Cloudflare (manter enquanto as propriedades estiverem verificadas):**
-- Zone `arcavila.com.br`: TXT `google-site-verification=4ybcJumeYAzGJF5XeYel8sOXQCcV4FZS2pLdVo5w81w`
-- Zone `arcavila.online`: TXT `google-site-verification=7a7e-Iw5ijK13shaKT8UECAqezBrARmRqxdqCCYLV6g`
+> Valores dos registros TXT de verificação e demais DNS: ver `referencia/credenciais-e-ids.md`. Manter enquanto as propriedades estiverem verificadas.
 
 **Pendência opcional de limpeza:** arquivo órfão `/Land_Captura-amor-e-fe` no projeto principal (`arcavila-captura`) serve base64 quebrado. Não atrapalha a migração (a landing de captura real está em `amorefe.arcavila.com.br`), mas pode ser removido do projeto depois.
 
@@ -106,7 +101,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Formulário `amorefe.arcavila.online` | Ativo | POST para `/subscribe` via Cloudflare Pages Function |
 | Endpoint `/subscribe` | Ativo | `amorefe/functions/subscribe.js` — adiciona lead no Mailchimp com tag `captura-amor-e-fe` |
 | Modal de captura `arcavila.online` | Ativo | `functions/_middleware.js` injeta modal + patch do `leadForm`. Aparece após 8s ou 40% de scroll |
-| Mailchimp — lista e tag | Configurado | Audience ID `9f9b97e70e` · Server `us5` |
+| Mailchimp — lista e tag | Configurado | Audience ID e Server em `referencia/credenciais-e-ids.md` |
 | Customer Journey | Ativo | Disparado pela tag `captura-amor-e-fe` |
 | E-mail 0 — Dia 0 — Boas-vindas | Ativo | "O flipbook chegou, e tem algo mais para você" → link `presente.arcavila.online` |
 | E-mail 1 — Dia 2 | Ativo | "Ana fez uma coisa que a maioria das mulheres faz e não conta" → link flipbook |
@@ -124,9 +119,9 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Item | Status | Observação |
 |------|--------|-----------|
 | Conta Hotmart | Ativo | Nova conta criada com `suporte@arcavila.online` em 2026-06-28 |
-| Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta. ID do produto: `8026094` |
-| URL de pagamento | Concluído | Atualizada para `https://pay.hotmart.com/S106531572M` em todas as páginas |
-| Meta Pixel | Configurado | ID `2738569696297378` · Eventos: `PageView`, `ViewContent`, `Lead` |
+| Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta. IDs em `referencia/credenciais-e-ids.md` |
+| URL de pagamento | Concluído | Atualizada em todas as páginas. Valor em `referencia/credenciais-e-ids.md` |
+| Meta Pixel | Configurado | Eventos: `PageView`, `ViewContent`, `Lead`. ID em `referencia/credenciais-e-ids.md` |
 
 ---
 
@@ -147,11 +142,11 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Formato do criativo | Definido em 2026-07-02 | Imagem estática vertical (4:5 feed e 9:16 stories/reels). Vídeo só depois, no ângulo vencedor |
 | Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02. Título da página padronizado para "Amor e Fé" |
 | Copies dos ângulos | Concluído em 2026-07-02 | Dilema, prova social, trecho/cena. Headline, texto principal e CTA escritos |
-| Criativo 1 (dilema, capa) — 4:5 | **Aprovado** | Design `DAHOSJrDDXQ` (canva.com/d/gPdMc09r6k1JlKl). Fundo dourado escuro. Capa real no mockup, headline "Amor e Fé", subtítulo "Ela amava a Deus. E amava um homem que não podia ter.", botão "Ler agora por R$ 37", logo |
-| Criativo 3 (trecho/cena) — 4:5 | **Aprovado** | Design `DAHOSMRVNN4` (canva.com/d/7XM71C765lZ01w8). Três cenas com faixas de leitura + botão "CONTINUE A LEITURA · R$ 37" |
-| Criativo 2 (prova social, capa) | **DESCARTADO** | Descartado a pedido do usuário em 2026-07-03. Chegou a ser refeito em vinho (`DAHOWqcqsg8`) mas ficou parecido demais com o 1. Campanha seguirá só com criativos 1 e 3 |
-| Versões 9:16 (stories/reels) | **Concluído em 2026-07-03** | Criativo 1 → `DAHOWgHxapI` (resize do Canva, ficou limpo). Criativo 3 → `DAHOWlGbhS8` (resize + fundo escuro `dark-bg.png` cobrindo as faixas brancas = letterbox cinematográfico). Trial de resize esgotado |
-| Criativo de marketing "Caminhos de Fé / Editora Arcavila" | **A utilizar (registrado 2026-07-03)** | Peça de divulgação enviada pelo usuário (PNG). Arte estática dourada, fundo escuro: headline "Fortaleça sua Fé", mockup de capa "Caminhos de Fé" sobre mesa de madeira com Bíblia aberta, bullets (mensagens/reflexões/propósito), botão "Comprar agora" e selo Editora Arcavila. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/mkt-caminhos-de-fe.png`) se virar asset oficial |
+| Criativo 1 (dilema, capa) — 4:5 | **Aprovado** | Fundo dourado escuro. Capa real no mockup, headline "Amor e Fé", subtítulo "Ela amava a Deus. E amava um homem que não podia ter.", botão "Ler agora por R$ 37", logo. ID Canva em `referencia/credenciais-e-ids.md` |
+| Criativo 3 (trecho/cena) — 4:5 | **Aprovado** | Três cenas com faixas de leitura + botão "CONTINUE A LEITURA · R$ 37". ID Canva em `referencia/credenciais-e-ids.md` |
+| Criativo 2 (prova social, capa) | **DESCARTADO** | Descartado a pedido do usuário em 2026-07-03. Chegou a ser refeito em vinho mas ficou parecido demais com o 1. Campanha seguirá só com criativos 1 e 3 |
+| Versões 9:16 (stories/reels) | **Concluído em 2026-07-03** | Criativo 1 (resize limpo) e Criativo 3 (resize + fundo escuro `dark-bg.png` cobrindo as faixas brancas = letterbox cinematográfico). IDs Canva em `referencia/credenciais-e-ids.md`. Trial de resize esgotado |
+| Criativo de marketing "Caminhos de Fé / Editora Arcavila" | **A utilizar (registrado 2026-07-03)** | Peça de divulgação enviada pelo usuário (PNG). Arte estática dourada, fundo escuro: headline "Fortaleça sua Fé", mockup de capa "Caminhos de Fé" sobre mesa de madeira com Bíblia aberta, bullets, botão "Comprar agora" e selo Editora Arcavila. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/mkt-caminhos-de-fe.png`) se virar asset oficial |
 | Exportar PNGs finais | **PENDENTE (usuário)** | Baixar do Canva em PNG 1080×1350 (4:5) e 1080×1920 (9:16), sem compressão, sem fundo transparente |
 | Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel |
 
@@ -161,24 +156,24 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Make.com | **Concluído** | ID `5549131` · "Arcavila — Hotmart Compra Aprovada" · Ativo. Webhook → HTTP POST Mailchimp API → tag `comprou-amor-e-fe` |
-| Webhook Make.com | **Concluído** | ID `2526674` · URL: `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
-| Webhook Hotmart | **Concluído** | Cadastrado em Ferramentas → Webhook. Nome: "Make.com - Compra Aprovada". Produto: Amor e Fé (ID 8026094). Versão 2.0.0. Evento: Compra aprovada. Status: Ativo |
+| Cenário Make.com | **Concluído** | "Arcavila — Hotmart Compra Aprovada" · Ativo. Webhook → HTTP POST Mailchimp API → tag `comprou-amor-e-fe`. IDs em `referencia/credenciais-e-ids.md` |
+| Webhook Make.com | **Concluído** | URL e ID em `referencia/credenciais-e-ids.md` |
+| Webhook Hotmart | **Concluído** | Cadastrado em Ferramentas → Webhook. Nome: "Make.com - Compra Aprovada". Produto: Amor e Fé. Versão 2.0.0. Evento: Compra aprovada. Status: Ativo |
 | Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" no Mailchimp → adicionar saída pela tag `comprou-amor-e-fe` |
 
 ---
 
 ## Livro 1 (matriz CLOY) — A Mentira que Deus Usou
 
-> Romance cristão original inspirado na arquitetura emocional de "Pousando no Amor" (ver `referencia-pousando-no-amor.md`). Autora: Ana Veras (mesmo selo do Amor e Fé). Título anterior de trabalho: "Onde Florescem as Sempre Vivas", alterado em 2026-07-02.
+> Romance cristão original. Autora: Ana Veras. **Bíblia editorial completa (barreira, cenário, final, personagens, tom, estrutura) em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor.md` na raiz.
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Pesquisa da história de referência | Concluído | Documento `referencia-pousando-no-amor.md` na raiz do repositório, com grade de tradução e diretrizes de originalidade |
-| Definições editoriais aprovadas | Concluído em 2026-07-02 | Barreira: vocação vs. império familiar. Cenário: São Paulo + vila fictícia Pedra do Sino (Serra do Espinhaço, MG). Final: feliz com custo. Casal secundário: renúncia sem morte. Tom: fé vivida. 13 capítulos + epílogo, cliffhanger em cada capítulo |
-| Título definitivo | Concluído em 2026-07-02 | "A Mentira que Deus Usou" — escolhido entre 10 opções propostas com foco em curiosidade e tensão fé/mentira |
-| Manuscrito completo | Concluído em 2026-07-02 | 13 capítulos + epílogo, cerca de 20,3 mil palavras, cliffhanger no fim de cada capítulo. Protagonistas: Helena Vasconcelos e pastor Rafael Antunes. Arquivos em `a-mentira-que-deus-usou/manuscrito/` (pasta local do projeto) |
-| PDF diagramado | Concluído em 2026-07-02 | `Ebook__A_Mentira_que_Deus_Usou.pdf` — 95 páginas, A5, padrão visual do Amor e Fé. Logo da Arcavila sem fundo na capa e no sumário (`logoarcavila-semfundo.png`). Versículo da capa: Cânticos 8:7. Na pasta local do projeto |
+| Pesquisa da história de referência | Concluído | Documento `referencia-pousando-no-amor.md` na raiz, com grade de tradução e diretrizes de originalidade |
+| Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
+| Título definitivo | Concluído em 2026-07-02 | "A Mentira que Deus Usou" — escolhido entre 10 opções com foco em curiosidade e tensão fé/mentira |
+| Manuscrito completo | Concluído em 2026-07-02 | 13 capítulos + epílogo, ~20,3 mil palavras, cliffhanger no fim de cada capítulo. Protagonistas: Helena Vasconcelos e pastor Rafael Antunes. Arquivos em `a-mentira-que-deus-usou/manuscrito/` (pasta local do projeto) |
+| PDF diagramado | Concluído em 2026-07-02 | `Ebook__A_Mentira_que_Deus_Usou.pdf` — 95 páginas, A5, padrão visual do Amor e Fé. Logo sem fundo na capa e no sumário. Versículo da capa: Cânticos 8:7. Na pasta local do projeto |
 | Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
 | Capa ilustrada | **PENDENTE** | Capa atual é tipográfica com logo; produzir arte de capa |
 | Landing / funil do novo livro | **PENDENTE** | Definir estratégia de captura e venda (espelhar funil do Amor e Fé) |
@@ -187,14 +182,14 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ## Livro 2 (matriz CLOY) — O Médico das Águas
 
-> Segundo romance cristão original derivado da mesma matriz de "Pousando no Amor" (ver `referencia-pousando-no-amor-livro2.md`), sem repetir nenhuma transposição do Livro 1. Autora: Ana Veras. Título anterior de trabalho: "A Estação das Águas", alterado para "O Médico das Águas" em 2026-07-02.
+> Segundo romance cristão original, sem repetir transposições do Livro 1. Autora: Ana Veras. **Bíblia editorial completa em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor-livro2.md` na raiz.
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz do repositório |
-| Definições editoriais aprovadas | Concluído em 2026-07-02 | Polos invertidos: ele cai no mundo dela. Cirurgião famoso (Théo Meireles) + professora e parteira pantaneira (Luzia Cáceres). Cenário: Pantanal na cheia, comunidade fictícia Porto do Sossego. Gatilho: pouso forçado de monomotor. Final: agridoce fiel à matriz (amor por estações: ele volta com a cheia todo ano, via serviço de saúde itinerante Expedição Água Nova). Casal secundário: viúvos em segunda chance (Aparício e Benedita). Antagonista: Nelson Bragança, Grupo Excelsior. Símbolos: camalote, caderno de partos, a voz no rádio (destino cruzado). Tom: fé vivida |
+| Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz |
+| Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
 | Estrutura de capítulos | Aprovada em 2026-07-02 | 13 capítulos + epílogo, cliffhanger em cada um |
-| Manuscrito completo | Concluído em 2026-07-02 | Cerca de 17,3 mil palavras. Arquivos em `o-medico-das-aguas/manuscrito/` (pasta local do projeto) |
+| Manuscrito completo | Concluído em 2026-07-02 | ~17,3 mil palavras. Arquivos em `o-medico-das-aguas/manuscrito/` (pasta local do projeto) |
 | Título definitivo | **Concluído em 2026-07-02** | "O Médico das Águas" — escolhido pelo usuário na rodada de títulos com a palavra "médico" |
 | PDF diagramado | **Concluído em 2026-07-02** | `Ebook__O_Medico_das_Aguas.pdf` — 81 páginas, A5, padrão visual do catálogo, logo sem fundo na capa e no sumário. Versículo da capa: Isaías 43:2. Na pasta local do projeto |
 | Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
@@ -205,17 +200,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ## Clube de Histórias
 
-### Decisões editoriais (fixas)
-
-| Decisão | Definição |
-|---------|-----------|
-| Nome da unidade de envio | "Carta" (nunca "episódio") |
-| Formato âncora | História fechada de mundo compartilhado, completa em cada e-mail |
-| Cadência | Semanal, domingos às 19h |
-| Assunto padrão | `[Título] | Arcavila` |
-| Preheader padrão | "Sua carta deste domingo" |
-| Conversão | Link suave em todo envio; gatilho forte nas semanas 4, 8 e 13 |
-| Métrica alvo | Abertura acima de 40% |
+> **Decisões editoriais fixas (nome da unidade, formato, cadência, assunto, preheader, conversão, métrica alvo) em `referencia/decisoes-editoriais.md`.**
 
 ### Estoque e produção
 
@@ -240,9 +225,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | `suporte@arcavila.online` | Criado | Conta criada no Zoho em 2026-06-28. Login da conta Hotmart. Remetente do Customer Journey |
 | `contato@arcavila.online` | Criado | Conta criada no Zoho |
 | `historias@arcavila.com.br` | **PAUSADO** | Não criado — plano Zoho tem apenas 1 licença. Criar somente se/quando ampliar o plano |
-| DNS arcavila.com.br — MX | Concluído | mx.zoho.com (10), mx2.zoho.com (20), mx3.zoho.com (50) — propagados no Cloudflare |
-| DNS arcavila.com.br — SPF | Concluído | `v=spf1 include:zohomail.com ~all` — propagado no Cloudflare |
-| DNS arcavila.com.br — DKIM | Concluído | Verificado no Zoho em 2026-07-01 |
+| DNS arcavila.com.br — MX / SPF / DKIM | Concluído | Valores em `referencia/credenciais-e-ids.md`. DKIM verificado no Zoho em 2026-07-01 |
 | Autenticação arcavila.online no Mailchimp | Concluído | CNAMEs k2/k3 já estavam no Cloudflare. Verificado em 2026-07-01 |
 | Autenticação arcavila.com.br no Mailchimp | **PAUSADO** | Não necessário enquanto remetente for `suporte@arcavila.online` |
 
@@ -252,8 +235,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Drive → GitHub → Netlify (ID 5389909) | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes |
-| Cenário Arcavila — Hotmart Compra Aprovada (ID 5549131) | **Ativo** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe` |
+| Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
+| Cenário Arcavila — Hotmart Compra Aprovada | **Ativo** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. ID em `referencia/credenciais-e-ids.md` |
 
 ---
 
@@ -273,23 +256,8 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ---
 
-## Credenciais e IDs (referência rápida)
+## Referências (pasta `referencia/`)
 
-| Serviço | Valor |
-|---------|-------|
-| Meta Pixel ID | `2738569696297378` |
-| Hotmart — login | `suporte@arcavila.online` |
-| Hotmart — URL de pagamento | `https://pay.hotmart.com/S106531572M` |
-| Hotmart — Produto ID | `8026094` |
-| Mailchimp Audience ID | `9f9b97e70e` |
-| Mailchimp Server | `us5` |
-| Make.com webhook (Hotmart) | `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
-| Zoho — conta gerenciadora | `caiochiba4@gmail.com` |
-| Repositório GitHub | `maioemico/arcavila-teste` |
-| Search Console TXT — arcavila.com.br | `google-site-verification=4ybcJumeYAzGJF5XeYel8sOXQCcV4FZS2pLdVo5w81w` |
-| Search Console TXT — arcavila.online | `google-site-verification=7a7e-Iw5ijK13shaKT8UECAqezBrARmRqxdqCCYLV6g` |
-| Canva — Criativo 1 · 4:5 (dourado) | `DAHOSJrDDXQ` · canva.com/d/gPdMc09r6k1JlKl |
-| Canva — Criativo 1 · 9:16 | `DAHOWgHxapI` · canva.com/d/yp85B36hl4OsH6Z |
-| Canva — Criativo 3 · 4:5 (cenas) | `DAHOSMRVNN4` · canva.com/d/7XM71C765lZ01w8 |
-| Canva — Criativo 3 · 9:16 | `DAHOWlGbhS8` · canva.com/d/BvOk-1JQju4MebA |
-| Canva — Criativo 2 (DESCARTADO) | `DAHOWqcqsg8` (vinho) / `DAHOSWCDTOo` (antigo) |
+- `referencia/credenciais-e-ids.md` — IDs, URLs, tokens, DNS/TXT, designs do Canva.
+- `referencia/deploy-e-git.md` — workflow de deploy, SSH, lições aprendidas de git e Canva.
+- `referencia/decisoes-editoriais.md` — bíblia editorial dos Livros 1 e 2 e decisões fixas do Clube.
