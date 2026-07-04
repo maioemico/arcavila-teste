@@ -127,6 +127,14 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 
 ---
 
+## Personagens — Referências Visuais
+
+| Personagem | Referência | Uso pretendido | Observação |
+|-----------|-----------|----------------|-----------|
+| **Ana** (protagonista de Amor e Fé / autora fictícia das cartas do Clube) | Retrato enviado pelo usuário no Cowork em 2026-07-03 (PNG) | Rosto/base visual da personagem Ana em criativos, landing e cartas | Retrato realista, close frontal: mulher morena, cabelos pretos longos e ondulados, expressão séria, fundo neutro acinzentado. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/personagem-ana-ref.png`) se virar asset oficial |
+
+---
+
 ## Tráfego Pago — Criativos (Amor e Fé)
 
 > Início do tráfego pago no Meta (Facebook e Instagram Ads). Objetivo definido em 2026-07-02: **venda direta**, com clique levando para `amorefe.arcavila.com.br`.
@@ -140,6 +148,7 @@ SSH configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (c
 | Criativo 3 (trecho/cena) — 4:5 | **Aprovado** | Design `DAHOSMRVNN4` (canva.com/d/7XM71C765lZ01w8). Três cenas com faixas de leitura + botão "CONTINUE A LEITURA · R$ 37" |
 | Criativo 2 (prova social, capa) | **DESCARTADO** | Descartado a pedido do usuário em 2026-07-03. Chegou a ser refeito em vinho (`DAHOWqcqsg8`) mas ficou parecido demais com o 1. Campanha seguirá só com criativos 1 e 3 |
 | Versões 9:16 (stories/reels) | **Concluído em 2026-07-03** | Criativo 1 → `DAHOWgHxapI` (resize do Canva, ficou limpo). Criativo 3 → `DAHOWlGbhS8` (resize + fundo escuro `dark-bg.png` cobrindo as faixas brancas = letterbox cinematográfico). Trial de resize esgotado |
+| Criativo de marketing "Caminhos de Fé / Editora Arcavila" | **A utilizar (registrado 2026-07-03)** | Peça de divulgação enviada pelo usuário (PNG). Arte estática dourada, fundo escuro: headline "Fortaleça sua Fé", mockup de capa "Caminhos de Fé" sobre mesa de madeira com Bíblia aberta, bullets (mensagens/reflexões/propósito), botão "Comprar agora" e selo Editora Arcavila. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/mkt-caminhos-de-fe.png`) se virar asset oficial |
 | Exportar PNGs finais | **PENDENTE (usuário)** | Baixar do Canva em PNG 1080×1350 (4:5) e 1080×1920 (9:16), sem compressão, sem fundo transparente |
 | Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel |
 
