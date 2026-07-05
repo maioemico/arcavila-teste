@@ -37,7 +37,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | URL | Status | Observação |
 |-----|--------|-----------|
 | arcavila.online | **Redirect 301 ATIVO → arcavila.com.br + Mudança de Endereço no Google** | Migração concluída (2026-07-03). Redirect Rule 301 no Cloudflare (hosts `arcavila.online` e `www.arcavila.online`) → `https://www.arcavila.com.br/*` preservando path e query. Mudança de Endereço registrada no Search Console (aviso "Este site está sendo movido para arcavila.com.br", início 4/07/2026). A página quebrada (base64 no `/Land_Captura-amor-e-fe`) foi resolvida pelo redirect. Manter o zone ativo no Cloudflare até o Google concluir a reindexação; só então aposentar |
-| www.arcavila.com.br | **Domínio oficial / no ar** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical própria. Propriedade verificada no Google Search Console. CNAME `www → arcavila-captura.pages.dev` |
+| www.arcavila.com.br | **Domínio oficial / no ar** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical, favicon de arquivo real e logo estruturado (Organization). Propriedade verificada no Google Search Console. CNAME `www → arcavila-captura.pages.dev` |
 | arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé. No ar, verificado no navegador em 2026-07-02. Título da página padronizado para "Amor e Fé" em 2026-07-02 (arquivo `landing-sprites-ana-pedro.html`). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
@@ -49,7 +49,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 ## SEO e Migração de Domínio (arcavila.online → arcavila.com.br)
 
-> Decisão 2026-07-03: **arcavila.com.br passa a ser o único domínio oficial.** O arcavila.online foi aposentado via redirect 301 + Mudança de Endereço no Google (não deletado — o 301 transfere a autoridade de ranking acumulada e conserta a página quebrada para quem chega pelo Google). **Migração técnica concluída em 2026-07-03; aguardando reindexação do Google.**
+> Decisão 2026-07-03: **arcavila.com.br passa a ser o único domínio oficial.** O arcavila.online foi aposentado via redirect 301 + Mudança de Endereço no Google (não deletado — o 301 transfere a autoridade de ranking acumulada e conserta a página quebrada para quem chega pelo Google). **Migração técnica concluída em 2026-07-03; aguardando reindexação do Google.** Em 4/07/2026 a busca do Google já passou a exibir `arcavila.com.br`.
 
 **Diagnóstico (2026-07-03):**
 - O Google rankeava o `arcavila.online` porque é o domínio mais antigo, já rastreado e indexado. O `.com.br` era novo e sem histórico de indexação.
@@ -64,7 +64,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | 2. Tag canonical `https://www.arcavila.com.br/` no `index.html` | **CONCLUÍDO (2026-07-03)** | `<link rel="canonical" href="https://www.arcavila.com.br/">` inserido no `index.html` (commit `7bac4db`). Deploy do Cloudflare Pages no ar e verificado no navegador: a tag é servida em www.arcavila.com.br |
 | 3. Google Search Console — verificar propriedade `arcavila.com.br` | **CONCLUÍDO (2026-07-03)** | Propriedade de domínio adicionada e verificada via TXT no Cloudflare (selo "Propriedade verificada"). Indexação da home https://www.arcavila.com.br/ solicitada via Inspeção de URL ("Indexação solicitada"). Não havia sitemap.xml real no site, envio de sitemap pulado |
 | 4. Search Console — "Mudança de Endereço" | **CONCLUÍDO (2026-07-03)** | Também foi preciso criar e verificar a propriedade `arcavila.online` no Search Console (2º TXT no DNS). Ferramenta "Mudança de Endereço" usada em arcavila.online → arcavila.com.br. Google validou automaticamente o 301 e a verificação das duas propriedades. Aviso ativo: "Este site está sendo movido para arcavila.com.br", início 4/07/2026 |
-| 5. Aguardar reindexação | **EM ANDAMENTO** | Google leva de dias a algumas semanas para trocar o domínio exibido nos resultados. Só aposentar de fato o arcavila.online (remover DNS/redirect) depois que a busca já mostrar o `.com.br` |
+| 5. Aguardar reindexação | **CONCLUÍDO (4/07/2026)** | A busca do Google já mostra `arcavila.com.br` como resultado principal. Só aposentar de fato o arcavila.online (remover DNS/redirect) mais adiante, quando não houver mais tráfego residual pelo domínio antigo |
+| 6. Favicon real + og:image + logo estruturado na busca | **CONCLUÍDO (2026-07-04) — em observação** | O favicon era um data-URI (base64), que o Google ignora → aparecia globo genérico; e a imagem grande da busca puxava a capa do livro. Correção: `favicon.png` de arquivo real (selo Arcavila, 512×512, `/favicon.png`), `apple-touch-icon`, `og:image` e JSON-LD `Organization` com `logo` apontando pro selo. Commit `6084ec4`, deploy verificado no ar (favicon 200 image/png; tags presentes). Google atualiza favicon/imagem na busca em dias a semanas |
 
 > Valores dos registros TXT de verificação e demais DNS: ver `referencia/credenciais-e-ids.md`. Manter enquanto as propriedades estiverem verificadas.
 
