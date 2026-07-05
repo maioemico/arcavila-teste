@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-04
+> Atualizado em: 2026-07-05
 
 ---
 
@@ -102,7 +102,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Formulário `amorefe.arcavila.online` | Ativo | POST para `/subscribe` via Cloudflare Pages Function |
 | Endpoint `/subscribe` | Ativo | `amorefe/functions/subscribe.js` — adiciona lead no Mailchimp com tag `captura-amor-e-fe` |
 | Modal de captura `arcavila.online` | Ativo | `functions/_middleware.js` injeta modal + patch do `leadForm`. Aparece após 8s ou 40% de scroll |
-| Mailchimp — lista e tag | Configurado | Audience ID e Server em `referencia/credenciais-e-ids.md` |
+| Mailchimp — lista e tag | Configurado | Audience ID e Server em `referencia/credenciais-e-ids.md`. Tags existentes na conta em 2026-07-05: `captura-amor-e-fe` e `Amor e Fé` |
 | Customer Journey | Ativo | Disparado pela tag `captura-amor-e-fe` |
 | E-mail 0 — Dia 0 — Boas-vindas | Ativo | "O flipbook chegou, e tem algo mais para você" → link `presente.arcavila.online` |
 | E-mail 1 — Dia 2 | Ativo | "Ana fez uma coisa que a maioria das mulheres faz e não conta" → link flipbook |
@@ -110,8 +110,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | E-mail 3 — Dia 6 | Ativo | "A ligação que Pedro recebeu no final do Capítulo 2" → link Hotmart |
 | E-mail 4 — Dia 9 | Ativo | "Você chegou até aqui por algum motivo" → link Hotmart |
 | From address dos e-mails do Journey | Concluído | Remetente atualizado para `suporte@arcavila.online` em todos os 5 e-mails em 2026-07-01 |
-| **Exit condition para compradores** | **PENDENTE** | Adicionar saída do Journey pela tag `comprou-amor-e-fe` no Mailchimp |
-| **Teste ponta a ponta completo** | **PENDENTE** | E-mail novo → lead no Mailchimp → receber sequência completa |
+| **Exit condition para compradores** | **PENDENTE (destravado após 1ª compra)** | Ver detalhamento em Pipeline Pós-Compra. Descoberto em 2026-07-05 que o Mailchimp desta conta NÃO tem exit criteria nativo; será feito com blocos Se/Senão. Depende da tag `comprou-amor-e-fe` existir, o que só ocorre após a 1ª compra passar pelo cenário |
+| **Teste ponta a ponta completo** | **PENDENTE (fazer por último)** | E-mail novo → lead no Mailchimp → receber sequência completa. Combinar com o teste de compra para validar captação e pós-compra de uma vez |
 
 ---
 
@@ -155,12 +155,14 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 ## Pipeline Pós-Compra (Hotmart → Make → Mailchimp)
 
+> **Verificação 2026-07-05 (via conector do Make):** a configuração do cenário está correta — o Make escreve a tag exata `comprou-amor-e-fe` na audiência `9f9b97e70e` (us5), via API de tags do Mailchimp, disparado pelo webhook do Hotmart. O cenário está ativo/rodando (resposta "already running" ao tentar ativar; o campo `isPaused` da API veio inconsistente — conferir o toggle "ON" visualmente no teste final). A tag `comprou-amor-e-fe` ainda NÃO existe no Mailchimp porque nenhuma compra passou pelo cenário; ela nasce na 1ª compra (teste ou real).
+
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Make.com | **Concluído** | "Arcavila — Hotmart Compra Aprovada" · Ativo. Webhook → HTTP POST Mailchimp API → tag `comprou-amor-e-fe`. IDs em `referencia/credenciais-e-ids.md` |
+| Cenário Make.com | **Concluído / config verificada** | "Arcavila — Hotmart Compra Aprovada" (ID 5549131). Config conferida em 2026-07-05: tag `comprou-amor-e-fe` e audiência `9f9b97e70e` corretas. Ativo. IDs em `referencia/credenciais-e-ids.md` |
 | Webhook Make.com | **Concluído** | URL e ID em `referencia/credenciais-e-ids.md` |
 | Webhook Hotmart | **Concluído** | Cadastrado em Ferramentas → Webhook. Nome: "Make.com - Compra Aprovada". Produto: Amor e Fé. Versão 2.0.0. Evento: Compra aprovada. Status: Ativo |
-| Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" no Mailchimp → adicionar saída pela tag `comprou-amor-e-fe` |
+| Exit Condition no Journey | **PENDENTE (bloqueado até 1ª compra)** | Mailchimp desta conta NÃO tem exit criteria nativo. Plano aprovado (2026-07-05): inserir bloco Se/Senão antes de cada e-mail restante (E-mails 1 a 4), checando a tag `comprou-amor-e-fe`; ramo "tem a tag" fica sem etapas (contato sai). Só é possível montar depois que a tag existir (1ª compra a cria). Prompt do Browser Chat já preparado |
 
 ---
 
@@ -237,7 +239,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Item | Status | Observação |
 |------|--------|-----------|
 | Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
-| Cenário Arcavila — Hotmart Compra Aprovada | **Ativo** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. ID em `referencia/credenciais-e-ids.md` |
+| Cenário Arcavila — Hotmart Compra Aprovada | **Ativo (verificado 2026-07-05)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Config e estado conferidos via conector. ID em `referencia/credenciais-e-ids.md` |
 
 ---
 
