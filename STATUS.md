@@ -149,7 +149,24 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Versões 9:16 (stories/reels) | **Concluído em 2026-07-03** | Criativo 1 (resize limpo) e Criativo 3 (resize + fundo escuro `dark-bg.png` cobrindo as faixas brancas = letterbox cinematográfico). IDs Canva em `referencia/credenciais-e-ids.md`. Trial de resize esgotado |
 | Criativo de marketing "Caminhos de Fé / Editora Arcavila" | **A utilizar (registrado 2026-07-03)** | Peça de divulgação enviada pelo usuário (PNG). Arte estática dourada, fundo escuro: headline "Fortaleça sua Fé", mockup de capa "Caminhos de Fé" sobre mesa de madeira com Bíblia aberta, bullets, botão "Comprar agora" e selo Editora Arcavila. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/mkt-caminhos-de-fe.png`) se virar asset oficial |
 | Exportar PNGs finais | **PENDENTE (usuário)** | Baixar do Canva em PNG 1080×1350 (4:5) e 1080×1920 (9:16), sem compressão, sem fundo transparente |
-| Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel |
+| Subida da campanha no Meta Ads | **PENDENTE (depende das contas Meta)** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel. Pré-requisito: seção "Redes Sociais — Contas Meta" concluída |
+
+---
+
+## Redes Sociais — Contas Meta (Editora Arcavila)
+
+> Fase iniciada em 2026-07-05: montar a infraestrutura de contas no Meta para rodar Facebook/Instagram Ads dos criativos 1 e 3 (venda direta → `amorefe.arcavila.com.br`). **Decisões travadas em 2026-07-05:** nome de marca **Editora Arcavila**; canais **Instagram + Facebook**; administrador = **perfil pessoal real já existente do usuário** (não criar perfil falso, sob risco de perder todos os ativos). Handle sugerido `@editoraarcavila` (alternativa `@arcavila` se estiver livre).
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Meta Business Manager | **PENDENTE** | Criar em business.facebook.com logado no perfil pessoal. Negócio: Editora Arcavila; e-mail de contato: `suporte@arcavila.online` ou `contato@arcavila.online` |
+| Verificação do domínio arcavila.com.br no Business | **PENDENTE** | Via TXT no Cloudflare (DNS já sob controle). Necessário para medição de conversões pós-iOS 14 |
+| Reivindicar o Meta Pixel no Business | **PENDENTE** | Pixel já configurado (ID em `referencia/credenciais-e-ids.md`); transferir a posse para o negócio |
+| Página do Facebook "Editora Arcavila" | **PENDENTE** | Foto: selo Arcavila; capa; bio curta; link `arcavila.com.br` |
+| Instagram profissional `@editoraarcavila` | **PENDENTE** | Conectar à Página dentro do Business (alternativa de handle: `@arcavila` se estiver livre) |
+| Aquecimento orgânico | **PENDENTE** | 3 a 5 posts por canal antes de anunciar (capas dos livros, um trecho, o selo) para reduzir risco de bloqueio |
+| Conta de anúncios + meio de pagamento | **PENDENTE** | Criar no Business e adicionar cartão. Conta nova começa com limite de gasto diário baixo. Só então subir criativos 1 e 3 |
+| Política de conteúdo religioso no Meta | **Nota** | Não segmentar por religião (atributo sensível); a copy não pode presumir a fé do leitor de forma pessoal. Segmentar por interesses (livros, fé, romance) e falar da obra |
 
 ---
 
@@ -255,7 +272,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Make.com | Free tier (1 cenário ativo) | Cenário ativo: Hotmart → Mailchimp pós-compra |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
 | Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Novos resizes exigem upgrade |
-| Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03 |
+| Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03. Contas Meta (Business, Página, Instagram) pendentes — ver seção "Redes Sociais — Contas Meta" |
 
 ---
 
