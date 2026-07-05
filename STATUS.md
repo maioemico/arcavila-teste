@@ -126,6 +126,18 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 ---
 
+## Página de Vendas amorefe.arcavila.com.br — Ajustes (planejado)
+
+> Frente aberta em 2026-07-05 a pedido do usuário. **Prioridade definida: executar ANTES de subir o tráfego pago** — a campanha do Meta leva direto para esta página, então ela precisa estar afiada antes de gastar verba. **Método das imagens: o usuário fornece** as imagens dos personagens; o Cowork aplica e ajusta no landing `landing-sprites-ana-pedro.html`.
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Imagens dos personagens (Ana e Pedro) | **PENDENTE** | Usuário fornece as imagens. Aplicar e ajustar Ana e Pedro nas seções do landing `landing-sprites-ana-pedro.html`. Referência visual da Ana já registrada em "Personagens — Referências Visuais" |
+| Melhorias de conteúdo | **PENDENTE** | Revisar copy da oferta, sinopse, prova social e clareza do CTA e do preço (R$ 37) |
+| Melhorias de UX e experiência | **PENDENTE** | Hierarquia visual, responsividade mobile, velocidade de carregamento e fluidez das seções |
+
+---
+
 ## Personagens — Referências Visuais
 
 | Personagem | Referência | Uso pretendido | Observação |
