@@ -124,6 +124,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Seção Círculo Arcavila (`#circulo`) | **OCULTO** | `display:none` via CSS. HTML preservado intacto para reativar quando o produto estiver pronto. Reativar: mudar `#circulo{display:none}` para `#circulo{background:var(--noite)}` |
 | Catálogo `arcavila.online` — mobile revisado | Concluído | `.book-desc` oculto, botão sinopse oculto, card Amor e Fé clicável, capa maior, preço 1.2rem negrito sem borda |
 | Landing de vendas — título "Amor e Fé" | **Publicado em 2026-07-02** | Substituídas as 3 ocorrências de "Quando o Amor Precisa de Fé" (title, nav-logo, título da oferta) por "Amor e Fé" em `landing-sprites-ana-pedro.html`. Commit `c793dc7` no ar, verificado no navegador |
+| Catálogo `arcavila.com.br` — 2º e 3º livros da estante | **Publicado em 2026-07-06** | Os dois cards seguintes ao Amor e Fé passaram a exibir "A Mentira que Deus Usou" (por Ana Veras) e "O Médico das Águas" (**por Rodrigo Alva**). Em ambos: ícone da capa trocado por "?", sinopse (`book-desc`) removida e status/link para **Em breve**. Capa do Amor e Fé na estante trocada pela **capa real do e-book** (extraída do PDF, embutida como JPEG base64). Links do rodapé atualizados para os novos títulos. Commit `cbbe685` (merge `e1a17b4`), no ar via Cloudflare Pages |
 
 ---
 
