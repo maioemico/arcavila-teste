@@ -125,6 +125,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Catálogo `arcavila.online` — mobile revisado | Concluído | `.book-desc` oculto, botão sinopse oculto, card Amor e Fé clicável, capa maior, preço 1.2rem negrito sem borda |
 | Landing de vendas — título "Amor e Fé" | **Publicado em 2026-07-02** | Substituídas as 3 ocorrências de "Quando o Amor Precisa de Fé" (title, nav-logo, título da oferta) por "Amor e Fé" em `landing-sprites-ana-pedro.html`. Commit `c793dc7` no ar, verificado no navegador |
 | Catálogo `arcavila.com.br` — 2º e 3º livros da estante | **Publicado em 2026-07-06** | Os dois cards seguintes ao Amor e Fé passaram a exibir "A Mentira que Deus Usou" (por Ana Veras) e "O Médico das Águas" (**por Rodrigo Alva**). Em ambos: ícone da capa trocado por "?", sinopse (`book-desc`) removida e status/link para **Em breve**. Capa do Amor e Fé na estante trocada pela **capa real do e-book** (extraída do PDF, embutida como JPEG base64). Links do rodapé atualizados para os novos títulos. Commit `cbbe685` (merge `e1a17b4`), no ar via Cloudflare Pages |
+| Catálogo `arcavila.com.br` — capa da estante atualizada (nova capa pôr do sol) | **Editado localmente 2026-07-06 — deploy pendente via terminal** | O `<img alt="Capa de Amor e Fé">` no `index.html` teve o JPEG base64 substituído pela **nova capa** (`capa-de-livro/capa_amor_e_fe_v2.png`, casal ao pôr do sol), redimensionada para 560×900 JPEG (~41 KB). Alinha a estante com a capa nova já usada no PDF do e-book. Aguardando `git push` no terminal local |
 
 ---
 
@@ -156,6 +157,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta. IDs em `referencia/credenciais-e-ids.md` |
 | URL de pagamento | Concluído | Atualizada em todas as páginas. Valor em `referencia/credenciais-e-ids.md` |
 | Meta Pixel | Configurado | Eventos: `PageView`, `ViewContent`, `Lead`. ID em `referencia/credenciais-e-ids.md` |
+| PDF do e-book | **Capa atualizada em 2026-07-06** | `Ebook__Amor_e_Fe.pdf` na raiz da pasta do projeto. 50 páginas, A5. Só a **capa** (pág. 1) foi trocada pela nova foto (casal ao pôr do sol), miolo inalterado. Imagem-fonte da capa em `capa-de-livro/capa_amor_e_fe_v2.png` (1632x2624). Versão anterior recuperável pelo git |
 
 ---
 
