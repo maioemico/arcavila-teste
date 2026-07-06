@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-04
+> Atualizado em: 2026-07-06
 
 ---
 
@@ -24,6 +24,38 @@ Regra de manutenção: quando uma credencial, uma lição de deploy ou uma decis
 
 ---
 
+## Método de Criação de Livros (DNA da Coleção)
+
+> Frente aberta em 2026-07-06. A Arcavila passa a ter um **método fixo** para criar cada novo livro, para padronizar a produção da coleção. Fluxo de 7 fases: DNA, público, bíblia do livro, escrita, sistema visual, revisão, produção. Regra de bastidor: o **texto-fonte é sempre separado do layout**, para gerar saídas diferentes do mesmo miolo (hoje só PDF de página fixa; impresso e Kindle seriam produtos de saída futuros).
+
+**GATILHO: sempre que o usuário iniciar a criação de um novo livro Arcavila, apresentar/lembrar primeiro o formulário `ficha-dna-arcavila.html` (raiz da pasta do projeto).** É um HTML autônomo com o DNA da coleção como referência e campos preenchíveis do DNA do livro (premissa, pergunta dramática, tema espiritual, casal e feridas, conflito, cliffhangers, cenário na vila, conexões, tom), com exportar em Markdown e salvar rascunho. Uma ficha por livro.
+
+**DNA fixo da coleção** (filtro de todo livro, decidido em 2026-07-06):
+
+| Dimensão | Decisão |
+|----------|---------|
+| Fonte | Releitura cristã **livre** de doramas coreanos (esqueleto emocional; nomes e desfecho reinventados) |
+| Mundo | Vila fictícia de **Arcavila**, universo compartilhado; personagens se cruzam entre livros |
+| Casal | Opostos na fé: ela crente, ele distante, transformado pelo amor e pela graça |
+| Arco espiritual | Ferida, encontro com a graça, entrega e transformação; virada no fundo do poço (2º→3º ato) |
+| Papel de Deus | Providência sutil, mostrada nos encontros e escolhas, não pregada |
+| Termômetro moral | Romance casto, sem intimidade descrita, linguagem limpa |
+| Tom | Melodrama com catarse, humor leve, momento de lágrima garantido; final sempre de esperança |
+| Estrutura | Cliffhangers fortes, 20 a 24 capítulos curtos, slow burn no romance com enredo acelerado |
+| Voz e época | Primeira pessoa feminina, prosa enxuta; contemporâneo, cidade pequena de interior |
+| Estilo de marca | Sem emoji, sem hífen no meio da frase |
+| Entrega | PDF de página fixa e bem diagramado |
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Método de 7 fases | Definido em 2026-07-06 | Estrutura de fluxo para todos os livros futuros |
+| DNA fixo da coleção | Definido em 2026-07-06 | Tabela acima; filtro de toda história |
+| Formulário `ficha-dna-arcavila.html` | **Concluído em 2026-07-06** | HTML autônomo na raiz do projeto; ficha reutilizável de DNA por livro. Apresentar ao iniciar cada novo livro |
+| Formalizar DNA em `decisoes-editoriais.md` | **PENDENTE (opcional)** | Mover o DNA fixo da coleção para a bíblia editorial oficial quando quiser |
+| Sistema Visual (capa + layout de miolo) | **PENDENTE** | Ativo fixo da marca a definir uma vez para toda a coleção |
+
+---
+
 ## Workflow de Deploy
 
 Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão por `git push` no terminal local (`~/Claude/Projects/Arcavila`); STATUS.md e arquivos pequenos são atualizados pelo GitHub MCP direto. Após qualquer push do Cowork via MCP, rodar `git pull origin main --no-rebase` antes do próximo push pelo terminal.
@@ -37,7 +69,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | URL | Status | Observação |
 |-----|--------|-----------|
 | arcavila.online | **Redirect 301 ATIVO → arcavila.com.br + Mudança de Endereço no Google** | Migração concluída (2026-07-03). Redirect Rule 301 no Cloudflare (hosts `arcavila.online` e `www.arcavila.online`) → `https://www.arcavila.com.br/*` preservando path e query. Mudança de Endereço registrada no Search Console (aviso "Este site está sendo movido para arcavila.com.br", início 4/07/2026). A página quebrada (base64 no `/Land_Captura-amor-e-fe`) foi resolvida pelo redirect. Manter o zone ativo no Cloudflare até o Google concluir a reindexação; só então aposentar |
-| www.arcavila.com.br | **Domínio oficial / no ar** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical própria. Propriedade verificada no Google Search Console. CNAME `www → arcavila-captura.pages.dev` |
+| www.arcavila.com.br | **Domínio oficial / no ar** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical, favicon de arquivo real e logo estruturado (Organization). Propriedade verificada no Google Search Console. CNAME `www → arcavila-captura.pages.dev` |
 | arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
 | amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé. No ar, verificado no navegador em 2026-07-02. Título da página padronizado para "Amor e Fé" em 2026-07-02 (arquivo `landing-sprites-ana-pedro.html`). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
@@ -49,7 +81,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 ## SEO e Migração de Domínio (arcavila.online → arcavila.com.br)
 
-> Decisão 2026-07-03: **arcavila.com.br passa a ser o único domínio oficial.** O arcavila.online foi aposentado via redirect 301 + Mudança de Endereço no Google (não deletado — o 301 transfere a autoridade de ranking acumulada e conserta a página quebrada para quem chega pelo Google). **Migração técnica concluída em 2026-07-03; aguardando reindexação do Google.**
+> Decisão 2026-07-03: **arcavila.com.br passa a ser o único domínio oficial.** O arcavila.online foi aposentado via redirect 301 + Mudança de Endereço no Google (não deletado — o 301 transfere a autoridade de ranking acumulada e conserta a página quebrada para quem chega pelo Google). **Migração técnica concluída em 2026-07-03; aguardando reindexação do Google.** Em 4/07/2026 a busca do Google já passou a exibir `arcavila.com.br`.
 
 **Diagnóstico (2026-07-03):**
 - O Google rankeava o `arcavila.online` porque é o domínio mais antigo, já rastreado e indexado. O `.com.br` era novo e sem histórico de indexação.
@@ -64,7 +96,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | 2. Tag canonical `https://www.arcavila.com.br/` no `index.html` | **CONCLUÍDO (2026-07-03)** | `<link rel="canonical" href="https://www.arcavila.com.br/">` inserido no `index.html` (commit `7bac4db`). Deploy do Cloudflare Pages no ar e verificado no navegador: a tag é servida em www.arcavila.com.br |
 | 3. Google Search Console — verificar propriedade `arcavila.com.br` | **CONCLUÍDO (2026-07-03)** | Propriedade de domínio adicionada e verificada via TXT no Cloudflare (selo "Propriedade verificada"). Indexação da home https://www.arcavila.com.br/ solicitada via Inspeção de URL ("Indexação solicitada"). Não havia sitemap.xml real no site, envio de sitemap pulado |
 | 4. Search Console — "Mudança de Endereço" | **CONCLUÍDO (2026-07-03)** | Também foi preciso criar e verificar a propriedade `arcavila.online` no Search Console (2º TXT no DNS). Ferramenta "Mudança de Endereço" usada em arcavila.online → arcavila.com.br. Google validou automaticamente o 301 e a verificação das duas propriedades. Aviso ativo: "Este site está sendo movido para arcavila.com.br", início 4/07/2026 |
-| 5. Aguardar reindexação | **EM ANDAMENTO** | Google leva de dias a algumas semanas para trocar o domínio exibido nos resultados. Só aposentar de fato o arcavila.online (remover DNS/redirect) depois que a busca já mostrar o `.com.br` |
+| 5. Aguardar reindexação | **CONCLUÍDO (4/07/2026)** | A busca do Google já mostra `arcavila.com.br` como resultado principal. Só aposentar de fato o arcavila.online (remover DNS/redirect) mais adiante, quando não houver mais tráfego residual pelo domínio antigo |
+| 6. Favicon real + og:image + logo estruturado na busca | **CONCLUÍDO (2026-07-04) — em observação** | O favicon era um data-URI (base64), que o Google ignora → aparecia globo genérico; e a imagem grande da busca puxava a capa do livro. Correção: `favicon.png` de arquivo real (selo Arcavila, 512×512, `/favicon.png`), `apple-touch-icon`, `og:image` e JSON-LD `Organization` com `logo` apontando pro selo. Commit `6084ec4`, deploy verificado no ar (favicon 200 image/png; tags presentes). Google atualiza favicon/imagem na busca em dias a semanas |
 
 > Valores dos registros TXT de verificação e demais DNS: ver `referencia/credenciais-e-ids.md`. Manter enquanto as propriedades estiverem verificadas.
 
@@ -101,7 +134,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Formulário `amorefe.arcavila.online` | Ativo | POST para `/subscribe` via Cloudflare Pages Function |
 | Endpoint `/subscribe` | Ativo | `amorefe/functions/subscribe.js` — adiciona lead no Mailchimp com tag `captura-amor-e-fe` |
 | Modal de captura `arcavila.online` | Ativo | `functions/_middleware.js` injeta modal + patch do `leadForm`. Aparece após 8s ou 40% de scroll |
-| Mailchimp — lista e tag | Configurado | Audience ID e Server em `referencia/credenciais-e-ids.md` |
+| Mailchimp — lista e tag | Configurado | Audience ID e Server em `referencia/credenciais-e-ids.md`. Tags existentes na conta em 2026-07-05: `captura-amor-e-fe` e `Amor e Fé` |
 | Customer Journey | Ativo | Disparado pela tag `captura-amor-e-fe` |
 | E-mail 0 — Dia 0 — Boas-vindas | Ativo | "O flipbook chegou, e tem algo mais para você" → link `presente.arcavila.online` |
 | E-mail 1 — Dia 2 | Ativo | "Ana fez uma coisa que a maioria das mulheres faz e não conta" → link flipbook |
@@ -109,8 +142,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | E-mail 3 — Dia 6 | Ativo | "A ligação que Pedro recebeu no final do Capítulo 2" → link Hotmart |
 | E-mail 4 — Dia 9 | Ativo | "Você chegou até aqui por algum motivo" → link Hotmart |
 | From address dos e-mails do Journey | Concluído | Remetente atualizado para `suporte@arcavila.online` em todos os 5 e-mails em 2026-07-01 |
-| **Exit condition para compradores** | **PENDENTE** | Adicionar saída do Journey pela tag `comprou-amor-e-fe` no Mailchimp |
-| **Teste ponta a ponta completo** | **PENDENTE** | E-mail novo → lead no Mailchimp → receber sequência completa |
+| **Exit condition para compradores** | **PENDENTE (destravado após 1ª compra)** | Ver detalhamento em Pipeline Pós-Compra. Descoberto em 2026-07-05 que o Mailchimp desta conta NÃO tem exit criteria nativo; será feito com blocos Se/Senão. Depende da tag `comprou-amor-e-fe` existir, o que só ocorre após a 1ª compra passar pelo cenário |
+| **Teste ponta a ponta completo** | **PENDENTE (fazer por último)** | E-mail novo → lead no Mailchimp → receber sequência completa. Combinar com o teste de compra para validar captação e pós-compra de uma vez |
 
 ---
 
@@ -122,6 +155,18 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta. IDs em `referencia/credenciais-e-ids.md` |
 | URL de pagamento | Concluído | Atualizada em todas as páginas. Valor em `referencia/credenciais-e-ids.md` |
 | Meta Pixel | Configurado | Eventos: `PageView`, `ViewContent`, `Lead`. ID em `referencia/credenciais-e-ids.md` |
+
+---
+
+## Página de Vendas amorefe.arcavila.com.br — Ajustes (planejado)
+
+> Frente aberta em 2026-07-05 a pedido do usuário. **Prioridade definida: executar ANTES de subir o tráfego pago** — a campanha do Meta leva direto para esta página, então ela precisa estar afiada antes de gastar verba. **Método das imagens: o usuário fornece** as imagens dos personagens; o Cowork aplica e ajusta no landing `landing-sprites-ana-pedro.html`.
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Imagens dos personagens (Ana e Pedro) | **PENDENTE** | Usuário fornece as imagens. Aplicar e ajustar Ana e Pedro nas seções do landing `landing-sprites-ana-pedro.html`. Referência visual da Ana já registrada em "Personagens — Referências Visuais" |
+| Melhorias de conteúdo | **PENDENTE** | Revisar copy da oferta, sinopse, prova social e clareza do CTA e do preço (R$ 37) |
+| Melhorias de UX e experiência | **PENDENTE** | Hierarquia visual, responsividade mobile, velocidade de carregamento e fluidez das seções |
 
 ---
 
@@ -148,18 +193,37 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Versões 9:16 (stories/reels) | **Concluído em 2026-07-03** | Criativo 1 (resize limpo) e Criativo 3 (resize + fundo escuro `dark-bg.png` cobrindo as faixas brancas = letterbox cinematográfico). IDs Canva em `referencia/credenciais-e-ids.md`. Trial de resize esgotado |
 | Criativo de marketing "Caminhos de Fé / Editora Arcavila" | **A utilizar (registrado 2026-07-03)** | Peça de divulgação enviada pelo usuário (PNG). Arte estática dourada, fundo escuro: headline "Fortaleça sua Fé", mockup de capa "Caminhos de Fé" sobre mesa de madeira com Bíblia aberta, bullets, botão "Comprar agora" e selo Editora Arcavila. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/mkt-caminhos-de-fe.png`) se virar asset oficial |
 | Exportar PNGs finais | **PENDENTE (usuário)** | Baixar do Canva em PNG 1080×1350 (4:5) e 1080×1920 (9:16), sem compressão, sem fundo transparente |
-| Subida da campanha no Meta Ads | **PENDENTE** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel |
+| Subida da campanha no Meta Ads | **PENDENTE (depende das contas Meta)** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel. Pré-requisito: seção "Redes Sociais — Contas Meta" concluída |
+
+---
+
+## Redes Sociais — Contas Meta (Editora Arcavila)
+
+> Fase iniciada em 2026-07-05: montar a infraestrutura de contas no Meta para rodar Facebook/Instagram Ads dos criativos 1 e 3 (venda direta → `amorefe.arcavila.com.br`). **Decisões travadas em 2026-07-05:** nome de marca **Editora Arcavila**; canais **Instagram + Facebook**; administrador = **perfil pessoal real já existente do usuário** (não criar perfil falso, sob risco de perder todos os ativos). Handle sugerido `@editoraarcavila` (alternativa `@arcavila` se estiver livre).
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Meta Business Manager | **PENDENTE** | Criar em business.facebook.com logado no perfil pessoal. Negócio: Editora Arcavila; e-mail de contato: `suporte@arcavila.online` ou `contato@arcavila.online` |
+| Verificação do domínio arcavila.com.br no Business | **PENDENTE** | Via TXT no Cloudflare (DNS já sob controle). Necessário para medição de conversões pós-iOS 14 |
+| Reivindicar o Meta Pixel no Business | **PENDENTE** | Pixel já configurado (ID em `referencia/credenciais-e-ids.md`); transferir a posse para o negócio |
+| Página do Facebook "Editora Arcavila" | **PENDENTE** | Foto: selo Arcavila; capa; bio curta; link `arcavila.com.br` |
+| Instagram profissional `@editoraarcavila` | **PENDENTE** | Conectar à Página dentro do Business (alternativa de handle: `@arcavila` se estiver livre) |
+| Aquecimento orgânico | **PENDENTE** | 3 a 5 posts por canal antes de anunciar (capas dos livros, um trecho, o selo) para reduzir risco de bloqueio |
+| Conta de anúncios + meio de pagamento | **PENDENTE** | Criar no Business e adicionar cartão. Conta nova começa com limite de gasto diário baixo. Só então subir criativos 1 e 3 |
+| Política de conteúdo religioso no Meta | **Nota** | Não segmentar por religião (atributo sensível); a copy não pode presumir a fé do leitor de forma pessoal. Segmentar por interesses (livros, fé, romance) e falar da obra |
 
 ---
 
 ## Pipeline Pós-Compra (Hotmart → Make → Mailchimp)
 
+> **Verificação 2026-07-05 (via conector do Make):** a configuração do cenário está correta — o Make escreve a tag exata `comprou-amor-e-fe` na audiência `9f9b97e70e` (us5), via API de tags do Mailchimp, disparado pelo webhook do Hotmart. O cenário está ativo/rodando (resposta "already running" ao tentar ativar; o campo `isPaused` da API veio inconsistente — conferir o toggle "ON" visualmente no teste final). A tag `comprou-amor-e-fe` ainda NÃO existe no Mailchimp porque nenhuma compra passou pelo cenário; ela nasce na 1ª compra (teste ou real).
+
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Make.com | **Concluído** | "Arcavila — Hotmart Compra Aprovada" · Ativo. Webhook → HTTP POST Mailchimp API → tag `comprou-amor-e-fe`. IDs em `referencia/credenciais-e-ids.md` |
+| Cenário Make.com | **Concluído / config verificada** | "Arcavila — Hotmart Compra Aprovada" (ID 5549131). Config conferida em 2026-07-05: tag `comprou-amor-e-fe` e audiência `9f9b97e70e` corretas. Ativo. IDs em `referencia/credenciais-e-ids.md` |
 | Webhook Make.com | **Concluído** | URL e ID em `referencia/credenciais-e-ids.md` |
 | Webhook Hotmart | **Concluído** | Cadastrado em Ferramentas → Webhook. Nome: "Make.com - Compra Aprovada". Produto: Amor e Fé. Versão 2.0.0. Evento: Compra aprovada. Status: Ativo |
-| Exit Condition no Journey | **PENDENTE** | Abrir Journey "Boas-vindas Amor e Fé" no Mailchimp → adicionar saída pela tag `comprou-amor-e-fe` |
+| Exit Condition no Journey | **PENDENTE (bloqueado até 1ª compra)** | Mailchimp desta conta NÃO tem exit criteria nativo. Plano aprovado (2026-07-05): inserir bloco Se/Senão antes de cada e-mail restante (E-mails 1 a 4), checando a tag `comprou-amor-e-fe`; ramo "tem a tag" fica sem etapas (contato sai). Só é possível montar depois que a tag existir (1ª compra a cria). Prompt do Browser Chat já preparado |
 
 ---
 
@@ -236,7 +300,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Item | Status | Observação |
 |------|--------|-----------|
 | Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
-| Cenário Arcavila — Hotmart Compra Aprovada | **Ativo** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. ID em `referencia/credenciais-e-ids.md` |
+| Cenário Arcavila — Hotmart Compra Aprovada | **Ativo (verificado 2026-07-05)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Config e estado conferidos via conector. ID em `referencia/credenciais-e-ids.md` |
 
 ---
 
@@ -252,7 +316,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Make.com | Free tier (1 cenário ativo) | Cenário ativo: Hotmart → Mailchimp pós-compra |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
 | Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Novos resizes exigem upgrade |
-| Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03 |
+| Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03. Contas Meta (Business, Página, Instagram) pendentes — ver seção "Redes Sociais — Contas Meta" |
 
 ---
 
