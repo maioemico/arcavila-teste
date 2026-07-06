@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-05
+> Atualizado em: 2026-07-06
 
 ---
 
@@ -21,6 +21,38 @@ Regra de manutenção: quando uma credencial, uma lição de deploy ou uma decis
 ## Preferências de Interação
 
 - Quando o Cowork enviar uma mensagem com mais de uma pergunta ou pedido de decisão, apresentá-las **numeradas** (1, 2, 3...) para facilitar a resposta do usuário. Definido em 2026-07-02.
+
+---
+
+## Método de Criação de Livros (DNA da Coleção)
+
+> Frente aberta em 2026-07-06. A Arcavila passa a ter um **método fixo** para criar cada novo livro, para padronizar a produção da coleção. Fluxo de 7 fases: DNA, público, bíblia do livro, escrita, sistema visual, revisão, produção. Regra de bastidor: o **texto-fonte é sempre separado do layout**, para gerar saídas diferentes do mesmo miolo (hoje só PDF de página fixa; impresso e Kindle seriam produtos de saída futuros).
+
+**GATILHO: sempre que o usuário iniciar a criação de um novo livro Arcavila, apresentar/lembrar primeiro o formulário `ficha-dna-arcavila.html` (raiz da pasta do projeto).** É um HTML autônomo com o DNA da coleção como referência e campos preenchíveis do DNA do livro (premissa, pergunta dramática, tema espiritual, casal e feridas, conflito, cliffhangers, cenário na vila, conexões, tom), com exportar em Markdown e salvar rascunho. Uma ficha por livro.
+
+**DNA fixo da coleção** (filtro de todo livro, decidido em 2026-07-06):
+
+| Dimensão | Decisão |
+|----------|---------|
+| Fonte | Releitura cristã **livre** de doramas coreanos (esqueleto emocional; nomes e desfecho reinventados) |
+| Mundo | Vila fictícia de **Arcavila**, universo compartilhado; personagens se cruzam entre livros |
+| Casal | Opostos na fé: ela crente, ele distante, transformado pelo amor e pela graça |
+| Arco espiritual | Ferida, encontro com a graça, entrega e transformação; virada no fundo do poço (2º→3º ato) |
+| Papel de Deus | Providência sutil, mostrada nos encontros e escolhas, não pregada |
+| Termômetro moral | Romance casto, sem intimidade descrita, linguagem limpa |
+| Tom | Melodrama com catarse, humor leve, momento de lágrima garantido; final sempre de esperança |
+| Estrutura | Cliffhangers fortes, 20 a 24 capítulos curtos, slow burn no romance com enredo acelerado |
+| Voz e época | Primeira pessoa feminina, prosa enxuta; contemporâneo, cidade pequena de interior |
+| Estilo de marca | Sem emoji, sem hífen no meio da frase |
+| Entrega | PDF de página fixa e bem diagramado |
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Método de 7 fases | Definido em 2026-07-06 | Estrutura de fluxo para todos os livros futuros |
+| DNA fixo da coleção | Definido em 2026-07-06 | Tabela acima; filtro de toda história |
+| Formulário `ficha-dna-arcavila.html` | **Concluído em 2026-07-06** | HTML autônomo na raiz do projeto; ficha reutilizável de DNA por livro. Apresentar ao iniciar cada novo livro |
+| Formalizar DNA em `decisoes-editoriais.md` | **PENDENTE (opcional)** | Mover o DNA fixo da coleção para a bíblia editorial oficial quando quiser |
+| Sistema Visual (capa + layout de miolo) | **PENDENTE** | Ativo fixo da marca a definir uma vez para toda a coleção |
 
 ---
 
