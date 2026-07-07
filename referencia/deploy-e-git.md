@@ -37,6 +37,8 @@ Configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta
 
 **Imagens/binários não vão pelo GitHub MCP (2026-07-07):** `mcp__github__create_or_update_file` e `push_files` tratam o parâmetro `content` como texto e o codificam em base64 por conta própria. Se o Cowork já manda o conteúdo pré-codificado em base64 (tentativa de subir JPEG/PNG), o resultado é um arquivo corrompido (base64 codificado duas vezes). Testado e confirmado em 2026-07-07 com `anaepedro/_test_pedro.jpg`. Regra: qualquer imagem (fotos, JPEG, PNG) sempre vai pelo terminal local, nunca pelo GitHub MCP.
 
+**Pull travado por arquivo já publicado via MCP (2026-07-07):** quando o Cowork edita um arquivo direto na pasta local (Edit tool, pasta com bind mount) e também publica o mesmo conteúdo via GitHub MCP, o git local não sabe que os dois são idênticos — ele vê "mudança local não commitada" e o `git pull` aborta com "Your local changes... would be overwritten by merge". Solução: comparar o conteúdo local com o do GitHub (`git hash-object <arquivo>` local vs. o SHA do blob retornado por `get_file_contents`); se forem iguais, é seguro descartar a cópia local com `git checkout -- <arquivo>` antes do `git pull`. Se forem diferentes, investigar antes de descartar — pode ser uma mudança real ainda não publicada (aconteceu com `Ebook__Amor_e_Fe.pdf`: a troca de capa de 2026-07-06 tinha sido editada localmente mas nunca chegou a ser commitada).
+
 ---
 
 ## Assets do Canva via GitHub
