@@ -72,7 +72,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | www.arcavila.com.br | **Domínio oficial / no ar** | Verificado no navegador em 2026-07-03: serve o site editorial completo, com tag canonical, favicon de arquivo real e logo estruturado (Organization). Propriedade verificada no Google Search Console. CNAME `www → arcavila-captura.pages.dev` |
 | arcavila.com.br (raiz) | Concluído | Redirect Rule 301 ativa no Cloudflare: `arcavila.com.br/* → https://www.arcavila.com.br/*` (preserva path e query string) |
 | amorefe.arcavila.online | Publicado | Landing de captura Amor e Fé. Cloudflare Pages → projeto `arcavila-amorefe` (root dir: `amorefe/`) |
-| amorefe.arcavila.com.br | **Publicado** | Landing de vendas do livro Amor e Fé. No ar, verificado no navegador em 2026-07-02. Título da página padronizado para "Amor e Fé" em 2026-07-02 (arquivo `landing-sprites-ana-pedro.html`). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
+| amorefe.arcavila.com.br | **NO AR — página nova publicada em 2026-07-07** | Site imersivo do livro Amor e Fé no estilo da referência abigail-two.vercel.app: preloader de vela, hero pinado, revelações por linha, trilho horizontal de cenas, derramamento de luz até o CTA em creme, canvas em 3 camadas e cursor de luz. Substituiu a landing de vendas anterior (recuperável no git). Commit `11b6077` via GitHub MCP, verificado no navegador. Fonte: `landing-sprites-ana-pedro.html` (build do Cloudflare copia para `anaepedro/index.html`). Retratos `anaepedro/ana.jpg` e `anaepedro/pedro.jpg` ainda pendentes (fallback elegante ativo). CNAME `amorefe → arcavila-anaepedro.pages.dev` |
 | anaepedro.arcavila.online | Publicado | Landing de vendas (URL legada). Continua ativa. Cloudflare Pages → projeto `arcavila-anaepedro` |
 | presente.arcavila.online | Publicado | Flipbook Ana e Pedro. Cloudflare Pages → projeto `arcavila-presente` |
 | arcavila.com | Registrado | DNS migrado do GoDaddy para Cloudflare |
@@ -126,6 +126,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Landing de vendas — título "Amor e Fé" | **Publicado em 2026-07-02** | Substituídas as 3 ocorrências de "Quando o Amor Precisa de Fé" (title, nav-logo, título da oferta) por "Amor e Fé" em `landing-sprites-ana-pedro.html`. Commit `c793dc7` no ar, verificado no navegador |
 | Catálogo `arcavila.com.br` — 2º e 3º livros da estante | **Publicado em 2026-07-06** | Os dois cards seguintes ao Amor e Fé passaram a exibir "A Mentira que Deus Usou" (por Ana Veras) e "O Médico das Águas" (**por Rodrigo Alva**). Em ambos: ícone da capa trocado por "?", sinopse (`book-desc`) removida e status/link para **Em breve**. Capa do Amor e Fé na estante trocada pela **capa real do e-book** (extraída do PDF, embutida como JPEG base64). Links do rodapé atualizados para os novos títulos. Commit `cbbe685` (merge `e1a17b4`), no ar via Cloudflare Pages |
 | Catálogo `arcavila.com.br` — capa da estante atualizada (nova capa pôr do sol) | **Publicado em 2026-07-06** | O `<img alt="Capa de Amor e Fé">` no `index.html` teve o JPEG base64 substituído pela **nova capa** (`capa-de-livro/capa_amor_e_fe_v2.png`, casal ao pôr do sol), redimensionada para 560×900 JPEG (~41 KB). Alinha a estante com a capa nova já usada no PDF do e-book. Commit `a09a886`, push via terminal local, deploy automático Cloudflare Pages |
+| Catálogo `arcavila.com.br` — entrada cinematográfica da estande | **Pronta no index.html local — AGUARDANDO PUSH (terminal)** | Animação de apresentação do catálogo com GSAP (ScrollTrigger + SplitText + técnica Flip) e Lenis via CDN, JS vanilla: título "Nossas histórias" letra a letra, estante abrindo em cortina (clip path), varredura de luz dourada, capas voando empilhadas do centro até as prateleiras com pouso em back.out e textos acompanhando. No celular, versão simplificada (stagger vertical). Reveal antigo preservado como fallback (sem GSAP ou com prefers-reduced-motion). Transforms limpos ao final para não quebrar o hover/tilt do Three.js |
+| Nova página do livro `amorefe.arcavila.com.br` | **PUBLICADA em 2026-07-07 (commit `11b6077`)** | Refeita no estilo da referência abigail-two.vercel.app a pedido do usuário: hero pinado com scrub, títulos revelados linha a linha com máscara, trilho horizontal pinado com as 4 cenas, seção "derramamento" (frase dourada, cortina de luz com clip path ondulado, painel creme com CTA magnético), fim com "Amor não é o que a gente sente. É o que a gente carrega." e João 15:13. GSAP 3.13 + Lenis via CDN, canvas em 3 camadas (fagulhas, brasas e cursor, grão), prefers-reduced-motion respeitado. Pixel: PageView, ViewContent, InitiateCheckout. Verificada no navegador no desktop (preloader, pin, trilho, wipe, CTA ok). Obs.: o modal de captura do `_middleware.js` do projeto aparece sobre a página; avaliar se mantém |
 
 ---
 
@@ -163,13 +165,16 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 ## Página de Vendas amorefe.arcavila.com.br — Ajustes (planejado)
 
-> Frente aberta em 2026-07-05 a pedido do usuário. **Prioridade definida: executar ANTES de subir o tráfego pago** — a campanha do Meta leva direto para esta página, então ela precisa estar afiada antes de gastar verba. **Método das imagens: o usuário fornece** as imagens dos personagens; o Cowork aplica e ajusta no landing `landing-sprites-ana-pedro.html`.
+> Frente aberta em 2026-07-05. **Superada em 2026-07-06:** a landing antiga foi substituída por uma página nova imersiva criada do zero (ver "Atualizações de Layout"). As pendências abaixo foram absorvidas ou reformuladas.
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Imagens dos personagens (Ana e Pedro) | **PENDENTE** | Usuário fornece as imagens. Aplicar e ajustar Ana e Pedro nas seções do landing `landing-sprites-ana-pedro.html`. Referência visual da Ana já registrada em "Personagens — Referências Visuais" |
-| Melhorias de conteúdo | **PENDENTE** | Revisar copy da oferta, sinopse, prova social e clareza do CTA e do preço (R$ 37) |
-| Melhorias de UX e experiência | **PENDENTE** | Hierarquia visual, responsividade mobile, velocidade de carregamento e fluidez das seções |
+| Imagens dos personagens (Ana e Pedro) | **Geradas no Canva em 2026-07-06 — validar** | Retratos gerados por IA no Canva (Ana: design `DAHOqYMMy3k`, Pedro: design `DAHOqTxKg_c`). Usuário baixa como `anaepedro/ana.jpg` e `anaepedro/pedro.jpg` e valida se as imagens vieram sem texto sobreposto; se houver texto, remover no editor do Canva e reexportar. A referência visual da Ana enviada pelo usuário segue disponível como alternativa |
+| Melhorias de conteúdo | **Concluído em 2026-07-06** | Copy nova baseada no livro real: apresentação de Ana e Pedro, 4 cenas com gancho, CTA claro "Ler agora por R$ 37" |
+| Melhorias de UX e experiência | **Concluído em 2026-07-06** | Página nova responsiva, com prefers-reduced-motion, fontes via Google Fonts e libs via CDN (GSAP 3.13, Lenis) |
+| Teste da página nova no ar | **Desktop OK (2026-07-07); celular PENDENTE** | Desktop verificado no navegador: preloader, hero pinado, revelações, trilho horizontal, wipe de luz e CTA funcionando. Falta conferir no celular e validar o pixel no Events Manager antes do tráfego pago |
+| Retratos ana.jpg e pedro.jpg no ar | **PENDENTE (usuário)** | Baixar os JPGs do Canva para `anaepedro/` e fazer push pelo terminal. Enquanto isso a página mostra molduras com iniciais |
+| Modal de captura sobre a página nova | **AVALIAR** | O `_middleware.js` do projeto Cloudflare injeta o modal "Histórias que chegam até você" também nesta página. Decidir se mantém na página de vendas ou se remove/condiciona |
 
 ---
 
