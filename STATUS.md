@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-06
+> Atualizado em: 2026-07-07
 
 ---
 
@@ -127,7 +127,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Catálogo `arcavila.com.br` — 2º e 3º livros da estante | **Publicado em 2026-07-06** | Os dois cards seguintes ao Amor e Fé passaram a exibir "A Mentira que Deus Usou" (por Ana Veras) e "O Médico das Águas" (**por Rodrigo Alva**). Em ambos: ícone da capa trocado por "?", sinopse (`book-desc`) removida e status/link para **Em breve**. Capa do Amor e Fé na estante trocada pela **capa real do e-book** (extraída do PDF, embutida como JPEG base64). Links do rodapé atualizados para os novos títulos. Commit `cbbe685` (merge `e1a17b4`), no ar via Cloudflare Pages |
 | Catálogo `arcavila.com.br` — capa da estante atualizada (nova capa pôr do sol) | **Publicado em 2026-07-06** | O `<img alt="Capa de Amor e Fé">` no `index.html` teve o JPEG base64 substituído pela **nova capa** (`capa-de-livro/capa_amor_e_fe_v2.png`, casal ao pôr do sol), redimensionada para 560×900 JPEG (~41 KB). Alinha a estante com a capa nova já usada no PDF do e-book. Commit `a09a886`, push via terminal local, deploy automático Cloudflare Pages |
 | Catálogo `arcavila.com.br` — entrada cinematográfica da estande | **Pronta no index.html local — AGUARDANDO PUSH (terminal)** | Animação de apresentação do catálogo com GSAP (ScrollTrigger + SplitText + técnica Flip) e Lenis via CDN, JS vanilla: título "Nossas histórias" letra a letra, estante abrindo em cortina (clip path), varredura de luz dourada, capas voando empilhadas do centro até as prateleiras com pouso em back.out e textos acompanhando. No celular, versão simplificada (stagger vertical). Reveal antigo preservado como fallback (sem GSAP ou com prefers-reduced-motion). Transforms limpos ao final para não quebrar o hover/tilt do Three.js |
-| Nova página do livro `amorefe.arcavila.com.br` | **PUBLICADA em 2026-07-07 (commit `11b6077`)** | Refeita no estilo da referência abigail-two.vercel.app a pedido do usuário: hero pinado com scrub, títulos revelados linha a linha com máscara, trilho horizontal pinado com as 4 cenas, seção "derramamento" (frase dourada, cortina de luz com clip path ondulado, painel creme com CTA magnético), fim com "Amor não é o que a gente sente. É o que a gente carrega." e João 15:13. GSAP 3.13 + Lenis via CDN, canvas em 3 camadas (fagulhas, brasas e cursor, grão), prefers-reduced-motion respeitado. Pixel: PageView, ViewContent, InitiateCheckout. Verificada no navegador no desktop (preloader, pin, trilho, wipe, CTA ok). Obs.: o modal de captura do `_middleware.js` do projeto aparece sobre a página; avaliar se mantém |
+| Nova página do livro `amorefe.arcavila.com.br` | **PUBLICADA em 2026-07-07 (commit `11b6077`)** | Refeita no estilo da referência abigail-two.vercel.app a pedido do usuário: hero pinado com scrub, títulos revelados linha a linha com máscara, trilho horizontal pinado com as 4 cenas, seção "derramamento" (frase dourada, cortina de luz com clip path ondulado, painel creme com CTA magnético), fim com "Amor não é o que a gente sente. É o que a gente carrega." e João 15:13. GSAP 3.13 + Lenis via CDN, canvas em 3 camadas (fagulhas, brasas e cursor, grão), prefers-reduced-motion respeitado. Pixel: PageView, ViewContent, InitiateCheckout. Verificada no navegador no desktop (preloader, pin, trilho, wipe, CTA ok) |
+| Modal de captura removido da página `amorefe.arcavila.com.br` | **Concluído em 2026-07-07** | `functions/_middleware.js` agora condiciona a injeção do modal "Histórias que chegam até você" por hostname (`MODAL_DISABLED_HOSTS`); pulado para `amorefe.arcavila.com.br`, mantido nos demais domínios (`www.arcavila.com.br`, `arcavila.online`, `anaepedro.arcavila.online`). Commit `5f37dd2` via GitHub MCP |
 | Catálogo `arcavila.com.br` — card do livro Amor e Fé leva para o Hotmart | **Pronta no index.html local — AGUARDANDO PUSH (terminal)** | A área inteira do card (capa, título, sinopse) agora abre direto o checkout do Hotmart (`https://pay.hotmart.com/S106531572M`) via `.book-card-link`, em vez de `amorefe.arcavila.com.br`. O botão "Ler a sinopse" foi mantido apontando para `amorefe.arcavila.com.br` — CSS ajustado (`.book-link` com z-index acima do overlay do card) para o botão continuar clicável por cima da área geral, também no desktop (antes o overlay de card só existia no mobile) |
 
 ---
@@ -138,7 +139,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 |------|--------|-----------|
 | Formulário `amorefe.arcavila.online` | Ativo | POST para `/subscribe` via Cloudflare Pages Function |
 | Endpoint `/subscribe` | Ativo | `amorefe/functions/subscribe.js` — adiciona lead no Mailchimp com tag `captura-amor-e-fe` |
-| Modal de captura `arcavila.online` | Ativo | `functions/_middleware.js` injeta modal + patch do `leadForm`. Aparece após 8s ou 40% de scroll |
+| Modal de captura `arcavila.online` | Ativo | `functions/_middleware.js` injeta modal + patch do `leadForm`. Aparece após 8s ou 40% de scroll. Desde 2026-07-07 o modal é pulado para `amorefe.arcavila.com.br` (lista `MODAL_DISABLED_HOSTS` no próprio arquivo) |
 | Mailchimp — lista e tag | Configurado | Audience ID e Server em `referencia/credenciais-e-ids.md`. Tags existentes na conta em 2026-07-05: `captura-amor-e-fe` e `Amor e Fé` |
 | Customer Journey | Ativo | Disparado pela tag `captura-amor-e-fe` |
 | E-mail 0 — Dia 0 — Boas-vindas | Ativo | "O flipbook chegou, e tem algo mais para você" → link `presente.arcavila.online` |
@@ -175,7 +176,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Melhorias de UX e experiência | **Concluído em 2026-07-06** | Página nova responsiva, com prefers-reduced-motion, fontes via Google Fonts e libs via CDN (GSAP 3.13, Lenis) |
 | Teste da página nova no ar | **Desktop OK (2026-07-07); celular PENDENTE** | Desktop verificado no navegador: preloader, hero pinado, revelações, trilho horizontal, wipe de luz e CTA funcionando. Falta conferir no celular e validar o pixel no Events Manager antes do tráfego pago |
 | Retratos ana.jpg e pedro.jpg no ar | **PENDENTE (usuário)** | Baixar os JPGs do Canva para `anaepedro/` e fazer push pelo terminal. Enquanto isso a página mostra molduras com iniciais |
-| Modal de captura sobre a página nova | **AVALIAR** | O `_middleware.js` do projeto Cloudflare injeta o modal "Histórias que chegam até você" também nesta página. Decidir se mantém na página de vendas ou se remove/condiciona |
+| Modal de captura sobre a página nova | **Resolvido em 2026-07-07** | Removido especificamente desta página via `MODAL_DISABLED_HOSTS` no `_middleware.js` (ver "Atualizações de Layout"). Continua ativo em `anaepedro.arcavila.online` (mesmo HTML-fonte, domínio legado) — avaliar se remove lá também |
 
 ---
 
