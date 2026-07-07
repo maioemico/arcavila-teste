@@ -312,6 +312,9 @@ main{position:relative;z-index:2}
   .historia-bloco.lado-dir .historia-texto-wrap{order:0}
   .topo-nav a:not(:last-child){display:none}
 }
+@media (max-width:600px){
+  .hero-frase{font-size:clamp(1.7rem,7.8vw,2.3rem)}
+}
 @media (prefers-reduced-motion:reduce){
   .hero-dica-fio{animation:none}
 }
@@ -786,7 +789,7 @@ main{position:relative;z-index:2}
   if (!reduzir){
     gsap.timeline({
       scrollTrigger: {
-        trigger: "#hero", start: "top top", end: "+=120%",
+        trigger: "#hero", start: "top top", end: "+=60%",
         pin: true, scrub: 0.6
       }
     })
