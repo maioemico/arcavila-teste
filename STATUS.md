@@ -131,6 +131,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Modal de captura removido da página `amorefe.arcavila.com.br` | **Concluído em 2026-07-07** | `functions/_middleware.js` agora condiciona a injeção do modal "Histórias que chegam até você" por hostname (`MODAL_DISABLED_HOSTS`); pulado para `amorefe.arcavila.com.br`, mantido nos demais domínios (`www.arcavila.com.br`, `arcavila.online`, `anaepedro.arcavila.online`). Commit `5f37dd2` via GitHub MCP |
 | Hero `amorefe.arcavila.com.br` — fonte da frase menor no mobile | **Concluído em 2026-07-07 — validado pelo usuário no celular** | A frase "Tem casamento que não acaba em briga. Acaba em silêncio." quebrava em muitas linhas (e até no meio de palavra) no celular, porque o piso do `clamp()` (2.5rem) era grande demais para telas estreitas. Adicionado `@media (max-width:600px){ .hero-frase{font-size:clamp(1.7rem,7.8vw,2.3rem)} }` em `landing-sprites-ana-pedro.html`, reduzindo a fonte só no mobile para caber em 3 linhas. Commit `5cf33da` via GitHub MCP |
 | Hero `amorefe.arcavila.com.br` — distância de scroll do pin (slide 1 → 2) reduzida | **Concluído em 2026-07-07** | O pin do `#hero` (GSAP ScrollTrigger) exigia rolar `+=120%` da altura da tela antes de liberar a transição para a seção "história" (slide 2), pedindo várias voltas de scroll. Reduzido pela metade, para `+=60%`, em `landing-sprites-ana-pedro.html`. Commit `8eafd58` via GitHub MCP |
+| Retratos reais de Ana e Pedro (`anaepedro/ana.jpg`, `anaepedro/pedro.jpg`) | **Prontos na pasta local — AGUARDANDO PUSH (terminal)** | Usuário enviou os retratos reais em 2026-07-07. Convertidos de PNG para JPEG (Ana 1000×1000 ~87 KB; Pedro 805×1000 ~135 KB) e salvos sobre os placeholders quebrados. Tentativa de push via GitHub MCP falhou (conteúdo binário é corrompido pelo double base64 — ver lição em `referencia/deploy-e-git.md`); precisa ir pelo terminal local. Ficou um arquivo de teste órfão `anaepedro/_test_pedro.jpg` no repo (conteúdo inválido) para remover no mesmo commit |
 | Catálogo `arcavila.com.br` — card do livro Amor e Fé leva para o Hotmart | **Pronta no index.html local — AGUARDANDO PUSH (terminal)** | A área inteira do card (capa, título, sinopse) agora abre direto o checkout do Hotmart (`https://pay.hotmart.com/S106531572M`) via `.book-card-link`, em vez de `amorefe.arcavila.com.br`. O botão "Ler a sinopse" foi mantido apontando para `amorefe.arcavila.com.br` — CSS ajustado (`.book-link` com z-index acima do overlay do card) para o botão continuar clicável por cima da área geral, também no desktop (antes o overlay de card só existia no mobile) |
 
 ---
@@ -173,11 +174,11 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Imagens dos personagens (Ana e Pedro) | **Geradas no Canva em 2026-07-06 — validar** | Retratos gerados por IA no Canva (Ana: design `DAHOqYMMy3k`, Pedro: design `DAHOqTxKg_c`). Usuário baixa como `anaepedro/ana.jpg` e `anaepedro/pedro.jpg` e valida se as imagens vieram sem texto sobreposto; se houver texto, remover no editor do Canva e reexportar. A referência visual da Ana enviada pelo usuário segue disponível como alternativa |
+| Imagens dos personagens (Ana e Pedro) | **Superado em 2026-07-07** | A tentativa via Canva foi abandonada (link expirado, arquivos corrompidos). Usuário enviou os retratos reais diretamente no Cowork; ver linha em "Atualizações de Layout" |
 | Melhorias de conteúdo | **Concluído em 2026-07-06** | Copy nova baseada no livro real: apresentação de Ana e Pedro, 4 cenas com gancho, CTA claro "Ler agora por R$ 37" |
 | Melhorias de UX e experiência | **Concluído em 2026-07-06** | Página nova responsiva, com prefers-reduced-motion, fontes via Google Fonts e libs via CDN (GSAP 3.13, Lenis) |
 | Teste da página nova no ar | **Desktop e mobile OK (2026-07-07)** | Desktop e celular verificados: preloader, hero pinado, revelações, trilho horizontal, wipe de luz e CTA funcionando; fonte do hero corrigida no mobile. Falta validar o pixel no Events Manager antes do tráfego pago |
-| Retratos ana.jpg e pedro.jpg no ar | **PENDENTE (usuário)** | Baixar os JPGs do Canva para `anaepedro/` e fazer push pelo terminal. Enquanto isso a página mostra molduras com iniciais |
+| Retratos ana.jpg e pedro.jpg no ar | **AGUARDANDO PUSH (terminal)** | Ver detalhe em "Atualizações de Layout" |
 | Modal de captura sobre a página nova | **Resolvido em 2026-07-07** | Removido especificamente desta página via `MODAL_DISABLED_HOSTS` no `_middleware.js` (ver "Atualizações de Layout"). Continua ativo em `anaepedro.arcavila.online` (mesmo HTML-fonte, domínio legado) — avaliar se remove lá também |
 
 ---
@@ -186,7 +187,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 | Personagem | Referência | Uso pretendido | Observação |
 |-----------|-----------|----------------|-----------|
-| **Ana** (protagonista de Amor e Fé / autora fictícia das cartas do Clube) | Retrato enviado pelo usuário no Cowork em 2026-07-03 (PNG) | Rosto/base visual da personagem Ana em criativos, landing e cartas | Retrato realista, close frontal: mulher morena, cabelos pretos longos e ondulados, expressão séria, fundo neutro acinzentado. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/personagem-ana-ref.png`) se virar asset oficial |
+| **Ana** (protagonista de Amor e Fé / autora fictícia das cartas do Clube) | Retrato real enviado pelo usuário no Cowork em 2026-07-07 (PNG, convertido para `anaepedro/ana.jpg`) | Foto da personagem na página `amorefe.arcavila.com.br` (seção "história") | Retrato realista, close frontal: mulher morena, cabelos pretos longos e ondulados, expressão séria, fundo neutro acinzentado. Substituiu a tentativa via Canva (link expirado) |
+| **Pedro** (par romântico de Ana em Amor e Fé) | Retrato real enviado pelo usuário no Cowork em 2026-07-07 (PNG, convertido para `anaepedro/pedro.jpg`) | Foto da personagem na página `amorefe.arcavila.com.br` (seção "história") | Retrato realista: homem careca, barba grisalha, terno cinza, colar com crucifixo, meio-sorriso, fundo neutro acinzentado |
 
 ---
 
