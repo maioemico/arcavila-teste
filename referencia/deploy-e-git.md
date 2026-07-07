@@ -35,6 +35,8 @@ Configurado em 2026-06-24: chave `~/.ssh/id_ed25519` cadastrada no GitHub (conta
 
 **index.lock travando o git (2026-07-03):** se o git acusar `Unable to create '.git/index.lock': File exists` (pode sobrar de um processo interrompido), rodar `rm -f .git/index.lock` na raiz do repo e repetir o comando.
 
+**Imagens/binários não vão pelo GitHub MCP (2026-07-07):** `mcp__github__create_or_update_file` e `push_files` tratam o parâmetro `content` como texto e o codificam em base64 por conta própria. Se o Cowork já manda o conteúdo pré-codificado em base64 (tentativa de subir JPEG/PNG), o resultado é um arquivo corrompido (base64 codificado duas vezes). Testado e confirmado em 2026-07-07 com `anaepedro/_test_pedro.jpg`. Regra: qualquer imagem (fotos, JPEG, PNG) sempre vai pelo terminal local, nunca pelo GitHub MCP.
+
 ---
 
 ## Assets do Canva via GitHub
