@@ -210,6 +210,9 @@ const SUBSCRIBE_MODAL = `
 <\/script>
 `;
 
+// Hosts onde o modal de captura "Histórias que chegam até você" NÃO deve aparecer
+const MODAL_DISABLED_HOSTS = ['amorefe.arcavila.com.br'];
+
 export async function onRequest(context) {
   const response = await context.next();
   const contentType = response.headers.get('content-type') || '';
@@ -218,8 +221,12 @@ export async function onRequest(context) {
     return response;
   }
 
+  const hostname = new URL(context.request.url).hostname;
+  const skipModal = MODAL_DISABLED_HOSTS.includes(hostname);
+
   const html = await response.text();
-  const modified = html.replace('</body>', LEAD_FORM_PATCH + SUBSCRIBE_MODAL + '</body>');
+  const injection = skipModal ? LEAD_FORM_PATCH : (LEAD_FORM_PATCH + SUBSCRIBE_MODAL);
+  const modified = html.replace('</body>', injection + '</body>');
 
   const newHeaders = new Headers(response.headers);
   newHeaders.delete('content-length');
