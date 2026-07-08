@@ -210,7 +210,12 @@ const SUBSCRIBE_MODAL = `
 <\/script>
 `;
 
-// Hosts onde o modal de captura "Histórias que chegam até você" NÃO deve aparecer
+// Chave-geral do modal de captura "Histórias que chegam até você".
+// Desativado em 2026-07-07: foco agora é venda, não captura de e-mail/newsletter.
+// Para reativar, voltar para true (o modal e o CSS ficam intactos abaixo, só não são injetados).
+const MODAL_ENABLED = false;
+
+// Hosts onde o modal NÃO deve aparecer mesmo se MODAL_ENABLED voltar a true
 const MODAL_DISABLED_HOSTS = ['amorefe.arcavila.com.br'];
 
 export async function onRequest(context) {
@@ -222,7 +227,7 @@ export async function onRequest(context) {
   }
 
   const hostname = new URL(context.request.url).hostname;
-  const skipModal = MODAL_DISABLED_HOSTS.includes(hostname);
+  const skipModal = !MODAL_ENABLED || MODAL_DISABLED_HOSTS.includes(hostname);
 
   const html = await response.text();
   const injection = skipModal ? LEAD_FORM_PATCH : (LEAD_FORM_PATCH + SUBSCRIBE_MODAL);
