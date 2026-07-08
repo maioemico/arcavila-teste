@@ -185,47 +185,6 @@ main{position:relative;z-index:2}
 .fallback .inicial{font-family:var(--serif);font-size:6.5rem;font-style:italic;color:var(--gold);opacity:.5;line-height:1}
 .fallback .orn{color:var(--gold);opacity:.5;letter-spacing:.6em;font-size:.8rem}
 
-/* ================= Cenas (trilho horizontal pinado) ================= */
-#cenas{position:relative;overflow:hidden}
-.cenas-pin{
-  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(5rem,12vh,7rem) 0 clamp(3rem,8vh,5rem);
-}
-.cenas-cabecalho{
-  padding:0 clamp(1.4rem,7vw,7rem);margin-bottom:clamp(2.4rem,6vh,4rem);
-}
-.cenas-cabecalho h2{
-  font-family:var(--serif);font-weight:500;
-  font-size:clamp(1.9rem,4.6vw,3.4rem);color:var(--cream);line-height:1.15;
-}
-.cenas-trilho{
-  display:flex;gap:clamp(1.2rem,3vw,2.4rem);
-  padding:0 clamp(1.4rem,7vw,7rem);
-  width:max-content;will-change:transform;
-}
-.cena-carta{
-  width:min(78vw,520px);flex-shrink:0;
-  background:linear-gradient(165deg,rgba(30,23,18,.92),rgba(20,16,13,.96));
-  border:1px solid rgba(200,161,90,.28);
-  padding:clamp(1.8rem,4vw,2.8rem);
-  display:flex;flex-direction:column;gap:1rem;
-}
-.cena-carta .num{
-  font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--gold);
-}
-.cena-carta h3{
-  font-family:var(--serif);font-weight:500;
-  font-size:clamp(1.4rem,3vw,1.9rem);color:var(--cream);line-height:1.22;
-}
-.cena-carta .epigrafe{
-  font-family:var(--serif);font-style:italic;color:var(--gold2);
-  font-size:clamp(.95rem,1.5vw,1.08rem);line-height:1.6;
-}
-.cena-carta .gancho{opacity:.88;font-size:clamp(.92rem,1.3vw,1rem)}
-.cena-carta .fio{
-  width:44px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);
-}
-
 /* ================= Derramamento (transição de luz) ================= */
 #derramamento{position:relative;overflow:hidden}
 .wipe-palco{position:relative;min-height:100svh}
@@ -328,7 +287,6 @@ main{position:relative;z-index:2}
   <a class="topo-marca" href="#hero" data-alvo="#hero">Amor e Fé</a>
   <nav class="topo-nav">
     <a href="#historia" data-alvo="#historia">personagens</a>
-    <a href="#cenas" data-alvo="#cenas">cenas</a>
     <a href="#derramamento" data-alvo="#derramamento">ler o livro</a>
   </nav>
 </header>
@@ -388,51 +346,6 @@ main{position:relative;z-index:2}
       </div>
     </div>
 
-  </section>
-
-  <!-- CENAS: trilho horizontal pinado -->
-  <section id="cenas">
-    <div class="cenas-pin">
-      <div class="cenas-cabecalho">
-        <span class="olho">dentro do livro</span>
-        <h2 class="split-linhas">Quatro momentos que mudam tudo.</h2>
-      </div>
-      <div class="cenas-trilho" id="trilho">
-
-        <article class="cena-carta">
-          <span class="num">i</span>
-          <h3>O café que ninguém bebeu</h3>
-          <span class="fio"></span>
-          <p class="epigrafe">O café tinha criado uma película por cima, como as coisas que ficam paradas tempo demais.</p>
-          <p class="gancho">Pedro não dormiu em casa de novo. Na camisa dele, diesel, cigarro e um perfume que não é de Ana. No bolso, um bilhete de letra apressada: amanhã, mesmo horário, não conte a ela. Assinado com uma única letra. S.</p>
-        </article>
-
-        <article class="cena-carta">
-          <span class="num">ii</span>
-          <h3>A ligação que Pedro recebeu</h3>
-          <span class="fio"></span>
-          <p class="epigrafe">Algumas perguntas têm respostas que a gente não pode mais devolver depois de ouvir.</p>
-          <p class="gancho">Na zona portuária, entre caminhões que ninguém registra, o telefone vibra. É a voz contida da doutora Solange, o tipo de voz que faz as pernas avisarem que vão falhar. Pedro fecha os olhos e faz a única pergunta que importa: quanto tempo a gente ainda tem?</p>
-        </article>
-
-        <article class="cena-carta">
-          <span class="num">iii</span>
-          <h3>A última a saber</h3>
-          <span class="fio"></span>
-          <p class="epigrafe">O corredor de hospital é o lugar mais comprido do mundo quando se espera notícia de um filho.</p>
-          <p class="gancho">O médico vira a prancheta devagar e mostra a Ana uma assinatura que ela conhece melhor do que a própria: a letra das listas de mercado, do te amo de todas as noites. Pedro sabia. Havia um mês inteiro. E escolheu não contar.</p>
-        </article>
-
-        <article class="cena-carta">
-          <span class="num">iv</span>
-          <h3>O galpão</h3>
-          <span class="fio"></span>
-          <p class="epigrafe">A pior traição não é a que imaginamos. É a que inventamos sozinhas.</p>
-          <p class="gancho">De casaco por cima do pijama, Ana segue o carro do próprio marido até um galpão no porto. A luz recorta a silhueta de um homem com uma arma na cintura, e Pedro entrega a ele um envelope pardo. O que Ana descobre ali não é uma resposta. É uma pergunta muito pior.</p>
-        </article>
-
-      </div>
-    </div>
   </section>
 
   <!-- DERRAMAMENTO: a luz entra e vira o convite -->
@@ -778,44 +691,6 @@ main{position:relative;z-index:2}
         scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true }
       });
     }
-  });
-
-  /* ================= Cenas: trilho horizontal pinado ================= */
-  var trilho = document.getElementById("trilho");
-  function distanciaTrilho(){
-    return Math.max(0, trilho.scrollWidth - window.innerWidth);
-  }
-  var mm = gsap.matchMedia();
-  mm.add("(min-width: 821px)", function(){
-    if (reduzir) return;
-    var tween = gsap.to(trilho, {
-      x: function(){ return -distanciaTrilho(); },
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#cenas", start: "top top",
-        end: function(){ return "+=" + (distanciaTrilho() + window.innerHeight * 0.35); },
-        pin: true, scrub: 0.7, invalidateOnRefresh: true
-      }
-    });
-    gsap.utils.toArray(".cena-carta").forEach(function(carta){
-      gsap.from(carta, {
-        opacity: 0, y: 40, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: "#cenas", start: "top 70%", once: true }
-      });
-    });
-    return function(){ tween.scrollTrigger && tween.scrollTrigger.kill(); };
-  });
-  mm.add("(max-width: 820px)", function(){
-    /* no celular o trilho vira coluna */
-    trilho.style.flexDirection = "column";
-    trilho.style.width = "100%";
-    document.querySelectorAll(".cena-carta").forEach(function(c){ c.style.width = "100%"; });
-    gsap.utils.toArray(".cena-carta").forEach(function(carta){
-      gsap.from(carta, {
-        opacity: 0, y: 34, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: carta, start: "top 86%", once: true }
-      });
-    });
   });
 
   /* ================= Derramamento: a luz desce e revela o convite ================= */

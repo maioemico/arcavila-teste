@@ -192,6 +192,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Textos de Ana e Pedro encurtados, Laís em destaque | **Concluído (2026-07-07)** | Parágrafos descritivos reescritos, máx. 2 linhas, Laís (filha) em destaque |
 | Texto "a mesma casa" reescrito como cliffhanger | **AGUARDANDO PUSH (terminal) — ver "Atualizações de Layout"** | Título e texto reescritos, vínculo familiar explícito (pai/mãe/filha) |
 | Modal de captura sobre a página nova | **Superado em 2026-07-07** | A exceção por hostname (`MODAL_DISABLED_HOSTS`) ficou redundante após a desativação global do modal (flag `MODAL_ENABLED = false`, ver "Modal de Captura de E-mail (Newsletter)") |
+| Seção "Quatro momentos que mudam tudo" (`#cenas`) removida da página | **PRONTA LOCALMENTE — AGUARDANDO PUSH (terminal)** | Depois de testar reescrita de texto, ícones SVG e ajustes de fonte (histórico nos commits anteriores), o usuário decidiu remover a seção inteira. Removido de `landing-sprites-ana-pedro.html`: HTML (`#cenas`, cabeçalho e os 4 `.cena-carta`), CSS (`.cenas-pin`, `.cenas-cabecalho`, `.cenas-trilho`, `.cena-carta` e regras filhas) e o bloco JS do trilho horizontal pinado (GSAP ScrollTrigger `#trilho`). Link "cenas" removido do menu do topo. A página passa a ir direto de "história" (Ana/Pedro/Laís) para "derramamento" (CTA "Ler agora por R$ 37"). HTML e JS validados (parser + `node --check`). Arquivo `preview-quatro-momentos.html` (usado para revisar a versão anterior) ficou obsoleto e pode ser apagado depois |
 
 ---
 
