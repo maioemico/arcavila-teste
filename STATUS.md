@@ -64,6 +64,12 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 
 ---
 
+## Modal de Captura de E-mail (Newsletter)
+
+**DESATIVADO em 2026-07-07** — o modal "Histórias que chegam até você" (popup de captura de nome/e-mail injetado pelo `functions/_middleware.js`) foi ocultado em todo o site. Motivo: foco atual é venda direta, não captação de newsletter. Implementação: flag `MODAL_ENABLED = false` no topo do arquivo `functions/_middleware.js` (raiz do repo) — o HTML/CSS/JS do modal continuam no arquivo intactos, só não são injetados nas páginas. Para reativar no futuro, bastar voltar a flag para `true`. Publicado via GitHub MCP (commit `fb2dda6`).
+
+---
+
 ## Domínios e Páginas
 
 | URL | Status | Observação |
@@ -128,7 +134,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Catálogo `arcavila.com.br` — capa da estante atualizada (nova capa pôr do sol) | **Publicado em 2026-07-06** | O `<img alt="Capa de Amor e Fé">` no `index.html` teve o JPEG base64 substituído pela **nova capa** (`capa-de-livro/capa_amor_e_fe_v2.png`, casal ao pôr do sol), redimensionada para 560×900 JPEG (~41 KB). Alinha a estante com a capa nova já usada no PDF do e-book. Commit `a09a886`, push via terminal local, deploy automático Cloudflare Pages |
 | Catálogo `arcavila.com.br` — entrada cinematográfica da estande | **Pronta no index.html local — AGUARDANDO PUSH (terminal)** | Animação de apresentação do catálogo com GSAP (ScrollTrigger + SplitText + técnica Flip) e Lenis via CDN, JS vanilla: título "Nossas histórias" letra a letra, estante abrindo em cortina (clip path), varredura de luz dourada, capas voando empilhadas do centro até as prateleiras com pouso em back.out e textos acompanhando. No celular, versão simplificada (stagger vertical). Reveal antigo preservado como fallback (sem GSAP ou com prefers-reduced-motion). Transforms limpos ao final para não quebrar o hover/tilt do Three.js |
 | Nova página do livro `amorefe.arcavila.com.br` | **PUBLICADA em 2026-07-07 (commit `11b6077`)** | Refeita no estilo da referência abigail-two.vercel.app a pedido do usuário: hero pinado com scrub, títulos revelados linha a linha com máscara, trilho horizontal pinado com as 4 cenas, seção "derramamento" (frase dourada, cortina de luz com clip path ondulado, painel creme com CTA magnético), fim com "Amor não é o que a gente sente. É o que a gente carrega." e João 15:13. GSAP 3.13 + Lenis via CDN, canvas em 3 camadas (fagulhas, brasas e cursor, grão), prefers-reduced-motion respeitado. Pixel: PageView, ViewContent, InitiateCheckout. Verificada no navegador no desktop (preloader, pin, trilho, wipe, CTA ok) |
-| Modal de captura removido da página `amorefe.arcavila.com.br` | **Concluído em 2026-07-07** | `functions/_middleware.js` agora condiciona a injeção do modal "Histórias que chegam até você" por hostname (`MODAL_DISABLED_HOSTS`); pulado para `amorefe.arcavila.com.br`, mantido nos demais domínios (`www.arcavila.com.br`, `arcavila.online`, `anaepedro.arcavila.online`). Commit `5f37dd2` via GitHub MCP |
+| Modal de captura removido da página `amorefe.arcavila.com.br` | **Concluído em 2026-07-07 — superado pela desativação global em 2026-07-07** | O `MODAL_DISABLED_HOSTS` continua no `_middleware.js`, mas desde a desativação global (flag `MODAL_ENABLED = false`) o modal já não aparece em nenhum domínio, tornando essa exceção por hostname redundante por ora. Ver seção "Modal de Captura de E-mail (Newsletter)" |
 | Hero `amorefe.arcavila.com.br` — fonte da frase menor no mobile | **Concluído em 2026-07-07 — validado pelo usuário no celular** | A frase "Tem casamento que não acaba em briga. Acaba em silêncio." quebrava em muitas linhas (e até no meio de palavra) no celular, porque o piso do `clamp()` (2.5rem) era grande demais para telas estreitas. Adicionado `@media (max-width:600px){ .hero-frase{font-size:clamp(1.7rem,7.8vw,2.3rem)} }` em `landing-sprites-ana-pedro.html`, reduzindo a fonte só no mobile para caber em 3 linhas. Commit `5cf33da` via GitHub MCP |
 | Hero `amorefe.arcavila.com.br` — distância de scroll do pin (slide 1 → 2) reduzida | **Concluído em 2026-07-07** | O pin do `#hero` (GSAP ScrollTrigger) exigia rolar `+=120%` da altura da tela antes de liberar a transição para a seção "história" (slide 2), pedindo várias voltas de scroll. Reduzido pela metade, para `+=60%`, em `landing-sprites-ana-pedro.html`. Commit `8eafd58` via GitHub MCP |
 | Retratos reais de Ana e Pedro (`anaepedro/ana.jpg`, `anaepedro/pedro.jpg`) | **Concluído e confirmado ao vivo (2026-07-07)** | Os arquivos `anaepedro/ana.jpg` e `anaepedro/pedro.jpg` publicados no GitHub (commit `638e994`) não apareciam na página ao vivo — o build do Cloudflare Pages desse projeto aparentemente apaga a pasta `anaepedro/` ao gerar o `index.html` a partir de `landing-sprites-ana-pedro.html`, levando as imagens junto. Sem acesso ao painel do Cloudflare para corrigir o build. **Solução:** fotos embutidas como base64 direto no `<img src="data:image/jpeg;base64,...">` dentro de `landing-sprites-ana-pedro.html`, mesmo padrão já usado na capa do catálogo — imune ao build. Commit `c41dd2b` publicado via terminal, confirmado ao vivo com fetch anticache. Detalhe registrado em `referencia/deploy-e-git.md` |
@@ -145,7 +151,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 |------|--------|-----------|
 | Formulário `amorefe.arcavila.online` | Ativo | POST para `/subscribe` via Cloudflare Pages Function |
 | Endpoint `/subscribe` | Ativo | `amorefe/functions/subscribe.js` — adiciona lead no Mailchimp com tag `captura-amor-e-fe` |
-| Modal de captura `arcavila.online` | Ativo | `functions/_middleware.js` injeta modal + patch do `leadForm`. Aparece após 8s ou 40% de scroll. Desde 2026-07-07 o modal é pulado para `amorefe.arcavila.com.br` (lista `MODAL_DISABLED_HOSTS` no próprio arquivo) |
+| Modal de captura `arcavila.online` | **DESATIVADO em 2026-07-07** | `functions/_middleware.js` injetava modal + patch do `leadForm` (após 8s ou 40% de scroll). Desativado globalmente via flag `MODAL_ENABLED = false` — foco atual é venda direta, não newsletter. Código preservado para reativar depois (ver seção "Modal de Captura de E-mail (Newsletter)") |
 | Mailchimp — lista e tag | Configurado | Audience ID e Server em `referencia/credenciais-e-ids.md`. Tags existentes na conta em 2026-07-05: `captura-amor-e-fe` e `Amor e Fé` |
 | Customer Journey | Ativo | Disparado pela tag `captura-amor-e-fe` |
 | E-mail 0 — Dia 0 — Boas-vindas | Ativo | "O flipbook chegou, e tem algo mais para você" → link `presente.arcavila.online` |
@@ -185,7 +191,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Última seção ("fim") removida | **Concluído (2026-07-07)** | Página passa a terminar no slide "derramamento" |
 | Textos de Ana e Pedro encurtados, Laís em destaque | **Concluído (2026-07-07)** | Parágrafos descritivos reescritos, máx. 2 linhas, Laís (filha) em destaque |
 | Texto "a mesma casa" reescrito como cliffhanger | **AGUARDANDO PUSH (terminal) — ver "Atualizações de Layout"** | Título e texto reescritos, vínculo familiar explícito (pai/mãe/filha) |
-| Modal de captura sobre a página nova | **Resolvido em 2026-07-07** | Removido especificamente desta página via `MODAL_DISABLED_HOSTS` no `_middleware.js` (ver "Atualizações de Layout"). Continua ativo em `anaepedro.arcavila.online` (mesmo HTML-fonte, domínio legado) — avaliar se remove lá também |
+| Modal de captura sobre a página nova | **Superado em 2026-07-07** | A exceção por hostname (`MODAL_DISABLED_HOSTS`) ficou redundante após a desativação global do modal (flag `MODAL_ENABLED = false`, ver "Modal de Captura de E-mail (Newsletter)") |
 
 ---
 
@@ -195,7 +201,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 |-----------|-----------|----------------|-----------|
 | **Ana** (protagonista de Amor e Fé / autora fictícia das cartas do Clube) | Retrato real enviado pelo usuário no Cowork em 2026-07-07 (PNG, convertido para JPEG, embutido em base64 no HTML) | Foto da personagem na página `amorefe.arcavila.com.br` (seção "história") | Retrato realista, close frontal: mulher morena, cabelos pretos longos e ondulados, expressão séria, fundo neutro acinzentado. Substituiu a tentativa via Canva (link expirado) |
 | **Pedro** (par romântico de Ana em Amor e Fé) | Retrato real enviado pelo usuário no Cowork em 2026-07-07 (PNG, convertido para JPEG, embutido em base64 no HTML) | Foto da personagem na página `amorefe.arcavila.com.br` (seção "história") | Retrato realista: homem careca, barba grisalha, terno cinza, colar com crucifixo, meio-sorriso, fundo neutro acinzentado |
-| **Laís** (filha de Ana e Pedro) | Sem referência visual ainda | Citada nos textos descritivos de Ana e Pedro e no texto da seção "a mesma casa" em `amorefe.arcavila.com.br` (2026-07-07) | Personagem mencionada, não retratada; introduzida na copy como elemento emocional central do conflito do casal. Manter sempre explícito o vínculo de filha, evitando ambiguidade com Pedro |
+| **Laís** (filha de Ana e Pedro) | Sem referência visual ainda | Citada nos textos descritivos de Ana e Pedro em `amorefe.arcavila.com.br` (2026-07-07) | Personagem mencionada, não retratada; introduzida na copy como elemento emocional central do conflito do casal |
 
 ---
 
