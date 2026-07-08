@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Preview — Quatro momentos que mudam tudo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#14100D;
+  --bg2:#1E1712;
+  --gold:#C8A15A;
+  --gold2:#E7C987;
+  --gold3:#F4E0A0;
+  --cream:#F3ECE1;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',Helvetica,Arial,sans-serif;
+}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;padding-bottom:4rem}
+
+.preview-label{
+  font-family:var(--sans);color:var(--gold);letter-spacing:.14em;text-transform:uppercase;
+  font-size:.75rem;text-align:center;padding:2rem 1rem .5rem;opacity:.75;
+}
+
+/* ================= Cenas (mesmo CSS do site, sem o trilho horizontal pinado) ================= */
+.cenas-pin{padding:1rem 0 clamp(3rem,8vh,5rem)}
+.cenas-cabecalho{padding:0 clamp(1.4rem,7vw,7rem);margin-bottom:clamp(2.4rem,6vh,4rem)}
+.cenas-cabecalho h2{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(1.9rem,4.6vw,3.4rem);color:var(--cream);line-height:1.15;
+}
+.cenas-trilho{
+  display:flex;flex-wrap:wrap;gap:clamp(1.2rem,3vw,2.4rem);
+  padding:0 clamp(1.4rem,7vw,7rem);
+}
+.cena-carta{
+  width:min(78vw,520px);flex-shrink:0;
+  background:linear-gradient(165deg,rgba(30,23,18,.92),rgba(20,16,13,.96));
+  border:1px solid rgba(200,161,90,.28);
+  padding:clamp(1.8rem,4vw,2.8rem);
+  display:flex;flex-direction:column;gap:1rem;
+}
+.cena-carta .num{
+  font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--gold);
+}
+.cena-carta h3{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(1.4rem,3vw,1.9rem);color:var(--cream);line-height:1.22;
+}
+.cena-carta .epigrafe{
+  font-family:var(--serif);font-style:italic;font-weight:500;color:var(--gold2);
+  font-size:clamp(1.05rem,1.7vw,1.2rem);line-height:1.5;letter-spacing:.01em;
+}
+.cena-carta .fio{
+  width:44px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);
+}
+@media (max-width:600px){
+  .cena-carta h3{font-size:1.3rem}
+}
+
+/* ================= Moldura do preview mobile ================= */
+.mobile-frame-wrap{display:flex;justify-content:center;padding:2rem 0}
+.mobile-frame{width:390px;max-width:100%;background:var(--bg);border:1px solid rgba(200,161,90,.2);overflow:hidden}
+.mobile-frame .cenas-trilho{flex-direction:column;padding:0 1.2rem}
+.mobile-frame .cena-carta{width:100%}
+.mobile-frame .cenas-cabecalho{padding:0 1.2rem}
+</style>
+</head>
+<body>
+
+  <p class="preview-label">Preview — desktop / tablet (largura livre, cartões lado a lado)</p>
+  <section id="cenas">
+    <div class="cenas-pin">
+      <div class="cenas-cabecalho">
+        <span class="olho" style="font-family:var(--sans);letter-spacing:.14em;color:var(--gold);opacity:.85;font-size:.8rem;text-transform:uppercase;display:block;margin-bottom:.6rem">dentro do livro</span>
+        <h2>Quatro momentos que mudam tudo.</h2>
+      </div>
+      <div class="cenas-trilho">
+
+        <article class="cena-carta">
+          <span class="num">i</span>
+          <h3>A xícara de café intocada</h3>
+          <span class="fio"></span>
+          <p class="epigrafe">O café ficou frio, do jeito que fica o que ninguém veio buscar.</p>
+        </article>
+
+        <article class="cena-carta">
+          <span class="num">ii</span>
+          <h3>O bilhete: “Não conte a ela. S.”</h3>
+          <span class="fio"></span>
+          <p class="epigrafe">Tem letra que a gente reconhece antes de entender o que esconde.</p>
+        </article>
+
+        <article class="cena-carta">
+          <span class="num">iii</span>
+          <h3>A revelação no hospital: “Seu marido já sabia”</h3>
+          <span class="fio"></span>
+          <p class="epigrafe">Há silêncios que só existem num corredor de hospital.</p>
+        </article>
+
+        <article class="cena-carta">
+          <span class="num">iv</span>
+          <h3>A carta final de Laís: “Ele me amou quando ninguém estava vendo”</h3>
+          <span class="fio"></span>
+          <p class="epigrafe">Existe amor que não nasce do sangue. Nasce da escolha de ficar.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-label">Preview — mobile (390px, título menor conforme o novo ajuste)</p>
+  <div class="mobile-frame-wrap">
+    <div class="mobile-frame">
+      <div class="cenas-pin">
+        <div class="cenas-cabecalho">
+          <span class="olho" style="font-family:var(--sans);letter-spacing:.14em;color:var(--gold);opacity:.85;font-size:.8rem;text-transform:uppercase;display:block;margin-bottom:.6rem">dentro do livro</span>
+          <h2>Quatro momentos que mudam tudo.</h2>
+        </div>
+        <div class="cenas-trilho">
+
+          <article class="cena-carta">
+            <span class="num">i</span>
+            <h3>A xícara de café intocada</h3>
+            <span class="fio"></span>
+            <p class="epigrafe">O café ficou frio, do jeito que fica o que ninguém veio buscar.</p>
+          </article>
+
+          <article class="cena-carta">
+            <span class="num">ii</span>
+            <h3>O bilhete: “Não conte a ela. S.”</h3>
+            <span class="fio"></span>
+            <p class="epigrafe">Tem letra que a gente reconhece antes de entender o que esconde.</p>
+          </article>
+
+          <article class="cena-carta">
+            <span class="num">iii</span>
+            <h3>A revelação no hospital: “Seu marido já sabia”</h3>
+            <span class="fio"></span>
+            <p class="epigrafe">Há silêncios que só existem num corredor de hospital.</p>
+          </article>
+
+          <article class="cena-carta">
+            <span class="num">iv</span>
+            <h3>A carta final de Laís: “Ele me amou quando ninguém estava vendo”</h3>
+            <span class="fio"></span>
+            <p class="epigrafe">Existe amor que não nasce do sangue. Nasce da escolha de ficar.</p>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

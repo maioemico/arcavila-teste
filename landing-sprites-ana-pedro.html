@@ -142,6 +142,13 @@ main{position:relative;z-index:2}
   100%{transform:scaleY(0);transform-origin:bottom}
 }
 
+/* ================= Onda: divisor dourado entre hero e história ================= */
+.onda-divisor{
+  position:relative;height:clamp(90px,14vw,160px);
+  background:linear-gradient(180deg,var(--gold3) 0%,var(--gold2) 45%,var(--gold) 100%);
+  opacity:0;will-change:clip-path,opacity;
+}
+
 /* ================= História (Ana / Pedro / Encontro) ================= */
 #historia{
   position:relative;
@@ -306,6 +313,9 @@ main{position:relative;z-index:2}
       <span class="hero-dica-fio"></span>
     </div>
   </section>
+
+  <!-- ONDA: divisor dourado entre o hero e a história -->
+  <div class="onda-divisor" id="ondaDivisor" aria-hidden="true"></div>
 
   <!-- HISTÓRIA -->
   <section id="historia">
@@ -672,6 +682,35 @@ main{position:relative;z-index:2}
     })
     .to(".hero-conteudo", { yPercent: -14, scale: 0.94, opacity: 0, ease: "none" }, 0)
     .to(".hero-dica", { opacity: 0, ease: "none" }, 0);
+  }
+
+  /* ================= Onda: divisor dourado entre hero e história ================= */
+  function poligonoFaixa(fase){
+    /* faixa com borda inferior ondulada, mesma técnica senoidal do derramamento */
+    var yBase = 55, amp = 10;
+    var pts = ["0% 0%", "100% 0%"];
+    for (var x = 100; x >= 0; x -= 8){
+      var y = yBase + Math.sin((x / 100) * Math.PI * 2.2 + fase) * amp;
+      pts.push(x + "% " + y + "%");
+    }
+    return "polygon(" + pts.join(",") + ")";
+  }
+  var ondaDivisor = document.getElementById("ondaDivisor");
+  if (ondaDivisor){
+    if (!reduzir){
+      gsap.set(ondaDivisor, { clipPath: poligonoFaixa(0) });
+      gsap.to(ondaDivisor, {
+        opacity: 1, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: ondaDivisor, start: "top 90%", once: true }
+      });
+      ScrollTrigger.create({
+        trigger: ondaDivisor, start: "top bottom", end: "bottom top", scrub: 0.6,
+        onUpdate: function(self){ ondaDivisor.style.clipPath = poligonoFaixa(self.progress * Math.PI * 2.4); }
+      });
+    } else {
+      ondaDivisor.style.opacity = 1;
+      ondaDivisor.style.clipPath = "none";
+    }
   }
 
   /* ================= Retratos: revelação + parallax ================= */

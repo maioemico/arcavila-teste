@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Preview — onda dourada entre hero e história (GSAP/ScrollTrigger)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#14100D;--bg2:#1E1712;--gold:#C8A15A;--gold2:#E7C987;--gold3:#F4E0A0;--cream:#F3ECE1;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',Helvetica,Arial,sans-serif;
+}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300}
+
+.preview-label{
+  font-family:var(--sans);color:var(--gold);letter-spacing:.14em;text-transform:uppercase;
+  font-size:.75rem;text-align:center;padding:1.6rem 1rem .4rem;opacity:.75;
+}
+.preview-label small{display:block;letter-spacing:.02em;text-transform:none;opacity:.7;margin-top:.4rem;font-size:.72rem}
+
+.mini-hero{
+  min-height:90svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem 1.4rem;
+}
+.mini-hero .olho{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1.6rem}
+.mini-hero .frase{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,5.5vw,3.6rem);line-height:1.14;color:var(--cream)}
+.mini-hero .frase em{font-style:italic;color:var(--gold2)}
+
+/* mesma classe/estrutura do landing-sprites-ana-pedro.html */
+.onda-divisor{
+  position:relative;height:clamp(90px,14vw,160px);
+  background:linear-gradient(180deg,var(--gold3) 0%,var(--gold2) 45%,var(--gold) 100%);
+  opacity:0;will-change:clip-path,opacity;
+}
+
+.mini-historia{
+  min-height:70svh;padding:4rem 1.4rem;text-align:center;
+}
+.mini-historia .olho{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1rem;display:block}
+.mini-historia h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.6vw,2.4rem);color:var(--cream);max-width:620px;margin:0 auto}
+.mini-historia h2 em{font-style:italic;color:var(--gold2)}
+.mini-historia p{max-width:60ch;margin:1.6rem auto 0;opacity:.75;font-size:.95rem;line-height:1.6}
+</style>
+</head>
+<body>
+
+  <p class="preview-label">Preview fiel ao código real — GSAP + ScrollTrigger, vanilla JS (sem framework)
+    <small>role a página para acionar a onda: ela reage à posição do scroll (scrub), sem travar a rolagem, sem pin</small>
+  </p>
+
+  <section class="mini-hero">
+    <p class="olho">romance de Ana Veras · coleção Arcavila</p>
+    <p class="frase">Tem casamento que não acaba em briga.<br>Acaba em <em>silêncio</em>.</p>
+  </section>
+
+  <div class="onda-divisor" id="ondaDivisor" aria-hidden="true"></div>
+
+  <section class="mini-historia">
+    <span class="olho">a esposa</span>
+    <h2>Ana achou que conhecia <em>o marido</em>.</h2>
+    <p>Igreja aos domingos, café pronto, uma vida perfeita ao lado de Laís. Até que tudo mudou.</p>
+  </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var temGSAP = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+  if (temGSAP) gsap.registerPlugin(ScrollTrigger);
+
+  /* ===== exatamente a mesma função e a mesma lógica de landing-sprites-ana-pedro.html ===== */
+  function poligonoFaixa(fase){
+    var yBase = 55, amp = 10;
+    var pts = ["0% 0%", "100% 0%"];
+    for (var x = 100; x >= 0; x -= 8){
+      var y = yBase + Math.sin((x / 100) * Math.PI * 2.2 + fase) * amp;
+      pts.push(x + "% " + y + "%");
+    }
+    return "polygon(" + pts.join(",") + ")";
+  }
+  var ondaDivisor = document.getElementById("ondaDivisor");
+  if (ondaDivisor && temGSAP){
+    if (!reduzir){
+      gsap.set(ondaDivisor, { clipPath: poligonoFaixa(0) });
+      gsap.to(ondaDivisor, {
+        opacity: 1, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: ondaDivisor, start: "top 90%", once: true }
+      });
+      ScrollTrigger.create({
+        trigger: ondaDivisor, start: "top bottom", end: "bottom top", scrub: 0.6,
+        onUpdate: function(self){ ondaDivisor.style.clipPath = poligonoFaixa(self.progress * Math.PI * 2.4); }
+      });
+    } else {
+      ondaDivisor.style.opacity = 1;
+      ondaDivisor.style.clipPath = "none";
+    }
+  } else if (ondaDivisor){
+    ondaDivisor.style.opacity = 1;
+    ondaDivisor.style.clipPath = "none";
+  }
+})();
+</script>
+</body>
+</html>
