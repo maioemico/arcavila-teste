@@ -142,17 +142,6 @@ main{position:relative;z-index:2}
   100%{transform:scaleY(0);transform-origin:bottom}
 }
 
-/* ================= Transição: cortina dourada em tela cheia (mesmo efeito do derramamento) ================= */
-#transicao{position:relative;overflow:hidden}
-.wipe-palco2{position:relative;min-height:100svh}
-.wipe-luz2{
-  position:absolute;inset:0;z-index:2;pointer-events:none;will-change:clip-path;
-  background:linear-gradient(180deg,var(--gold3) 0%,var(--gold2) 40%,var(--gold) 100%);
-}
-.wipe-creme2{
-  position:absolute;inset:0;z-index:3;background:var(--bg);will-change:clip-path;
-}
-
 /* ================= História (Ana / Pedro / Encontro) ================= */
 #historia{
   position:relative;
@@ -315,14 +304,6 @@ main{position:relative;z-index:2}
     <div class="hero-dica">
       <span class="hero-dica-texto">role para entrar na história</span>
       <span class="hero-dica-fio"></span>
-    </div>
-  </section>
-
-  <!-- TRANSIÇÃO: cortina dourada ondulada, mesmo efeito do derramamento -->
-  <section id="transicao">
-    <div class="wipe-palco2">
-      <div class="wipe-luz2" id="wipeLuz2"></div>
-      <div class="wipe-creme2" id="wipeCreme2"></div>
     </div>
   </section>
 
@@ -681,42 +662,16 @@ main{position:relative;z-index:2}
     });
   });
 
-  /* ================= Hero pinado: a frase se desfaz ao rolar ================= */
+  /* ================= Hero pinado: a frase desce e some, servindo de transição para a história ================= */
   if (!reduzir){
     gsap.timeline({
       scrollTrigger: {
-        trigger: "#hero", start: "top top", end: "+=60%",
+        trigger: "#hero", start: "top top", end: "+=90%",
         pin: true, scrub: 0.6
       }
     })
-    .to(".hero-conteudo", { yPercent: -14, scale: 0.94, opacity: 0, ease: "none" }, 0)
+    .to(".hero-conteudo", { yPercent: 45, opacity: 0, ease: "none" }, 0)
     .to(".hero-dica", { opacity: 0, ease: "none" }, 0);
-  }
-
-  /* ================= Transição: cortina dourada entre hero e história (mesmo efeito do derramamento, reaproveita poligonoOnda) ================= */
-  var luz2 = document.getElementById("wipeLuz2");
-  var creme2 = document.getElementById("wipeCreme2");
-  if (luz2 && creme2){
-    if (!reduzir){
-      gsap.set(luz2,   { clipPath: "polygon(0% 0%,100% 0%,100% 0%,0% 0%)" });
-      gsap.set(creme2, { clipPath: "inset(0 0 100% 0)" });
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: "#transicao", start: "top top", end: "+=140%",
-          pin: true, scrub: 0.6,
-          onUpdate: function(st){
-            var p = st.progress;
-            var pLuz = gsap.utils.clamp(0, 1, p / 0.55);
-            var pCreme = gsap.utils.clamp(0, 1, (p - 0.5) / 0.5);
-            luz2.style.clipPath = poligonoOnda(pLuz, p * 9);
-            creme2.style.clipPath = "inset(" + ((1 - pCreme) * 100) + "% 0 0 0)";
-          }
-        }
-      });
-    } else {
-      luz2.style.display = "none";
-      creme2.style.display = "none";
-    }
   }
 
   /* ================= Retratos: revelação + parallax ================= */
