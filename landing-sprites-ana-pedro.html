@@ -396,6 +396,7 @@ main{position:relative;z-index:2}
 
   /* ================= Lenis: rolagem com inércia ================= */
   var lenis = null;
+  var stFinal = null; /* ScrollTrigger do pin final (#derramamento), preenchido mais abaixo */
   if (temGSAP && !reduzir && typeof Lenis !== "undefined"){
     lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
@@ -406,9 +407,21 @@ main{position:relative;z-index:2}
   /* Âncoras do topo passam pelo Lenis */
   document.querySelectorAll("[data-alvo]").forEach(function(a){
     a.addEventListener("click", function(e){
-      var alvo = document.querySelector(a.getAttribute("data-alvo"));
+      var destino = a.getAttribute("data-alvo");
+      var alvo = document.querySelector(destino);
       if (!alvo) return;
       e.preventDefault();
+
+      /* #derramamento é um pin longo (180% de scroll); ir só até o topo da seção */
+      /* deixa a frase inicial visível, mas não o painel de compra. Rola até o     */
+      /* ponto do pin onde o CTA já está revelado.                                */
+      if (destino === "#derramamento" && stFinal){
+        var alvoScroll = stFinal.start + (stFinal.end - stFinal.start) * 0.74;
+        if (lenis) lenis.scrollTo(alvoScroll, { duration: 1.8 });
+        else window.scrollTo({ top: alvoScroll, behavior: reduzir ? "auto" : "smooth" });
+        return;
+      }
+
       if (lenis) lenis.scrollTo(alvo, { offset: 0, duration: 1.6 });
       else alvo.scrollIntoView({ behavior: reduzir ? "auto" : "smooth" });
     });
@@ -710,7 +723,7 @@ main{position:relative;z-index:2}
   if (!reduzir){
     gsap.set(luz,   { clipPath: "polygon(0% 0%,100% 0%,100% 0%,0% 0%)" });
     gsap.set(creme, { clipPath: "inset(0 0 100% 0)" });
-    gsap.timeline({
+    var tlFinal = gsap.timeline({
       scrollTrigger: {
         trigger: "#derramamento", start: "top top", end: "+=180%",
         pin: true, scrub: 0.6,
@@ -727,6 +740,7 @@ main{position:relative;z-index:2}
     .fromTo(".wipe-frente p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.18, ease: "none" }, 0)
     .to(".wipe-frente p", { opacity: 0, y: -24, duration: 0.2, ease: "none" }, 0.32)
     .fromTo(".creme-conteudo", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.25, ease: "none" }, 0.68);
+    stFinal = tlFinal.scrollTrigger;
   } else {
     /* com movimento reduzido, o palco vira duas telas simples */
     gsap.set(luz, { display: "none" });
