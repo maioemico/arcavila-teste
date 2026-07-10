@@ -416,7 +416,9 @@ main{position:relative;z-index:2}
       /* deixa a frase inicial visível, mas não o painel de compra. Rola até o     */
       /* ponto do pin onde o CTA já está revelado.                                */
       if (destino === "#derramamento" && stFinal){
-        var alvoScroll = stFinal.start + (stFinal.end - stFinal.start) * 0.74;
+        /* fim do pin = painel de compra já totalmente revelado (opacidade 1) e   */
+        /* fim real da página, já que #derramamento é a última seção             */
+        var alvoScroll = stFinal.end;
         if (lenis) lenis.scrollTo(alvoScroll, { duration: 1.8 });
         else window.scrollTo({ top: alvoScroll, behavior: reduzir ? "auto" : "smooth" });
         return;
