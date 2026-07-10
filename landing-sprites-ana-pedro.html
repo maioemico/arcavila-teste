@@ -217,22 +217,58 @@ main{position:relative;z-index:2}
   max-width:52ch;margin:1.8rem auto 0;font-size:clamp(.96rem,1.4vw,1.06rem);
   color:#3A2C21;
 }
+.oferta-card{
+  border:1px solid rgba(110,34,51,.25);border-radius:6px;
+  padding:1.8rem 1.6rem;max-width:380px;margin:2.4rem auto 0;
+}
+.oferta-eyebrow{
+  color:var(--gold);font-family:var(--sans);font-weight:600;
+  font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+}
+.oferta-preco{margin:.9rem 0 1.3rem}
+.preco-de{
+  display:block;font-size:.78rem;color:#8a7a6c;
+  text-decoration:line-through;font-family:var(--sans);
+}
+.preco-por{
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(2rem,9vw,2.75rem);color:#241A12;
+}
+.preco-parcela{
+  display:block;font-size:.7rem;color:#3A2C21;
+  font-family:var(--sans);margin-top:2px;
+}
+.oferta-lista{
+  list-style:none;padding:0;margin:0 0 1.5rem;
+  text-align:left;display:inline-block;
+}
+.oferta-lista li{
+  font-size:.82rem;color:#3A2C21;font-family:var(--sans);
+  margin-bottom:8px;
+}
+.oferta-lista li:last-child{margin-bottom:0}
+.oferta-lista li::before{content:"✓";color:var(--wine);font-weight:700;margin-right:8px}
 #ctaBtn{
-  display:inline-block;margin-top:2.6rem;position:relative;
-  padding:1.15rem 3rem;
-  font-family:var(--sans);font-weight:600;font-size:.9rem;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--cream);text-decoration:none;
-  background:#241A12;
-  border:1px solid #241A12;
+  display:block;margin-top:0;position:relative;
+  padding:1.05rem 1.2rem;
+  font-family:var(--sans);font-weight:600;font-size:.85rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cream);text-decoration:none;text-align:center;
+  background:linear-gradient(135deg,#241A12 0%,#3A2418 100%);
+  border:1px solid var(--gold);
+  box-shadow:0 14px 34px rgba(36,26,18,.28);
   transition:box-shadow .35s ease;
   will-change:transform;
 }
-#ctaBtn:hover{box-shadow:0 14px 40px rgba(36,26,18,.35)}
+#ctaBtn:hover{box-shadow:0 18px 44px rgba(36,26,18,.4)}
 #ctaBtn .btn-texto{display:inline-block;will-change:transform}
-.creme-nota{
-  margin-top:1.3rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  color:#3A2C21;opacity:.65;
+.oferta-selos{
+  margin-top:1rem;font-size:.66rem;letter-spacing:.08em;
+  color:#7a6a5c;font-family:var(--sans);
+}
+@media (max-width:600px){
+  .oferta-card{padding:1.4rem 1.1rem;max-width:100%}
+  .oferta-lista li{font-size:.78rem}
 }
 
 /* ================= Estados iniciais (apenas com JS ativo) ================= */
@@ -360,10 +396,24 @@ main{position:relative;z-index:2}
           <span class="olho">leia a história completa</span>
           <h2>Toda história de fé começa quando a <em>força acaba</em>.</h2>
           <p class="apoio">Descubra o que Pedro estava carregando sozinho, o que Ana fez com a verdade e o que acontece quando um casamento decide atravessar o rio junto em vez de afundar separado. Uma leitura para terminar em uma noite e carregar por muito tempo.</p>
-          <a id="ctaBtn" href="https://pay.hotmart.com/S106531572M" target="_blank" rel="noopener" data-magnetico>
-            <span class="btn-texto">Ler agora por R$ 37</span>
-          </a>
-          <p class="creme-nota">e-book em PDF · entrega imediata</p>
+          <div class="oferta-card">
+            <span class="oferta-eyebrow">e-book · acesso imediato</span>
+            <div class="oferta-preco">
+              <span class="preco-de">De R$ 67,00</span>
+              <span class="preco-por">R$ 37</span>
+              <span class="preco-parcela">ou 2x R$ 19,90 sem juros</span>
+            </div>
+            <ul class="oferta-lista">
+              <li>13 capítulos + epílogo</li>
+              <li>Acesso imediato ao e-mail</li>
+              <li>Guia de perguntas para casais — bônus</li>
+              <li>Garantia de 7 dias</li>
+            </ul>
+            <a id="ctaBtn" href="https://pay.hotmart.com/S106531572M" target="_blank" rel="noopener" data-magnetico>
+              <span class="btn-texto">Ler agora por R$ 37</span>
+            </a>
+            <p class="oferta-selos">Seguro &middot; Imediato &middot; Garantia de 7 dias</p>
+          </div>
         </div>
       </div>
     </div>
