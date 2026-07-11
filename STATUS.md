@@ -123,7 +123,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Catálogo `arcavila.online` — layout prateleira horizontal | Concluído | `.shelf` vertical, `.book` flex-row, badge de preço R$ 37,00 |
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
 | Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Atualizado para `amorefe.arcavila.com.br` em 2026-06-29 |
-| Catálogo — botão "Ver mais" mobile no card Amor e Fé | Concluído (11/07/2026) | Pill dourada no canto superior direito do card, só em `max-width:600px` (`.book-more`, z-index 2 acima do overlay Hotmart), leva a `amorefe.arcavila.com.br`. Commit local `aba57b7`; push feito pelo Chiba via terminal |
+| Catálogo — botão "Ver mais" mobile no card Amor e Fé | Concluído (11/07/2026) | Pill dourada sem borda no canto superior direito do card, só em `max-width:600px` (`.book-more`, z-index 30 — o overlay Hotmart `.book-card-link` tem z-index 20 no mobile, não 1), leva a `amorefe.arcavila.com.br` |
 | Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.jpeg` como background do `.shelf`; grid CSS alinha livros nas prateleiras |
 | Catálogo `arcavila.online` — efeitos Three.js | Concluído | Partículas âmbar flutuantes, spotlight com cursor, tilt 3D no hover dos livros |
 | Catálogo `arcavila.online` — botão "Ler a sinopse" | Concluído | Styled como botão real (background dark, padding, sem borda amarela) |
