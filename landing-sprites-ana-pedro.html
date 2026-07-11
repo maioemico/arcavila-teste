@@ -799,7 +799,15 @@ main{position:relative;z-index:2}
       /* duas camadas empilhadas que se revezam por crossfade, dentro do      */
       /* mesmo pin (que agora dura mais para dar espaço a essa fase extra).   */
       gsap.set(".wipe-creme", { display: "flex" });
-      gsap.set(".creme-conteudo", { position: "relative", width: "100%", maxWidth: "420px", opacity: 1, y: 0 });
+      /* sem isso, .creme-conteudo (que perdeu o conteúdo em fluxo normal ao   */
+      /* virar container dos dois cartões absolutos) colapsa para altura 0,   */
+      /* e o texto/oferta ficam espremidos com inset:0 dentro de uma caixa    */
+      /* de 0px — essa era a causa do corte no mobile.                       */
+      var painelAltura = Math.round(Math.min(window.innerHeight * 0.82, 640));
+      gsap.set(".creme-conteudo", {
+        position: "relative", width: "100%", maxWidth: "420px",
+        height: painelAltura, opacity: 1, y: 0
+      });
       gsap.set(".creme-texto", {
         position: "absolute", inset: 0, minHeight: "auto",
         display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center",
