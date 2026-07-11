@@ -818,6 +818,14 @@ main{position:relative;z-index:2}
     gsap.set(luz, { display: "none" });
     gsap.set(creme, { position: "relative", clipPath: "none" });
     gsap.set(".wipe-frente", { position: "relative", minHeight: "60svh" });
+
+    if (ehMobile && !reduzir){
+      /* mantém uma entrada suave da frase mesmo sem o pin no mobile */
+      gsap.fromTo(".wipe-frente p", { opacity: 0, y: 24 }, {
+        opacity: 1, y: 0, duration: 0.9, ease: "power2.out",
+        scrollTrigger: { trigger: ".wipe-frente", start: "top 75%", once: true }
+      });
+    }
   }
 
   /* ================= Botão magnético ================= */
