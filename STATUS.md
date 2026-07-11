@@ -124,6 +124,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Catálogo `arcavila.online` — rótulos e gênero removidos | Concluído | `.book-status` e `.book-genre` display:none globalmente |
 | Catálogo `arcavila.online` — link sinopse Amor e Fé | Concluído | Atualizado para `amorefe.arcavila.com.br` em 2026-06-29 |
 | Catálogo — botão "Ver mais" mobile no card Amor e Fé | Concluído (11/07/2026) | Pill dourada sem borda no canto superior direito do card, só em `max-width:600px` (`.book-more`, z-index 30 — o overlay Hotmart `.book-card-link` tem z-index 20 no mobile, não 1), leva a `amorefe.arcavila.com.br` |
+| Catálogo — mobile: preço do Amor e Fé desce 28px | Commitado em 11/07/2026 (aguardando push) | `.book-price` mobile ganhou `transform:translateY(28px)` para a base do preço alinhar com a base da capa, a pedido do usuário (validado por preview) |
 | `amorefe.arcavila.com.br` — fonte da marca "Editora Arcavila" trocada para Playfair Display | **Publicado em 2026-07-11 (commit `3b2087e`)** | `.topo-marca` passou de Inter (`--sans`) para Playfair Display (`--serif`), peso 500, `font-style:normal` (sem itálico), a pedido do usuário |
 | Catálogo `arcavila.online` — fundo de estante de madeira | Concluído | `estande.jpeg` como background do `.shelf`; grid CSS alinha livros nas prateleiras |
 | Catálogo `arcavila.online` — efeitos Three.js | Concluído | Partículas âmbar flutuantes, spotlight com cursor, tilt 3D no hover dos livros |
