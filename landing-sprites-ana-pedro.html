@@ -790,12 +790,27 @@ main{position:relative;z-index:2}
   var luz = document.getElementById("wipeLuz");
   var creme = document.getElementById("wipeCreme");
 
-  if (!reduzir && !ehMobile){
+  if (!reduzir){
     gsap.set(luz,   { clipPath: "polygon(0% 0%,100% 0%,100% 0%,0% 0%)" });
     gsap.set(creme, { clipPath: "inset(0 0 100% 0)" });
+
+    if (ehMobile){
+      /* no mobile, texto e oferta não cabem lado a lado numa tela só: viram   */
+      /* duas camadas empilhadas que se revezam por crossfade, dentro do      */
+      /* mesmo pin (que agora dura mais para dar espaço a essa fase extra).   */
+      gsap.set(".wipe-creme", { display: "flex" });
+      gsap.set(".creme-conteudo", { position: "relative", width: "100%", maxWidth: "420px", opacity: 1, y: 0 });
+      gsap.set(".creme-texto", {
+        position: "absolute", inset: 0, minHeight: "auto",
+        display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
+        padding: "1.6rem 1.2rem", opacity: 0
+      });
+      gsap.set(".oferta-card", { position: "absolute", inset: 0, minHeight: "auto", margin: 0, opacity: 0 });
+    }
+
     var tlFinal = gsap.timeline({
       scrollTrigger: {
-        trigger: "#derramamento", start: "top top", end: "+=180%",
+        trigger: "#derramamento", start: "top top", end: ehMobile ? "+=260%" : "+=180%",
         pin: true, scrub: 0.6,
         onUpdate: function(st){
           var p = st.progress;
@@ -808,24 +823,25 @@ main{position:relative;z-index:2}
       }
     })
     .fromTo(".wipe-frente p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.18, ease: "none" }, 0)
-    .to(".wipe-frente p", { opacity: 0, y: -24, duration: 0.2, ease: "none" }, 0.32)
-    .fromTo(".creme-conteudo", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.25, ease: "none" }, 0.68);
+    .to(".wipe-frente p", { opacity: 0, y: -24, duration: 0.2, ease: "none" }, 0.32);
+
+    if (!ehMobile){
+      tlFinal.fromTo(".creme-conteudo", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.25, ease: "none" }, 0.68);
+    } else {
+      tlFinal
+        .fromTo(".creme-texto", { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "none" }, 0.68)
+        .to(".creme-texto",     { opacity: 0, duration: 0.18, ease: "none" }, 1.0)
+        .fromTo(".oferta-card", { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "none" }, 1.08);
+    }
+
     stFinal = tlFinal.scrollTrigger;
   } else {
-    /* sem pin: no mobile isso divide a seção final em telas cheias (frase,   */
-    /* texto e oferta) empilhadas em rolagem normal; no desktop com reduced- */
-    /* motion, o mesmo tratamento estático evita a animação de scrub.       */
+    /* prefers-reduced-motion: sem pin e sem crossfade, tudo estático em     */
+    /* telas cheias empilhadas (texto e oferta), como no fallback mobile     */
+    /* original — aqui a prioridade é acessibilidade, não a animação.       */
     gsap.set(luz, { display: "none" });
     gsap.set(creme, { position: "relative", clipPath: "none" });
     gsap.set(".wipe-frente", { position: "relative", minHeight: "60svh" });
-
-    if (ehMobile && !reduzir){
-      /* mantém uma entrada suave da frase mesmo sem o pin no mobile */
-      gsap.fromTo(".wipe-frente p", { opacity: 0, y: 24 }, {
-        opacity: 1, y: 0, duration: 0.9, ease: "power2.out",
-        scrollTrigger: { trigger: ".wipe-frente", start: "top 75%", once: true }
-      });
-    }
   }
 
   /* ================= Botão magnético ================= */
