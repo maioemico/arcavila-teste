@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-11
+> Atualizado em: 2026-07-14
 
 ---
 
@@ -154,6 +154,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | `arcavila.com.br` — menu mobile fecha ao rolar a página | **Editado localmente — AGUARDANDO PUSH (terminal)** | Bug reportado: com o menu mobile aberto, ao rolar a página os links continuavam visíveis mas com fundo transparente, "flutuando" sobre o conteúdo. Corrigido com um listener de `scroll` que remove a classe `.open` de `#navLinks` assim que o usuário rola, fechando o menu automaticamente |
 | `arcavila.com.br` — mobile: ícone "?" trocado por texto "Em breve" nas capas placeholder | **Editado localmente — AGUARDANDO PUSH (terminal)** | Nas capas dos livros "em breve" (A Mentira que Deus Usou, O Médico das Águas), o glifo "?" central foi escondido só no mobile (`≤600px`, classe `.ph-q{display:none}`) e o texto "Em breve" (já existente como `.book-status.soon`, antes com `display:none` global) passou a aparecer centralizado, sem borda. Desktop/tablet inalterados. Validado com preview (`preview-em-breve-mobile.html`) |
 | `arcavila.com.br` — texto de destaque "Amor e Fé" reescrito com suspense (Ana, Pedro e Laís) | **Editado localmente — AGUARDANDO PUSH (terminal)** | O parágrafo da seção "Em destaque" (antes "Treze capítulos sobre um casamento à beira do abismo...") foi substituído por "Entre a dúvida de Ana e o segredo de Pedro, resta uma pergunta: o amor deles resiste à verdade que Laís guarda?", a pedido do usuário, para criar suspense entre os três personagens. Não está em media query — vale para mobile, tablet e desktop |
+| `amorefe.arcavila.com.br` — card de oferta do slide final: título do livro em destaque e novo parcelamento | **Publicado em 2026-07-14 (via GitHub MCP)** | No `.oferta-card` do slide "derramamento": o rótulo pequeno `.oferta-eyebrow` ("e-book · acesso imediato") foi substituído pelo nome do livro **Amor e Fé** numa nova classe `.oferta-titulo` (Playfair Display, sem itálico, peso 500, cor `#241A12`, para reforçar a venda). Parcelamento trocado de "ou 2x R$ 19,90 sem juros" para "ou 5x R$ 8,19 sem juros" em `.preco-parcela`. Vale para desktop e mobile (não está em media query). Editado em `landing-sprites-ana-pedro.html`. **Nota técnica:** o push do HTML por este MCP não foi possível — o arquivo tem 331KB, com duas imagens embutidas em base64 (fotos de Ana e Pedro, juntas ~296KB) que tornam o conteúdo grande demais para o parâmetro de uma única chamada de ferramenta neste ambiente. O HTML precisa ser publicado via terminal local (`git add`, `git commit`, `git push`) |
 
 ---
 
@@ -184,6 +185,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Conta Hotmart | Ativo | Nova conta criada com `suporte@arcavila.online` em 2026-06-28 |
 | Produto no Hotmart | Configurado | E-book Amor e Fé criado na nova conta. IDs em `referencia/credenciais-e-ids.md` |
 | URL de pagamento | Concluído | Atualizada em todas as páginas. Valor em `referencia/credenciais-e-ids.md` |
+| Preço promocional de inauguração da editora | Definido em 2026-07-11 | R$ 37 (preço já praticado) passa a ser apresentado como desconto de lançamento sobre um preço cheio ancorado de R$ 89,90. Usar essa moldura ("de R$ 89,90 por R$ 37") nas legendas e criativos de divulgação |
 | Meta Pixel | Configurado | Eventos: `PageView`, `ViewContent`, `Lead`. ID em `referencia/credenciais-e-ids.md` |
 | PDF do e-book | **Capa atualizada e publicada (2026-07-07)** | `Ebook__Amor_e_Fe.pdf` na raiz da pasta do projeto. 50 páginas, A5. Só a **capa** (pág. 1) foi trocada pela nova foto (casal ao pôr do sol), miolo inalterado. Imagem-fonte da capa em `capa-de-livro/capa_amor_e_fe_v2.png` (1632x2624). A troca de capa (feita em 2026-07-06) tinha ficado só editada localmente sem commit; publicada via terminal em 2026-07-07 junto com os retratos (commit `638e994`). Versão anterior recuperável pelo git |
 
@@ -242,16 +244,24 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 ## Redes Sociais — Contas Meta (Editora Arcavila)
 
 > Fase iniciada em 2026-07-05: montar a infraestrutura de contas no Meta para rodar Facebook/Instagram Ads dos criativos 1 e 3 (venda direta → `amorefe.arcavila.com.br`). **Decisões travadas em 2026-07-05:** nome de marca **Editora Arcavila**; canais **Instagram + Facebook**; administrador = **perfil pessoal real já existente do usuário** (não criar perfil falso, sob risco de perder todos os ativos). Handle sugerido `@editoraarcavila` (alternativa `@arcavila` se estiver livre).
+>
+> **Decisão em 2026-07-11:** em vez de criar um Business Manager novo, o usuário reaproveitou um portfólio já existente ("arteiropro"), renomeado para "Arcavila" (ID `213802926265845`). Diagnóstico feito antes de reaproveitar: dados cadastrais da empresa (razão social, endereço em Campinas/SP, telefone, site `arcavila.com.br`) já corretos; histórico de conformidade no Suporte para Empresas limpo (sem penalização nos últimos 30 dias); a página antiga estava desativada por ação manual do usuário (encerramento do projeto anterior), não por bloqueio da Meta — validando o reaproveitamento em vez de começar do zero.
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Meta Business Manager | **PENDENTE** | Criar em business.facebook.com logado no perfil pessoal. Negócio: Editora Arcavila; e-mail de contato: `suporte@arcavila.online` ou `contato@arcavila.online` |
+| Meta Business Portfolio | **Concluído (reaproveitado) em 2026-07-11** | Portfólio "Arcavila" (ID `213802926265845`), antigo "arteiropro". IDs em `referencia/credenciais-e-ids.md` |
+| Página do Facebook "Arcavila" | **Em andamento (2026-07-11)** | Página antiga "arteiropro" reativada. Solicitação de renomeação para "Arcavila" enviada, em análise da Meta (até 3 dias); após aprovado, nome fica travado por 60 dias |
 | Verificação do domínio arcavila.com.br no Business | **PENDENTE** | Via TXT no Cloudflare (DNS já sob controle). Necessário para medição de conversões pós-iOS 14 |
+| Verificação da empresa (Business Verification) | **PENDENTE** | Enquanto não verificada, o limite de contas de anúncios no portfólio fica em 1 |
 | Reivindicar o Meta Pixel no Business | **PENDENTE** | Pixel já configurado (ID em `referencia/credenciais-e-ids.md`); transferir a posse para o negócio |
-| Página do Facebook "Editora Arcavila" | **PENDENTE** | Foto: selo Arcavila; capa; bio curta; link `arcavila.com.br` |
-| Instagram profissional `@editoraarcavila` | **PENDENTE** | Conectar à Página dentro do Business (alternativa de handle: `@arcavila` se estiver livre) |
-| Aquecimento orgânico | **PENDENTE** | 3 a 5 posts por canal antes de anunciar (capas dos livros, um trecho, o selo) para reduzir risco de bloqueio |
-| Conta de anúncios + meio de pagamento | **PENDENTE** | Criar no Business e adicionar cartão. Conta nova começa com limite de gasto diário baixo. Só então subir criativos 1 e 3 |
+| Conta de anúncios "arcavila" | **Criada em 2026-07-11** | ID `2117830595442608`, dentro do portfólio. Caio Chiba com acesso total de administrador. ID em `referencia/credenciais-e-ids.md` |
+| Meio de pagamento na conta de anúncios | **PENDENTE** | Precisa ser inserido diretamente pelo responsável financeiro (Caio), por segurança |
+| Instagram profissional `@editora.arcavila` | **Perfil já existe e publica (verificado 2026-07-11); conexão ao Business ainda não confirmada** | Handle real ficou `@editora.arcavila` (com ponto), diferente do sugerido em 2026-07-05 (`@editoraarcavila`/`@arcavila`) — usar esse handle em todas as peças/QR codes daqui em diante. Visualmente (sem login) não aparece tag de categoria comercial nem botão de contato, então não dá para confirmar de fora se já é conta profissional vinculada ao Business "Arcavila" — conferir em Configurações > Conta |
+| Instagram — seguidores | **PENDENTE (0 seguidores em 2026-07-11)** | Perfil com 5 posts mas zero seguidores; antes de puxar tráfego (orgânico ou pago) vale semear uma base inicial (contatos próprios, beta leitores, equipe) para a página não parecer vazia a quem chega pelo anúncio |
+| Instagram — Reels/vídeo | **PENDENTE** | Os 5 posts publicados são todos imagens estáticas; não há aba de Reels visível no perfil. Vídeo curto é o principal mecanismo de descoberta do algoritmo — considerar transformar 1 a 2 dos criativos já aprovados em Reels simples antes de escalar |
+| Instagram — link da bio | **A avaliar** | Bio ("Romances que fazem o coração e a fé crescerem juntos.") aponta para `arcavila.com.br` (home institucional), não para uma página de conversão direta. Avaliar trocar para a landing de vendas (`amorefe.arcavila.com.br`) ou um link único com destino à oferta de lançamento, já que o objetivo do funil é venda direta |
+| Segundo administrador no portfólio (backup) | **PENDENTE (a considerar)** | Hoje só Caio Chiba é admin — risco de ponto único de falha |
+| Aquecimento orgânico | **Instagram concluído (verificado 2026-07-11); Facebook ainda não conferido** | Perfil `@editora.arcavila` tem 5 posts no grid (Fortaleça sua fé/Amor & Fé, "a graça chega antes", "seja um dos primeiros a entrar na vila", "o que Laís escolheu esconder", capa Amor & Fé) — bate com a meta de 3 a 5 posts antes de anunciar. Página do Facebook ainda não verificada visualmente |
 | Política de conteúdo religioso no Meta | **Nota** | Não segmentar por religião (atributo sensível); a copy não pode presumir a fé do leitor de forma pessoal. Segmentar por interesses (livros, fé, romance) e falar da obra |
 
 ---
