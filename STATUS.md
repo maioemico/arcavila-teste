@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-14
+> Atualizado em: 2026-07-16
 
 ---
 
@@ -220,7 +220,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 |-----------|-----------|----------------|-----------|
 | **Ana** (protagonista de Amor e Fé / autora fictícia das cartas do Clube) | Retrato real enviado pelo usuário no Cowork em 2026-07-07 (PNG, convertido para JPEG, embutido em base64 no HTML) | Foto da personagem na página `amorefe.arcavila.com.br` (seção "história") | Retrato realista, close frontal: mulher morena, cabelos pretos longos e ondulados, expressão séria, fundo neutro acinzentado. Substituiu a tentativa via Canva (link expirado) |
 | **Pedro** (par romântico de Ana em Amor e Fé) | Retrato real enviado pelo usuário no Cowork em 2026-07-07 (PNG, convertido para JPEG, embutido em base64 no HTML) | Foto da personagem na página `amorefe.arcavila.com.br` (seção "história") | Retrato realista: homem careca, barba grisalha, terno cinza, colar com crucifixo, meio-sorriso, fundo neutro acinzentado |
-| **Laís** (filha de Ana e Pedro) | Sem referência visual ainda | Citada nos textos descritivos de Ana e Pedro em `amorefe.arcavila.com.br` e no texto de destaque do `index.html` (2026-07-07/11) | Personagem mencionada, não retratada; introduzida na copy como elemento emocional central do conflito do casal |
+| **Laís** (filha de Ana e Pedro) | Retrato de IA gerado via Higgsfield (Soul 2.0) em 2026-07-15, mulher brasileira, 25 anos, cabelos castanho-escuros longos ondulados, olhos castanhos, pele com textura realista | Referência de identidade para os clipes de vídeo do primeiro anúncio (Reels/Ads) | Job id `6766ce8b-6e6c-4032-87df-c4baa2db7e66` no Higgsfield. Usado como `image_references` nos 4 clipes de vídeo do roteiro "opção C" (conflito moral) |
 
 ---
 
@@ -231,6 +231,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Item | Status | Observação |
 |------|--------|-----------|
 | Formato do criativo | Definido em 2026-07-02 | Imagem estática vertical (4:5 feed e 9:16 stories/reels). Vídeo só depois, no ângulo vencedor |
+| Primeiro vídeo de anúncio (roteiro "opção C", mistério/Laís) | **4 clipes gerados em 2026-07-15, aguardando montagem** | Produzido via conector Higgsfield: retrato de referência da Laís (Soul 2.0) + 4 clipes de vídeo (Seedance 2.0, 9:16, clipes 1-2 em 1080p, clipes 3-4 em 720p por limite de créditos) + narração em português (ElevenLabs, voz "Nora", com sufixo "(audio em pt-br)" no prompt para reforçar sotaque brasileiro — validado pelo usuário). Falta: montagem final (CapCut) juntando clipes + narração sincronizada + legenda queimada + card de CTA com preço. Saldo Higgsfield ficou em ~3,7 créditos ao final, precisa recarregar para novos clipes |
 | Objetivo / destino | Definido em 2026-07-02 | Venda direta → `amorefe.arcavila.com.br`. URL confirmada no ar em 2026-07-02. Título da página padronizado para "Amor e Fé" |
 | Copies dos ângulos | Concluído em 2026-07-02 | Dilema, prova social, trecho/cena. Headline, texto principal e CTA escritos |
 | Criativo 1 (dilema, capa) — 4:5 | **Aprovado** | Fundo dourado escuro. Capa real no mockup, headline "Amor e Fé", subtítulo "Ela amava a Deus. E amava um homem que não podia ter.", botão "Ler agora por R$ 37", logo. ID Canva em `referencia/credenciais-e-ids.md` |
@@ -240,6 +241,23 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Criativo de marketing "Caminhos de Fé / Editora Arcavila" | **A utilizar (registrado 2026-07-03)** | Peça de divulgação enviada pelo usuário (PNG). Arte estática dourada, fundo escuro: headline "Fortaleça sua Fé", mockup de capa "Caminhos de Fé" sobre mesa de madeira com Bíblia aberta, bullets, botão "Comprar agora" e selo Editora Arcavila. **Arquivo-fonte ainda NÃO commitado no repo** — subir para `assets/` via terminal (ex.: `assets/mkt-caminhos-de-fe.png`) se virar asset oficial |
 | Exportar PNGs finais | **PENDENTE (usuário)** | Baixar do Canva em PNG 1080×1350 (4:5) e 1080×1920 (9:16), sem compressão, sem fundo transparente |
 | Subida da campanha no Meta Ads | **PENDENTE (depende das contas Meta)** | Estrutura de teste: criativos 1 e 3, mesma verba, matar o fraco em 3-4 dias, escalar o vencedor. Depois transformar o vencedor em vídeo/reel. Pré-requisito: seção "Redes Sociais — Contas Meta" concluída |
+
+---
+
+## Analytics de Site (PostHog)
+
+> Frente aberta em 2026-07-16 para medir performance dos anúncios: entrada na página, navegação do usuário e cliques no CTA de compra. Ferramenta escolhida: **PostHog** (plano grátis, 1M eventos/mês), com MCP conectado no Cowork para o Claude consultar os dados direto. IDs e token em `referencia/credenciais-e-ids.md`.
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Conta e projeto PostHog | Concluído em 2026-07-16 | Organização "Arcavila", projeto "Default project" (id 515572), região US. MCP conectado no Cowork |
+| Snippet no `index.html` (www.arcavila.com.br) | **Editado localmente, aguardando push pelo terminal** | Snippet oficial posthog-js no `<head>` (autocapture + pageviews) |
+| Snippet no `landing-sprites-ana-pedro.html` (amorefe.arcavila.com.br) | **Editado localmente, aguardando push pelo terminal** | Mesmo snippet; página destino dos anúncios |
+| Evento `clique_cta_hotmart` | **Editado localmente, junto com o snippet** | Listener de clique (delegação) em links `pay.hotmart.com`, com propriedades `pagina` e `texto_cta`. Base do funil pageview → clique CTA |
+| Session replay + heatmaps + dead clicks | Concluído em 2026-07-16 via MCP | Gravação de sessões ativa (retenção 30d), heatmaps e detecção de rage clicks. Fuso do projeto ajustado para America/Sao_Paulo. `app_urls` configuradas com www e amorefe |
+| Funil e dashboard no PostHog | **PENDENTE (após deploy)** | Criar via MCP quando os primeiros eventos chegarem: funil $pageview → clique_cta_hotmart por UTM/anúncio |
+
+Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie do PostHog é gravado no domínio raiz `arcavila.com.br`.
 
 ---
 

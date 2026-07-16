@@ -19,6 +19,12 @@
 | Make.com webhook (Hotmart) | `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
 | Zoho — conta gerenciadora | `caiochiba4@gmail.com` |
 | Repositório GitHub | `maioemico/arcavila-teste` |
+| Meta Business Portfolio ID | `213802926265845` (nome "Arcavila", reaproveitado do projeto antigo "arteiropro") |
+| Meta — conta de anúncios "arcavila" | `2117830595442608` |
+| PostHog — organização | `Arcavila` (id `019f6c02-9bf7-0000-6221-80a29b740122`) |
+| PostHog — projeto | `Default project` (id `515572`), região US (`us.posthog.com`) |
+| PostHog — token do projeto (snippet) | `phc_pRLFovc6k8w6DxhxrN7uXZMgLyapkgBp5RxfVVYCsgoi` |
+| PostHog — api_host do snippet | `https://us.i.posthog.com` |
 
 ---
 
