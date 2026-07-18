@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Molde Card Arcavila</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#111; }
+  .card {
+    position:relative;
+    width:1080px;
+    height:1080px;
+    overflow:hidden;
+    font-family:'Playfair Display', Georgia, serif;
+  }
+  .bg {
+    position:absolute; top:0; left:0;
+    width:1080px; height:1080px;
+    object-fit:cover;
+  }
+  .scrim {
+    position:absolute; top:0; left:0;
+    width:1080px; height:1080px;
+    background:linear-gradient(180deg, rgba(20,10,10,0.55) 0%, rgba(20,10,10,0.25) 38%, rgba(20,10,10,0.60) 100%);
+  }
+  .logo {
+    position:absolute;
+    top:64px; left:340px;
+    width:400px;
+  }
+  .aspa {
+    position:absolute;
+    top:340px; left:0;
+    width:1080px;
+    text-align:center;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:180px;
+    line-height:120px;
+    color:#C9A227;
+  }
+  .frase {
+    position:absolute;
+    top:530px; left:110px;
+    width:860px;
+    text-align:center;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:54px;
+    line-height:70px;
+    font-weight:400;
+    color:#F4EBDA;
+  }
+  .destaque {
+    position:absolute;
+    top:730px; left:110px;
+    width:860px;
+    text-align:center;
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:70px;
+    line-height:84px;
+    font-weight:700;
+    font-style:italic;
+    color:#C9A227;
+  }
+  .handle {
+    position:absolute;
+    top:960px; left:190px;
+    width:700px;
+    text-align:center;
+    font-family:'Lato', Helvetica, Arial, sans-serif;
+    font-size:30px;
+    font-weight:300;
+    letter-spacing:6px;
+    color:#F4EBDA;
+  }
+</style>
+</head>
+<body>
+  <div class="card" data-document-role="page" data-label="Molde Card Arcavila">
+    <img class="bg" src="https://raw.githubusercontent.com/maioemico/arcavila-teste/main/assets/bg-criativo2.png" alt="fundo">
+    <div class="scrim"></div>
+    <img class="logo" src="https://raw.githubusercontent.com/maioemico/arcavila-teste/main/logoarcavila-semfundo.png" alt="Arcavila">
+    <div class="aspa">&ldquo;</div>
+    <div class="frase">Deus não desperdiça nada do que você viveu.</div>
+    <div class="destaque">Nem a espera.</div>
+    <div class="handle">@editora.arcavila</div>
+  </div>
+</body>
+</html>
