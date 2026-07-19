@@ -397,3 +397,20 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 - `referencia/credenciais-e-ids.md` — IDs, URLs, tokens, DNS/TXT, designs do Canva.
 - `referencia/deploy-e-git.md` — workflow de deploy, SSH, lições aprendidas de git e Canva.
 - `referencia/decisoes-editoriais.md` — bíblia editorial dos Livros 1 e 2 e decisões fixas do Clube.
+
+---
+
+## Modelo de criativo aprovado: "reels-emocional" (19/07/2026)
+
+Layout oficial para reels de frases, aprovado pelo Chiba. Render 100% local (FFmpeg no Cowork, custo zero por video).
+
+- Estrutura: 3 frases que se completam, uma por slide em tela cheia, + slide final de marca. 18s, 1080x1920, 30fps.
+- Fundo off-white 0xF1EEE8, estilo editorial claro.
+- Tipografia: Lora (texto preto 0x2B2622) e Lora Bold para palavras de impacto em marrom 0x8B6B42 e caixa alta. A Lora Bold e instancia estatica gerada da fonte variavel via fontTools (wght=700).
+- Aspas decorativas grandes douradas 0x9A7B52 no topo de cada slide de frase.
+- Assinatura @editoraarcavila (cinza 0x9B948A, 30px) no rodape de todos os slides.
+- Slide final: selo Arcavila 540px legivel + "Conheca nossos livros em" + "ARCAVILA.COM.BR" em marrom caixa alta.
+- Animacoes: linhas surgem em cascata com fade e deslize vertical; transicao slideleft 0.6s entre slides; fade no encerramento; audio ambiente suave.
+- Arquivo de referencia: reel-layout-claro-3slides-v2.mp4 (pasta local do projeto no Cowork).
+- Pautas alimentadas pelo radar de trends semanal (prototipo: radar-trends-2026-07-16.md; frases baseadas em trends da semana + parafrase biblica + formula de 3 atos).
+- Pendente para automacao completa: tarefa agendada do radar semanal, fila de pautas com curadoria, cenario Make de publicacao via Graph API.
