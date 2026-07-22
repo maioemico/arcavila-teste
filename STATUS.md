@@ -414,3 +414,32 @@ Layout oficial para reels de frases, aprovado pelo Chiba. Render 100% local (FFm
 - Arquivo de referencia: reel-layout-claro-3slides-v2.mp4 (pasta local do projeto no Cowork).
 - Pautas alimentadas pelo radar de trends semanal (prototipo: radar-trends-2026-07-16.md; frases baseadas em trends da semana + parafrase biblica + formula de 3 atos).
 - Pendente para automacao completa: tarefa agendada do radar semanal, fila de pautas com curadoria, cenario Make de publicacao via Graph API.
+
+## Pipeline de publicação de Reels — método validado (2026-07-22)
+
+### Upload de vídeo ao GitHub: GitHub Desktop (método oficial, sem terminal nem token)
+Descartados: (a) Make Drive→GitHub falha silenciosa com arquivos acima de ~1 MB (confirmado em teste com vídeo de 9 MB: execução marca sucesso mas nao cria commit); (b) curl com token funciona mas exige token manual no terminal.
+
+Metodo oficial adotado: um clone de trabalho limpo do repo em `/Users/mac/Downloads/pasta arcavila/arcavila-teste` (criado via GitHub Desktop > File > Clone Repository). Fluxo executado pelo Cowork Claude via controle de tela (computer-use), sem terminal e sem token:
+1. Gera o reel (fica na pasta do projeto no Mac).
+2. Copia via Finder para a subpasta `reels/` do clone de trabalho.
+3. GitHub Desktop: escreve mensagem, DESMARCA o `.DS_Store`, Commit + Push (usa o login do GitHub ja salvo do usuario).
+4. Verifica o commit pela API do GitHub (mcp__github__get_file_contents em path=reels).
+
+Observacao: o Google Drive para Desktop tambem foi instalado e montado no Mac; isso permite ao Cowork copiar arquivos para pastas do Drive via Finder quando necessario. O caminho do mount do Drive e `/Users/mac/Library/CloudStorage/GoogleDrive-caiochiba4@gmail.com/Meu Drive/`.
+
+### Publicacao no Instagram: cenario Make 5716956
+"Arcavila — Publicar Reel no Instagram" (id 5716956). Conta @editora.arcavila, accountId 17841449774005730, conexao Facebook id 10021614.
+Fluxo: Google Sheets Search Rows (filtra pela coluna A = ID da pauta) → Instagram Create a Reel Post (video_url = https://raw.githubusercontent.com/maioemico/arcavila-teste/main/reels/NOME.mp4) → Google Sheets Update Row (coluna Postado? = sim).
+Disparo feito pela API do Make (scenarios_activate + scenarios_run + scenarios_deactivate). O cenario fica on-demand/inativo entre usos.
+Armadilhas ja resolvidas no modulo Google Sheets do Make: usar sheetId = "Untitled" (nome interno da aba, NAO o titulo do arquivo); tableFirstRow = "A1:CZ1" no Search Rows; valueInputOption = "USER_ENTERED" obrigatorio no Update Row; a coluna Postado? e o indice "9" (base 0) no campo values do Update Row. O video precisa estar em faststart (moov atom no inicio): `ffmpeg -c copy -movflags +faststart`.
+
+### Layout "carta" (novo, validado 2026-07-22)
+Variacao do layout narracao pagina-de-livro. Slide de CAPA: icone de envelope em traco fino marrom (0x8B6B42) desenhado com PIL + "Carta para {Nome}" (rotulo "Carta para" em cinza, nome grande em marrom), no mesmo papel envelhecido 0xEDE3CC com moldura dupla.
+IMPORTANTE: o frame 0 do video DEVE ser a capa completa, SEM fade de entrada a partir do preto — senao o Instagram usa miniatura preta na grade. Reforcar tambem com thumb_offset = 1000 no modulo do Instagram.
+A reflexao passa a ser ENDERECADA: a primeira frase comeca com vocativo ("{Nome}, ..."). Mantem todas as regras (4 frases, arco de fe, nunca citar celebridades, tratamento tu/ti).
+Nomes sorteados sem repetir: registro em `nomes-utilizados.csv` (colunas Nome, Genero, Data, VideoID) na pasta do projeto. Ler antes de cada video, sortear um nome inedito, adicionar a linha. Primeiro nome usado: Helena.
+Primeira peca publicada neste formato: reel-carta-helena-v2.mp4 (publicada SEM narracao, porque o AllVoiceLab esteve indisponivel em 21-22/07 — regenerar com narracao voz Rachel quando o servico voltar).
+
+### Descartados / desativados nesta sessao
+Cenario Make 5734673 "Arcavila — Reels Drive → GitHub" e a pasta Drive `arcavila-git/Reels`: criados para testar o upload automatico via Drive, mas o pipeline Drive→GitHub do Make falha para arquivos de video (>1 MB). Cenario desativado; nao usar para video. Preferir sempre o metodo GitHub Desktop acima.
