@@ -304,7 +304,7 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 > Romance cristão original. Autora: Ana Veras. **Bíblia editorial completa (barreira, cenário, final, personagens, tom, estrutura) em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor.md` na raiz.
 
 | Item | Status | Observação |
-|------|--------|-----------|
+|------|--------|---------|
 | Pesquisa da história de referência | Concluído | Documento `referencia-pousando-no-amor.md` na raiz, com grade de tradução e diretrizes de originalidade |
 | Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
 | Título definitivo | Concluído em 2026-07-02 | "A Mentira que Deus Usou" — escolhido entre 10 opções com foco em curiosidade e tensão fé/mentira |
@@ -321,7 +321,7 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 > Segundo romance cristão original, sem repetir transposições do Livro 1. Autora: Ana Veras. **Bíblia editorial completa em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor-livro2.md` na raiz.
 
 | Item | Status | Observação |
-|------|--------|-----------|
+|------|--------|----------|
 | Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz |
 | Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
 | Estrutura de capítulos | Aprovada em 2026-07-02 | 13 capítulos + epílogo, cliffhanger em cada um |
@@ -370,7 +370,7 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 ## Make.com
 
 | Item | Status | Observação |
-|------|--------|-----------|
+|----|--------|-----------|
 | Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
 | Cenário Arcavila — Hotmart Compra Aprovada | **Ativo (verificado 2026-07-05)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Config e estado conferidos via conector. ID em `referencia/credenciais-e-ids.md` |
 
@@ -439,7 +439,19 @@ Variacao do layout narracao pagina-de-livro. Slide de CAPA: icone de envelope em
 IMPORTANTE: o frame 0 do video DEVE ser a capa completa, SEM fade de entrada a partir do preto — senao o Instagram usa miniatura preta na grade. Reforcar tambem com thumb_offset = 1000 no modulo do Instagram.
 A reflexao passa a ser ENDERECADA: a primeira frase comeca com vocativo ("{Nome}, ..."). Mantem todas as regras (4 frases, arco de fe, nunca citar celebridades, tratamento tu/ti).
 Nomes sorteados sem repetir: registro em `nomes-utilizados.csv` (colunas Nome, Genero, Data, VideoID) na pasta do projeto. Ler antes de cada video, sortear um nome inedito, adicionar a linha. Primeiro nome usado: Helena.
-Primeira peca publicada neste formato: reel-carta-helena-v2.mp4 (publicada SEM narracao, porque o AllVoiceLab esteve indisponivel em 21-22/07 — regenerar com narracao voz Rachel quando o servico voltar).
+Primeira peca publicada neste formato: reel-carta-helena-v2.mp4 (publicada SEM narracao, porque o AllVoiceLab esteve indisponivel em 21-22/07; confirmado ainda fora do ar em 23/07/2026, ver secao "Higgsfield — narracao" abaixo — o Higgsfield e agora a alternativa em uso).
+
+### Higgsfield — narração (23/07/2026)
+
+O Chiba assinou o Higgsfield (MCP de geração de mídia por IA) e passou a usá-lo como alternativa de narração de reels em português, já que o AllVoiceLab (voz Rachel) segue fora do ar desde 21/07/2026, confirmado ainda indisponível em teste feito em 23/07/2026.
+
+**Teste de vozes:** testadas 3 vozes femininas do Higgsfield (modelo `text2speech_v2`, variant `elevenlabs`) com uma frase real do reel "carta para Helena" ("Helena, há noites em que o silêncio pesa mais do que qualquer palavra. Mas foi exatamente nesse silêncio que tu ouviste a voz que nunca te abandonou."): Ines (voice_id `023ebf5e-1970-40d8-825c-a5ef6a1dd4ff`), Marisol (voice_id `75e72cd5-011b-4130-a474-e8b1ab341f04`) e Simone (voice_id `d3b201aa-086c-4d54-8568-a6bb9f4a0b63`). **Voz escolhida: Ines**, por combinar melhor com o tom Arcavila (emocional, editorial, sem exagero).
+
+**Detalhes técnicos:** ferramenta MCP `generate_audio`, model `text2speech_v2`, params `variant="elevenlabs"`, `voice_type="preset"`, `voice_id="023ebf5e-1970-40d8-825c-a5ef6a1dd4ff"` (Ines). Geração é assíncrona: `generate_audio` retorna um job com status "pending"; usar `job_display(id)` para checar status até "completed" e pegar a `rawUrl` (mp3) em `results.rawUrl`. Custo aproximado ~0,15 créditos por chamada de teste curta (variável por tamanho do texto).
+
+**Pendência técnica:** os arquivos de áudio gerados ficam em URLs `cloudfront.net`, bloqueadas pelo proxy do sandbox Cowork (erro "blocked-by-allowlist" no curl) — não é possível baixar o mp3 direto via bash/curl no sandbox. O `job_display` renderiza um player de áudio na UI do Cowork, então dá para ouvir sem baixar, mas para USAR o áudio no vídeo final (ex.: juntar com FFmpeg) ainda falta descobrir um caminho de download que funcione. Não resolvido.
+
+Higgsfield também gera vídeo (`generate_video`), imagem (`generate_image`) e tem `shorts_studio`/`explainer_video`, ainda não explorados a fundo. Uso combinado planejado: (1) narração de reels via Higgsfield (Ines), (2) vídeo de vendas/chamada para o livro Amor e Fé (ainda não iniciado).
 
 ### Descartados / desativados nesta sessao
 Cenario Make 5734673 "Arcavila — Reels Drive → GitHub" e a pasta Drive `arcavila-git/Reels`: criados para testar o upload automatico via Drive, mas o pipeline Drive→GitHub do Make falha para arquivos de video (>1 MB). Cenario desativado; nao usar para video. Preferir sempre o metodo GitHub Desktop acima.
