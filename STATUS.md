@@ -366,7 +366,7 @@ Regras de produção:
 3. Se a frase ocupar duas linhas, o destaque desce: topo do destaque = topo da frase + altura da frase + 33px. Ao reposicionar, recalcular a esquerda para manter a centralização, porque a caixa encolhe conforme o texto.
 4. Fonte de fotos padrão: Unsplash, licença livre.
 
-### Narração (AllVoiceLab) — validado em 2026-07-18
+### Narração (AllVoiceLab) — validado em 2026-07-18 — SUPERADO para reels novos em 2026-07-25 (ver "Narração (Higgsfield)" abaixo; manter esta seção como histórico e fallback)
 
 MCP AllVoiceLab conectado. Voz oficial do projeto: **Rachel**, `voice_id 280801072249831431`, modelo `tts-multilingual`. Não trocar sem aprovação. Descartadas por soarem jovens demais: "Inspirational Girl" e "Instructor Lady". Contexto completo no Drive: `contexto-voz-narracao-arcavila.md`.
 
@@ -388,6 +388,27 @@ Limitação encontrada em 2026-07-18: o parâmetro `speed` do `text_to_speech` *
 Pendência de segurança herdada do contexto: a API key do AllVoiceLab foi exposta em texto no chat de instalação. Gerar nova key em allvoicelab.com/workbench/api-keys e atualizar o `claude_desktop_config.json` se ainda não foi feito.
 
 **Segundo reel narrado concluído em 2026-07-25:** `reel-carta-helena-narrado-v1.mp4` (Carta 3 do Clube, "A carta da Ana" / Helena), hoje em `criativos/reels/`. Narração gerada em `criativos/audio/narracao/` (frase1 a frase4 + título). Pasta de build temporário (`_reel_build/`, com frames, wav intermediários e o mp4 final duplicado) foi removida após a reorganização de pastas, já que o resultado final já está preservado em `criativos/reels/`.
+
+### Reels layout carta v2 — definido em 2026-07-25
+
+Três mudanças definidas com o Chiba em 2026-07-25, valendo somente para reels novos (os já publicados não serão refeitos):
+
+1. **Capa sem ícone de envelope (opção A, "centro puro").** A capa passa a ser só tipografia: "Carta para" em EB Garamond itálico e o NOME grande em Playfair Display, centralizados verticalmente no espaço inteiro; moldura fina e @editora.arcavila no rodapé mantidos como antes. Template pronto para render em 1080x1920: `docs/template-capa-reel-carta.html` (basta trocar o nome). Opções B ("abertura de carta") e C ("convite") foram descartadas; preview de validação em `previews/preview-capa-reel-carta.html`. Continua valendo a REGRA CRÍTICA do frame 0: a capa completa deve ser o primeiro frame, sem fade a partir do preto, com thumb_offset=1000 no módulo do Instagram.
+
+2. **Nome real da manchete no vocativo.** O nome da carta deixa de ser sorteado. Passa a ser o primeiro nome real da pessoa da manchete de referência (ex.: Vinícius Júnior vira "Carta para Vinícius"), citado no título da capa e no início da carta. Somente o primeiro nome, nunca sobrenome. Se a pessoa for conhecida por apelido, criar um nome verossímil que lembre o apelido (ex.: Dida vira Fernanda), sem regra rígida de semelhança. A reflexão em si continua sem citar nomes, times ou obras que identifiquem a pessoa: a conexão com a manchete fica só no vocativo e no tema. Repetição de nomes passa a ser permitida; o `docs/nomes-utilizados.csv` deixa de ser bloqueante e vira registro histórico.
+
+3. **Narração migra do AllVoiceLab para o Higgsfield** — ver seção seguinte.
+
+### Narração (Higgsfield) — regra nova, definida em 2026-07-25
+
+Substitui o AllVoiceLab para todos os reels novos. Decidido após teste cego com a frase 1 da carta da Helena em 7 versões (Rachel/AllVoiceLab atual + Nora, Emily e Sienna em ElevenLabs/Seed Audio + as mesmas três em Qwen Audio 3.0). Preview do teste: `previews/preview-teste-vozes-helena.html`.
+
+- **Voz oficial: Nora** (preset do catálogo Higgsfield, `voice_id d081b915-6623-4a44-bacf-80d0f1c90a03`), engine **ElevenLabs**, via `generate_audio` com `model: text2speech_v2`, `variant: elevenlabs`, `voice_type: preset`. Não trocar sem aprovação do Chiba.
+- **Prompt:** o texto da frase em português puro. No teste, o sotaque brasileiro saiu correto sem o sufixo "(audio em pt-br)" que o anúncio da Laís precisou.
+- **Custo:** ~0,3 crédito por frase no ElevenLabs. O Qwen custa 0,03 (10x mais barato) mas perdeu na avaliação por ouvido; fica como opção econômica para rascunhos. Fazer preflight com `get_cost: true` antes de gerar.
+- **Fluxo por frase:** gerar cada frase separada → o resultado vem como URL de CDN e o sandbox do Cowork NÃO consegue baixar os bytes → o Chiba baixa o mp3 (1 clique no player/widget) e salva em `criativos/audio/narracao/` → daí em diante o pipeline ffmpeg validado continua igual (silenceremove, atempo, concatenação com pausas, mixagem com ducking, `-c:v copy`).
+- **Pós-processamento:** manter a receita ffmpeg existente como ponto de partida, ajustando por ouvido a cada narração — a entrega ElevenLabs é mais natural e tende a pedir menos atempo que o mapa calibrado para a Rachel.
+- **Descobertas técnicas (2026-07-25):** os presets de voz são compartilhados entre engines (campo `supported_models`: elevenlabs, minimax, seed_speech, qwen_audio), então dá para manter a voz e trocar de engine; a instrução de estilo do `qwen_audio_tts` tem limite de 128 caracteres; o `seed_audio` aceita clonagem de voz por referência de áudio (não usado por ora).
 
 ### Cadência de publicação — definida em 2026-07-18
 
@@ -537,7 +558,8 @@ Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do te
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
 | Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Pipeline de cards de Instagram (molde v2) não depende do resize |
 | PostHog | Free (1M eventos/mês) | Analytics do site, ver seção "Analytics de Site (PostHog)" |
-| AllVoiceLab | Ver plano na conta | Narração de Reels, voz Rachel |
+| AllVoiceLab | Ver plano na conta | Substituído pelo Higgsfield na narração de reels novos em 2026-07-25; manter como fallback (voz Rachel) |
+| Higgsfield | Assinatura paga (conta ativa) | Narração de reels (voz Nora, ElevenLabs) desde 2026-07-25; retratos e clipes de vídeo (Soul/Seedance) para anúncios |
 | Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03. Contas Meta (Business, Página, Instagram) pendentes — ver seção "Redes Sociais — Contas Meta" |
 
 ---
