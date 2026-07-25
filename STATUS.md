@@ -406,8 +406,8 @@ Substitui o AllVoiceLab para todos os reels novos. Decidido após teste cego com
 - **Voz oficial: Nora** (preset do catálogo Higgsfield, `voice_id d081b915-6623-4a44-bacf-80d0f1c90a03`), engine **ElevenLabs**, via `generate_audio` com `model: text2speech_v2`, `variant: elevenlabs`, `voice_type: preset`. Não trocar sem aprovação do Chiba.
 - **Prompt:** o texto da frase em português puro. No teste, o sotaque brasileiro saiu correto sem o sufixo "(audio em pt-br)" que o anúncio da Laís precisou.
 - **Custo:** ~0,3 crédito por frase no ElevenLabs. O Qwen custa 0,03 (10x mais barato) mas perdeu na avaliação por ouvido; fica como opção econômica para rascunhos. Fazer preflight com `get_cost: true` antes de gerar.
-- **Fluxo por frase:** gerar cada frase separada → o resultado vem como URL de CDN e o sandbox do Cowork NÃO consegue baixar os bytes → o Chiba baixa o mp3 (1 clique no player/widget) e salva em `criativos/audio/narracao/` → daí em diante o pipeline ffmpeg validado continua igual (silenceremove, atempo, concatenação com pausas, mixagem com ducking, `-c:v copy`).
-- **Pós-processamento:** manter a receita ffmpeg existente como ponto de partida, ajustando por ouvido a cada narração — a entrega ElevenLabs é mais natural e tende a pedir menos atempo que o mapa calibrado para a Rachel.
+- **Fluxo de download — mudou em 2026-07-25 (teste da carta da Victoria):** o Chiba já configura o Chrome para baixar direto numa pasta "Narrações" no Desktop. A partir daí, o próprio Claude resolve sozinho: abre uma aba via Claude in Chrome, executa um fetch + blob (`URL.createObjectURL`) de cada URL de CDN do Higgsfield com o nome de arquivo já correto (o atributo `download` só funciona em blob same-origin, não direto na URL cross-origin do CDN — isso apenas navega a aba em vez de baixar), depois usa o Finder via computer-use (tier "full", diferente do Chrome que só dá tier "read") para copiar os mp3 da pasta de Downloads/Narrações para `criativos/audio/narracao/`. Não depende mais de o Chiba clicar em nada, só de pedir acesso ao Finder (`request_access`) na sessão.
+- **Pós-processamento — CORRIGIDO em 2026-07-25 (teste da carta da Victoria): NÃO aplicar o mapa emocional de atempo nas narrações Higgsfield/Nora.** O Chiba ouviu o primeiro reel de teste com o mapa antigo (0.80/0.78/0.73/0.65, calibrado para a Rachel/AllVoiceLab) e achou a narração péssima — a entrega da Nora/ElevenLabs já vem no ritmo natural certo, sem precisar de nenhum atempo. Manter apenas o corte de silêncio nas pontas (início e fim), sem alterar velocidade. Receita validada para o corte de silêncio: o parâmetro `stop_periods` positivo do filtro `silenceremove` TRUNCA o áudio no primeiro silêncio detectado em vez de só aparar a ponta — é um bug de uso, não usar dessa forma. A técnica que funciona é reverter o áudio (`areverse`), aplicar `silenceremove` de início duas vezes (uma em cada sentido) e reverter de volta: `silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse`. O mapa de atempo antigo continua valendo só se algum dia o fluxo com Rachel/AllVoiceLab for retomado.
 - **Descobertas técnicas (2026-07-25):** os presets de voz são compartilhados entre engines (campo `supported_models`: elevenlabs, minimax, seed_speech, qwen_audio), então dá para manter a voz e trocar de engine; a instrução de estilo do `qwen_audio_tts` tem limite de 128 caracteres; o `seed_audio` aceita clonagem de voz por referência de áudio (não usado por ora).
 
 ### Cadência de publicação — definida em 2026-07-18
@@ -538,34 +538,4 @@ Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do te
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
-| Cenário Arcavila — Hotmart Compra Aprovada | **Ativo (verificado 2026-07-05)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Config e estado conferidos via conector. ID em `referencia/credenciais-e-ids.md` |
-| Cenário Arcavila — Publicar Reel no Instagram | **Ativo (validado ponta a ponta em 2026-07-21)** | ID 5716956. Publica reels automaticamente a partir da planilha de pautas. Ver seção "Conteúdo Orgânico — Imagens Instagram (Canva)" para o cenário irmão de imagens (5727133) |
-| Limite do plano Free | **Nota** | Máximo 2 cenários ativos e 1000 operações/mês — gerenciar quais cenários ficam ligados por vez |
-
----
-
-## Serviços Pagos
-
-| Serviço | Modelo | Conta / Observação |
-|---------|--------|-------------------|
-| Zoho Mail | Anual | Mail Lite, 1 licença. Conta gerenciadora: `caiochiba4@gmail.com` |
-| Registro.br — `arcavila.com.br` | Anuidade de domínio | Domínio .com.br registrado no Registro.br |
-| Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade |
-| Mailchimp | Free até 500 contatos | Monitorar crescimento da lista para antecipar upgrade |
-| Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
-| Make.com | Free tier (2 cenários ativos) | Cenários ativos: Hotmart → Mailchimp pós-compra; Publicar Reel no Instagram |
-| GitHub | Free (repo público) | `maioemico/arcavila-teste` |
-| Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Pipeline de cards de Instagram (molde v2) não depende do resize |
-| PostHog | Free (1M eventos/mês) | Analytics do site, ver seção "Analytics de Site (PostHog)" |
-| AllVoiceLab | Ver plano na conta | Substituído pelo Higgsfield na narração de reels novos em 2026-07-25; manter como fallback (voz Rachel) |
-| Higgsfield | Assinatura paga (conta ativa) | Narração de reels (voz Nora, ElevenLabs) desde 2026-07-25; retratos e clipes de vídeo (Soul/Seedance) para anúncios |
-| Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03. Contas Meta (Business, Página, Instagram) pendentes — ver seção "Redes Sociais — Contas Meta" |
-
----
-
-## Referências (pasta `referencia/`)
-
-- `referencia/credenciais-e-ids.md` — IDs, URLs, tokens, DNS/TXT, designs do Canva.
-- `referencia/deploy-e-git.md` — workflow de deploy, SSH, lições aprendidas de git e Canva, e o Protocolo de Sincronização Segura.
-- `referencia/decisoes-editoriais.md` — bíblia editorial dos Livros 1 e 2 e decisões fixas do Clube.
+| Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026
