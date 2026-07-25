@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-16
+> Atualizado em: 2026-07-25
 
 ---
 
@@ -251,11 +251,12 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Item | Status | Observação |
 |------|--------|-----------|
 | Conta e projeto PostHog | Concluído em 2026-07-16 | Organização "Arcavila", projeto "Default project" (id 515572), região US. MCP conectado no Cowork |
-| Snippet no `index.html` (www.arcavila.com.br) | **Editado localmente, aguardando push pelo terminal** | Snippet oficial posthog-js no `<head>` (autocapture + pageviews) |
-| Snippet no `landing-sprites-ana-pedro.html` (amorefe.arcavila.com.br) | **Editado localmente, aguardando push pelo terminal** | Mesmo snippet; página destino dos anúncios |
-| Evento `clique_cta_hotmart` | **Editado localmente, junto com o snippet** | Listener de clique (delegação) em links `pay.hotmart.com`, com propriedades `pagina` e `texto_cta`. Base do funil pageview → clique CTA |
+| Snippet no `index.html` (www.arcavila.com.br) | **NO AR — verificado em 2026-07-16** | Snippet oficial posthog-js no `<head>` (autocapture + pageviews). Push pelo terminal, commit `013723d`. `$pageview` confirmado chegando via MCP |
+| Snippet no `landing-sprites-ana-pedro.html` (amorefe.arcavila.com.br) | **NO AR — verificado em 2026-07-16** | Mesmo snippet; página destino dos anúncios. Commit `013723d`. `$pageview` confirmado |
+| Evento `clique_cta_hotmart` | **NO AR — verificado em 2026-07-16** | Listener de clique (delegação) em links `pay.hotmart.com`, com propriedades `pagina` e `texto_cta`. Cliques de teste confirmados nos dois domínios. Base do funil pageview → clique CTA |
+| Teste de ponta a ponta | Concluído em 2026-07-16 | Sessão de teste do usuário: pageviews nos dois domínios, 3 cliques no CTA, replay de 70s gravado começando em amorefe. Mesma pessoa e mesma sessão nos dois subdomínios (cookie cross-subdomain funcionando) |
 | Session replay + heatmaps + dead clicks | Concluído em 2026-07-16 via MCP | Gravação de sessões ativa (retenção 30d), heatmaps e detecção de rage clicks. Fuso do projeto ajustado para America/Sao_Paulo. `app_urls` configuradas com www e amorefe |
-| Funil e dashboard no PostHog | **PENDENTE (após deploy)** | Criar via MCP quando os primeiros eventos chegarem: funil $pageview → clique_cta_hotmart por UTM/anúncio |
+| Funil e dashboard no PostHog | **Concluído em 2026-07-16** | Dashboard "Campanha Amor e Fé — Tráfego Pago" (id 1861808, definido como dashboard inicial do projeto) com 4 insights: funil visita → clique CTA (janela 14d), visitas/dia por domínio, cliques CTA por utm_campaign (popula com os anúncios), visitantes únicos por canal de aquisição ($channel_type). URL: us.posthog.com/project/515572/dashboard/1861808 |
 
 Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie do PostHog é gravado no domínio raiz `arcavila.com.br`.
 
@@ -286,6 +287,114 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 
 ---
 
+## Conteúdo Orgânico — Imagens Instagram (Canva)
+
+> Fase iniciada em 2026-07-17. Objetivo: posts estáticos/carrosséis de alto engajamento no formato "cena-metáfora" (a foto ilustra literalmente a frase), além dos Reels. **Pipeline oficial de imagens = Canva** (MCP conectado), validado ponta a ponta: gerar → escolher → inserir selo → exportar PNG. Adobe Express foi testado mas o export estava caindo (instabilidade de backend deles); Higgsfield ficou sem créditos. Anti-shadowban: publicar sempre via API oficial, nunca automatizar engajamento, foto original/licenciada e selo Arcavila para não parecer conta genérica de frases.
+
+| Item | Status | Observação |
+|------|--------|-----------|
+| Molde/modelo aprovado | **Concluído (2026-07-17)** | Card "cena-metáfora": foto full-bleed, frase serifada com palavra em destaque, régua dourada, selo Arcavila + handle no rodapé. Design Canva `DAHPqSQwQhc`. Piloto: "O que parece morto em ti ainda vai FLORESCER." (broto rompendo solo rachado) |
+| Fonte de pautas | **Definido (2026-07-17)** | Google Sheets como painel. Planilha semente `pautas-imagens-arcavila.csv/.xlsx` na pasta do projeto (colunas: ID, Frase, Destaque, Palavra-chave da foto EN, Status, Link PNG, Observações), 8 frases iniciais no tom Arcavila |
+| Motor de geração | **Definido (2026-07-17)** | Claude gera sob demanda via Canva MCP (copiar molde → trocar frase + foto por palavra-chave → exportar PNG). Automação no Make.com fica para depois de validar o volume |
+| Foto por post | **REVISADO (2026-07-18)** | Palavra-chave (EN) na planilha → foto de banco livre. **Fonte que funciona no pipeline automático: Unsplash** (`images.unsplash.com`), licença livre para uso comercial, o Canva baixa direto pela URL pública. O Adobe Stock continua válido para escolhas manuais, mas exige que o Chiba baixe o arquivo licenciado e suba nos Uploads do Canva (ver linha abaixo) |
+| Lição — Adobe Stock não entra no Canva por API | **Registrado (2026-07-18)** | O Canva não baixa a URL S3 assinada do arquivo licenciado (`fetch_failed`). A prévia pública `1000_F_...` do `ftcdn.net` o Canva BAIXA, mas ela vem com marca d'água Adobe Stock, então é inutilizável. As ferramentas de imagem da Adobe (`image_crop_and_resize` etc.) pedem autenticação extra e não estão disponíveis nesta conexão. Conclusão: para usar Adobe Stock, o download e o upload precisam ser manuais |
+| Selo no card | **Concluído (2026-07-17)** | Logo subido ao Canva via `raw.githubusercontent.com/maioemico/arcavila-teste/main/logoarcavila-semfundo.png` — o site `arcavila.online` NÃO serve o arquivo no root (upload por essa URL falhou) |
+| Handle nas peças | **ATENÇÃO — corrigir no v1** | Card-piloto saiu com "@editoraarcavila" (sem ponto); handle real é `@editora.arcavila` (com ponto). Já correto no molde oficial; falta corrigir no design v1 `DAHPqSQwQhc` |
+| **MOLDE OFICIAL do card** | **Concluído (2026-07-18)** | Design Canva `DAHPxd59xaI` — "Arcavila — Molde Card Instagram", 1080x1080. Edit: https://www.canva.com/d/Elb74ZGqIIyJ6n4 . Criado por importação de HTML (`molde-card-instagram.html` no repo), o que contornou a limitação da API do Canva de não criar caixas de texto novas. Tem **duas caixas de texto separadas e estilizadas**: frase (Playfair 54px, creme #F4EBDA) e destaque (Playfair 70px, itálico bold, dourado #C9A227). Element IDs da página `PBNFsl83ybQm9jT1`: fundo `-LBqJTNvSXwWpRTmQ`, scrim `-LBD2T5wl05zlw1TB`, logo `-LBjVTkm9jWvfx5jz`, aspa `-LBFZbjQVrHmXZmfK`, frase `-LBRKgJ0Y9bLb4n29`, destaque `-LB1zQ6gdHkHrYc0l`, handle `-LBYd0MhlFxnrp05j` |
+| Logo do molde | **Concluído (2026-07-18)** | `assets/logo-faixa.png` publicado no repo (commit `8b7ff96`) e subido ao Canva como asset `MAHPxRDj_CQ`. No molde: 440x237,88 (proporção real 640x346), topo 56, esquerda 320. Novo element ID do logo: `PBNFsl83ybQm9jT1-LBGVXJVXKgQXp0jy` (o anterior foi deletado) |
+| **Layout aprovado (v2)** | **Definido (2026-07-18)** | Chiba inverteu o layout: **texto no alto, logo centralizado embaixo**. Motivo: o céu é a área mais uniforme da foto, o texto ganha legibilidade. Aspa no alto à esquerda (topo 50, esq 85), frase no topo 200, destaque logo abaixo, logo centralizado (440x237,88 em topo 691, esq 320), handle no topo 960. Variante com logo no canto inferior esquerdo foi testada e **descartada** |
+| **Tarja no texto de destaque** | **REGRA FIXA (2026-07-18)** | Decisão do Chiba: o destaque **sempre** vai sobre uma tarja de fundo em cor de contraste (creme da paleta do logo, texto em dourado). Motivo: garante legibilidade em qualquer foto, sem depender de julgar a luminosidade caso a caso. **Testado e validado:** a tarja sobrevive ao `replace_text` da API, se redimensiona e se recentraliza sozinha. **Limite:** com frase longa a tarja vira uma barra de ponta a ponta e fica pesada. Manter o destaque em no máximo ~22 caracteres (com 16 caracteres a tarja mede 533px; com 29 vai a 968px de 1080) |
+| **MOLDE OFICIAL v2** | **Concluído (2026-07-18)** | Design `DAHPxiESun8` — "Arcavila — MOLDE OFICIAL Card Instagram v2". Edit: https://www.canva.com/d/zY4vNLomFLkc_Nd . Já contém layout v2 + tarja do destaque + logo correto. **É este que deve ser copiado na geração em lote**, não o `DAHPxd59xaI` (v1, layout antigo). Element IDs seguem os mesmos do v1, pois vieram por cópia |
+| Lição — tarja só existe se vier do molde | **Registrado (2026-07-18)** | O `format_text` da API do Canva não tem opção de cor de fundo de texto. A tarja não pode ser aplicada por API num card que não a tenha. Ou seja: todo card precisa nascer de uma cópia do molde v2 |
+| Regra da foto (atualizada) | **Definido (2026-07-18)** | Não é mais "terço superior limpo" e sim **metade superior limpa**, porque agora são duas linhas de texto ali. Palavra-chave deve pedir céu aberto ou área lisa no alto |
+| Cards de exemplo | **Concluído (2026-07-18)** | Deserto: `DAHPxhZbIeA`. Dia das Mães: `DAHPxgY50bo` ("Antes de eu saber rezar, minha mãe já rezava por mim." / "E Deus escutava."). Ano Novo: `DAHPx3mrPBM` ("Não peça um ano fácil. Peça um coração firme." / "Deus vai com você."), primeiro card gerado 100% a partir do molde v2. Fotos do Unsplash, licença livre |
+| Ajuste pendente no molde | **PENDENTE** | O destaque tem posição fixa, então quando a frase ocupa duas linhas ele precisa descer manualmente. Regra a embutir na geração em lote: topo do destaque = topo da frase + altura da frase + 33px. Além disso, ao reposicionar o destaque é preciso recalcular a esquerda para manter a centralização, porque a caixa encolhe conforme o texto |
+| Lição — API do Canva, recorte de imagem | **Registrado (2026-07-18)** | `update_fill` mantém a moldura do elemento antigo, e `resize_element` com `preserve_aspect_ratio` usa a proporção da MOLDURA, não a da imagem nova. Resultado: imagem cortada no topo e na base. Solução que funciona: `delete_element` no elemento antigo + `insert_fill` novo já com width e height na proporção exata da imagem |
+| Método de importação HTML → Canva | **Validado (2026-07-18)** | `import-design-from-url` com raw URL do GitHub e `data-document-role="page"` no container. Fontes Google e imagens por raw URL são resolvidas pelo Canva. É o caminho para criar qualquer molde novo com estrutura que a API não monta |
+
+### Especificação fechada do card (layout v2) — 2026-07-18
+
+Molde oficial: `DAHPxiESun8` (https://www.canva.com/d/zY4vNLomFLkc_Nd). Página `PBNFsl83ybQm9jT1`. Canvas 1080x1080.
+
+| Elemento | Element ID | Posição e estilo |
+|---|---|---|
+| Foto de fundo | `PBNFsl83ybQm9jT1-LBqJTNvSXwWpRTmQ` | 1080x1080, full bleed, topo 0 esq 0 |
+| Scrim (gradiente) | `PBNFsl83ybQm9jT1-LBD2T5wl05zlw1TB` | 1080x1080, fixo, não mexer |
+| Aspa | `PBNFsl83ybQm9jT1-LBFZbjQVrHmXZmfK` | topo 50, esq 85, dourado `#C9A227` |
+| Frase | `PBNFsl83ybQm9jT1-LBRKgJ0Y9bLb4n29` | topo 200, esq 110, largura 860, Playfair Display 54px, creme `#F4EBDA`, centralizado, até 2 linhas |
+| Destaque | `PBNFsl83ybQm9jT1-LB1zQ6gdHkHrYc0l` | topo 366, Playfair Display 70px itálico bold, dourado `#C9A227` **sobre tarja creme**, centralizado, máximo ~22 caracteres |
+| Logo | `PBNFsl83ybQm9jT1-LBGVXJVXKgQXp0jy` | asset `MAHPxRDj_CQ`, 440x237,88, topo 691, esq 320 |
+| Handle | `PBNFsl83ybQm9jT1-LBYd0MhlFxnrp05j` | topo 960, esq 190, largura 700, Lato 30px, creme, `@editora.arcavila` |
+
+Regras de produção:
+
+1. Todo card nasce de uma **cópia do molde v2**. Nunca criar do zero, porque a tarja do destaque não pode ser aplicada por API.
+2. Foto precisa ter a **metade superior limpa** (céu aberto ou área lisa).
+3. Se a frase ocupar duas linhas, o destaque desce: topo do destaque = topo da frase + altura da frase + 33px. Ao reposicionar, recalcular a esquerda para manter a centralização, porque a caixa encolhe conforme o texto.
+4. Fonte de fotos padrão: Unsplash, licença livre.
+
+### Narração (AllVoiceLab) — validado em 2026-07-18
+
+MCP AllVoiceLab conectado. Voz oficial do projeto: **Rachel**, `voice_id 280801072249831431`, modelo `tts-multilingual`. Não trocar sem aprovação. Descartadas por soarem jovens demais: "Inspirational Girl" e "Instructor Lady". Contexto completo no Drive: `contexto-voz-narracao-arcavila.md`.
+
+Tratamento obrigatório, aplicar sempre sem o usuário pedir: `ffmpeg -y -i entrada.mp3 -filter:a "atempo=0.8" -b:a 192k saida.mp3`.
+
+Dois ajustes ao fluxo documentado, descobertos ao rodar a primeira narração:
+
+1. **Não é mais preciso arrastar o arquivo para o chat.** Passando `output_dir` como `/Users/mac/Claude/Projects/Arcavila`, o mp3 cai direto na pasta do projeto, que o sandbox enxerga. O fluxo antigo mandava salvar no Desktop e pedir upload manual.
+2. **O comando ffmpeg documentado degradava o áudio.** Sem `-b:a`, o ffmpeg recodificava de 261 kbps para 67 kbps. O `-b:a 192k` acima corrige isso.
+
+**Pipeline de Reels narrado validado ponta a ponta em 2026-07-19.** Primeira peça: `reel-regina-narrado-v1.mp4`, 1080x1920, 30 fps, 29,1s. Etapas: gerar cada frase separada no AllVoiceLab → `silenceremove` nas pontas → `atempo` por frase conforme o mapa emocional → concatenar com silêncios medidos → mixar ambiência com `sidechaincompress` (ducking) → ajustar ao tamanho do vídeo → juntar com `-c:v copy`, sem recodificar o vídeo.
+
+Mapa emocional padrão, sempre a partir de 0,8 como teto: montagem 0,80, desenvolvimento 0,78, virada 0,73, revelação 0,65. Frase final muito longa (acima de ~25 palavras) fica em 0,70, senão arrasta. Pausas: 0,5s entre frases comuns e 1,1s antes da revelação.
+
+Receita de mixagem: ambiência a **-15 dB**, lead-in de 1,0s antes da voz, cauda de 1,5 a 2,0s com fade, `sidechaincompress` threshold 0.04 ratio 5 attack 15 release 350, `alimiter` no fim. Trilha de referência aprovada: "Daytime Forrest Bonfire".
+
+Limitação encontrada em 2026-07-18: o parâmetro `speed` do `text_to_speech` **só aceita número inteiro**, apesar da documentação da ferramenta dizer que o intervalo é [0.5, 1.5]. Passar 0.6 dá erro de validação. Consequência: todo ajuste fino de velocidade tem que ser feito no ffmpeg via `atempo`, que além de funcionar dá controle mais fino.
+
+Pendência de segurança herdada do contexto: a API key do AllVoiceLab foi exposta em texto no chat de instalação. Gerar nova key em allvoicelab.com/workbench/api-keys e atualizar o `claude_desktop_config.json` se ainda não foi feito.
+
+### Cadência de publicação — definida em 2026-07-18
+
+Ritmo alvo: **5 peças por semana**, sendo 3 cards estáticos e 2 Reels, mais Stories quase diários. Referência de mercado para 2026: 3 a 5 posts de feed e 2 a 4 Reels por semana, com consistência pesando mais que volume. Começar em 4 peças (2 cards e 2 Reels) por 3 ou 4 semanas e só subir para 5 depois que a produção estiver rodando sem atraso. Regra de variação: os 3 estáticos da semana não podem ser os 3 no mesmo formato de card de frase, senão o alcance cai por fadiga de formato.
+
+### Automação de posts de imagem no Instagram (Make) — 2026-07-21
+
+Modelo híbrido (opção escolhida pelo Chiba): o card é gerado por mim no Canva sob demanda; o Make cuida da planilha e da publicação.
+
+Cenário criado: **"Arcavila — Publicar Imagem no Instagram"** (id 5724924), on-demand, desligado até validação visual no Make. Fluxo: filterRows (coluna M preenchida E coluna L vazia) → instagram-business:CreatePostPhoto (image_url = coluna M, caption = coluna G + site + hashtags, accountId 17841449774005730, conexão Facebook 10021614) → updateRow (coluna L = "Sim", índice 11 base-0). Espelha o cenário de Reels 5716956, que já funciona.
+
+Planilha de pautas: `1OzPF-hzL1fUobfEclh3NCe4PElEoKvih9hKH9Rr4whc`, aba "Untitled". Colunas: F=Tema Arcavila, G=Reflexão 4 frases (legenda), K=Reflexão imagem (texto do card), L=Imagem postada?, M=URL imagem (a criar). Índices base-0 no updateRow: K=10, L=11, M=12.
+
+**Capacidades reais confirmadas por teste em 2026-07-21:**
+
+1. **EU CONSIGO escrever na planilha** rodando um scenario Make com google-sheets:updateRow. Testado: escrevi a reflexão da linha LD-20260720-01 na coluna K. Portanto posso preencher K, M e L via Make. (A ferramenta de Google Drive que tenho só lê/cria arquivos, não edita células — por isso a escrita passa pelo Make.)
+2. **EU NÃO CONSIGO baixar os bytes da imagem exportada do Canva** no meu ambiente: o proxy do sandbox bloqueia saída externa (curl retorna `403 from proxy after CONNECT`). Mas não preciso: o módulo do Instagram baixa a `image_url` no lado do servidor na hora de publicar.
+3. **URL do Canva é temporária** (~24h, header X-Amz-Expires). Para postar no mesmo dia serve direto na coluna M. Para permanência, adicionar passo no Make: HTTP baixa a imagem → github push → usa a raw URL.
+4. **Único passo não automatizável em Make: a criação do card** (edição no Canva depende de mim ou de plano Enterprise). Todo o resto (escrever K/M, publicar, marcar L) roda no Make.
+
+Cenário de teste "Escrever Reflexão (teste)" (id 5726450) foi criado, usado para provar a escrita e **deletado** em seguida.
+
+**TESTE DE PONTA A PONTA — sucesso em 2026-07-22.** Primeiro post automático publicado: linha LD-20260720-01 ("Conquista e gratidão"). Card gerado do molde v2 (foto de picos ao amanhecer, Unsplash), reflexão "Toda bênção que chega tem um remetente. | Não esqueça o Autor." gravada na K, URL na M, publicado no Instagram e coluna L marcada "Sim" — tudo via Make. Cenário usado: "Publicar Imagem (teste fixo)" id 5727071 (desativado após o teste).
+
+**Bug em aberto a resolver na próxima sessão:** o cenário que lê a coluna dinamicamente (filterRows → pega URL e legenda da linha) falha com "image_url required". Testei referência por letra (`{{1.M}}`), por nome de cabeçalho (`{{1.\`URL imagem\`}}`) e com includesHeaders true/false — nenhuma resolveu o valor da coluna. O token interno do Make para o valor da coluna do filterRows não bate com esses formatos e não dá para descobrir às cegas por API. **Solução:** abrir o cenário na interface do Make e remapear os campos image_url e caption clicando nas colunas no dropdown, o que fixa o token correto. O teste fixo (URL e legenda hardcoded) provou que a publicação e a marcação da L funcionam; só falta o mapeamento dinâmico. Header "URL imagem" foi adicionado na M1 da planilha.
+
+Limite do plano Make Free: **máximo 2 cenários ativos** ao mesmo tempo. Precisei desativar/deletar cenários auxiliares durante o teste para caber.
+
+**Bug de mapeamento RESOLVIDO em 2026-07-22.** Causa-raiz (achada pelo Browser inspecionando o DOM): referências a colunas de Google Sheets criadas por API entram no Make com classe "unknown" e não resolvem, porque o Make só valida e só lista as colunas no menu **depois que o módulo de leitura roda uma vez e gera amostra**. Além disso, o formato correto do token NÃO é letra nem nome de cabeçalho: é o **índice numérico da coluna (base 0) entre crases** — `{{1.\`12\`}}` para a coluna M (URL imagem) e `{{1.\`6\`}}` para a coluna G (Reflexao 4 frases). Confirmado no blueprint salvo (cenário 5727133) e na amostra gravada.
+
+Receita definitiva para montar automação de planilha no Make por API + Browser: (1) crio o esqueleto por API; (2) Browser roda "Run this module only" no módulo de leitura (só lê, não publica) para gerar a amostra; (3) Browser remapeia os campos clicando nas colunas no menu, agora povoado; (4) salva. Token final = índice base-0 da coluna entre crases.
+
+**Cenário de publicação de imagem PRONTO E VALIDADO PONTA A PONTA (2026-07-22):** id 5727133, "Arcavila — Publicar Imagem no Instagram", on-demand, mapeamento dinâmico. Segunda validação completa com card novo e URL fresca: linha PP-20260720-03 ("Herança e legado", card de campo de trigo, frase "Tem uma fé que te ensinaram em silêncio. / Agora ela é sua."). O cenário achou a linha sozinho (M preenchida, L vazia), publicou no Instagram com a legenda da coluna G e marcou L "Sim" — 100% dinâmico, nada hardcoded. **A automação está funcionando.**
+
+Fluxo operacional confirmado para cada post: (1) eu escolho uma linha NOVA da planilha; (2) gero o card no Canva do molde v2 a partir do tema da coluna F; (3) exporto JPG e escrevo, via Make, a reflexão na K e a URL na M da linha; (4) rodo o cenário 5727133, que publica e marca a L. Lembrete: a URL do Canva expira em ~13h a ~24h, então rodar o cenário no mesmo dia da geração.
+
+Linhas já postadas no teste: LD-20260720-01 (Conquista e gratidão) e PP-20260720-03 (Herança e legado). Ambas com L="Sim".
+
+Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do teste está publicado no Instagram), M com URL do Canva já expirada, K com a reflexão. Cabeçalho "URL imagem" na M1.
+
+---
+
 ## Pipeline Pós-Compra (Hotmart → Make → Mailchimp)
 
 > **Verificação 2026-07-05 (via conector do Make):** a configuração do cenário está correta — o Make escreve a tag exata `comprou-amor-e-fe` na audiência `9f9b97e70e` (us5), via API de tags do Mailchimp, disparado pelo webhook do Hotmart. O cenário está ativo/rodando (resposta "already running" ao tentar ativar; o campo `isPaused` da API veio inconsistente — conferir o toggle "ON" visualmente no teste final). A tag `comprou-amor-e-fe` ainda NÃO existe no Mailchimp porque nenhuma compra passou pelo cenário; ela nasce na 1ª compra (teste ou real).
@@ -304,7 +413,7 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 > Romance cristão original. Autora: Ana Veras. **Bíblia editorial completa (barreira, cenário, final, personagens, tom, estrutura) em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor.md` na raiz.
 
 | Item | Status | Observação |
-|------|--------|---------|
+|------|--------|-----------|
 | Pesquisa da história de referência | Concluído | Documento `referencia-pousando-no-amor.md` na raiz, com grade de tradução e diretrizes de originalidade |
 | Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
 | Título definitivo | Concluído em 2026-07-02 | "A Mentira que Deus Usou" — escolhido entre 10 opções com foco em curiosidade e tensão fé/mentira |
@@ -321,7 +430,7 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 > Segundo romance cristão original, sem repetir transposições do Livro 1. Autora: Ana Veras. **Bíblia editorial completa em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor-livro2.md` na raiz.
 
 | Item | Status | Observação |
-|------|--------|----------|
+|------|--------|-----------|
 | Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz |
 | Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
 | Estrutura de capítulos | Aprovada em 2026-07-02 | 13 capítulos + epílogo, cliffhanger em cada um |
@@ -370,9 +479,11 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 ## Make.com
 
 | Item | Status | Observação |
-|----|--------|-----------|
+|------|--------|-----------|
 | Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
 | Cenário Arcavila — Hotmart Compra Aprovada | **Ativo (verificado 2026-07-05)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Config e estado conferidos via conector. ID em `referencia/credenciais-e-ids.md` |
+| Cenário Arcavila — Publicar Reel no Instagram | **Ativo (validado ponta a ponta em 2026-07-21)** | ID 5716956. Publica reels automaticamente a partir da planilha de pautas. Ver seção "Conteúdo Orgânico — Imagens Instagram (Canva)" para o cenário irmão de imagens (5727133) |
+| Limite do plano Free | **Nota** | Máximo 2 cenários ativos e 1000 operações/mês — gerenciar quais cenários ficam ligados por vez |
 
 ---
 
@@ -385,9 +496,11 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 | Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade |
 | Mailchimp | Free até 500 contatos | Monitorar crescimento da lista para antecipar upgrade |
 | Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
-| Make.com | Free tier (1 cenário ativo) | Cenário ativo: Hotmart → Mailchimp pós-compra |
+| Make.com | Free tier (2 cenários ativos) | Cenários ativos: Hotmart → Mailchimp pós-compra; Publicar Reel no Instagram |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
-| Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Novos resizes exigem upgrade |
+| Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Pipeline de cards de Instagram (molde v2) não depende do resize |
+| PostHog | Free (1M eventos/mês) | Analytics do site, ver seção "Analytics de Site (PostHog)" |
+| AllVoiceLab | Ver plano na conta | Narração de Reels, voz Rachel |
 | Meta Ads | Por investimento | Em preparação. Criativos 1 e 3 finalizados (4:5 e 9:16) em 2026-07-03. Contas Meta (Business, Página, Instagram) pendentes — ver seção "Redes Sociais — Contas Meta" |
 
 ---
@@ -397,73 +510,3 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 - `referencia/credenciais-e-ids.md` — IDs, URLs, tokens, DNS/TXT, designs do Canva.
 - `referencia/deploy-e-git.md` — workflow de deploy, SSH, lições aprendidas de git e Canva.
 - `referencia/decisoes-editoriais.md` — bíblia editorial dos Livros 1 e 2 e decisões fixas do Clube.
-
----
-
-## Modelo de criativo aprovado: "reels-emocional" (19/07/2026)
-
-Layout oficial para reels de frases, aprovado pelo Chiba. Render 100% local (FFmpeg no Cowork, custo zero por video).
-
-- Estrutura: 3 frases que se completam, uma por slide em tela cheia, + slide final de marca. 18s, 1080x1920, 30fps.
-- Fundo off-white 0xF1EEE8, estilo editorial claro.
-- Tipografia: Lora (texto preto 0x2B2622) e Lora Bold para palavras de impacto em marrom 0x8B6B42 e caixa alta. A Lora Bold e instancia estatica gerada da fonte variavel via fontTools (wght=700).
-- Aspas decorativas grandes douradas 0x9A7B52 no topo de cada slide de frase.
-- Assinatura @editoraarcavila (cinza 0x9B948A, 30px) no rodape de todos os slides.
-- Slide final: selo Arcavila 540px legivel + "Conheca nossos livros em" + "ARCAVILA.COM.BR" em marrom caixa alta.
-- Animacoes: linhas surgem em cascata com fade e deslize vertical; transicao slideleft 0.6s entre slides; fade no encerramento; audio ambiente suave.
-- Arquivo de referencia: reel-layout-claro-3slides-v2.mp4 (pasta local do projeto no Cowork).
-- Pautas alimentadas pelo radar de trends semanal (prototipo: radar-trends-2026-07-16.md; frases baseadas em trends da semana + parafrase biblica + formula de 3 atos).
-- Pendente para automacao completa: tarefa agendada do radar semanal, fila de pautas com curadoria, cenario Make de publicacao via Graph API.
-
-## Pipeline de publicação de Reels — método validado (2026-07-22)
-
-### Upload de vídeo ao GitHub: GitHub Desktop (método oficial, sem terminal nem token)
-Descartados: (a) Make Drive→GitHub falha silenciosa com arquivos acima de ~1 MB (confirmado em teste com vídeo de 9 MB: execução marca sucesso mas nao cria commit); (b) curl com token funciona mas exige token manual no terminal.
-
-Metodo oficial adotado: um clone de trabalho limpo do repo em `/Users/mac/Downloads/pasta arcavila/arcavila-teste` (criado via GitHub Desktop > File > Clone Repository). Fluxo executado pelo Cowork Claude via controle de tela (computer-use), sem terminal e sem token:
-1. Gera o reel (fica na pasta do projeto no Mac).
-2. Copia via Finder para a subpasta `reels/` do clone de trabalho.
-3. GitHub Desktop: escreve mensagem, DESMARCA o `.DS_Store`, Commit + Push (usa o login do GitHub ja salvo do usuario).
-4. Verifica o commit pela API do GitHub (mcp__github__get_file_contents em path=reels).
-
-Observacao: o Google Drive para Desktop tambem foi instalado e montado no Mac; isso permite ao Cowork copiar arquivos para pastas do Drive via Finder quando necessario. O caminho do mount do Drive e `/Users/mac/Library/CloudStorage/GoogleDrive-caiochiba4@gmail.com/Meu Drive/`.
-
-### Publicacao no Instagram: cenario Make 5716956
-"Arcavila — Publicar Reel no Instagram" (id 5716956). Conta @editora.arcavila, accountId 17841449774005730, conexao Facebook id 10021614.
-Fluxo: Google Sheets Search Rows (filtra pela coluna A = ID da pauta) → Instagram Create a Reel Post (video_url = https://raw.githubusercontent.com/maioemico/arcavila-teste/main/reels/NOME.mp4) → Google Sheets Update Row (coluna Postado? = sim).
-Disparo feito pela API do Make (scenarios_activate + scenarios_run + scenarios_deactivate). O cenario fica on-demand/inativo entre usos.
-Armadilhas ja resolvidas no modulo Google Sheets do Make: usar sheetId = "Untitled" (nome interno da aba, NAO o titulo do arquivo); tableFirstRow = "A1:CZ1" no Search Rows; valueInputOption = "USER_ENTERED" obrigatorio no Update Row; a coluna Postado? e o indice "9" (base 0) no campo values do Update Row. O video precisa estar em faststart (moov atom no inicio): `ffmpeg -c copy -movflags +faststart`.
-
-### Layout "carta" (novo, validado 2026-07-22)
-Variacao do layout narracao pagina-de-livro. Slide de CAPA: icone de envelope em traco fino marrom (0x8B6B42) desenhado com PIL + "Carta para {Nome}" (rotulo "Carta para" em cinza, nome grande em marrom), no mesmo papel envelhecido 0xEDE3CC com moldura dupla.
-IMPORTANTE: o frame 0 do video DEVE ser a capa completa, SEM fade de entrada a partir do preto — senao o Instagram usa miniatura preta na grade. Reforcar tambem com thumb_offset = 1000 no modulo do Instagram.
-A reflexao passa a ser ENDERECADA: a primeira frase comeca com vocativo ("{Nome}, ..."). Mantem todas as regras (4 frases, arco de fe, nunca citar celebridades, tratamento tu/ti).
-Nomes sorteados sem repetir: registro em `nomes-utilizados.csv` (colunas Nome, Genero, Data, VideoID) na pasta do projeto. Ler antes de cada video, sortear um nome inedito, adicionar a linha. Primeiro nome usado: Helena.
-Primeira peca publicada neste formato: reel-carta-helena-v2.mp4 (publicada SEM narracao, porque o AllVoiceLab esteve indisponivel em 21-22/07; confirmado ainda fora do ar em 23/07/2026, ver secao "Higgsfield — narracao" abaixo — o Higgsfield e agora a alternativa em uso).
-
-### Higgsfield — narração (23/07/2026)
-
-O Chiba assinou o Higgsfield (MCP de geração de mídia por IA) e passou a usá-lo como alternativa de narração de reels em português, já que o AllVoiceLab (voz Rachel) segue fora do ar desde 21/07/2026, confirmado ainda indisponível em teste feito em 23/07/2026.
-
-**Teste de vozes:** testadas 3 vozes femininas do Higgsfield (modelo `text2speech_v2`, variant `elevenlabs`) com uma frase real do reel "carta para Helena" ("Helena, há noites em que o silêncio pesa mais do que qualquer palavra. Mas foi exatamente nesse silêncio que tu ouviste a voz que nunca te abandonou."): Ines (voice_id `023ebf5e-1970-40d8-825c-a5ef6a1dd4ff`), Marisol (voice_id `75e72cd5-011b-4130-a474-e8b1ab341f04`) e Simone (voice_id `d3b201aa-086c-4d54-8568-a6bb9f4a0b63`). **Voz escolhida: Ines**, por combinar melhor com o tom Arcavila (emocional, editorial, sem exagero).
-
-**Detalhes técnicos:** ferramenta MCP `generate_audio`, model `text2speech_v2`, params `variant="elevenlabs"`, `voice_type="preset"`, `voice_id="023ebf5e-1970-40d8-825c-a5ef6a1dd4ff"` (Ines). Geração é assíncrona: `generate_audio` retorna um job com status "pending"; usar `job_display(id)` para checar status até "completed" e pegar a `rawUrl` (mp3) em `results.rawUrl`. Custo aproximado ~0,15 créditos por chamada de teste curta (variável por tamanho do texto).
-
-**Pendência técnica:** os arquivos de áudio gerados ficam em URLs `cloudfront.net`, bloqueadas pelo proxy do sandbox Cowork (erro "blocked-by-allowlist" no curl) — não é possível baixar o mp3 direto via bash/curl no sandbox. O `job_display` renderiza um player de áudio na UI do Cowork, então dá para ouvir sem baixar, mas para USAR o áudio no vídeo final (ex.: juntar com FFmpeg) ainda falta descobrir um caminho de download que funcione. Não resolvido.
-
-Higgsfield também gera vídeo (`generate_video`), imagem (`generate_image`) e tem `shorts_studio`/`explainer_video`, ainda não explorados a fundo. Uso combinado planejado: (1) narração de reels via Higgsfield (Ines), (2) vídeo de vendas/chamada para o livro Amor e Fé (ainda não iniciado).
-
-### Higgsfield — fluxo validado ponta a ponta (25/07/2026)
-
-Fluxo completo de narração via Higgsfield + publicação automática testado de ponta a ponta no reel "carta para Helena", com sucesso.
-
-**1. Download de áudio do Higgsfield — problema resolvido.** As URLs de áudio (`cloudfront.net`) continuam bloqueadas pelo proxy do sandbox Cowork (bash/curl não alcança nenhum domínio externo, nem sequer `raw.githubusercontent.com` — o sandbox só tem acesso à internet via MCPs). Solução funcional: usar a extensão **Claude in Chrome** (`mcp__claude-in-chrome__*`, NÃO o computer-use de tela cheia) para buscar o arquivo com `fetch()` dentro de uma aba real do navegador do usuário (que tem internet normal) e disparar o download. Dois detalhes importantes: (a) o Chrome bloqueia nativamente "vários downloads automáticos" de uma origem — aparece um popup pedindo para permitir sempre que a origem (ex. `https://example.com`, usada como página neutra para rodar o fetch) baixe vários arquivos; esse popup é UI nativa fora do alcance da extensão, então o usuário precisa clicar uma vez em "Concluído" autorizando a origem, e depois disso os downloads futuros passam direto; (b) cliques disparados via JavaScript (`a.click()` sintético) podem não valer como gesto de usuário — o método confiável foi criar os elementos `<a href=blob download=nome>` via `javascript_tool` e depois clicar de verdade neles com `mcp__claude-in-chrome__computer` (`left_click` com `coordinate`, `save_to_disk:true`), um clique real via protocolo do Chrome. Configuração permanente feita pelo usuário: pasta padrão de download do Chrome agora é `/Users/mac/Claude/Projects/Arcavila/Higgsfield/Narrações` (todo áudio/vídeo do Higgsfield cai automaticamente ali). Reels finais renderizados localmente vão para `/Users/mac/Claude/Projects/Arcavila/Higgsfield/Reels (carta)/` (cópia manual, não depende do Chrome).
-
-**2. Narração completa gerada e aplicada.** Voz **Ines** (Higgsfield/ElevenLabs, `voice_id` `023ebf5e-1970-40d8-825c-a5ef6a1dd4ff`, model `text2speech_v2`, variant `elevenlabs`) narrou o título "Carta para Helena" e as 4 frases da reflexão. Vídeo remontado do zero (script Python/PIL + FFmpeg multi-pass, evitando o erro de OOM já conhecido) replicando o estilo visual "carta" a partir de frames extraídos do `reel-carta-helena-v2.mp4` como referência (envelope, moldura dupla, papel `#EDE3CC`, texto `#33291E`, aspas douradas `#9A7B52`, Lora Variable + instância Bold `wght=700`). Atempo por frase conforme o mapa emocional já documentado (0.80/0.78/0.73/0.65) com pausas (0.5s, 0.5s, 1.1s antes da revelação) e ambiência reaproveitada de `reels-flores-ambiencia-15db.mp3` com sidechain compress. Resultado: `reel-carta-helena-narrado-v1.mp4`, 33.9s, 1080x1920, frame 0 confirmado como capa completa (sem preto).
-
-**3. Publicado com sucesso no Instagram.** Enviado via GitHub Desktop para `reels/reel-carta-helena-narrado-v1.mp4` no repositório, depois publicado através do cenário Make 5716956 (`scenarios_update` trocando `video_url` para o novo mp4, mesma legenda já usada — "Carta para Helena." + reflexão + call to action + hashtags —, `thumb_offset` 1000). Post confirmado no ar em https://www.instagram.com/p/DbOLHtvkmHd/ (verificado visualmente via Claude in Chrome, "há 1 minuto", legenda correta).
-
-**4. Atenção / pendência para o futuro.** Ao rodar o cenário 5716956 desta vez, o módulo 1 (`google-sheets:filterRows`) foi deliberadamente configurado para NÃO encontrar nenhuma linha (filtro trocado para um valor "SEM-CORRESPONDENCIA-TESTE-HELENA" que não existe na planilha), porque a configuração salva no cenário ainda apontava para a linha de um reel antigo e diferente ("LD-20260720-02"), e marcar aquela linha como Postado=sim teria corrompido o rastreamento de outra pauta. Isso fez o módulo 3 (`updateRow`) falhar com erro esperado ("Unable to parse range: 'Untitled'!Aundefined:ZZundefined") — sem afetar a publicação em si (o módulo 2, o post, roda antes e já tinha sido concluído). Ou seja: a publicação funcionou, mas a planilha de controle NÃO foi atualizada para esta pauta. Se houver uma linha própria para "carta-helena" na planilha de controle no futuro, o filtro do módulo 1 do cenário 5716956 deve ser ajustado para apontar pra ela antes do próximo uso.
-
-### Descartados / desativados nesta sessao
-Cenario Make 5734673 "Arcavila — Reels Drive → GitHub" e a pasta Drive `arcavila-git/Reels`: criados para testar o upload automatico via Drive, mas o pipeline Drive→GitHub do Make falha para arquivos de video (>1 MB). Cenario desativado; nao usar para video. Preferir sempre o metodo GitHub Desktop acima.
