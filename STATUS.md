@@ -11,7 +11,7 @@ Este STATUS.md concentra o estado **vivo** do projeto: o que está no ar, o que 
 Em 2026-07-04 fizemos um **split leve**: o conteúdo estável e de consulta pontual saiu daqui e foi para a pasta `referencia/`. Isso mantém o STATUS.md enxuto sem perder nada. Abra o arquivo de referência **apenas quando precisar do detalhe**:
 
 - **`referencia/credenciais-e-ids.md`** — todos os IDs, URLs, tokens, DNS/TXT e IDs do Canva. Abrir quando precisar de um valor específico (Meta Pixel, Hotmart, Mailchimp, webhook Make, verificação DNS, designs do Canva).
-- **`referencia/deploy-e-git.md`** — workflow de deploy, SSH e todas as lições aprendidas de git e Canva. Abrir **antes** de fazer push/deploy ou **quando o git der erro** (index.lock, pull travado, push_files vazio).
+- **`referencia/deploy-e-git.md`** — workflow de deploy, SSH e todas as lições aprendidas de git e Canva, incluindo o **Protocolo de Sincronização Segura** (2026-07-25). Abrir **antes** de fazer push/deploy, **antes de qualquer `git pull`** ou **quando o git der erro** (index.lock, pull travado, push_files vazio, stash).
 - **`referencia/decisoes-editoriais.md`** — decisões editoriais fixas (bíblia) dos Livros 1 e 2 e do Clube de Histórias. Abrir ao escrever/editar história, definir capa ou montar funil de um livro.
 
 Regra de manutenção: quando uma credencial, uma lição de deploy ou uma decisão editorial fixa mudar, atualizar o arquivo de referência correspondente. Quando o **estado** de uma entrega ou pendência mudar, atualizar este STATUS.md.
@@ -34,7 +34,7 @@ Pastas novas:
 | `criativos/pautas/` | Planilhas de pauta (Instagram, cliffhangers, nomes já usados) |
 | `previews/` | HTMLs de preview usados para validar mudanças visuais antes de publicar |
 | `docs/` | Plano de marketing, roteiros, prompts de referência |
-| `scripts/` | Scripts de push/deploy (`push_index_estande.sh` etc.) |
+| `scripts/` | Scripts de push/deploy e de sincronização git (`push_index_estande.sh`, `git-pull-seguro.sh` etc.) |
 | `arquivo/` | Arquivos `contexto-*.md` de chats anteriores, já absorvidos neste STATUS.md — mantidos só como histórico |
 
 **Limitação técnica encontrada nesta reorganização, contornada em seguida:** o sandbox do Cowork não tem rede externa liberada para `git push`/`git pull` via terminal (SSH na porta 22 e HTTPS na porta 443 para github.com retornam bloqueio do proxy) e o MCP do GitHub disponível no Cowork não tem uma ferramenta de exclusão de arquivo (só `create_or_update_file` e `push_files`, ambos aditivos). **Solução aplicada em 2026-07-25:** os arquivos novos foram criados nas pastas certas via GitHub MCP, e a exclusão dos caminhos antigos foi feita via Claude in Chrome — navegando direto para a URL de exclusão do GitHub (`github.com/<owner>/<repo>/delete/<branch>/<path>`) e confirmando o commit pela interface web (usuário já estava logado no Chrome). Assim as duas ferramentas se complementam sem precisar de acesso de rede do sandbox nem de uma ferramenta de delete no MCP. `preview-onda-hero-historia.html`, `preview-quatro-momentos.html` e `referencia-pousando-no-amor-livro2.md` já estão nas pastas novas (`previews/` e `livros/o-medico-das-aguas/`), tanto no repositório quanto localmente.
@@ -87,13 +87,15 @@ Itens removidos nesta limpeza: arquivos `.DS_Store` (agora no `.gitignore`), tr�
 
 ## Workflow de Deploy
 
-Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão por `git push` no terminal local (`~/Claude/Projects/Arcavila`); STATUS.md e arquivos pequenos são atualizados pelo GitHub MCP direto. Após qualquer push do Cowork via MCP, rodar `git pull origin main --no-rebase` antes do próximo push pelo terminal.
+Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão por `git push` no terminal local (`~/Claude/Projects/Arcavila`); STATUS.md e arquivos pequenos são atualizados pelo GitHub MCP direto. Após qualquer push do Cowork via MCP, rodar `git pull origin main --no-rebase` antes do próximo push pelo terminal — de preferência via `bash scripts/git-pull-seguro.sh` (ver "Protocolo de Sincronização Segura" em `referencia/deploy-e-git.md`).
 
-**Detalhes completos, SSH e lições aprendidas (index.lock, pull travado, push_files vazio, fluxo de assets do Canva): ver `referencia/deploy-e-git.md`.**
+**Detalhes completos, SSH e lições aprendidas (index.lock, pull travado, push_files vazio, fluxo de assets do Canva, protocolo de sincronização): ver `referencia/deploy-e-git.md`.**
 
 **Lição aprendida em 2026-07-14:** o `landing-sprites-ana-pedro.html` tem hoje ~331KB, com duas imagens (fotos de Ana e Pedro) embutidas em base64 somando ~296KB. Esse tamanho quebra o fluxo de push via GitHub MCP no Cowork — o conteúdo do arquivo nem cabe inteiro no contexto de leitura/gravação de uma chamada de ferramenta. Esse arquivo passou a exigir **sempre** push pelo terminal local (mesmo padrão já usado para o `index.html`, que tem o mesmo problema com a capa em base64).
 
 **Lição aprendida em 2026-07-25:** o sandbox do Cowork não tem rede externa liberada para `git push`/`git pull` via terminal (nem SSH porta 22, nem HTTPS porta 443 para github.com — proxy bloqueia os dois). Dentro do Cowork, todo push tem que passar pelo GitHub MCP (`create_or_update_file`/`push_files`), que **não tem ferramenta de exclusão de arquivo** — só cria/atualiza. **Solução encontrada:** para excluir um arquivo do repo a partir do Cowork, usar o Claude in Chrome (com o usuário já logado no GitHub) e navegar direto para `github.com/<owner>/<repo>/delete/<branch>/<path>`, que abre a tela de exclusão pronta para confirmar o commit — não precisa nem clicar em menus, só ajustar a URL. Validado com sucesso excluindo 3 arquivos nesta mesma reorganização.
+
+**Incidente e protocolo novo (2026-07-25):** ao sincronizar o repo local depois da reorganização de pastas, um `git stash drop` (comando errado, deveria ser `git stash pop`) quase apagou toda a reorganização local (pastas `criativos/`, `docs/`, `scripts/`, `arquivo/`, PDFs e manuscritos dos Livros 1 e 2). Recuperado a tempo via `git stash apply <hash>` porque o objeto ainda não tinha sido coletado pelo `git gc`. Criado em resposta: um **Protocolo de Sincronização Segura** completo em `referencia/deploy-e-git.md` (checklist antes de qualquer `git pull`, regra de nunca misturar edição local + push MCP do mesmo arquivo sem sincronizar, e o aviso `pop` vs `drop`) e um script auxiliar `scripts/git-pull-seguro.sh` (local, fora do git) que nunca usa stash sozinho — para com aviso se houver mudança pendente em arquivo já rastreado, em vez de arriscar automaticamente.
 
 ---
 
@@ -543,5 +545,5 @@ Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do te
 ## Referências (pasta `referencia/`)
 
 - `referencia/credenciais-e-ids.md` — IDs, URLs, tokens, DNS/TXT, designs do Canva.
-- `referencia/deploy-e-git.md` — workflow de deploy, SSH, lições aprendidas de git e Canva.
+- `referencia/deploy-e-git.md` — workflow de deploy, SSH, lições aprendidas de git e Canva, e o Protocolo de Sincronização Segura.
 - `referencia/decisoes-editoriais.md` — bíblia editorial dos Livros 1 e 2 e decisões fixas do Clube.
