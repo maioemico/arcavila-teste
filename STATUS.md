@@ -18,6 +18,33 @@ Regra de manutenção: quando uma credencial, uma lição de deploy ou uma decis
 
 ---
 
+## Estrutura de Pastas do Projeto (local) — reorganizado em 2026-07-25
+
+> A pasta local `/Users/mac/Claude/Projects/Arcavila` estava com mais de 60 arquivos soltos na raiz (reels de teste e publicados misturados, dezenas de mp3 intermediários de narração, PDFs de livros novos, planilhas de pauta, previews de validação, scripts). Reorganizada em 2026-07-25 para separar por tipo. **O site publicado (o que o Cloudflare Pages faz build) continua exatamente onde estava** — `index.html`, `amorefe/`, `anaepedro/`, `presente/`, `clube-de-historias/`, `functions/`, `netlify/`, `_redirects`, `favicon.png`, `logoarcavila*.png` na raiz não foram tocados, porque os projetos do Cloudflare Pages apontam para esses caminhos exatos como root dir — mover quebraria o deploy.
+
+Pastas novas:
+
+| Pasta | Conteúdo |
+|---|---|
+| `livros/amor-e-fe/`, `livros/a-mentira-que-deus-usou/`, `livros/o-medico-das-aguas/` | PDF, manuscrito, ficha de DNA e documento de referência de cada livro, agrupados por título |
+| `criativos/reels/` | Todos os reels em vídeo (testes e publicados — usuário confirmou que todos já foram ao ar) |
+| `criativos/audio/narracao/` | Áudios de narração (TTS, intermediários) |
+| `criativos/audio/mixagem/` | Trilhas e mixagens de ambiência dos reels |
+| `criativos/imagens/` | Testes de card de imagem |
+| `criativos/pautas/` | Planilhas de pauta (Instagram, cliffhangers, nomes já usados) |
+| `previews/` | HTMLs de preview usados para validar mudanças visuais antes de publicar |
+| `docs/` | Plano de marketing, roteiros, prompts de referência |
+| `scripts/` | Scripts de push/deploy (`push_index_estande.sh` etc.) |
+| `arquivo/` | Arquivos `contexto-*.md` de chats anteriores, já absorvidos neste STATUS.md — mantidos só como histórico |
+
+**Limitação técnica encontrada nesta reorganização (registrar para não repetir a tentativa):** o sandbox do Cowork não tem rede externa liberada para `git push`/`git pull` via terminal (SSH na porta 22 e HTTPS na porta 443 para github.com retornam bloqueio do proxy) e o MCP do GitHub disponível no Cowork não tem uma ferramenta de exclusão de arquivo (só `create_or_update_file` e `push_files`, ambos aditivos). Consequência prática: os 4 arquivos que já estavam versionados no repo antes da reorganização (`Ebook__Amor_e_Fe.pdf`, `preview-onda-hero-historia.html`, `preview-quatro-momentos.html`, `referencia-pousando-no-amor-livro2.md`) **continuam na raiz do repositório** — movê-los exigiria excluir o caminho antigo, o que não é possível com as ferramentas atuais sem duplicar o arquivo no GitHub. Localmente eles ficaram fora das pastas novas (`livros/amor-e-fe/`, `previews/`, `livros/o-medico-das-aguas/`) por causa dessa mesma limitação — é a única inconsistência proposital entre a estrutura local e o repositório. Se quiser eliminar essa duplicidade, dá para apagar o arquivo antigo direto pela interface web do GitHub (um clique) e então subir a versão nova pela pasta correspondente.
+
+Todo o resto do conteúdo reorganizado (reels, áudios, imagens de teste, manuscritos, PDFs dos livros novos, planilhas de pauta) **já estava fora do controle de versão antes desta reorganização e continua assim** — só mudou de lugar no disco local, não foi publicado no repositório público. Isso preserva a decisão implícita já existente de manter rascunhos e material ainda não lançado fora do GitHub público.
+
+Itens removidos nesta limpeza: arquivos `.DS_Store` (agora no `.gitignore`), três arquivos `.skill` soltos na raiz (`arca-upload.skill`, `browser-chat.skill`, `claude-browser.skill` — pacotes exportados sem relação com o projeto), quatro arquivos `clube-historias-carta-*.md`/`clube-de-historias-cadencia-e-calendario.md` duplicados na raiz (a versão oficial continua em `clube-de-historias/`, a pedido do usuário porque o conteúdo do Clube será reescrito depois), e as pastas de build temporário `_reel_build/` e `Higgsfield/` — esta última, apesar do nome, **não tinha relação com o MCP Higgsfield** (ainda não testado no projeto): era só onde a narração e o render final do reel da carta da Helena tinham ficado, hoje em `criativos/audio/narracao/` e `criativos/reels/`.
+
+---
+
 ## Preferências de Interação
 
 - Quando o Cowork enviar uma mensagem com mais de uma pergunta ou pedido de decisão, apresentá-las **numeradas** (1, 2, 3...) para facilitar a resposta do usuário. Definido em 2026-07-02.
@@ -63,6 +90,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 **Detalhes completos, SSH e lições aprendidas (index.lock, pull travado, push_files vazio, fluxo de assets do Canva): ver `referencia/deploy-e-git.md`.**
 
 **Lição aprendida em 2026-07-14:** o `landing-sprites-ana-pedro.html` tem hoje ~331KB, com duas imagens (fotos de Ana e Pedro) embutidas em base64 somando ~296KB. Esse tamanho quebra o fluxo de push via GitHub MCP no Cowork — o conteúdo do arquivo nem cabe inteiro no contexto de leitura/gravação de uma chamada de ferramenta. Esse arquivo passou a exigir **sempre** push pelo terminal local (mesmo padrão já usado para o `index.html`, que tem o mesmo problema com a capa em base64).
+
+**Lição aprendida em 2026-07-25:** o sandbox do Cowork não tem rede externa liberada para `git push`/`git pull` via terminal (nem SSH porta 22, nem HTTPS porta 443 para github.com — proxy bloqueia os dois). Dentro do Cowork, todo push tem que passar pelo GitHub MCP (`create_or_update_file`/`push_files`), que **não tem ferramenta de exclusão de arquivo** — só cria/atualiza. Para excluir um arquivo do repo a partir do Cowork, a única via é pedir para o usuário apagar manualmente pela interface web do GitHub.
 
 ---
 
@@ -189,7 +218,7 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | URL de pagamento | Concluído | Atualizada em todas as páginas. Valor em `referencia/credenciais-e-ids.md` |
 | Preço promocional de inauguração da editora | Definido em 2026-07-11 | R$ 37 (preço já praticado) passa a ser apresentado como desconto de lançamento sobre um preço cheio ancorado de R$ 89,90. Usar essa moldura ("de R$ 89,90 por R$ 37") nas legendas e criativos de divulgação |
 | Meta Pixel | Configurado | Eventos: `PageView`, `ViewContent`, `Lead`. ID em `referencia/credenciais-e-ids.md` |
-| PDF do e-book | **Capa atualizada e publicada (2026-07-07)** | `Ebook__Amor_e_Fe.pdf` na raiz da pasta do projeto. 50 páginas, A5. Só a **capa** (pág. 1) foi trocada pela nova foto (casal ao pôr do sol), miolo inalterado. Imagem-fonte da capa em `capa-de-livro/capa_amor_e_fe_v2.png` (1632x2624). A troca de capa (feita em 2026-07-06) tinha ficado só editada localmente sem commit; publicada via terminal em 2026-07-07 junto com os retratos (commit `638e994`). Versão anterior recuperável pelo git |
+| PDF do e-book | **Capa atualizada e publicada (2026-07-07)** | `Ebook__Amor_e_Fe.pdf` na raiz da pasta do projeto (e do repositório — não foi movido para `livros/amor-e-fe/` na reorganização de 2026-07-25 por já estar versionado no GitHub, ver seção "Estrutura de Pastas do Projeto"). 50 páginas, A5. Só a **capa** (pág. 1) foi trocada pela nova foto (casal ao pôr do sol), miolo inalterado. Imagem-fonte da capa em `livros/amor-e-fe/capa-de-livro/capa_amor_e_fe_v2.png` (1632x2624). A troca de capa (feita em 2026-07-06) tinha ficado só editada localmente sem commit; publicada via terminal em 2026-07-07 junto com os retratos (commit `638e994`). Versão anterior recuperável pelo git |
 
 ---
 
@@ -208,8 +237,8 @@ Resumo: planejamento e edições no Cowork; `index.html` e arquivos grandes vão
 | Textos de Ana e Pedro encurtados, Laís em destaque | **Concluído (2026-07-07)** | Parágrafos descritivos reescritos, máx. 2 linhas, Laís (filha) em destaque |
 | Texto "a mesma casa" reescrito como cliffhanger | **AGUARDANDO PUSH (terminal) — ver "Atualizações de Layout"** | Título e texto reescritos, vínculo familiar explícito (pai/mãe/filha) |
 | Modal de captura sobre a página nova | **Superado em 2026-07-07** | A exceção por hostname (`MODAL_DISABLED_HOSTS`) ficou redundante após a desativação global do modal (flag `MODAL_ENABLED = false`, ver "Modal de Captura de E-mail (Newsletter)") |
-| Seção "Quatro momentos que mudam tudo" (`#cenas`) removida da página | **PRONTA LOCALMENTE — AGUARDANDO PUSH (terminal)** | Depois de testar reescrita de texto, ícones SVG e ajustes de fonte (histórico nos commits anteriores), o usuário decidiu remover a seção inteira. Removido de `landing-sprites-ana-pedro.html`: HTML (`#cenas`, cabeçalho e os 4 `.cena-carta`), CSS (`.cenas-pin`, `.cenas-cabecalho`, `.cenas-trilho`, `.cena-carta` e regras filhas) e o bloco JS do trilho horizontal pinado (GSAP ScrollTrigger `#trilho`). Link "cenas" removido do menu do topo. A página passa a ir direto de "história" (Ana/Pedro/Laís) para "derramamento" (CTA "Ler agora por R$ 37"). HTML e JS validados (parser + `node --check`). Arquivo `preview-quatro-momentos.html` (usado para revisar a versão anterior) ficou obsoleto e pode ser apagado depois |
-| Transição hero → "história": frase de impacto descendo em fade (3ª versão) | **PRONTA LOCALMENTE — AGUARDANDO PUSH (terminal)** | Histórico: banda fina sem pin → cortina dourada em tela cheia (réplica do derramamento) → **ambas rejeitadas pelo usuário ("ficou ruim")**. Removida a seção `#transicao` inteira (HTML, CSS `.wipe-palco2/.wipe-luz2/.wipe-creme2`, JS). Decisão final: sem elemento novo — a própria frase do hero ("Tem casamento que não acaba em briga. Acaba em silêncio.") vira o efeito de transição. Ajustado o bloco "Hero pinado" já existente em `landing-sprites-ana-pedro.html`: `.hero-conteudo` agora desce (`yPercent: 45`, antes subia `-14`) enquanto some em fade (`opacity: 0`), scrub ligado ao scroll, pin estendido de `+=60%` para `+=90%` para o movimento ficar mais gradual. Sem cortina, sem painel extra — mais simples e mais leve. HTML e JS validados (parser + `node --check`). `preview-onda-hero-historia.html` reescrito para essa versão |
+| Seção "Quatro momentos que mudam tudo" (`#cenas`) removida da página | **PRONTA LOCALMENTE — AGUARDANDO PUSH (terminal)** | Depois de testar reescrita de texto, ícones SVG e ajustes de fonte (histórico nos commits anteriores), o usuário decidiu remover a seção inteira. Removido de `landing-sprites-ana-pedro.html`: HTML (`#cenas`, cabeçalho e os 4 `.cena-carta`), CSS (`.cenas-pin`, `.cenas-cabecalho`, `.cenas-trilho`, `.cena-carta` e regras filhas) e o bloco JS do trilho horizontal pinado (GSAP ScrollTrigger `#trilho`). Link "cenas" removido do menu do topo. A página passa a ir direto de "história" (Ana/Pedro/Laís) para "derramamento" (CTA "Ler agora por R$ 37"). HTML e JS validados (parser + `node --check`). Arquivo `previews/preview-quatro-momentos.html` (usado para revisar a versão anterior) ficou obsoleto e pode ser apagado depois |
+| Transição hero → "história": frase de impacto descendo em fade (3ª versão) | **PRONTA LOCALMENTE — AGUARDANDO PUSH (terminal)** | Histórico: banda fina sem pin → cortina dourada em tela cheia (réplica do derramamento) → **ambas rejeitadas pelo usuário ("ficou ruim")**. Removida a seção `#transicao` inteira (HTML, CSS `.wipe-palco2/.wipe-luz2/.wipe-creme2`, JS). Decisão final: sem elemento novo — a própria frase do hero ("Tem casamento que não acaba em briga. Acaba em silêncio.") vira o efeito de transição. Ajustado o bloco "Hero pinado" já existente em `landing-sprites-ana-pedro.html`: `.hero-conteudo` agora desce (`yPercent: 45`, antes subia `-14`) enquanto some em fade (`opacity: 0`), scrub ligado ao scroll, pin estendido de `+=60%` para `+=90%` para o movimento ficar mais gradual. Sem cortina, sem painel extra — mais simples e mais leve. HTML e JS validados (parser + `node --check`). `previews/preview-onda-hero-historia.html` reescrito para essa versão |
 | Pin mobile do slide "derramamento" — colapso de altura corrigido; texto oculto no mobile; cabeçalho em degradê vinho; CTA verde | **PRONTA LOCALMENTE — AGUARDANDO PUSH (terminal) — ver "Atualizações de Layout"** | Ver linhas detalhadas acima. Resumo: bug do corte de texto corrigido; texto/citação do slide final agora oculto no mobile (só a caixa de oferta aparece); cabeçalho ganhou fundo em degradê vinho para não sobrepor conteúdo ao rolar; botão de compra em verde menta para mais destaque |
 
 ---
@@ -294,7 +323,7 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 | Item | Status | Observação |
 |------|--------|-----------|
 | Molde/modelo aprovado | **Concluído (2026-07-17)** | Card "cena-metáfora": foto full-bleed, frase serifada com palavra em destaque, régua dourada, selo Arcavila + handle no rodapé. Design Canva `DAHPqSQwQhc`. Piloto: "O que parece morto em ti ainda vai FLORESCER." (broto rompendo solo rachado) |
-| Fonte de pautas | **Definido (2026-07-17)** | Google Sheets como painel. Planilha semente `pautas-imagens-arcavila.csv/.xlsx` na pasta do projeto (colunas: ID, Frase, Destaque, Palavra-chave da foto EN, Status, Link PNG, Observações), 8 frases iniciais no tom Arcavila |
+| Fonte de pautas | **Definido (2026-07-17)** | Google Sheets como painel. Planilha semente `criativos/pautas/pautas-imagens-arcavila.csv/.xlsx` na pasta do projeto (colunas: ID, Frase, Destaque, Palavra-chave da foto EN, Status, Link PNG, Observações), 8 frases iniciais no tom Arcavila |
 | Motor de geração | **Definido (2026-07-17)** | Claude gera sob demanda via Canva MCP (copiar molde → trocar frase + foto por palavra-chave → exportar PNG). Automação no Make.com fica para depois de validar o volume |
 | Foto por post | **REVISADO (2026-07-18)** | Palavra-chave (EN) na planilha → foto de banco livre. **Fonte que funciona no pipeline automático: Unsplash** (`images.unsplash.com`), licença livre para uso comercial, o Canva baixa direto pela URL pública. O Adobe Stock continua válido para escolhas manuais, mas exige que o Chiba baixe o arquivo licenciado e suba nos Uploads do Canva (ver linha abaixo) |
 | Lição — Adobe Stock não entra no Canva por API | **Registrado (2026-07-18)** | O Canva não baixa a URL S3 assinada do arquivo licenciado (`fetch_failed`). A prévia pública `1000_F_...` do `ftcdn.net` o Canva BAIXA, mas ela vem com marca d'água Adobe Stock, então é inutilizável. As ferramentas de imagem da Adobe (`image_crop_and_resize` etc.) pedem autenticação extra e não estão disponíveis nesta conexão. Conclusão: para usar Adobe Stock, o download e o upload precisam ser manuais |
@@ -341,10 +370,10 @@ Tratamento obrigatório, aplicar sempre sem o usuário pedir: `ffmpeg -y -i entr
 
 Dois ajustes ao fluxo documentado, descobertos ao rodar a primeira narração:
 
-1. **Não é mais preciso arrastar o arquivo para o chat.** Passando `output_dir` como `/Users/mac/Claude/Projects/Arcavila`, o mp3 cai direto na pasta do projeto, que o sandbox enxerga. O fluxo antigo mandava salvar no Desktop e pedir upload manual.
+1. **Não é mais preciso arrastar o arquivo para o chat.** Passando `output_dir` como `/Users/mac/Claude/Projects/Arcavila/criativos/audio/narracao`, o mp3 cai direto na pasta certa, que o sandbox enxerga. O fluxo antigo mandava salvar no Desktop e pedir upload manual.
 2. **O comando ffmpeg documentado degradava o áudio.** Sem `-b:a`, o ffmpeg recodificava de 261 kbps para 67 kbps. O `-b:a 192k` acima corrige isso.
 
-**Pipeline de Reels narrado validado ponta a ponta em 2026-07-19.** Primeira peça: `reel-regina-narrado-v1.mp4`, 1080x1920, 30 fps, 29,1s. Etapas: gerar cada frase separada no AllVoiceLab → `silenceremove` nas pontas → `atempo` por frase conforme o mapa emocional → concatenar com silêncios medidos → mixar ambiência com `sidechaincompress` (ducking) → ajustar ao tamanho do vídeo → juntar com `-c:v copy`, sem recodificar o vídeo.
+**Pipeline de Reels narrado validado ponta a ponta em 2026-07-19.** Primeira peça: `reel-regina-narrado-v1.mp4` (hoje em `criativos/reels/`), 1080x1920, 30 fps, 29,1s. Etapas: gerar cada frase separada no AllVoiceLab → `silenceremove` nas pontas → `atempo` por frase conforme o mapa emocional → concatenar com silêncios medidos → mixar ambiência com `sidechaincompress` (ducking) → ajustar ao tamanho do vídeo → juntar com `-c:v copy`, sem recodificar o vídeo.
 
 Mapa emocional padrão, sempre a partir de 0,8 como teto: montagem 0,80, desenvolvimento 0,78, virada 0,73, revelação 0,65. Frase final muito longa (acima de ~25 palavras) fica em 0,70, senão arrasta. Pausas: 0,5s entre frases comuns e 1,1s antes da revelação.
 
@@ -353,6 +382,8 @@ Receita de mixagem: ambiência a **-15 dB**, lead-in de 1,0s antes da voz, cauda
 Limitação encontrada em 2026-07-18: o parâmetro `speed` do `text_to_speech` **só aceita número inteiro**, apesar da documentação da ferramenta dizer que o intervalo é [0.5, 1.5]. Passar 0.6 dá erro de validação. Consequência: todo ajuste fino de velocidade tem que ser feito no ffmpeg via `atempo`, que além de funcionar dá controle mais fino.
 
 Pendência de segurança herdada do contexto: a API key do AllVoiceLab foi exposta em texto no chat de instalação. Gerar nova key em allvoicelab.com/workbench/api-keys e atualizar o `claude_desktop_config.json` se ainda não foi feito.
+
+**Segundo reel narrado concluído em 2026-07-25:** `reel-carta-helena-narrado-v1.mp4` (Carta 3 do Clube, "A carta da Ana" / Helena), hoje em `criativos/reels/`. Narração gerada em `criativos/audio/narracao/` (frase1 a frase4 + título). Pasta de build temporário (`_reel_build/`, com frames, wav intermediários e o mp4 final duplicado) foi removida após a reorganização de pastas, já que o resultado final já está preservado em `criativos/reels/`.
 
 ### Cadência de publicação — definida em 2026-07-18
 
@@ -410,15 +441,15 @@ Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do te
 
 ## Livro 1 (matriz CLOY) — A Mentira que Deus Usou
 
-> Romance cristão original. Autora: Ana Veras. **Bíblia editorial completa (barreira, cenário, final, personagens, tom, estrutura) em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor.md` na raiz.
+> Romance cristão original. Autora: Ana Veras. **Bíblia editorial completa (barreira, cenário, final, personagens, tom, estrutura) em `referencia/decisoes-editoriais.md`.** Referência de origem: `livros/a-mentira-que-deus-usou/referencia-pousando-no-amor.md`.
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Pesquisa da história de referência | Concluído | Documento `referencia-pousando-no-amor.md` na raiz, com grade de tradução e diretrizes de originalidade |
+| Pesquisa da história de referência | Concluído | Documento `livros/a-mentira-que-deus-usou/referencia-pousando-no-amor.md`, com grade de tradução e diretrizes de originalidade |
 | Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
 | Título definitivo | Concluído em 2026-07-02 | "A Mentira que Deus Usou" — escolhido entre 10 opções com foco em curiosidade e tensão fé/mentira |
-| Manuscrito completo | Concluído em 2026-07-02 | 13 capítulos + epílogo, ~20,3 mil palavras, cliffhanger no fim de cada capítulo. Protagonistas: Helena Vasconcelos e pastor Rafael Antunes. Arquivos em `a-mentira-que-deus-usou/manuscrito/` (pasta local do projeto) |
-| PDF diagramado | Concluído em 2026-07-02 | `Ebook__A_Mentira_que_Deus_Usou.pdf` — 95 páginas, A5, padrão visual do Amor e Fé. Logo sem fundo na capa e no sumário. Versículo da capa: Cânticos 8:7. Na pasta local do projeto |
+| Manuscrito completo | Concluído em 2026-07-02 | 13 capítulos + epílogo, ~20,3 mil palavras, cliffhanger no fim de cada capítulo. Protagonistas: Helena Vasconcelos e pastor Rafael Antunes. Arquivos em `livros/a-mentira-que-deus-usou/manuscrito/` |
+| PDF diagramado | Concluído em 2026-07-02 | `Ebook__A_Mentira_que_Deus_Usou.pdf` — 95 páginas, A5, padrão visual do Amor e Fé. Logo sem fundo na capa e no sumário. Versículo da capa: Cânticos 8:7. Em `livros/a-mentira-que-deus-usou/` |
 | Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
 | Capa ilustrada | **PENDENTE** | Capa atual é tipográfica com logo; produzir arte de capa |
 | Landing / funil do novo livro | **PENDENTE** | Definir estratégia de captura e venda (espelhar funil do Amor e Fé) |
@@ -427,16 +458,16 @@ Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do te
 
 ## Livro 2 (matriz CLOY) — O Médico das Águas
 
-> Segundo romance cristão original, sem repetir transposições do Livro 1. Autora: Ana Veras. **Bíblia editorial completa em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor-livro2.md` na raiz.
+> Segundo romance cristão original, sem repetir transposições do Livro 1. Autora: Ana Veras. **Bíblia editorial completa em `referencia/decisoes-editoriais.md`.** Referência de origem: `referencia-pousando-no-amor-livro2.md` na raiz do repositório (continua lá — ver seção "Estrutura de Pastas do Projeto").
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz |
+| Documento de referência do Livro 2 | Concluído em 2026-07-02 | `referencia-pousando-no-amor-livro2.md` na raiz do repositório |
 | Definições editoriais aprovadas | Concluído em 2026-07-02 | Bíblia completa em `referencia/decisoes-editoriais.md` |
 | Estrutura de capítulos | Aprovada em 2026-07-02 | 13 capítulos + epílogo, cliffhanger em cada um |
-| Manuscrito completo | Concluído em 2026-07-02 | ~17,3 mil palavras. Arquivos em `o-medico-das-aguas/manuscrito/` (pasta local do projeto) |
+| Manuscrito completo | Concluído em 2026-07-02 | ~17,3 mil palavras. Arquivos em `livros/o-medico-das-aguas/manuscrito/` |
 | Título definitivo | **Concluído em 2026-07-02** | "O Médico das Águas" — escolhido pelo usuário na rodada de títulos com a palavra "médico" |
-| PDF diagramado | **Concluído em 2026-07-02** | `Ebook__O_Medico_das_Aguas.pdf` — 81 páginas, A5, padrão visual do catálogo, logo sem fundo na capa e no sumário. Versículo da capa: Isaías 43:2. Na pasta local do projeto |
+| PDF diagramado | **Concluído em 2026-07-02** | `Ebook__O_Medico_das_Aguas.pdf` — 81 páginas, A5, padrão visual do catálogo, logo sem fundo na capa e no sumário. Versículo da capa: Isaías 43:2. Em `livros/o-medico-das-aguas/` |
 | Revisão de leitura pelo usuário | **PENDENTE** | Leitura completa do PDF e ajustes de texto |
 | Capa ilustrada | **PENDENTE** | Capa atual é tipográfica com logo |
 | Landing / funil | **PENDENTE** | Definir estratégia de captura e venda |
@@ -454,10 +485,12 @@ Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do te
 | Plano de cadência e calendário trimestral | Definido | `clube-de-historias/cadencia-e-calendario.md` |
 | Carta 1 — A mesa de domingo | Escrita | Personagem Teresa. Link suave para `presente.arcavila.online` |
 | Carta 2 — As flores de sábado | Escrita | Personagens Cecília e Heitor. Link suave para `presente.arcavila.online` |
-| Carta 3 — A carta da Ana | Escrita | Variação (carta de personagem). Ana, de Amor e Fé, escreve para a leitora |
+| Carta 3 — A carta da Ana | Escrita | Variação (carta de personagem). Ana, de Amor e Fé, escreve para a leitora. Narração em áudio produzida em 2026-07-25 (`criativos/audio/narracao/`) e reel `reel-carta-helena-narrado-v1.mp4` gerado (`criativos/reels/`) |
 | Cartas 4 a 5 | **PAUSADO** | Aguardando lançamento da plataforma e primeiros clientes antes de lançar o Clube |
 | Sequência no Mailchimp | **PAUSADO** | Idem |
 | Lançamento | **PAUSADO** | Clube de Histórias será lançado após oficialização da plataforma e primeiros clientes |
+
+**Nota de limpeza (2026-07-25):** existiam cópias soltas das cartas na raiz do projeto (`clube-de-historias-cadencia-e-calendario.md`, `clube-historias-carta-01/02/03-*.md`), duplicando o que já estava em `clube-de-historias/`. Removidas a pedido do usuário, já que o conteúdo do Clube será reescrito antes do lançamento — a versão oficial é sempre a de dentro de `clube-de-historias/`.
 
 ---
 
