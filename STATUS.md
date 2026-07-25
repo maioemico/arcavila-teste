@@ -538,4 +538,4 @@ Estado da planilha após os testes: linha LD-20260720-01 com L="Sim" (post do te
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026
+| Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07 na limpeza de escopo (fluxo de deploy automático via Drive para o `Ebook__Amor_e_Fe.pdf` e outros arquivos grandes). Substituído pelo push manual/terminal e pelo GitHub MCP direto no Cowork para arquivos pequenos. Ver "Workflow de Deploy" e a skill `arca-upload` para os caminhos ativos hoje |
