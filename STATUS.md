@@ -353,7 +353,7 @@ Três mudanças definidas com o Chiba em 2026-07-25, valendo somente para reels 
 
 ### Reels layout carta v3 — estrutura de 3 slides, definida em 2026-07-25
 
-Evolução do layout v2 acima, aprovada pelo Chiba no reel `criativos/reels/reel-carta-victoria-teste-v7.mp4`. O que muda:
+Evolução do layout v2 acima, aprovada pelo Chiba no reel `criativos/reels/reel-carta-victoria-teste-v7.mp4`. **Publicado no Instagram em 2026-07-25** via cenário Make 5716956 (arquivo no repo: `reels/reel-carta-victoria-v1.mp4`; legenda no padrão da Helena: "Carta para Victoria." + frase + "Histórias completas em arcavila.com.br" + as 5 hashtags). O que muda:
 
 1. **Estrutura fixa de 3 slides: CAPA > CONTEÚDO > SLIDE FINAL COM O LOGO ARCAVILA.** Acabaram os reels de 4 a 6 slides com a carta fatiada em várias frases. O corpo da carta agora cabe num slide só. Toda a construção de montagem, virada e gancho que existia nas versões anteriores foi descartada.
 
@@ -484,7 +484,7 @@ Linhas já postadas: LD-20260720-01 (Conquista e gratidão) e PP-20260720-03 (He
 |------|--------|-----------|
 | Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
 | Cenário Arcavila — Hotmart Compra Aprovada | **Ativo (verificado 2026-07-05)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Config e estado conferidos via conector. ID em `referencia/credenciais-e-ids.md` |
-| Cenário Arcavila — Publicar Reel no Instagram | **Ativo (validado ponta a ponta em 2026-07-21)** | ID 5716956. Publica reels automaticamente a partir da planilha de pautas. Ver seção "Conteúdo Orgânico — Imagens Instagram (Canva)" para o cenário irmão de imagens (5727133) |
+| Cenário Arcavila — Publicar Reel no Instagram | **Inativo por padrão; corrigido em 2026-07-25** | ID 5716956, on-demand. NÃO lê a planilha dinamicamente: a URL do vídeo e a legenda são fixas no módulo `CreateAReelPost` e precisam ser editadas a cada reel (hoje apontam para o reel da Victoria). Fluxo de publicação: subir o mp4 para `reels/` no GitHub via terminal, editar URL+legenda no módulo, ativar, rodar, desativar. A trava de segurança (filtro `SEM-CORRESPONDENCIA-TRAVA-DE-SEGURANCA` na coluna A) foi corrigida em 2026-07-25: antes ela não impedia os módulos seguintes de rodarem (o `updateRow` quebrava com linha undefined — erro da execução de 2026-07-25 15:48); agora os módulos 2 e 3 têm filtro próprio exigindo `__ROW_NUMBER__` do passo 1. Publicou o reel da Victoria em 2026-07-25. Ver cenário irmão de imagens (5727133) |
 | Limite do plano Free | **Nota** | Máximo 2 cenários ativos e 1000 operações/mês — gerenciar quais cenários ficam ligados por vez |
 
 ---
@@ -498,7 +498,7 @@ Linhas já postadas: LD-20260720-01 (Conquista e gratidão) e PP-20260720-03 (He
 | Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade |
 | Mailchimp | Free até 500 contatos | Monitorar crescimento da lista para antecipar upgrade |
 | Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
-| Make.com | Free tier (2 cenários ativos) | Cenários ativos: Hotmart → Mailchimp pós-compra; Publicar Reel no Instagram |
+| Make.com | Free tier (2 cenários ativos) | Cenário ativo: Hotmart → Mailchimp pós-compra. O de Publicar Reel (5716956) fica desativado entre publicações desde 2026-07-25 (é on-demand; ativar só na hora de rodar) |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
 | Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Pipeline de cards de Instagram (molde v2) não depende do resize |
 | PostHog | Free (1M eventos/mês) | Analytics do site, ver seção "Analytics de Site (PostHog)" |
