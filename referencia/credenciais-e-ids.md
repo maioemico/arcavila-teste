@@ -10,7 +10,8 @@
 
 | Serviço | Valor |
 |---------|-------|
-| Meta Pixel ID | `2738569696297378` |
+| Meta Pixel ID (ATUAL, desde 2026-07-27) | `2532444597190684` — criado dentro do Business "Arcavila" (`213802926265845`), já com Conversions API habilitada e conectado à conta de anúncios `2117830595442608` |
+| Meta Pixel ID (ANTIGO, aposentado) | `2738569696297378` — pertence a uma conta pessoal fora de qualquer portfólio; a Meta não permite transferir/excluir um conjunto de dados entre portfólios, então ficou órfão. Não usar mais em snippets novos |
 | Hotmart — login | `suporte@arcavila.online` |
 | Hotmart — URL de pagamento | `https://pay.hotmart.com/S106531572M` |
 | Hotmart — Produto ID | `8026094` |
@@ -32,7 +33,7 @@
 
 | Item | ID |
 |------|-----|
-| Cenário "Arcavila — Hotmart Compra Aprovada" (ativo) | `5549131` |
+| Cenário "Arcavila — Hotmart Compra Aprovada" (QUEBRADO/desligado desde 2026-07-27, ver STATUS.md) | `5549131` |
 | Webhook Make.com (Hotmart) | `2526674` — `https://hook.us2.make.com/f8gnefhcr70exg7mqo3gt1krwbie1l0y` |
 | Cenário Drive → GitHub → Netlify (desativado) | `5389909` |
 
