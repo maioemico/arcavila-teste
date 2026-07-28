@@ -1,6 +1,6 @@
 # Status do Projeto Arcavila
 
-> Atualizado em: 2026-07-25
+> Atualizado em: 2026-07-27
 
 > **Nota de incidente e reestruturação (2026-07-25):** uma edição via GitHub MCP truncou este arquivo, porque a ferramenta de escrita do MCP (`create_or_update_file`) corta silenciosamente conteúdo acima de ~84 mil caracteres e o STATUS.md já estava em 86,5 mil. O conteúdo foi restaurado a partir da cópia local, verificada byte a byte contra o commit íntegro `fd70a2a` por blob sha. Na mesma passada, ~19 mil caracteres de histórico saíram daqui para `referencia/historico-layout.md` e `referencia/historico-automacoes.md`, devolvendo folga de edição. **Regra prática: manter este arquivo abaixo de ~80 mil caracteres.** Se voltar a crescer, mover mais histórico para `referencia/`.
 
@@ -279,7 +279,7 @@ Rastreio entre subdomínios (www e amorefe) funciona automaticamente: o cookie d
 | Página do Facebook "Arcavila" | **Em andamento (2026-07-11)** | Página antiga "arteiropro" reativada. Solicitação de renomeação para "Arcavila" enviada, em análise da Meta (até 3 dias); após aprovado, nome fica travado por 60 dias |
 | Verificação do domínio arcavila.com.br no Business | **PENDENTE** | Via TXT no Cloudflare (DNS já sob controle). Necessário para medição de conversões pós-iOS 14 |
 | Verificação da empresa (Business Verification) | **PENDENTE** | Enquanto não verificada, o limite de contas de anúncios no portfólio fica em 1 |
-| Reivindicar o Meta Pixel no Business | **PENDENTE** | Pixel já configurado (ID em `referencia/credenciais-e-ids.md`); transferir a posse para o negócio |
+| Reivindicar o Meta Pixel no Business | **PENDENTE — bloqueio confirmado em 2026-07-27** | Pixel configurado (ID em `referencia/credenciais-e-ids.md`), mas ainda pertence ao portfólio antigo "Sonite (Você Show)" (ID `317126436`), não ao Business "Arcavila". Confirmado ao tentar gerar um token de acesso à Conversions API no Events Manager: erro "Pré-requisito ausente — você precisa ser administrador ou desenvolvedor deste portfólio empresarial". Bloqueia o evento Purchase via CAPI até o pixel ser reivindicado/transferido para o Business "Arcavila" (`213802926265845`) |
 | Conta de anúncios "arcavila" | **Criada em 2026-07-11** | ID `2117830595442608`, dentro do portfólio. Caio Chiba com acesso total de administrador. ID em `referencia/credenciais-e-ids.md` |
 | Meio de pagamento na conta de anúncios | **PENDENTE** | Precisa ser inserido diretamente pelo responsável financeiro (Caio), por segurança |
 | Instagram profissional `@editora.arcavila` | **Perfil já existe e publica (verificado 2026-07-11); conexão ao Business ainda não confirmada** | Handle real ficou `@editora.arcavila` (com ponto), diferente do sugerido em 2026-07-05 (`@editoraarcavila`/`@arcavila`) — usar esse handle em todas as peças/QR codes daqui em diante. Visualmente (sem login) não aparece tag de categoria comercial nem botão de contato, então não dá para confirmar de fora se já é conta profissional vinculada ao Business "Arcavila" — conferir em Configurações > Conta |
@@ -397,11 +397,13 @@ Linhas já postadas: LD-20260720-01 (Conquista e gratidão) e PP-20260720-03 (He
 ---
 ## Pipeline Pós-Compra (Hotmart → Make → Mailchimp)
 
-> **Verificação 2026-07-05 (via conector do Make):** a configuração do cenário está correta — o Make escreve a tag exata `comprou-amor-e-fe` na audiência `9f9b97e70e` (us5), via API de tags do Mailchimp, disparado pelo webhook do Hotmart. O cenário está ativo/rodando (resposta "already running" ao tentar ativar; o campo `isPaused` da API veio inconsistente — conferir o toggle "ON" visualmente no teste final). A tag `comprou-amor-e-fe` ainda NÃO existe no Mailchimp porque nenhuma compra passou pelo cenário; ela nasce na 1ª compra (teste ou real).
+> **Verificação 2026-07-05 (via conector do Make):** configuração inicial conferida como correta.
+>
+> **Atualização crítica 2026-07-27:** o cenário estava quebrado desde pelo menos 2026-07-10 por um bug de mapeamento — a fórmula usava a função `lowercase`, que não existe no Make (o certo é `lower`). Toda execução falhava, e **13 notificações de compra da Hotmart ficaram acumuladas na fila do webhook sem processar** (nenhuma perdida — continuam na fila). Bug corrigido e a estrutura de dados do webhook foi reensinada ao Make (`hooks_learn_start` + payload de teste), mas mesmo assim `data.buyer.email` continua resolvendo `null` nos itens reais da fila — o webhook Hotmart está configurado como v2.0.0 (confirmado abaixo), então o payload deveria bater com o schema oficial; causa exata ainda não identificada. O Make desativa o cenário automaticamente após 3 falhas seguidas (proteção própria) — está **OFF** agora. Próximo passo: abrir uma das execuções com erro direto na interface web do Make (Histórico > execução > bundle de entrada do módulo 1) para ver o payload real, já que a API do MCP não expõe esse bundle. Também ainda não tem o evento Purchase via Conversions API (Meta) — bloqueado separadamente pela posse do pixel, ver seção "Redes Sociais — Contas Meta".
 
 | Item | Status | Observação |
 |------|--------|-----------|
-| Cenário Make.com | **Concluído / config verificada** | "Arcavila — Hotmart Compra Aprovada" (ID 5549131). Config conferida em 2026-07-05: tag `comprou-amor-e-fe` e audiência `9f9b97e70e` corretas. Ativo. IDs em `referencia/credenciais-e-ids.md` |
+| Cenário Make.com | **QUEBRADO — desligado (ver nota 2026-07-27 acima)** | "Arcavila — Hotmart Compra Aprovada" (ID 5549131). Bug do `lowercase` corrigido, mas `data.buyer.email` ainda resolve `null` nos itens reais da fila; cenário se auto-desativa após 3 erros seguidos. 13 notificações de compra aguardando na fila do webhook, sem perda de dados. IDs em `referencia/credenciais-e-ids.md` |
 | Webhook Make.com | **Concluído** | URL e ID em `referencia/credenciais-e-ids.md` |
 | Webhook Hotmart | **Concluído** | Cadastrado em Ferramentas → Webhook. Nome: "Make.com - Compra Aprovada". Produto: Amor e Fé. Versão 2.0.0. Evento: Compra aprovada. Status: Ativo |
 | Exit Condition no Journey | **PENDENTE (bloqueado até 1ª compra)** | Mailchimp desta conta NÃO tem exit criteria nativo. Plano aprovado (2026-07-05): inserir bloco Se/Senão antes de cada e-mail restante (E-mails 1 a 4), checando a tag `comprou-amor-e-fe`; ramo "tem a tag" fica sem etapas (contato sai). Só é possível montar depois que a tag existir (1ª compra a cria). Prompt do Browser Chat já preparado |
@@ -483,7 +485,7 @@ Linhas já postadas: LD-20260720-01 (Conquista e gratidão) e PP-20260720-03 (He
 | Item | Status | Observação |
 |------|--------|-----------|
 | Cenário Drive → GitHub → Netlify | **Desativado** | Desativado em 2026-07-01 para liberar vaga de cenário ativo no plano Free. Workflow atual usa terminal local para pushes. ID em `referencia/credenciais-e-ids.md` |
-| Cenário Arcavila — Hotmart Compra Aprovada | **Ativo (verificado 2026-07-05)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Config e estado conferidos via conector. ID em `referencia/credenciais-e-ids.md` |
+| Cenário Arcavila — Hotmart Compra Aprovada | **QUEBRADO — desligado (2026-07-27)** | Webhook recebe Hotmart → HTTP POST Mailchimp API adiciona tag `comprou-amor-e-fe`. Bug de mapeamento (`lowercase`→`lower`) corrigido, mas campo do e-mail do comprador ainda não resolve corretamente nos itens reais da fila (13 pendentes). Ver "Pipeline Pós-Compra" para detalhe. ID em `referencia/credenciais-e-ids.md` |
 | Cenário Arcavila — Publicar Reel no Instagram | **Inativo por padrão; corrigido em 2026-07-25** | ID 5716956, on-demand. NÃO lê a planilha dinamicamente: a URL do vídeo e a legenda são fixas no módulo `CreateAReelPost` e precisam ser editadas a cada reel (hoje apontam para o reel da Victoria). Fluxo de publicação: subir o mp4 para `reels/` no GitHub via terminal, editar URL+legenda no módulo, ativar, rodar, desativar. A trava de segurança (filtro `SEM-CORRESPONDENCIA-TRAVA-DE-SEGURANCA` na coluna A) foi corrigida em 2026-07-25: antes ela não impedia os módulos seguintes de rodarem (o `updateRow` quebrava com linha undefined — erro da execução de 2026-07-25 15:48); agora os módulos 2 e 3 têm filtro próprio exigindo `__ROW_NUMBER__` do passo 1. Publicou o reel da Victoria em 2026-07-25. Ver cenário irmão de imagens (5727133) |
 | Limite do plano Free | **Nota** | Máximo 2 cenários ativos e 1000 operações/mês — gerenciar quais cenários ficam ligados por vez |
 
@@ -498,7 +500,7 @@ Linhas já postadas: LD-20260720-01 (Conquista e gratidão) e PP-20260720-03 (He
 | Hotmart | Comissão por venda (~9,9% + R$1) | Login: `suporte@arcavila.online`. Sem mensalidade |
 | Mailchimp | Free até 500 contatos | Monitorar crescimento da lista para antecipar upgrade |
 | Cloudflare Pages | Free tier | Hospedagem dos 4 sites do projeto |
-| Make.com | Free tier (2 cenários ativos) | Cenário ativo: Hotmart → Mailchimp pós-compra. O de Publicar Reel (5716956) fica desativado entre publicações desde 2026-07-25 (é on-demand; ativar só na hora de rodar) |
+| Make.com | Free tier (2 cenários ativos) | Cenário Hotmart → Mailchimp pós-compra está QUEBRADO/desligado desde 2026-07-27 (ver "Pipeline Pós-Compra"). O de Publicar Reel (5716956) fica desativado entre publicações desde 2026-07-25 (é on-demand; ativar só na hora de rodar) |
 | GitHub | Free (repo público) | `maioemico/arcavila-teste` |
 | Canva | Trial de resize esgotado (0 usos) | Resize 9:16 já usado nos criativos 1 e 3. Pipeline de cards de Instagram (molde v2) não depende do resize |
 | PostHog | Free (1M eventos/mês) | Analytics do site, ver seção "Analytics de Site (PostHog)" |
