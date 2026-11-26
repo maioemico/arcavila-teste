@@ -6,6 +6,14 @@
 
 ---
 
+## Workflow atual: pela Ratoeira (desde 2026-11)
+
+O repositório está clonado na Ratoeira em `projetos/arcavila`. O agente edita, faz commit e `git push` direto de lá (HTTPS, token na chave `GITHUB_TOKEN_ARCAVILA`, com permissão de escrita no `maioemico/arcavila-teste`). Sem limite de tamanho de arquivo: o `landing-sprites-ana-pedro.html` e o `index.html` vão inteiros. O Cloudflare Pages publica sozinho a cada push. O fluxo Cowork + terminal do Mac abaixo fica só como histórico.
+
+**Código injetado na hora de servir (`functions/_middleware.js`):** o HTML no ar do amorefe.arcavila.com.br não é idêntico ao arquivo do repositório. A Pages Function `functions/_middleware.js` acrescenta, a cada acesso, o script que liga o formulário `#leadForm` ao `/subscribe` (Mailchimp) e o modal de captura. Mexer no formulário ou no envio de e-mail = editar esse middleware, não só a página.
+
+---
+
 ## Workflow de deploy (prático)
 
 Ferramentas em uso:
